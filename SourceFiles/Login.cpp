@@ -3,10 +3,10 @@
  * @Author: Hx
  * @Date: 2021-12-23 15:56:56
  * @LastEditors: Hx
- * @LastEditTime: 2021-12-24 20:49:19
+ * @LastEditTime: 2021-12-24 21:22:36
  */
-#include"Login.h"
-#include"Utils.h"
+#include"../HeaderFiles/Login.h"
+#include"../HeaderFiles/Utils.h"
 
 //存储学生数据的文件
 char Data_Stu[] = "Students.dat";
@@ -123,7 +123,7 @@ Stu Login_Stu(){
     fp = fopen(Data_Stu, "rb");
     
     //在数据文件中查找账号
-    while(fread(stu, sizeof(student), 1, fp) != NULL){
+    while(fread(stu, sizeof(student), 1, fp)){
         
         if(strcmp(account, stu->account) == 0){
             //密码相同
@@ -239,7 +239,7 @@ Status Register_Operation(int mode){
             //打开文件
             fp = fopen(Data_Stu, "rb");
 
-            while(fread(temp, sizeof(student), 1, fp) != NULL){
+            while(fread(temp, sizeof(student), 1, fp)){
 
                 if(strcmp(temp->account, stu->account) == 0){
                     fclose(fp);
@@ -286,7 +286,7 @@ Status Register_Operation(int mode){
             //打开文件
             fp = fopen(Data_Man, "rb");
 
-            while(fread(temp, sizeof(student), 1, fp) != NULL){
+            while(fread(temp, sizeof(student), 1, fp)){
 
                 if(strcmp(temp->account, M->account) == 0){
                     fclose(fp);
