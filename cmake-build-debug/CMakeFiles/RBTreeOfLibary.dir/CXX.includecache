@@ -6,69 +6,35 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/HUAWEI/CLionProjects/RBTreeOfLibary/HeaderFiles/BalancedBinaryTree.h
+F:/DataStructure/CurriculumDesign/HeaderFiles/BinarySearchTree.h
 RedBlackTree.h
-C:/Users/HUAWEI/CLionProjects/RBTreeOfLibary/HeaderFiles/RedBlackTree.h
+F:/DataStructure/CurriculumDesign/HeaderFiles/RedBlackTree.h
 
-C:/Users/HUAWEI/CLionProjects/RBTreeOfLibary/HeaderFiles/BinarySearchTree.h
+F:/DataStructure/CurriculumDesign/HeaderFiles/BinaryTree.h
 RedBlackTree.h
-C:/Users/HUAWEI/CLionProjects/RBTreeOfLibary/HeaderFiles/RedBlackTree.h
+F:/DataStructure/CurriculumDesign/HeaderFiles/RedBlackTree.h
 
-C:/Users/HUAWEI/CLionProjects/RBTreeOfLibary/HeaderFiles/BinaryTree.h
-RedBlackTree.h
-C:/Users/HUAWEI/CLionProjects/RBTreeOfLibary/HeaderFiles/RedBlackTree.h
-
-C:/Users/HUAWEI/CLionProjects/RBTreeOfLibary/HeaderFiles/RedBlackTree.h
+F:/DataStructure/CurriculumDesign/HeaderFiles/RedBlackTree.h
 stdio.h
 -
 
-C:/Users/HUAWEI/CLionProjects/RBTreeOfLibary/HeaderFiles/RedBlackTreeUtils.h
+F:/DataStructure/CurriculumDesign/HeaderFiles/RedBlackTreeUtils.h
 
-C:/Users/HUAWEI/CLionProjects/RBTreeOfLibary/SourceFiles/BalancedBinaryTree.cpp
-../HeaderFiles/BalancedBinaryTree.h
-C:/Users/HUAWEI/CLionProjects/RBTreeOfLibary/HeaderFiles/BalancedBinaryTree.h
-
-C:/Users/HUAWEI/CLionProjects/RBTreeOfLibary/SourceFiles/BinarySearchTree.cpp
-stdio.h
--
-../HeaderFiles/BinarySearchTree.h
-C:/Users/HUAWEI/CLionProjects/RBTreeOfLibary/HeaderFiles/BinarySearchTree.h
-
-C:/Users/HUAWEI/CLionProjects/RBTreeOfLibary/SourceFiles/BinaryTree.cpp
-stdio.h
--
-stdlib.h
--
-../HeaderFiles/BinaryTree.h
-C:/Users/HUAWEI/CLionProjects/RBTreeOfLibary/HeaderFiles/BinaryTree.h
-
-C:/Users/HUAWEI/CLionProjects/RBTreeOfLibary/SourceFiles/RedBlackTree.cpp
+F:/DataStructure/CurriculumDesign/SourceFiles/RedBlackTree.cpp
 stdio.h
 -
 stdlib.h
 -
 ../HeaderFiles/RedBlackTree.h
-C:/Users/HUAWEI/CLionProjects/RBTreeOfLibary/HeaderFiles/RedBlackTree.h
+F:/DataStructure/CurriculumDesign/HeaderFiles/RedBlackTree.h
 ../HeaderFiles/RedBlackTreeUtils.h
-C:/Users/HUAWEI/CLionProjects/RBTreeOfLibary/HeaderFiles/RedBlackTreeUtils.h
+F:/DataStructure/CurriculumDesign/HeaderFiles/RedBlackTreeUtils.h
 ../HeaderFiles/BinarySearchTree.h
-C:/Users/HUAWEI/CLionProjects/RBTreeOfLibary/HeaderFiles/BinarySearchTree.h
+F:/DataStructure/CurriculumDesign/HeaderFiles/BinarySearchTree.h
 ../HeaderFiles/BinaryTree.h
-C:/Users/HUAWEI/CLionProjects/RBTreeOfLibary/HeaderFiles/BinaryTree.h
+F:/DataStructure/CurriculumDesign/HeaderFiles/BinaryTree.h
 
-C:/Users/HUAWEI/CLionProjects/RBTreeOfLibary/SourceFiles/RedBlackTreeUtils.cpp
-stdio.h
--
-stdlib.h
--
-../HeaderFiles/RedBlackTree.h
-C:/Users/HUAWEI/CLionProjects/RBTreeOfLibary/HeaderFiles/RedBlackTree.h
-../HeaderFiles/BinarySearchTree.h
-C:/Users/HUAWEI/CLionProjects/RBTreeOfLibary/HeaderFiles/BinarySearchTree.h
-../HeaderFiles/BalancedBinaryTree.h
-C:/Users/HUAWEI/CLionProjects/RBTreeOfLibary/HeaderFiles/BalancedBinaryTree.h
-
-C:/Users/HUAWEI/CLionProjects/RBTreeOfLibary/main.cpp
+F:/DataStructure/CurriculumDesign/main.cpp
 iostream
 -
 stdio.h
@@ -78,9 +44,9 @@ stdlib.h
 Windows.h
 -
 HeaderFiles/RedBlackTree.h
-C:/Users/HUAWEI/CLionProjects/RBTreeOfLibary/HeaderFiles/RedBlackTree.h
+F:/DataStructure/CurriculumDesign/HeaderFiles/RedBlackTree.h
 HeaderFiles/RedBlackTreeUtils.h
-C:/Users/HUAWEI/CLionProjects/RBTreeOfLibary/HeaderFiles/RedBlackTreeUtils.h
+F:/DataStructure/CurriculumDesign/HeaderFiles/RedBlackTreeUtils.h
 HeaderFiles/BinarySearchTree.h
-C:/Users/HUAWEI/CLionProjects/RBTreeOfLibary/HeaderFiles/BinarySearchTree.h
+F:/DataStructure/CurriculumDesign/HeaderFiles/BinarySearchTree.h
 
