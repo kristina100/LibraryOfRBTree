@@ -124,14 +124,14 @@ Status RBTreeInsertSelfBalancing(RBRoot *root, Node *node)
  * @param[in]  minVal: the minimum value of the red-black tree
  * @return  the operation status, SUCCESS is 1, FALSE is 0
  */
-Status minRBTreeNode(RBRoot *root, RBTreeElemType *minVal)
+Status minRBTreeNode(RBRoot *root, RBTreeElemType minVal)
 {
     Node *node = NULL;
 
     if (root) node = minBinarySearchTreeNode(root->node);
     if (!node) return FALSE;
 
-    *minVal = node->data;
+    minVal = node->data;
 
     return SUCCESS;
 }
@@ -143,14 +143,14 @@ Status minRBTreeNode(RBRoot *root, RBTreeElemType *minVal)
  * @param[in]  maxVal: the maximum value of the red-black tree
  * @return  the operation status, SUCCESS is 1, FALSE is 0
  */
-Status maxRBTreeNode(RBRoot *root, RBTreeElemType *maxVal)
+Status maxRBTreeNode(RBRoot *root, RBTreeElemType maxVal)
 {
     Node *node = NULL;
 
     if (root) node = maxBinarySearchTreeNode(root->node);
     if (!node) return FALSE;
 
-    *maxVal = node->data;
+    maxVal = node->data;
 
     return SUCCESS;
 }
@@ -355,8 +355,8 @@ Status PrintRBTreeInfo(RBTree tree, RBTreeElemType data, int position)
         if (position == 0)
             printf("[%d] (BLACK) is root.\n", tree->data);
         else
-            printf("[%d] (%s) is [%d] 's {%s} child node\n", tree->data, RBTreeIsRed(tree) ? "RED" : "BLACK",
-                    data, position == -1 ? "LEFT" : "RIGHT");
+            printf("[%d] (%s) is [%d] 's {%s} child node\n", tree->data->elem, RBTreeIsRed(tree) ? "RED" : "BLACK",
+                    data->elem, position == -1 ? "LEFT" : "RIGHT");
         // 左孩子递归遍历
         PrintRBTreeInfo(tree->left, tree->data, -1);
         // 右孩子递归遍历
