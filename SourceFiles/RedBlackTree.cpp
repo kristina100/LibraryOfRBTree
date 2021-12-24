@@ -212,5 +212,6 @@ Status InitRBTElem(RBTreeElemType &e){
     e->status = 0;
     e->Title = NULL;
 
+    return SUCCESS;
 }
 
