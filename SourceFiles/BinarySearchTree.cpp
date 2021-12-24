@@ -20,7 +20,7 @@ Status insertBinarySearchTree(RBRoot *root, Node *node)
     {
         last = p;
         // 二叉查找树的特性
-        if (node->data.elem < p->data.elem)
+        if (node->data->elem < p->data->elem)
             p = p->left;
         else
             p = p->right;
@@ -30,7 +30,7 @@ Status insertBinarySearchTree(RBRoot *root, Node *node)
     // last存在
     if (last)
     {
-        if (node->data.elem < last->data.elem)
+        if (node->data->elem < last->data->page_num)
             last->left = node;
         else
             last->right = node;

@@ -375,10 +375,11 @@ Status PrintRBTreeInfo(RBTree tree, RBTreeElemType data, int position)
  */
 Status recessedPrintRBTree(RBTree tree, int depth)
 {
+    
     if (!tree) return FALSE;
     recessedPrintRBTree(tree->right, depth + 1);
     for (int i = 0; i < depth; i++) printf("    ");
-    printf("[%-d(%s)]\n", tree->data, RBTreeIsRed(tree) ? "RED" : "BLACK");
+    printf("[%-d(%s)]\n", tree->data->elem, RBTreeIsRed(tree) ? "RED" : "BLACK");
     recessedPrintRBTree(tree->left, depth + 1);
     return SUCCESS;
 }
