@@ -1,14 +1,8 @@
-#include <iostream>
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <Windows.h>
 #include "HeaderFiles/RedBlackTree.h"
 #include "HeaderFiles/RedBlackTreeUtils.h"
 #include "HeaderFiles/BinarySearchTree.h"
-//#include "HeaderFiles/FileDo.h"
-
-
+#include "HeaderFiles/Utils.h"
+// #include "HeaderFiles/FileDo.h"
 
 LARGE_INTEGER freq, begin, end;
 void beginRecord();
@@ -42,7 +36,7 @@ void FileReadAndBuiltTree(RBRoot *root)
         fscanf(fp,"%d",&a);//读入下一条记录
         printf("%d\n",a);
         RBTreeElemType temp;
-        temp.elem = a;
+        temp->elem = a;
         insertRBTree(root, temp);
     }
     fclose(fp);
@@ -175,7 +169,7 @@ void menu(RBRoot *root)
                     Status delete_status;
                     double cost;
                     printf("Please enter the node you want to delete:");
-                    delete_x.elem = InputInteger();
+                    delete_x->elem = InputInteger();
                     beginRecord();
                     delete_status = deleteRBTree(root, delete_x);
                     cost = endRecord();
@@ -192,14 +186,18 @@ void menu(RBRoot *root)
                 break;
 
             case 5:  /* 插入 */
-                system("cls");
+                Clean();
                 if (exist_flag)
                 {
-                    RBTreeElemType insert_x;
+                    RBTreeElemType insert_x = NULL;
+
+                    //暂时不输入信息
+                    InitRBTElem(insert_x);
+
                     Status insert_status;
                     double cost;
                     printf("Please enter the node you want to insert:");
-                    insert_x.elem = InputInteger();
+                    insert_x->elem = InputInteger();
                     beginRecord();
                     insert_status = insertRBTree(root, insert_x);
                     cost = endRecord();
@@ -221,7 +219,7 @@ void menu(RBRoot *root)
                 {
                     RBTreeElemType search_x;
                     printf("Please enter the node you want to find:");
-                    search_x.elem = InputInteger();
+                    search_x->elem = InputInteger();
                     if ((recursiveSearchRBTree(root, search_x)) == SUCCESS)
                         printf("The search was successful, and the node exists ~\n");
                     else
@@ -281,11 +279,11 @@ void menu(RBRoot *root)
                 system("cls");
                 if (exist_flag && root->node)
                 {
-                    RBTreeElemType *max = (RBTreeElemType *)malloc(sizeof(int));
-                    RBTreeElemType *min = (RBTreeElemType *)malloc(sizeof(int));
+                    RBTreeElemType max = (RBTreeElemType)malloc(sizeof(RBTElem));
+                    RBTreeElemType min = (RBTreeElemType)malloc(sizeof(RBTElem));
                     maxRBTreeNode(root, max);
                     minRBTreeNode(root, min);
-                    printf("The maximum node of the red-black tree is [%d], The minimum node is [%d]!\n", *max, *min);
+                    printf("The maximum node of the red-black tree is [%d], The minimum node is [%d]!\n", max->elem, min->elem);
                 }
                 else if (!root->node)
                     printf("The red-black tree is empty!\n");

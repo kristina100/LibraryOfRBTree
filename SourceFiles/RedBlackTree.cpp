@@ -2,19 +2,13 @@
 // Created by HUAWEI on 2021-12-06.
 //
 
-//
-// Created by HUAWEI on 2021-12-06.
-//
-
-#include <stdio.h>
-#include <stdlib.h>
 #include "../HeaderFiles/RedBlackTree.h"
 #include "../HeaderFiles/RedBlackTreeUtils.h"
 #include "../HeaderFiles/BinarySearchTree.h"
 #include "../HeaderFiles/BinaryTree.h"
 
 /**
- * ´´½¨ºìºÚÊ÷
+ * åˆ›å»ºçº¢é»‘æ ‘
  *
  * @param[in]  none
  * @return  the root of the red-black tree
@@ -27,15 +21,15 @@ RBRoot *createRBTree()
 }
 
 /**
- * Ïú»ÙºìºÚÊ÷
+ * é”€æ¯çº¢é»‘æ ‘
  *
  * @param[in]  root  the root of the red-black tree
- * @return  the operation status, SUCCESS is 0, FAILED is -1
+ * @return  the operation status, SUCCESS is 0, FALSE is -1
  */
 Status destroyRBTree(RBRoot *root)
 {
     if (!root)
-        return FAILED;
+        return FALSE;
     else
         destroyBinaryTree(root->node);
     free(root);
@@ -43,76 +37,76 @@ Status destroyRBTree(RBRoot *root)
 }
 
 /**
- * Ç°Ðò±éÀúºìºÚÊ÷
+ * å‰åºéåŽ†çº¢é»‘æ ‘
  *
  * @param[in]  root: the root of the red-black tree
- * @return  the operation status, SUCCESS is 0, FAILED is -1
+ * @return  the operation status, SUCCESS is 0, FALSE is -1
  */
 Status preorderRBTree(RBRoot *root)
 {
-    if (!root) return FAILED;
+    if (!root) return FALSE;
     else preorderBiTree(root->node);
 
     return SUCCESS;
 }
 
 /**
- * ÖÐÐò±éÀúºìºÚÊ÷
+ * ä¸­åºéåŽ†çº¢é»‘æ ‘
  *
  * @param[in]  root: the root of the red-black tree
- * @return  the operation status, SUCCESS is 0, FAILED is -1
+ * @return  the operation status, SUCCESS is 0, FALSE is -1
  *
  */
 Status inorderRBTree(RBRoot *root)
 {
-    if (!root) return FAILED;
+    if (!root) return FALSE;
     else inorderBiTree(root->node);
 
     return SUCCESS;
 }
 
 /**
- * ºóÐò±éÀúºìºÚÊ÷
+ * åŽåºéåŽ†çº¢é»‘æ ‘
  *
  * @param[in]  root: the root of the red-black tree
- * @return  the operation status, SUCCESS is 0, FAILED is -1
+ * @return  the operation status, SUCCESS is 0, FALSE is -1
  */
 Status postorderRBTree(RBRoot *root)
 {
-    if (!root) return FAILED;
+    if (!root) return FALSE;
     else postorderBiTree(root->node);
 
     return SUCCESS;
 }
 
 /**
- * µÝ¹é²éÕÒºìºÚÊ÷treeÖÐÊý¾ÝÓòÎªxµÄ½áµã
+ * é€’å½’æŸ¥æ‰¾çº¢é»‘æ ‘treeä¸­æ•°æ®åŸŸä¸ºxçš„ç»“ç‚¹
  *
  * @param[in]  root: the root of the red-black tree
  * @param[in]  x   : the data of the node
- * @return  the operation status, SUCCESS is 0, FAILED is -1
+ * @return  the operation status, SUCCESS is 0, FALSE is -1
  */
 Status recursiveSearchRBTree(RBRoot *root, RBTreeElemType x)
 {
-    if (root) return recursiveSearchNode(root->node, x) ? SUCCESS : FAILED;
+    if (root) return recursiveSearchNode(root->node, x) ? SUCCESS : FALSE;
     return SUCCESS;
 }
 
 /**
- * ºìºÚÊ÷²åÈëÊý¾ÝÓòÎªxµÄ½áµã
+ * çº¢é»‘æ ‘æ’å…¥æ•°æ®åŸŸä¸ºxçš„ç»“ç‚¹
  *
  * @param[in]  root: the root of the red-black tree
  * @param[in]  x   : the data of the node
- * @return  the operation status, SUCCESS is 0, FAILED is -1
+ * @return  the operation status, SUCCESS is 0, FALSE is -1
  */
 Status insertRBTree(RBRoot *root, RBTreeElemType x)
 {
-    // ÒÑ´æÔÚ
-    if (recursiveSearchNode(root->node, x)) return FAILED;
+    // å·²å­˜åœ¨
+    if (recursiveSearchNode(root->node, x)) return FALSE;
 
     Node *node;
     node = createRBTreeNode(x, NULL, NULL, NULL);
-    if (!node) return FAILED;
+    if (!node) return FALSE;
 
     insertBinarySearchTree(root, node);
     RBTreeInsertSelfBalancing(root, node);
@@ -121,30 +115,30 @@ Status insertRBTree(RBRoot *root, RBTreeElemType x)
 }
 
 /**
- * ºìºÚÊ÷É¾³ýÊý¾ÝÓòÎªxµÄ½áµã
+ * çº¢é»‘æ ‘åˆ é™¤æ•°æ®åŸŸä¸ºxçš„ç»“ç‚¹
  *
  * @param[in]  root: the root of the red-black tree
  * @param[in]  key : the data of the node to be deleted
- * @return  the operation status, SUCCESS is 0, FAILED is -1
+ * @return  the operation status, SUCCESS is 0, FALSE is -1
  */
 Status deleteRBTree(RBRoot *root, RBTreeElemType x)
 {
     Node *p;
-    // µÝ¹é²éÕÒ
+    // é€’å½’æŸ¥æ‰¾
     p = recursiveSearchNode(root->node, x);
     if (p)
     {
         deleteRBTreeNode(root, p);
         return SUCCESS;
     }
-    return FAILED;
+    return FALSE;
 }
 
 /**
- * ´òÓ¡ºìºÚÊ÷ÐÅÏ¢
+ * æ‰“å°çº¢é»‘æ ‘ä¿¡æ¯
  *
  * @param[in]  root: the root of the red-black tree
- * @return  the operation status, SUCCESS is 0, FAILED is -1
+ * @return  the operation status, SUCCESS is 0, FALSE is -1
  */
 Status printRBTree(RBRoot *root)
 {
@@ -153,7 +147,71 @@ Status printRBTree(RBRoot *root)
         PrintRBTreeInfo(root->node, root->node->data, 0);
         return SUCCESS;
     }
-    // ¸ù½ÚµãÎªÍ·½áµã£¬²»´æ´¢ÐÅÏ¢
-    return FAILED;
+    // æ ¹èŠ‚ç‚¹ä¸ºå¤´ç»“ç‚¹ï¼Œä¸å­˜å‚¨ä¿¡æ¯
+    return FALSE;
+}
+
+/**
+ * @brief è¾“å…¥elemæ•°æ®
+ *        åªæœ‰ç®¡ç†å‘˜æ·»åŠ ä¹¦æœ¬çš„æ—¶å€™ä¼šè°ƒç”¨æ­¤æ–¹æ³•åˆ›å»ºæ–°elem
+ */
+Status inputRBTElem(RBTreeElemType &e){
+
+    e = (RBTreeElemType)malloc(sizeof(RBTElem));
+    if(e == NULL)   return OVERFLOW;
+
+    //åˆå§‹åŒ–è¾“å…¥åŸŸï¼Œä½œè€…ï¼Œè¯„åˆ†ï¼Œä¹¦å
+    char *author = NULL, *score = NULL, *title = NULL;
+    author = (char*)malloc(sizeof(char)*20);
+    score = (char*)malloc(sizeof(char)*20);
+    title = (char*)malloc(sizeof(char)*20);
+
+    //è¾“å…¥ä¹¦å
+    printf("please input Title:");
+    scanf("%s", title);
+
+    //è¾“å…¥IBSN
+    printf("please input ISBN:");
+    scanf("%d", &e->elem);
+
+    //è¾“å…¥ä½œè€…
+    printf("please input Author:");
+    scanf("%s", author);
+
+    //è¾“å…¥ç±»åˆ«
+    printf("please input Classification:");
+    scanf("%s", score);
+
+    //æ ¹æ®è¾“å…¥çš„å­—é•¿åˆ†é…ç©ºé—´ä¹‹åŽèµ‹ç»™b
+    e->score = (char*)malloc(sizeof(char) * strlen(score));
+    e->Author = (char*)malloc(sizeof(char) * strlen(author));
+    e->Title = (char*)malloc(sizeof(char) * strlen(title));
+    strcpy(e->Title, title);
+    strcpy(e->Author, author);
+    strcpy(e->score, score);
+
+    //æ–°æ’å…¥çš„ä¹¦é»˜è®¤æœªå€Ÿå‡º
+    e->status = 1;
+   
+    return SUCCESS;
+}
+
+/**
+ * @brief 
+ */
+Status InitRBTElem(RBTreeElemType &e){
+
+    e = (RBTreeElemType)malloc(sizeof(RBTElem));
+    if(e == NULL)   return OVERFLOW;
+
+    e->Author = NULL;
+    e->elem = 0;
+    e->page_num = 0;
+    e->press = NULL;
+    e->score = NULL;
+    e->status = 0;
+    e->Title = NULL;
+
+    return SUCCESS;
 }
 

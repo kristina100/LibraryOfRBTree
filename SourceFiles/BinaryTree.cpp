@@ -1,20 +1,26 @@
+/*
+ * @Descripttion: 
+ * @Author: Hx
+ * @Date: 2021-12-24 17:05:47
+ * @LastEditors: Hx
+ * @LastEditTime: 2021-12-24 21:22:36
+ */
 //
 // Created by HUAWEI on 2021-12-06.
 //
 
-#include <stdio.h>
-#include <stdlib.h>
+
 #include "../HeaderFiles/BinaryTree.h"
 
 /**
  * 销毁二叉树
  *
  * @param[in]  tree  the node of the binary tree
- * @return  the operation status, SUCCESS is 0, FAILED is -1
+ * @return  the operation status, SUCCESS is 1, FALSE is 0
  */
 Status destroyBinaryTree(RBTree tree)
 {
-    if (!tree) return FAILED;
+    if (!tree) return FALSE;
 
     if (tree->left) destroyBinaryTree(tree->left);
     if (tree->right) destroyBinaryTree(tree->right);
@@ -28,13 +34,13 @@ Status destroyBinaryTree(RBTree tree)
  * 前序遍历二叉树
  *
  * @param[in]  tree: the node of the binary tree
- * @return  the operation status, SUCCESS is 0, FAILED is -1
+ * @return  the operation status, SUCCESS is 1, FALSE is 0
  */
 Status preorderBiTree(RBTree tree)
 {
-    if (!tree) return FAILED;
+    if (!tree) return FALSE;
     else {
-        printf("%d ", tree->data.elem);
+        printf("%d ", tree->data->elem);
         preorderBiTree(tree->left);
         preorderBiTree(tree->right);
     }
@@ -45,14 +51,14 @@ Status preorderBiTree(RBTree tree)
  * 中序遍历二叉树
  *
  * @param[in]  tree: the node of the binary tree
- * @return  the operation status, SUCCESS is 0, FAILED is -1
+ * @return  the operation status, SUCCESS is 1, FALSE is 0
  */
 Status inorderBiTree(RBTree tree)
 {
-    if (!tree) return FAILED;
+    if (!tree) return FALSE;
     else {
         inorderBiTree(tree->left);
-        printf("%d ", tree->data.elem);
+        printf("%d ", tree->data->elem);
         inorderBiTree(tree->right);
     }
 
@@ -63,15 +69,15 @@ Status inorderBiTree(RBTree tree)
  * 后序遍历二叉树
  *
  * @param[in]  tree: the node of the binary tree
- * @return  the operation status, SUCCESS is 0, FAILED is -1
+ * @return  the operation status, SUCCESS is 1, FALSE is 0
  */
 Status postorderBiTree(RBTree tree)
 {
-    if (!tree) return FAILED;
+    if (!tree) return FALSE;
     else {
         postorderBiTree(tree->left);
         postorderBiTree(tree->right);
-        printf("%d ", tree->data.elem);
+        printf("%d ", tree->data->elem);
     }
 
     return SUCCESS;
@@ -86,7 +92,12 @@ Status postorderBiTree(RBTree tree)
  */
 RBTree recursiveSearchNode(RBTree tree, RBTreeElemType x)
 {
-    if (!tree || tree->data.elem == x.elem) return tree;
-    else if (tree->data.elem > x.elem) return recursiveSearchNode(tree->left, x);
-    else return recursiveSearchNode(tree->right, x);
+    if (!tree || tree->data->elem == x->elem) 
+        return tree;
+    else if (tree->data->elem > x->elem) 
+        return recursiveSearchNode(tree->left, x);
+    else 
+        return recursiveSearchNode(tree->right, x);
+
+    return NULL;
 }

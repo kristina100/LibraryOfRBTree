@@ -4,7 +4,7 @@
 
 #ifndef REDBLACKTREE_BALANCEDBINARYTREE_H
 #define REDBLACKTREE_BALANCEDBINARYTREE_H
-
+#include"Common.h"
 #include "RedBlackTree.h"
 
 /* 平衡二叉树结点左旋 */
