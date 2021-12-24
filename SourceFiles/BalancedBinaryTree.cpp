@@ -16,7 +16,7 @@
  *
  * @param[in]  root: the root of the red-black tree
  * @param[in]  node: the node of the red-black tree
- * @return  the operation status, SUCCESS is 0, FAILED is -1
+ * @return  the operation status, SUCCESS is 1, FAILED is 0
  */
 Status RBTreeLeftRotate(RBRoot *root, Node *node)
 {
@@ -51,7 +51,7 @@ Status RBTreeLeftRotate(RBRoot *root, Node *node)
  *
  * @param[in]  root: the root of the red-black tree
  * @param[in]  node: the node of the red-black tree
- * @return  the operation status, SUCCESS is 0, FAILED is -1
+ * @return  the operation status, SUCCESS is 1, FAILED is 0
  */
 Status RBTreeRightRotate(RBRoot *root, Node *node)
 {

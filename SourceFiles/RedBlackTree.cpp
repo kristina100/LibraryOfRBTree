@@ -14,7 +14,7 @@
 #include "../HeaderFiles/BinaryTree.h"
 
 /**
- * ´´½¨ºìºÚÊ÷
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  *
  * @param[in]  none
  * @return  the root of the red-black tree
@@ -27,10 +27,10 @@ RBRoot *createRBTree()
 }
 
 /**
- * Ïú»ÙºìºÚÊ÷
+ * ï¿½ï¿½ï¿½Ùºï¿½ï¿½ï¿½ï¿½
  *
  * @param[in]  root  the root of the red-black tree
- * @return  the operation status, SUCCESS is 0, FAILED is -1
+ * @return  the operation status, SUCCESS is 1, FAILED is 0
  */
 Status destroyRBTree(RBRoot *root)
 {
@@ -43,10 +43,10 @@ Status destroyRBTree(RBRoot *root)
 }
 
 /**
- * Ç°Ðò±éÀúºìºÚÊ÷
+ * Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  *
  * @param[in]  root: the root of the red-black tree
- * @return  the operation status, SUCCESS is 0, FAILED is -1
+ * @return  the operation status, SUCCESS is 1, FAILED is 0
  */
 Status preorderRBTree(RBRoot *root)
 {
@@ -57,10 +57,10 @@ Status preorderRBTree(RBRoot *root)
 }
 
 /**
- * ÖÐÐò±éÀúºìºÚÊ÷
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  *
  * @param[in]  root: the root of the red-black tree
- * @return  the operation status, SUCCESS is 0, FAILED is -1
+ * @return  the operation status, SUCCESS is 1, FAILED is 0
  *
  */
 Status inorderRBTree(RBRoot *root)
@@ -72,10 +72,10 @@ Status inorderRBTree(RBRoot *root)
 }
 
 /**
- * ºóÐò±éÀúºìºÚÊ÷
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  *
  * @param[in]  root: the root of the red-black tree
- * @return  the operation status, SUCCESS is 0, FAILED is -1
+ * @return  the operation status, SUCCESS is 1, FAILED is 0
  */
 Status postorderRBTree(RBRoot *root)
 {
@@ -86,11 +86,11 @@ Status postorderRBTree(RBRoot *root)
 }
 
 /**
- * µÝ¹é²éÕÒºìºÚÊ÷treeÖÐÊý¾ÝÓòÎªxµÄ½áµã
+ * ï¿½Ý¹ï¿½ï¿½ï¿½Òºï¿½ï¿½ï¿½ï¿½treeï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªxï¿½Ä½ï¿½ï¿½
  *
  * @param[in]  root: the root of the red-black tree
  * @param[in]  x   : the data of the node
- * @return  the operation status, SUCCESS is 0, FAILED is -1
+ * @return  the operation status, SUCCESS is 1, FAILED is 0
  */
 Status recursiveSearchRBTree(RBRoot *root, RBTreeElemType x)
 {
@@ -99,15 +99,15 @@ Status recursiveSearchRBTree(RBRoot *root, RBTreeElemType x)
 }
 
 /**
- * ºìºÚÊ÷²åÈëÊý¾ÝÓòÎªxµÄ½áµã
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªxï¿½Ä½ï¿½ï¿½
  *
  * @param[in]  root: the root of the red-black tree
  * @param[in]  x   : the data of the node
- * @return  the operation status, SUCCESS is 0, FAILED is -1
+ * @return  the operation status, SUCCESS is 1, FAILED is 0
  */
 Status insertRBTree(RBRoot *root, RBTreeElemType x)
 {
-    // ÒÑ´æÔÚ
+    // ï¿½Ñ´ï¿½ï¿½ï¿½
     if (recursiveSearchNode(root->node, x)) return FAILED;
 
     Node *node;
@@ -121,16 +121,16 @@ Status insertRBTree(RBRoot *root, RBTreeElemType x)
 }
 
 /**
- * ºìºÚÊ÷É¾³ýÊý¾ÝÓòÎªxµÄ½áµã
+ * ï¿½ï¿½ï¿½ï¿½ï¿½É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªxï¿½Ä½ï¿½ï¿½
  *
  * @param[in]  root: the root of the red-black tree
  * @param[in]  key : the data of the node to be deleted
- * @return  the operation status, SUCCESS is 0, FAILED is -1
+ * @return  the operation status, SUCCESS is 1, FAILED is 0
  */
 Status deleteRBTree(RBRoot *root, RBTreeElemType x)
 {
     Node *p;
-    // µÝ¹é²éÕÒ
+    // ï¿½Ý¹ï¿½ï¿½ï¿½ï¿½
     p = recursiveSearchNode(root->node, x);
     if (p)
     {
@@ -141,10 +141,10 @@ Status deleteRBTree(RBRoot *root, RBTreeElemType x)
 }
 
 /**
- * ´òÓ¡ºìºÚÊ÷ÐÅÏ¢
+ * ï¿½ï¿½Ó¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
  *
  * @param[in]  root: the root of the red-black tree
- * @return  the operation status, SUCCESS is 0, FAILED is -1
+ * @return  the operation status, SUCCESS is 1, FAILED is 0
  */
 Status printRBTree(RBRoot *root)
 {
@@ -153,7 +153,7 @@ Status printRBTree(RBRoot *root)
         PrintRBTreeInfo(root->node, root->node->data, 0);
         return SUCCESS;
     }
-    // ¸ù½ÚµãÎªÍ·½áµã£¬²»´æ´¢ÐÅÏ¢
+    // ï¿½ï¿½ï¿½Úµï¿½ÎªÍ·ï¿½ï¿½ã£¬ï¿½ï¿½ï¿½æ´¢ï¿½ï¿½Ï¢
     return FAILED;
 }
 

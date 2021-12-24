@@ -25,8 +25,6 @@
 #define RBTreeSetRed(r) do {(r)->color = RED;} while(0)
 #define RBTreeSetBlack(r) do {(r)->color = BLACK;} while(0)
 
-
-
 typedef struct{
 //    BookNumType number; //no prefix 'ISBN'
 //    NameType name;
@@ -55,8 +53,8 @@ typedef struct RB_Root
 //typedef int Status;
 
 typedef enum {
-    SUCCESS = 0,
-    FAILED = -1
+    SUCCESS = 1,
+    FAILED = 0
 }Status;
 
 /* 创建红黑树 */

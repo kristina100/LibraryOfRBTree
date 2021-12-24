@@ -1,3 +1,10 @@
+/*
+ * @Descripttion: 
+ * @Author: Hx
+ * @Date: 2021-12-24 17:05:47
+ * @LastEditors: Hx
+ * @LastEditTime: 2021-12-24 17:20:11
+ */
 //
 // Created by HUAWEI on 2021-12-06.
 //
@@ -10,7 +17,7 @@
  * 销毁二叉树
  *
  * @param[in]  tree  the node of the binary tree
- * @return  the operation status, SUCCESS is 0, FAILED is -1
+ * @return  the operation status, SUCCESS is 1, FAILED is 0
  */
 Status destroyBinaryTree(RBTree tree)
 {
@@ -28,7 +35,7 @@ Status destroyBinaryTree(RBTree tree)
  * 前序遍历二叉树
  *
  * @param[in]  tree: the node of the binary tree
- * @return  the operation status, SUCCESS is 0, FAILED is -1
+ * @return  the operation status, SUCCESS is 1, FAILED is 0
  */
 Status preorderBiTree(RBTree tree)
 {
@@ -45,7 +52,7 @@ Status preorderBiTree(RBTree tree)
  * 中序遍历二叉树
  *
  * @param[in]  tree: the node of the binary tree
- * @return  the operation status, SUCCESS is 0, FAILED is -1
+ * @return  the operation status, SUCCESS is 1, FAILED is 0
  */
 Status inorderBiTree(RBTree tree)
 {
@@ -63,7 +70,7 @@ Status inorderBiTree(RBTree tree)
  * 后序遍历二叉树
  *
  * @param[in]  tree: the node of the binary tree
- * @return  the operation status, SUCCESS is 0, FAILED is -1
+ * @return  the operation status, SUCCESS is 1, FAILED is 0
  */
 Status postorderBiTree(RBTree tree)
 {
