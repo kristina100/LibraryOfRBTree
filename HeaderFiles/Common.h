@@ -18,7 +18,7 @@
 
 //常用状态
 #define ERROR 0
-#define OVERFLOW -1
+//#define OVERFLOW -1
 #define SUCCESS 1
 #define TRUE 1
 #define true 1
