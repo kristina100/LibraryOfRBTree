@@ -2,19 +2,13 @@
 // Created by HUAWEI on 2021-12-06.
 //
 
-//
-// Created by HUAWEI on 2021-12-06.
-//
-
-#include <stdio.h>
-#include <stdlib.h>
 #include "../HeaderFiles/RedBlackTree.h"
 #include "../HeaderFiles/RedBlackTreeUtils.h"
 #include "../HeaderFiles/BinarySearchTree.h"
 #include "../HeaderFiles/BinaryTree.h"
 
 /**
- * ´´½¨ºìºÚÊ÷
+ * åˆ›å»ºçº¢é»‘æ ‘
  *
  * @param[in]  none
  * @return  the root of the red-black tree
@@ -27,15 +21,15 @@ RBRoot *createRBTree()
 }
 
 /**
- * Ïú»ÙºìºÚÊ÷
+ * é”€æ¯çº¢é»‘æ ‘
  *
  * @param[in]  root  the root of the red-black tree
- * @return  the operation status, SUCCESS is 0, FAILED is -1
+ * @return  the operation status, SUCCESS is 0, FALSE is -1
  */
 Status destroyRBTree(RBRoot *root)
 {
     if (!root)
-        return FAILED;
+        return FALSE;
     else
         destroyBinaryTree(root->node);
     free(root);
@@ -43,76 +37,76 @@ Status destroyRBTree(RBRoot *root)
 }
 
 /**
- * Ç°Ğò±éÀúºìºÚÊ÷
+ * å‰åºéå†çº¢é»‘æ ‘
  *
  * @param[in]  root: the root of the red-black tree
- * @return  the operation status, SUCCESS is 0, FAILED is -1
+ * @return  the operation status, SUCCESS is 0, FALSE is -1
  */
 Status preorderRBTree(RBRoot *root)
 {
-    if (!root) return FAILED;
+    if (!root) return FALSE;
     else preorderBiTree(root->node);
 
     return SUCCESS;
 }
 
 /**
- * ÖĞĞò±éÀúºìºÚÊ÷
+ * ä¸­åºéå†çº¢é»‘æ ‘
  *
  * @param[in]  root: the root of the red-black tree
- * @return  the operation status, SUCCESS is 0, FAILED is -1
+ * @return  the operation status, SUCCESS is 0, FALSE is -1
  *
  */
 Status inorderRBTree(RBRoot *root)
 {
-    if (!root) return FAILED;
+    if (!root) return FALSE;
     else inorderBiTree(root->node);
 
     return SUCCESS;
 }
 
 /**
- * ºóĞò±éÀúºìºÚÊ÷
+ * ååºéå†çº¢é»‘æ ‘
  *
  * @param[in]  root: the root of the red-black tree
- * @return  the operation status, SUCCESS is 0, FAILED is -1
+ * @return  the operation status, SUCCESS is 0, FALSE is -1
  */
 Status postorderRBTree(RBRoot *root)
 {
-    if (!root) return FAILED;
+    if (!root) return FALSE;
     else postorderBiTree(root->node);
 
     return SUCCESS;
 }
 
 /**
- * µİ¹é²éÕÒºìºÚÊ÷treeÖĞÊı¾İÓòÎªxµÄ½áµã
+ * é€’å½’æŸ¥æ‰¾çº¢é»‘æ ‘treeä¸­æ•°æ®åŸŸä¸ºxçš„ç»“ç‚¹
  *
  * @param[in]  root: the root of the red-black tree
  * @param[in]  x   : the data of the node
- * @return  the operation status, SUCCESS is 0, FAILED is -1
+ * @return  the operation status, SUCCESS is 0, FALSE is -1
  */
 Status recursiveSearchRBTree(RBRoot *root, RBTreeElemType x)
 {
-    if (root) return recursiveSearchNode(root->node, x) ? SUCCESS : FAILED;
+    if (root) return recursiveSearchNode(root->node, x) ? SUCCESS : FALSE;
     return SUCCESS;
 }
 
 /**
- * ºìºÚÊ÷²åÈëÊı¾İÓòÎªxµÄ½áµã
+ * çº¢é»‘æ ‘æ’å…¥æ•°æ®åŸŸä¸ºxçš„ç»“ç‚¹
  *
  * @param[in]  root: the root of the red-black tree
  * @param[in]  x   : the data of the node
- * @return  the operation status, SUCCESS is 0, FAILED is -1
+ * @return  the operation status, SUCCESS is 0, FALSE is -1
  */
 Status insertRBTree(RBRoot *root, RBTreeElemType x)
 {
-    // ÒÑ´æÔÚ
-    if (recursiveSearchNode(root->node, x)) return FAILED;
+    // å·²å­˜åœ¨
+    if (recursiveSearchNode(root->node, x)) return FALSE;
 
     Node *node;
     node = createRBTreeNode(x, NULL, NULL, NULL);
-    if (!node) return FAILED;
+    if (!node) return FALSE;
 
     insertBinarySearchTree(root, node);
     RBTreeInsertSelfBalancing(root, node);
@@ -121,30 +115,30 @@ Status insertRBTree(RBRoot *root, RBTreeElemType x)
 }
 
 /**
- * ºìºÚÊ÷É¾³ıÊı¾İÓòÎªxµÄ½áµã
+ * çº¢é»‘æ ‘åˆ é™¤æ•°æ®åŸŸä¸ºxçš„ç»“ç‚¹
  *
  * @param[in]  root: the root of the red-black tree
  * @param[in]  key : the data of the node to be deleted
- * @return  the operation status, SUCCESS is 0, FAILED is -1
+ * @return  the operation status, SUCCESS is 0, FALSE is -1
  */
 Status deleteRBTree(RBRoot *root, RBTreeElemType x)
 {
     Node *p;
-    // µİ¹é²éÕÒ
+    // é€’å½’æŸ¥æ‰¾
     p = recursiveSearchNode(root->node, x);
     if (p)
     {
         deleteRBTreeNode(root, p);
         return SUCCESS;
     }
-    return FAILED;
+    return FALSE;
 }
 
 /**
- * ´òÓ¡ºìºÚÊ÷ĞÅÏ¢
+ * æ‰“å°çº¢é»‘æ ‘ä¿¡æ¯
  *
  * @param[in]  root: the root of the red-black tree
- * @return  the operation status, SUCCESS is 0, FAILED is -1
+ * @return  the operation status, SUCCESS is 0, FALSE is -1
  */
 Status printRBTree(RBRoot *root)
 {
@@ -153,7 +147,7 @@ Status printRBTree(RBRoot *root)
         PrintRBTreeInfo(root->node, root->node->data, 0);
         return SUCCESS;
     }
-    // ¸ù½ÚµãÎªÍ·½áµã£¬²»´æ´¢ĞÅÏ¢
-    return FAILED;
+    // æ ¹èŠ‚ç‚¹ä¸ºå¤´ç»“ç‚¹ï¼Œä¸å­˜å‚¨ä¿¡æ¯
+    return FALSE;
 }
 

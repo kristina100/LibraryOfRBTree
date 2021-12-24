@@ -1,9 +1,9 @@
 //
 // Created by HUAWEI on 2021-12-04.
 //
-
 #ifndef REDBLACKTREE_REDBLACKTREEUTILS_H
 #define REDBLACKTREE_REDBLACKTREEUTILS_H
+#include"Common.h"
 
 /* 创建红黑树结点 */
 RBTree createRBTreeNode(RBTreeElemType x, Node *parent, Node *left, Node *right);

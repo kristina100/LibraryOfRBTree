@@ -2,7 +2,6 @@
 // Created by HUAWEI on 2021-12-06.
 //
 
-#include <stdio.h>
 #include "../HeaderFiles/BinarySearchTree.h"
 
 /**
@@ -10,7 +9,7 @@
  *
  * @param[in]  root: the root of the binary search tree
  * @param[in]  node: the inserted node
- * @return  the operation status, SUCCESS is 0, FAILED is -1
+ * @return  the operation status, SUCCESS is 1, FALSE is 0
  */
 Status insertBinarySearchTree(RBRoot *root, Node *node)
 {

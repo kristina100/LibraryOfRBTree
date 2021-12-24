@@ -1,10 +1,9 @@
 //
 // Created by HUAWEI on 2021-12-05.
 //
-
 #ifndef REDBLACKTREE_BINARYTREE_H
 #define REDBLACKTREE_BINARYTREE_H
-
+#include"Common.h"
 #include "RedBlackTree.h"
 
 /* 销毁二叉树 */

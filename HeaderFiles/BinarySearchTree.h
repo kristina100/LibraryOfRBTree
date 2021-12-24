@@ -1,12 +1,10 @@
 //
 // Created by HUAWEI on 2021-12-04.
 //
-#include "RedBlackTree.h"
-
 #ifndef REDBLACKTREE_BINARYSEARCHTREE_H
 #define REDBLACKTREE_BINARYSEARCHTREE_H
-
-
+#include"Common.h"
+#include "RedBlackTree.h"
 
 /* 二叉查找树插入结点 */
 Status insertBinarySearchTree(RBRoot *root, Node *node);
