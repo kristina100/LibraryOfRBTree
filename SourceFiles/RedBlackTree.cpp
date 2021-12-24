@@ -151,3 +151,66 @@ Status printRBTree(RBRoot *root)
     return FALSE;
 }
 
+/**
+ * @brief 输入elem数据
+ *        只有管理员添加书本的时候会调用此方法创建新elem
+ */
+Status inputRBTElem(RBTreeElemType &e){
+
+    e = (RBTreeElemType)malloc(sizeof(RBTElem));
+    if(e == NULL)   return OVERFLOW;
+
+    //初始化输入域，作者，评分，书名
+    char *author = NULL, *score = NULL, *title = NULL;
+    author = (char*)malloc(sizeof(char)*20);
+    score = (char*)malloc(sizeof(char)*20);
+    title = (char*)malloc(sizeof(char)*20);
+
+    //输入书名
+    printf("please input Title:");
+    scanf("%s", title);
+
+    //输入IBSN
+    printf("please input ISBN:");
+    scanf("%d", &e->elem);
+
+    //输入作者
+    printf("please input Author:");
+    scanf("%s", author);
+
+    //输入类别
+    printf("please input Classification:");
+    scanf("%s", score);
+
+    //根据输入的字长分配空间之后赋给b
+    e->score = (char*)malloc(sizeof(char) * strlen(score));
+    e->Author = (char*)malloc(sizeof(char) * strlen(author));
+    e->Title = (char*)malloc(sizeof(char) * strlen(title));
+    strcpy(e->Title, title);
+    strcpy(e->Author, author);
+    strcpy(e->score, score);
+
+    //新插入的书默认未借出
+    e->status = 1;
+   
+    return SUCCESS;
+}
+
+/**
+ * @brief 
+ */
+Status InitRBTElem(RBTreeElemType &e){
+
+    e = (RBTreeElemType)malloc(sizeof(RBTElem));
+    if(e == NULL)   return OVERFLOW;
+
+    e->Author = NULL;
+    e->elem = 0;
+    e->page_num = 0;
+    e->press = NULL;
+    e->score = NULL;
+    e->status = 0;
+    e->Title = NULL;
+
+}
+

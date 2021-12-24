@@ -1,3 +1,10 @@
+/*
+ * @Descripttion: 
+ * @Author: Hx
+ * @Date: 2021-12-24 17:05:47
+ * @LastEditors: Hx
+ * @LastEditTime: 2021-12-24 20:55:25
+ */
 //
 // Created by HUAWEI on 2021-12-06.
 //
@@ -33,7 +40,7 @@ Status preorderBiTree(RBTree tree)
 {
     if (!tree) return FALSE;
     else {
-        printf("%d ", tree->data.elem);
+        printf("%d ", tree->data->elem);
         preorderBiTree(tree->left);
         preorderBiTree(tree->right);
     }
@@ -51,7 +58,7 @@ Status inorderBiTree(RBTree tree)
     if (!tree) return FALSE;
     else {
         inorderBiTree(tree->left);
-        printf("%d ", tree->data.elem);
+        printf("%d ", tree->data->elem);
         inorderBiTree(tree->right);
     }
 
@@ -70,7 +77,7 @@ Status postorderBiTree(RBTree tree)
     else {
         postorderBiTree(tree->left);
         postorderBiTree(tree->right);
-        printf("%d ", tree->data.elem);
+        printf("%d ", tree->data->elem);
     }
 
     return SUCCESS;
@@ -85,7 +92,12 @@ Status postorderBiTree(RBTree tree)
  */
 RBTree recursiveSearchNode(RBTree tree, RBTreeElemType x)
 {
-    if (!tree || tree->data.elem == x.elem) return tree;
-    else if (tree->data.elem > x.elem) return recursiveSearchNode(tree->left, x);
-    else return recursiveSearchNode(tree->right, x);
+    if (!tree || tree->data->elem == x->elem) 
+        return tree;
+    else if (tree->data->elem > x->elem) 
+        return recursiveSearchNode(tree->left, x);
+    else 
+        return recursiveSearchNode(tree->right, x);
+
+    return NULL;
 }
