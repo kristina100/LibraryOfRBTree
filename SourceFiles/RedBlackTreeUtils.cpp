@@ -2,8 +2,6 @@
 // Created by HUAWEI on 2021-12-06.
 //
 
-#include <stdio.h>
-#include <stdlib.h>
 #include "../HeaderFiles/RedBlackTree.h"
 #include "../HeaderFiles/BinarySearchTree.h"
 #include "../HeaderFiles/BalancedBinaryTree.h"
@@ -36,7 +34,7 @@ RBTree createRBTreeNode(RBTreeElemType x, Node *parent, Node *left, Node *right)
  *
  * @param[in]  root: the root of the red-black tree
  * @param[in]  node: the inserted node
- * @return  the operation status, SUCCESS is 1, FAILED is 0
+ * @return  the operation status, SUCCESS is 1, FALSE is 0
  */
 Status RBTreeInsertSelfBalancing(RBRoot *root, Node *node)
 {
@@ -124,14 +122,14 @@ Status RBTreeInsertSelfBalancing(RBRoot *root, Node *node)
  *
  * @param[in]  root  : the root of the red-black tree
  * @param[in]  minVal: the minimum value of the red-black tree
- * @return  the operation status, SUCCESS is 1, FAILED is 0
+ * @return  the operation status, SUCCESS is 1, FALSE is 0
  */
 Status minRBTreeNode(RBRoot *root, RBTreeElemType *minVal)
 {
     Node *node = NULL;
 
     if (root) node = minBinarySearchTreeNode(root->node);
-    if (!node) return FAILED;
+    if (!node) return FALSE;
 
     *minVal = node->data;
 
@@ -143,14 +141,14 @@ Status minRBTreeNode(RBRoot *root, RBTreeElemType *minVal)
  *
  * @param[in]  root  : the root of the red-black tree
  * @param[in]  maxVal: the maximum value of the red-black tree
- * @return  the operation status, SUCCESS is 1, FAILED is 0
+ * @return  the operation status, SUCCESS is 1, FALSE is 0
  */
 Status maxRBTreeNode(RBRoot *root, RBTreeElemType *maxVal)
 {
     Node *node = NULL;
 
     if (root) node = maxBinarySearchTreeNode(root->node);
-    if (!node) return FAILED;
+    if (!node) return FALSE;
 
     *maxVal = node->data;
 
@@ -163,7 +161,7 @@ Status maxRBTreeNode(RBRoot *root, RBTreeElemType *maxVal)
  * @param[in]  root  : 红黑树根节点
  * @param[in]  node  : the deleted node
  * @param[in]  parent: the deleted node
- * @return  the operation status, SUCCESS is 1, FAILED is 0
+ * @return  the operation status, SUCCESS is 1, FALSE is 0
  */
 Status RBTreeDeleteSelfBalancing(RBRoot *root, Node *node, Node *parent)
 {
@@ -252,7 +250,7 @@ Status RBTreeDeleteSelfBalancing(RBRoot *root, Node *node, Node *parent)
  *
  * @param[in]  root: 红黑树的根
  * @param[in]  node: 被删除的结点
- * @return  操作状态, SUCCESS : 0, FAILED : -1
+ * @return  操作状态, SUCCESS : 0, FALSE : -1
  */
 Status deleteRBTreeNode(RBRoot *root, Node *node)
 {
@@ -348,7 +346,7 @@ Status deleteRBTreeNode(RBRoot *root, Node *node)
  * @param[in]  position: 0 - 当前结点是根节点
  *                      -1 - 当前节点是左孩子
  *                       1 - 当前结点是右孩子
- * @return  返回操作状态, SUCCESS : 0, FAILED : -1
+ * @return  返回操作状态, SUCCESS : 0, FALSE : -1
  */
 Status PrintRBTreeInfo(RBTree tree, RBTreeElemType data, int position)
 {
@@ -365,7 +363,7 @@ Status PrintRBTreeInfo(RBTree tree, RBTreeElemType data, int position)
         PrintRBTreeInfo(tree->right, tree->data, 1);
         return SUCCESS;
     }
-    return FAILED;
+    return FALSE;
 }
 
 /**
@@ -373,11 +371,11 @@ Status PrintRBTreeInfo(RBTree tree, RBTreeElemType data, int position)
  *
  * @param[in]  tree : 红黑树的结点集合
  * @param[in]  depth: 红黑树的深度
- * @return  操作状态 SUCCESS : 0, FAILED : -1
+ * @return  操作状态 SUCCESS : 0, FALSE : -1
  */
 Status recessedPrintRBTree(RBTree tree, int depth)
 {
-    if (!tree) return FAILED;
+    if (!tree) return FALSE;
     recessedPrintRBTree(tree->right, depth + 1);
     for (int i = 0; i < depth; i++) printf("    ");
     printf("[%-d(%s)]\n", tree->data, RBTreeIsRed(tree) ? "RED" : "BLACK");

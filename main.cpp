@@ -1,8 +1,7 @@
-#include"Common.h"
-// #include "HeaderFiles/RedBlackTree.h"
-// #include "HeaderFiles/RedBlackTreeUtils.h"
-// #include "HeaderFiles/BinarySearchTree.h"
-//#include "HeaderFiles/FileDo.h"
+#include "HeaderFiles/RedBlackTree.h"
+#include "HeaderFiles/RedBlackTreeUtils.h"
+#include "HeaderFiles/BinarySearchTree.h"
+// #include "HeaderFiles/FileDo.h"
 
 LARGE_INTEGER freq, begin, end;
 void beginRecord();

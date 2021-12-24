@@ -3,7 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-24 17:07:20
  * @LastEditors: Hx
- * @LastEditTime: 2021-12-24 17:12:10
+ * @LastEditTime: 2021-12-24 20:11:14
  */
 #ifndef COMMON_H_INCLUDE
 #define COMMON_H_INCLDUE
@@ -31,6 +31,5 @@
 //常用类型
 typedef int Status;
 typedef int KeyType;
-
 
 #endif  //COMMON_H_INCLDUE
