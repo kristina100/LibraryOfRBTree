@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/HUAWEI/CLionProjects/RBTreeOfLibary
+# Install script for directory: F:/mechine_learning_suanfa/LibraryOfRBTree
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/HUAWEI/CLionProjects/RBTreeOfLibary/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "F:/mechine_learning_suanfa/LibraryOfRBTree/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

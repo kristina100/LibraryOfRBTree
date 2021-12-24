@@ -279,11 +279,11 @@ void menu(RBRoot *root)
                 system("cls");
                 if (exist_flag && root->node)
                 {
-                    RBTreeElemType *max = (RBTreeElemType *)malloc(sizeof(int));
-                    RBTreeElemType *min = (RBTreeElemType *)malloc(sizeof(int));
+                    RBTreeElemType max = (RBTreeElemType)malloc(sizeof(RBTElem));
+                    RBTreeElemType min = (RBTreeElemType)malloc(sizeof(RBTElem));
                     maxRBTreeNode(root, max);
                     minRBTreeNode(root, min);
-                    printf("The maximum node of the red-black tree is [%d], The minimum node is [%d]!\n", *max, *min);
+                    printf("The maximum node of the red-black tree is [%d], The minimum node is [%d]!\n", max->elem, min->elem);
                 }
                 else if (!root->node)
                     printf("The red-black tree is empty!\n");

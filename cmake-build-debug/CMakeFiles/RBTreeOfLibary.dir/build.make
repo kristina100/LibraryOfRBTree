@@ -52,10 +52,10 @@ RM = "G:\Clion\CLion 2021.2.1\bin\cmake\win\bin\cmake.exe" -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\HUAWEI\CLionProjects\RBTreeOfLibary
+CMAKE_SOURCE_DIR = F:\mechine_learning_suanfa\LibraryOfRBTree
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\HUAWEI\CLionProjects\RBTreeOfLibary\cmake-build-debug
+CMAKE_BINARY_DIR = F:\mechine_learning_suanfa\LibraryOfRBTree\cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/RBTreeOfLibary.dir/depend.make
@@ -67,81 +67,81 @@ include CMakeFiles/RBTreeOfLibary.dir/flags.make
 
 CMakeFiles/RBTreeOfLibary.dir/main.cpp.obj: CMakeFiles/RBTreeOfLibary.dir/flags.make
 CMakeFiles/RBTreeOfLibary.dir/main.cpp.obj: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\HUAWEI\CLionProjects\RBTreeOfLibary\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/RBTreeOfLibary.dir/main.cpp.obj"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\RBTreeOfLibary.dir\main.cpp.obj -c C:\Users\HUAWEI\CLionProjects\RBTreeOfLibary\main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\mechine_learning_suanfa\LibraryOfRBTree\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/RBTreeOfLibary.dir/main.cpp.obj"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\RBTreeOfLibary.dir\main.cpp.obj -c F:\mechine_learning_suanfa\LibraryOfRBTree\main.cpp
 
 CMakeFiles/RBTreeOfLibary.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RBTreeOfLibary.dir/main.cpp.i"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\HUAWEI\CLionProjects\RBTreeOfLibary\main.cpp > CMakeFiles\RBTreeOfLibary.dir\main.cpp.i
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\mechine_learning_suanfa\LibraryOfRBTree\main.cpp > CMakeFiles\RBTreeOfLibary.dir\main.cpp.i
 
 CMakeFiles/RBTreeOfLibary.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RBTreeOfLibary.dir/main.cpp.s"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\HUAWEI\CLionProjects\RBTreeOfLibary\main.cpp -o CMakeFiles\RBTreeOfLibary.dir\main.cpp.s
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\mechine_learning_suanfa\LibraryOfRBTree\main.cpp -o CMakeFiles\RBTreeOfLibary.dir\main.cpp.s
 
 CMakeFiles/RBTreeOfLibary.dir/SourceFiles/BinarySearchTree.cpp.obj: CMakeFiles/RBTreeOfLibary.dir/flags.make
 CMakeFiles/RBTreeOfLibary.dir/SourceFiles/BinarySearchTree.cpp.obj: ../SourceFiles/BinarySearchTree.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\HUAWEI\CLionProjects\RBTreeOfLibary\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/RBTreeOfLibary.dir/SourceFiles/BinarySearchTree.cpp.obj"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\RBTreeOfLibary.dir\SourceFiles\BinarySearchTree.cpp.obj -c C:\Users\HUAWEI\CLionProjects\RBTreeOfLibary\SourceFiles\BinarySearchTree.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\mechine_learning_suanfa\LibraryOfRBTree\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/RBTreeOfLibary.dir/SourceFiles/BinarySearchTree.cpp.obj"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\RBTreeOfLibary.dir\SourceFiles\BinarySearchTree.cpp.obj -c F:\mechine_learning_suanfa\LibraryOfRBTree\SourceFiles\BinarySearchTree.cpp
 
 CMakeFiles/RBTreeOfLibary.dir/SourceFiles/BinarySearchTree.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RBTreeOfLibary.dir/SourceFiles/BinarySearchTree.cpp.i"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\HUAWEI\CLionProjects\RBTreeOfLibary\SourceFiles\BinarySearchTree.cpp > CMakeFiles\RBTreeOfLibary.dir\SourceFiles\BinarySearchTree.cpp.i
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\mechine_learning_suanfa\LibraryOfRBTree\SourceFiles\BinarySearchTree.cpp > CMakeFiles\RBTreeOfLibary.dir\SourceFiles\BinarySearchTree.cpp.i
 
 CMakeFiles/RBTreeOfLibary.dir/SourceFiles/BinarySearchTree.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RBTreeOfLibary.dir/SourceFiles/BinarySearchTree.cpp.s"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\HUAWEI\CLionProjects\RBTreeOfLibary\SourceFiles\BinarySearchTree.cpp -o CMakeFiles\RBTreeOfLibary.dir\SourceFiles\BinarySearchTree.cpp.s
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\mechine_learning_suanfa\LibraryOfRBTree\SourceFiles\BinarySearchTree.cpp -o CMakeFiles\RBTreeOfLibary.dir\SourceFiles\BinarySearchTree.cpp.s
 
 CMakeFiles/RBTreeOfLibary.dir/SourceFiles/BalancedBinaryTree.cpp.obj: CMakeFiles/RBTreeOfLibary.dir/flags.make
 CMakeFiles/RBTreeOfLibary.dir/SourceFiles/BalancedBinaryTree.cpp.obj: ../SourceFiles/BalancedBinaryTree.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\HUAWEI\CLionProjects\RBTreeOfLibary\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/RBTreeOfLibary.dir/SourceFiles/BalancedBinaryTree.cpp.obj"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\RBTreeOfLibary.dir\SourceFiles\BalancedBinaryTree.cpp.obj -c C:\Users\HUAWEI\CLionProjects\RBTreeOfLibary\SourceFiles\BalancedBinaryTree.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\mechine_learning_suanfa\LibraryOfRBTree\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/RBTreeOfLibary.dir/SourceFiles/BalancedBinaryTree.cpp.obj"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\RBTreeOfLibary.dir\SourceFiles\BalancedBinaryTree.cpp.obj -c F:\mechine_learning_suanfa\LibraryOfRBTree\SourceFiles\BalancedBinaryTree.cpp
 
 CMakeFiles/RBTreeOfLibary.dir/SourceFiles/BalancedBinaryTree.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RBTreeOfLibary.dir/SourceFiles/BalancedBinaryTree.cpp.i"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\HUAWEI\CLionProjects\RBTreeOfLibary\SourceFiles\BalancedBinaryTree.cpp > CMakeFiles\RBTreeOfLibary.dir\SourceFiles\BalancedBinaryTree.cpp.i
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\mechine_learning_suanfa\LibraryOfRBTree\SourceFiles\BalancedBinaryTree.cpp > CMakeFiles\RBTreeOfLibary.dir\SourceFiles\BalancedBinaryTree.cpp.i
 
 CMakeFiles/RBTreeOfLibary.dir/SourceFiles/BalancedBinaryTree.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RBTreeOfLibary.dir/SourceFiles/BalancedBinaryTree.cpp.s"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\HUAWEI\CLionProjects\RBTreeOfLibary\SourceFiles\BalancedBinaryTree.cpp -o CMakeFiles\RBTreeOfLibary.dir\SourceFiles\BalancedBinaryTree.cpp.s
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\mechine_learning_suanfa\LibraryOfRBTree\SourceFiles\BalancedBinaryTree.cpp -o CMakeFiles\RBTreeOfLibary.dir\SourceFiles\BalancedBinaryTree.cpp.s
 
 CMakeFiles/RBTreeOfLibary.dir/SourceFiles/BinaryTree.cpp.obj: CMakeFiles/RBTreeOfLibary.dir/flags.make
 CMakeFiles/RBTreeOfLibary.dir/SourceFiles/BinaryTree.cpp.obj: ../SourceFiles/BinaryTree.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\HUAWEI\CLionProjects\RBTreeOfLibary\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/RBTreeOfLibary.dir/SourceFiles/BinaryTree.cpp.obj"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\RBTreeOfLibary.dir\SourceFiles\BinaryTree.cpp.obj -c C:\Users\HUAWEI\CLionProjects\RBTreeOfLibary\SourceFiles\BinaryTree.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\mechine_learning_suanfa\LibraryOfRBTree\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/RBTreeOfLibary.dir/SourceFiles/BinaryTree.cpp.obj"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\RBTreeOfLibary.dir\SourceFiles\BinaryTree.cpp.obj -c F:\mechine_learning_suanfa\LibraryOfRBTree\SourceFiles\BinaryTree.cpp
 
 CMakeFiles/RBTreeOfLibary.dir/SourceFiles/BinaryTree.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RBTreeOfLibary.dir/SourceFiles/BinaryTree.cpp.i"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\HUAWEI\CLionProjects\RBTreeOfLibary\SourceFiles\BinaryTree.cpp > CMakeFiles\RBTreeOfLibary.dir\SourceFiles\BinaryTree.cpp.i
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\mechine_learning_suanfa\LibraryOfRBTree\SourceFiles\BinaryTree.cpp > CMakeFiles\RBTreeOfLibary.dir\SourceFiles\BinaryTree.cpp.i
 
 CMakeFiles/RBTreeOfLibary.dir/SourceFiles/BinaryTree.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RBTreeOfLibary.dir/SourceFiles/BinaryTree.cpp.s"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\HUAWEI\CLionProjects\RBTreeOfLibary\SourceFiles\BinaryTree.cpp -o CMakeFiles\RBTreeOfLibary.dir\SourceFiles\BinaryTree.cpp.s
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\mechine_learning_suanfa\LibraryOfRBTree\SourceFiles\BinaryTree.cpp -o CMakeFiles\RBTreeOfLibary.dir\SourceFiles\BinaryTree.cpp.s
 
 CMakeFiles/RBTreeOfLibary.dir/SourceFiles/RedBlackTreeUtils.cpp.obj: CMakeFiles/RBTreeOfLibary.dir/flags.make
 CMakeFiles/RBTreeOfLibary.dir/SourceFiles/RedBlackTreeUtils.cpp.obj: ../SourceFiles/RedBlackTreeUtils.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\HUAWEI\CLionProjects\RBTreeOfLibary\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/RBTreeOfLibary.dir/SourceFiles/RedBlackTreeUtils.cpp.obj"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\RBTreeOfLibary.dir\SourceFiles\RedBlackTreeUtils.cpp.obj -c C:\Users\HUAWEI\CLionProjects\RBTreeOfLibary\SourceFiles\RedBlackTreeUtils.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\mechine_learning_suanfa\LibraryOfRBTree\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/RBTreeOfLibary.dir/SourceFiles/RedBlackTreeUtils.cpp.obj"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\RBTreeOfLibary.dir\SourceFiles\RedBlackTreeUtils.cpp.obj -c F:\mechine_learning_suanfa\LibraryOfRBTree\SourceFiles\RedBlackTreeUtils.cpp
 
 CMakeFiles/RBTreeOfLibary.dir/SourceFiles/RedBlackTreeUtils.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RBTreeOfLibary.dir/SourceFiles/RedBlackTreeUtils.cpp.i"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\HUAWEI\CLionProjects\RBTreeOfLibary\SourceFiles\RedBlackTreeUtils.cpp > CMakeFiles\RBTreeOfLibary.dir\SourceFiles\RedBlackTreeUtils.cpp.i
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\mechine_learning_suanfa\LibraryOfRBTree\SourceFiles\RedBlackTreeUtils.cpp > CMakeFiles\RBTreeOfLibary.dir\SourceFiles\RedBlackTreeUtils.cpp.i
 
 CMakeFiles/RBTreeOfLibary.dir/SourceFiles/RedBlackTreeUtils.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RBTreeOfLibary.dir/SourceFiles/RedBlackTreeUtils.cpp.s"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\HUAWEI\CLionProjects\RBTreeOfLibary\SourceFiles\RedBlackTreeUtils.cpp -o CMakeFiles\RBTreeOfLibary.dir\SourceFiles\RedBlackTreeUtils.cpp.s
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\mechine_learning_suanfa\LibraryOfRBTree\SourceFiles\RedBlackTreeUtils.cpp -o CMakeFiles\RBTreeOfLibary.dir\SourceFiles\RedBlackTreeUtils.cpp.s
 
 CMakeFiles/RBTreeOfLibary.dir/SourceFiles/RedBlackTree.cpp.obj: CMakeFiles/RBTreeOfLibary.dir/flags.make
 CMakeFiles/RBTreeOfLibary.dir/SourceFiles/RedBlackTree.cpp.obj: ../SourceFiles/RedBlackTree.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\HUAWEI\CLionProjects\RBTreeOfLibary\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/RBTreeOfLibary.dir/SourceFiles/RedBlackTree.cpp.obj"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\RBTreeOfLibary.dir\SourceFiles\RedBlackTree.cpp.obj -c C:\Users\HUAWEI\CLionProjects\RBTreeOfLibary\SourceFiles\RedBlackTree.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\mechine_learning_suanfa\LibraryOfRBTree\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/RBTreeOfLibary.dir/SourceFiles/RedBlackTree.cpp.obj"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\RBTreeOfLibary.dir\SourceFiles\RedBlackTree.cpp.obj -c F:\mechine_learning_suanfa\LibraryOfRBTree\SourceFiles\RedBlackTree.cpp
 
 CMakeFiles/RBTreeOfLibary.dir/SourceFiles/RedBlackTree.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RBTreeOfLibary.dir/SourceFiles/RedBlackTree.cpp.i"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\HUAWEI\CLionProjects\RBTreeOfLibary\SourceFiles\RedBlackTree.cpp > CMakeFiles\RBTreeOfLibary.dir\SourceFiles\RedBlackTree.cpp.i
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\mechine_learning_suanfa\LibraryOfRBTree\SourceFiles\RedBlackTree.cpp > CMakeFiles\RBTreeOfLibary.dir\SourceFiles\RedBlackTree.cpp.i
 
 CMakeFiles/RBTreeOfLibary.dir/SourceFiles/RedBlackTree.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RBTreeOfLibary.dir/SourceFiles/RedBlackTree.cpp.s"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\HUAWEI\CLionProjects\RBTreeOfLibary\SourceFiles\RedBlackTree.cpp -o CMakeFiles\RBTreeOfLibary.dir\SourceFiles\RedBlackTree.cpp.s
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\mechine_learning_suanfa\LibraryOfRBTree\SourceFiles\RedBlackTree.cpp -o CMakeFiles\RBTreeOfLibary.dir\SourceFiles\RedBlackTree.cpp.s
 
 # Object files for target RBTreeOfLibary
 RBTreeOfLibary_OBJECTS = \
@@ -165,7 +165,7 @@ RBTreeOfLibary.exe: CMakeFiles/RBTreeOfLibary.dir/build.make
 RBTreeOfLibary.exe: CMakeFiles/RBTreeOfLibary.dir/linklibs.rsp
 RBTreeOfLibary.exe: CMakeFiles/RBTreeOfLibary.dir/objects1.rsp
 RBTreeOfLibary.exe: CMakeFiles/RBTreeOfLibary.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\HUAWEI\CLionProjects\RBTreeOfLibary\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable RBTreeOfLibary.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=F:\mechine_learning_suanfa\LibraryOfRBTree\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable RBTreeOfLibary.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\RBTreeOfLibary.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -177,6 +177,6 @@ CMakeFiles/RBTreeOfLibary.dir/clean:
 .PHONY : CMakeFiles/RBTreeOfLibary.dir/clean
 
 CMakeFiles/RBTreeOfLibary.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\HUAWEI\CLionProjects\RBTreeOfLibary C:\Users\HUAWEI\CLionProjects\RBTreeOfLibary C:\Users\HUAWEI\CLionProjects\RBTreeOfLibary\cmake-build-debug C:\Users\HUAWEI\CLionProjects\RBTreeOfLibary\cmake-build-debug C:\Users\HUAWEI\CLionProjects\RBTreeOfLibary\cmake-build-debug\CMakeFiles\RBTreeOfLibary.dir\DependInfo.cmake --color=$(COLOR)
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" F:\mechine_learning_suanfa\LibraryOfRBTree F:\mechine_learning_suanfa\LibraryOfRBTree F:\mechine_learning_suanfa\LibraryOfRBTree\cmake-build-debug F:\mechine_learning_suanfa\LibraryOfRBTree\cmake-build-debug F:\mechine_learning_suanfa\LibraryOfRBTree\cmake-build-debug\CMakeFiles\RBTreeOfLibary.dir\DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/RBTreeOfLibary.dir/depend
 

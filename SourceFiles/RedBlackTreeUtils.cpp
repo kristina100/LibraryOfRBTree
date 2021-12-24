@@ -39,8 +39,8 @@ RBTree createRBTreeNode(RBTreeElemType x, Node *parent, Node *left, Node *right)
 Status RBTreeInsertSelfBalancing(RBRoot *root, Node *node)
 {
     Node *parent, *grandparent;
-    /* 父结点为红色结点 */
 
+    /* 父结点为红色结点 */
     while ((parent = RBTreeParent(node)) && RBTreeIsRed(parent))
     {
         grandparent = RBTreeParent(parent);
@@ -50,31 +50,39 @@ Status RBTreeInsertSelfBalancing(RBRoot *root, Node *node)
         {
             Node *uncle = grandparent->right;
 
-            /* 叔叔结点是红色结点 */
+            /* 情况一：叔叔结点是红色结点 */
             if (uncle && RBTreeIsRed(uncle))
             {
+                // 先将父结点和叔叔结点染成黑色
                 RBTreeSetBlack(parent);
                 RBTreeSetBlack(uncle);
+                // 再将祖父的结点染成黑色
                 RBTreeSetRed(grandparent);
+                // 可能与祖父的父结点形成连续的红色结点，需要递归向上调整
                 node = grandparent;
                 continue;
             }
 
-            /* 叔叔结点不存在, 且插入结点是其父结点的左孩子结点 */
+            /* 情况二：插入结点是其父结点的左孩子结点 */
             if (node == parent->left)
             {
+                // 父亲变成黑色 祖父变成红色 右子树的黑色高度变低
                 RBTreeSetBlack(parent);
                 RBTreeSetRed(grandparent);
+                // 对祖父进行左旋，让父结点成为新的祖父，恢复右子树的高度
                 RBTreeRightRotate(root, grandparent);
             }
 
-            /* 叔叔结点不存在, 且插入结点是其父结点的右孩子结点 */
+            /* 情况三：插入结点是其父结点的右孩子结点，构造成情况二 */
             if (node == parent->right)
             {
                 Node *temp;
-                RBTreeLeftRotate(root, parent);
                 temp = parent;
+                // 父亲成为新的目标结点node
                 parent = node;
+                // 对父亲进行左旋操作，构造成情况二
+                RBTreeLeftRotate(root, parent);
+                // 对新的node进行处理 即原来的父亲结点
                 node = temp;
             }
         }
@@ -82,36 +90,44 @@ Status RBTreeInsertSelfBalancing(RBRoot *root, Node *node)
         { /* 父结点是祖父结点的右孩子结点” */
             Node *uncle = grandparent->left;
 
-            /* 叔叔结点是红色结点 */
+            /* 情况四：叔叔结点是红色结点 */
             if (uncle && RBTreeIsRed(uncle))
             {
+                // 父亲和叔叔都变成黑色 保证规则四
                 RBTreeSetBlack(uncle);
                 RBTreeSetBlack(parent);
+                // 将祖父变成红色 保证规则五
                 RBTreeSetRed(grandparent);
+                // 从祖父开始，继续调整
                 node = grandparent;
                 continue;
             }
 
-            /* 叔叔结点不存在, 且插入结点是其父结点的右孩子结点 */
+            /* 情况五：插入结点是其父结点的右孩子结点 */
             if (node == parent->right)
             {
+                // 父亲变为黑色
                 RBTreeSetBlack(parent);
+                // 祖父变为红色 左子树黑色高度降低
                 RBTreeSetRed(grandparent);
+                // 对祖父进行左旋，恢复左子树黑色高度
                 RBTreeLeftRotate(root, grandparent);
             }
 
-            /* 叔叔结点不存在, 且插入结点是其父结点的左孩子结点 */
+            /* 叔叔结点为黑色，或者叔叔节点不存在 插入结点是其父结点的左孩子结点 */
             if (node == parent->left)
             {
                 Node *temp;
-                RBTreeRightRotate(root, parent);
                 temp = parent;
                 parent = node;
+                // 对父亲进行右旋操作，构造情况二的初始情况
+                RBTreeRightRotate(root, parent);
+                // 对新的node进行处理 即原来的父亲结点
                 node = temp;
             }
         }
     }
-
+    // 父结点为黑色的情况最简单，不需要做调整
     RBTreeSetBlack(root->node);
 
     return SUCCESS;
@@ -124,14 +140,14 @@ Status RBTreeInsertSelfBalancing(RBRoot *root, Node *node)
  * @param[in]  minVal: the minimum value of the red-black tree
  * @return  the operation status, SUCCESS is 1, FALSE is 0
  */
-Status minRBTreeNode(RBRoot *root, RBTreeElemType *minVal)
+Status minRBTreeNode(RBRoot *root, RBTreeElemType minVal)
 {
     Node *node = NULL;
 
     if (root) node = minBinarySearchTreeNode(root->node);
     if (!node) return FALSE;
 
-    *minVal = node->data;
+    minVal = node->data;
 
     return SUCCESS;
 }
@@ -143,14 +159,14 @@ Status minRBTreeNode(RBRoot *root, RBTreeElemType *minVal)
  * @param[in]  maxVal: the maximum value of the red-black tree
  * @return  the operation status, SUCCESS is 1, FALSE is 0
  */
-Status maxRBTreeNode(RBRoot *root, RBTreeElemType *maxVal)
+Status maxRBTreeNode(RBRoot *root, RBTreeElemType maxVal)
 {
     Node *node = NULL;
 
     if (root) node = maxBinarySearchTreeNode(root->node);
     if (!node) return FALSE;
 
-    *maxVal = node->data;
+    maxVal = node->data;
 
     return SUCCESS;
 }
@@ -355,8 +371,8 @@ Status PrintRBTreeInfo(RBTree tree, RBTreeElemType data, int position)
         if (position == 0)
             printf("[%d] (BLACK) is root.\n", tree->data);
         else
-            printf("[%d] (%s) is [%d] 's {%s} child node\n", tree->data, RBTreeIsRed(tree) ? "RED" : "BLACK",
-                    data, position == -1 ? "LEFT" : "RIGHT");
+            printf("[%d] (%s) is [%d] 's {%s} child node\n", tree->data->elem, RBTreeIsRed(tree) ? "RED" : "BLACK",
+                    data->elem, position == -1 ? "LEFT" : "RIGHT");
         // 左孩子递归遍历
         PrintRBTreeInfo(tree->left, tree->data, -1);
         // 右孩子递归遍历
