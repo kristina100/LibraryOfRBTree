@@ -280,14 +280,23 @@ void FILE_preWrite(RBTree tree, FILE *fp){
     
     if(!tree) return;
     //写入结点数据
+    char mid = '-', end = '#';
     // fwrite(tree->data, sizeof(RBTElem), 1, fp);
     fprintf(fp, "%d", tree->data->elem);
+    fputc(mid,fp);
     fprintf(fp, "%s", tree->data->Title);
+    fputc(mid,fp);
     fprintf(fp, "%s", tree->data->Author);
+    fputc(mid,fp);
     fprintf(fp, "%s", tree->data->press);
+    fputc(mid,fp);
     fprintf(fp, "%s", tree->data->score);
+    fputc(mid,fp);
     fprintf(fp, "%d", tree->data->page_num);
+    fputc(mid,fp);
     fprintf(fp, "%d", tree->data->status);
+    fputc(end,fp);
+    
     //递归插入
     FILE_preWrite(tree->left, fp);
     FILE_preWrite(tree->right, fp);

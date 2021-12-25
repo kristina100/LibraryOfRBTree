@@ -220,12 +220,10 @@ void menu(RBRoot *root)
 
             case 8:  /* 把树的的data部分写入文件 */
                 system("cls");
-                if (exist_flag)
-                {
+                if (exist_flag){
 
                     FILE_WriteRBT(*root);
                     printf("\n");
-
                 }
                 else
                     printf("No red-black tree exists, please initialize first!\n");
