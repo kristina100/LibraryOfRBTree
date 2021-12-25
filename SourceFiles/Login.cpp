@@ -167,8 +167,8 @@ Manager Login_Man(){
     FILE *fp = NULL;
     char account[11];
     char password[6];
-    Manager manager = NULL;
-    Man_Init(manager);
+    Manager man = NULL;
+    Man_Init(man);
     
     //输入账号密码
     printf("请输入账号:");
@@ -181,13 +181,13 @@ Manager Login_Man(){
     fp = fopen(Data_Man, "rb");
     
     //在数据文件中查找账号
-    while(fread(manager, sizeof(manager), 1, fp)){
+    while(fread(man, sizeof(manager), 1, fp)){
         
-        if(strcmp(account, manager->account) == 0){
+        if(strcmp(account, man->account) == 0){
             //密码相同
-            if(strcmp(password, manager->password) == 0){
+            if(strcmp(password, man->password) == 0){
                 fclose(fp);
-                return manager;
+                return man;
             }
             else
                 break;
@@ -363,7 +363,7 @@ Status Register_Operation(int mode){
 
             //写入文件
             fp = fopen(Data_Man, "ab+");
-            fwrite(M, sizeof(student), 1, fp);
+            fwrite(M, sizeof(manager), 1, fp);
         }break;
     }
     fclose(fp);
