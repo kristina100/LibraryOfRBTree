@@ -3,7 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-24 17:07:20
  * @LastEditors: Hx
- * @LastEditTime: 2021-12-24 20:11:14
+ * @LastEditTime: 2021-12-25 20:35:37
  */
 #ifndef COMMON_H_INCLUDE
 #define COMMON_H_INCLDUE
@@ -18,7 +18,7 @@
 
 //常用状态
 #define ERROR 0
-//#define OVERFLOW -1
+#define OVERFLOW -1
 #define SUCCESS 1
 #define TRUE 1
 #define true 1

@@ -233,22 +233,56 @@ Status InitRBTElem(RBTreeElemType &e){
  * @brief 从文件中读取数据并构建红黑树
  */
 Status FILE_ReadRBT(RBRoot *root){
-    int a;
     FILE *fp=fopen("book_data.txt","r");
     if(NULL==fp)
     {
         printf ("Failed to open the file!\n");
         exit (0);
     }
-    fscanf (fp,"%d",&a) ; //从fp所指文件中读取一个整数保存到变量a中
-    while(!feof(fp))//如果位置指针不在文件末尾,即没有读到文件末尾
-    {
-        fscanf(fp,"%d",&a);//读入下一条记录
-        printf("%d\n",a);
-        RBTreeElemType temp = NULL;
-        InitRBTElem(temp);
-        temp->elem = a;
-        insertRBTree(root, temp);
+
+    char str[20] = "";
+
+    // fscanf (fp,"%d",&a) ; //从fp所指文件中读取一个整数保存到变量a中
+    while(!feof(fp)){//如果位置指针不在文件末尾,即没有读到文件末尾
+
+        RBTreeElemType e = NULL;
+        InitRBTElem(e);
+        //读出elem(ISBN)
+        fscanf(fp, "%d", &e->elem);
+
+        //这条语句用于暴力解决最后一个字符问题
+        if(e->elem == 0) break;
+
+        //读出书名
+        fscanf(fp, "%s", str);
+        e->Title = (char*)malloc(sizeof(char) * strlen(str));
+        strcpy(e->Title, str);
+        fgetc(fp);
+
+        //读出作者
+        fscanf(fp, "%s", str);
+        e->Author = (char*)malloc(sizeof(char) * strlen(str));
+        strcpy(e->Author, str);
+        fgetc(fp);
+
+        //读出出版社
+        fscanf(fp, "%s", str);
+        e->press = (char*)malloc(sizeof(char) * strlen(str));
+        strcpy(e->press, str);
+
+        //读出评分
+        fscanf(fp, "%s", str);
+        e->score = (char*)malloc(sizeof(char) * strlen(str));
+        strcpy(e->score, str);
+        fgetc(fp);
+
+        //读出页数
+        fscanf(fp, "%d", &e->page_num);
+        //读出状态
+        fscanf(fp, "%d", &e->status);   
+
+        //写入树中
+        insertRBTree(root, e);
     }
     fclose(fp);
     return SUCCESS;
@@ -279,21 +313,30 @@ Status FILE_WriteRBT(RBRoot root){
 void FILE_preWrite(RBTree tree, FILE *fp){
     
     if(!tree) return;
+    
+    //定义数据分割符和结束
+    char mid = ' ', end = '\n';
+
     //写入结点数据
-    char mid = '-', end = '#';
-    // fwrite(tree->data, sizeof(RBTElem), 1, fp);
+    //写入ISBN
     fprintf(fp, "%d", tree->data->elem);
     fputc(mid,fp);
+    //写入书名
     fprintf(fp, "%s", tree->data->Title);
     fputc(mid,fp);
+    //写入作者
     fprintf(fp, "%s", tree->data->Author);
     fputc(mid,fp);
+    //写入出版社
     fprintf(fp, "%s", tree->data->press);
     fputc(mid,fp);
+    //写入得分
     fprintf(fp, "%s", tree->data->score);
     fputc(mid,fp);
+    //写入页数
     fprintf(fp, "%d", tree->data->page_num);
     fputc(mid,fp);
+    //写入状态
     fprintf(fp, "%d", tree->data->status);
     fputc(end,fp);
     
