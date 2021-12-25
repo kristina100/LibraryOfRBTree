@@ -25,7 +25,7 @@ Status Man_Init(Manager &M);
  * @param   
  * @return  Status
  */
-Status Man_ChoiceMenu(RBRoot *root){
+void Man_ChoiceMenu(RBRoot *root){
         printf("\n\n\n\n*-----------------------------------------------------------------------*\n");
         printf("|  Welcome to MangerFuction ~  Some operations on it ~                    |\n");
         printf("|                                                                         |\n");

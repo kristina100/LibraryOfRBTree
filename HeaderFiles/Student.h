@@ -3,7 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-23 14:33:25
  * @LastEditors: Hx
- * @LastEditTime: 2021-12-24 20:56:58
+ * @LastEditTime: 2021-12-25 21:34:37
  */
 #ifndef STUDENT_H_INCLUDE
 #define STUDENT_H_INCLUDE
@@ -49,8 +49,10 @@ void Stu_Options();
 /**
  * @brief 学生借书
  * 
+ * @param stu 
+ * @return Status 
  */
-Status Stu_Borrow();
+Status Stu_Borrow(Stu stu);
 
 /**
  * @brief 学生还书

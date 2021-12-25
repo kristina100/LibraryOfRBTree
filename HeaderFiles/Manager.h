@@ -32,7 +32,7 @@ Status Man_Init(Manager &M);
  * @param   
  * @return  Status
  */
-Status Man_ChoiceMenu(RBRoot *root);
+void Man_ChoiceMenu(RBRoot *root);
 
 /**
  * @name Man_Fuction
