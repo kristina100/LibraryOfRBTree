@@ -25,7 +25,7 @@ void Quit(RBRoot *root)
 {
     system("cls");
     int temp;
-    printf("\n\n\n\n")
+    printf("\n\n\n\n");
     printf("\t\t\t------------------------------\n");
     printf("\t\t\t|    Are you sure to quit    |\n");
     printf("\t\t\t|    1.YES      2.NO         |\n");

@@ -48,6 +48,8 @@ void Man_ChoiceMenu(){
  * 
  */
 Status Man_Fuction(Manager &M){
+	RBRoot *root;
+	root = createRBTree();
     int choice=-1;
     do {
 		Man_ChoiceMenu();
@@ -56,7 +58,7 @@ Status Man_Fuction(Manager &M){
 		switch (choice) {
 		case 1://管理账号
 		{
-
+			
 			break;
 		}
 		case 2://上架书籍
