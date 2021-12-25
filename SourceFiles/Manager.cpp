@@ -17,4 +17,25 @@ Status Man_Init(Manager &M){
     M->power = 0;
     return SUCCESS;
 }
+Status Man_Init(Manager &M);
 
+/**
+ * @name Man_ChoiceMenu
+ * @brief 打印管理员菜单
+ * @param   
+ * @return  Status
+ */
+Status Man_ChoiceMenu(){
+    return SUCCESS;
+}
+
+/**
+ * @name Man_Fuction
+ * @brief 登录成功后进入管理员页面
+ * @param  M
+ * @return Status 
+ * 
+ */
+Status Man_Fuction(Manager &M){
+    return SUCCESS;
+}
