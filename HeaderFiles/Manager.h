@@ -8,6 +8,7 @@
 #ifndef MANAGER_H_INCLUDE
 #define MANAGER_H_INCLUDE
 #include"Common.h"
+#include"RedBlackTree.h"
 
 //管理员结构体
 typedef struct manager{
@@ -31,7 +32,7 @@ Status Man_Init(Manager &M);
  * @param   
  * @return  Status
  */
-Status Man_ChoiceMenu();
+Status Man_ChoiceMenu(RBRoot *root);
 
 /**
  * @name Man_Fuction
@@ -39,6 +40,7 @@ Status Man_ChoiceMenu();
  * @param  M
  * @return Status 
  */
-Status Man_Fuction(Manager &M);
+Status Man_Fuction(Manager &M,RBRoot *root);
+
 
 #endif  //MANAGER_H_INCLUDE
