@@ -28,6 +28,11 @@ void Login_Operation();
 Stu Login_Stu();
 
 /**
+ * @brief  管理员登录
+ */
+Manager Login_Man();
+
+/**
  * @brief 注册操作,mode == 0 为学生注册, 1为管理员注册
  * 
  * @param mode 

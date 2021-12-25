@@ -32,7 +32,7 @@ Status Man_Init(Manager &M);
  * @param   
  * @return  Status
  */
-Status Man_ChoiceMenu(RBRoot *root);
+void Man_ChoiceMenu();
 
 /**
  * @name Man_Fuction
@@ -40,7 +40,23 @@ Status Man_ChoiceMenu(RBRoot *root);
  * @param  M
  * @return Status 
  */
-Status Man_Fuction(Manager &M,RBRoot *root);
+Status Man_Fuction(Manager &M);
+
+/**
+ * @name Man_ManageAccount
+ * @brief 管理账号功能
+ * @param   M root
+ * @return  Status
+ */
+Status Man_ManageAccount(Manager M,RBRoot *root);
+
+/**
+ * @name Man_Grounding
+ * @brief  上架书籍
+ * @param   
+ * @return  
+ */
+Status Man_Grounding(Manager M,RBRoot *root);
 
 
 #endif  //MANAGER_H_INCLUDE

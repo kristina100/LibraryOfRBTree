@@ -25,7 +25,7 @@ Status Man_Init(Manager &M);
  * @param   
  * @return  Status
  */
-Status Man_ChoiceMenu(RBRoot *root){
+void Man_ChoiceMenu(){
         printf("\n\n\n\n*-----------------------------------------------------------------------*\n");
         printf("|  Welcome to MangerFuction ~  Some operations on it ~                    |\n");
         printf("|                                                                         |\n");
@@ -47,15 +47,16 @@ Status Man_ChoiceMenu(RBRoot *root){
  * @return Status 
  * 
  */
-Status Man_Fuction(Manager &M,RBRoot *root){
+Status Man_Fuction(Manager &M){
     int choice=-1;
     do {
-		Man_ChoiceMenu(root);
+		Man_ChoiceMenu();
 		//choice = InputInteger();
         scanf("%d",&choice);
 		switch (choice) {
 		case 1://管理账号
 		{
+
 			break;
 		}
 		case 2://上架书籍

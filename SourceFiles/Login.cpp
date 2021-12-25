@@ -8,41 +8,41 @@
 #include"../HeaderFiles/Login.h"
 #include"../HeaderFiles/Utils.h"
 
-//å­˜å‚¨å­¦ç”Ÿæ•°æ®çš„æ–‡ä»¶
+//´æ´¢Ñ§ÉúÊı¾İµÄÎÄ¼ş
 char Data_Stu[] = "Students.dat";
 
-//å­˜å‚¨ç®¡ç†å‘˜æ•°æ®çš„æ–‡ä»¶
+//´æ´¢¹ÜÀíÔ±Êı¾İµÄÎÄ¼ş
 char Data_Man[] = "Managers.dat";
 
 /**
- * @brief æ‰“å°ç™»å½•ç•Œé¢
+ * @brief ´òÓ¡µÇÂ¼½çÃæ
  */
 void Print_Login_Options(){
     Clean();
     for (int i = 0; i < 10; i++){
         if(i == 5)
-            printf("ç™»å½•ç•Œé¢");
+            printf("µÇÂ¼½çÃæ");
         printf("__");
     }
     printf("\n\n");
-    printf("1.å­¦ç”Ÿç™»å½•\n");
-    printf("2,ç®¡ç†å‘˜ç™»å½•\n");
-    printf("3,æ³¨å†Œ\n");
-    printf("0.é€€å‡º\n\n");
+    printf("1.Ñ§ÉúµÇÂ¼\n");
+    printf("2,¹ÜÀíÔ±µÇÂ¼\n");
+    printf("3,×¢²á\n");
+    printf("0.ÍË³ö\n\n");
 
     for (int i = 0; i < 15; i++){
         printf("__");
     }
     printf("\n");
-    printf("è¯·é€‰æ‹©æ“ä½œ: ");     
+    printf("ÇëÑ¡Ôñ²Ù×÷: ");     
 }
 
 /**
- * @brief ç™»å½•é€‰é¡¹
+ * @brief µÇÂ¼Ñ¡Ïî
  */
 void Login_Operation(){
     
-    //é€‰æ‹©
+    //Ñ¡Ôñ
     int choose;
     
     while (true){
@@ -51,43 +51,52 @@ void Login_Operation(){
         
         switch (choose){
             
-            //è¿”å›ä¸Šä¸€çº§
+            //·µ»ØÉÏÒ»¼¶
             case 0:{
                 return;
             }break;
 
-            //å­¦ç”Ÿç™»å½•
+            //Ñ§ÉúµÇÂ¼
             case 1:{
                 Stu stu = NULL;
                 stu = Login_Stu();
                 if(stu == NULL){
-                    printf("ç™»å½•å¤±è´¥ï¼Œè´¦å·æˆ–å¯†ç é”™è¯¯\n");
+                    printf("µÇÂ¼Ê§°Ü£¬ÕËºÅ»òÃÜÂë´íÎó\n");
                 }else{
-                    printf("ç™»å½•æˆåŠŸ\n");
+                    printf("µÇÂ¼³É¹¦\n");
                     Sleep(1);
                     Stu_Operation(stu);
                 }
                 Pause();
             }break;
 
-            //ç®¡ç†å‘˜ç™»å½•
+            //¹ÜÀíÔ±µÇÂ¼
             case 2:{
-
+                Manager manager = NULL;
+                manager =Login_Man();
+                if(manager == NULL){
+                    printf("µÇÂ¼Ê§°Ü£¬ÕËºÅ»òÃÜÂë´íÎó\n");
+                }else{
+                    printf("µÇÂ¼³É¹¦\n");
+                    Sleep(1);
+                    Man_Fuction(manager);
+                }
+                Pause();
             }break;
 
-            //æ³¨å†Œ
+            //×¢²á
             case 3:{
                 Status status = Register_Spilt();
                 if(status == SUCCESS){
-                    printf("æ³¨å†ŒæˆåŠŸ\n");
+                    printf("×¢²á³É¹¦\n");
                 }else if(status == Exist){
-                    printf("è´¦å·å·²å­˜åœ¨\n");
+                    printf("ÕËºÅÒÑ´æÔÚ\n");
                 }
                 Pause();
             }break;
         
             default:{
-                printf("\næ“ä½œä¸å­˜åœ¨\n");
+                printf("\n²Ù×÷²»´æÔÚ\n");
                 Pause();
             }break;
         }
@@ -96,13 +105,13 @@ void Login_Operation(){
 }
 
 /**
- * @brief å­¦ç”Ÿç™»å½•
+ * @brief Ñ§ÉúµÇÂ¼
  */
 Stu Login_Stu(){
     Clean();
     for (int i = 0; i < 10; i++){
         if(i == 5)
-            printf("ç™»å½•");
+            printf("µÇÂ¼");
         printf("__");
     }
     printf("\n");
@@ -110,23 +119,23 @@ Stu Login_Stu(){
     char account[11];
     char password[6];
     Stu stu = NULL;
-    //Stu_Init(stu);
+    Stu_Init(stu);
 
-    //è¾“å…¥è´¦å·å¯†ç 
-    printf("è¯·è¾“å…¥è´¦å·:");
+    //ÊäÈëÕËºÅÃÜÂë
+    printf("ÇëÊäÈëÕËºÅ:");
     scanf("%s", account);
 
-    printf("è¯·è¾“å…¥å¯†ç :");
+    printf("ÇëÊäÈëÃÜÂë:");
     scanf("%s", password);
 
-    //æ‰“å¼€æ–‡ä»¶
+    //´ò¿ªÎÄ¼ş
     fp = fopen(Data_Stu, "rb");
     
-    //åœ¨æ•°æ®æ–‡ä»¶ä¸­æŸ¥æ‰¾è´¦å·
-    while(fread(stu, sizeof(student), 1, fp)){
+    //ÔÚÊı¾İÎÄ¼şÖĞ²éÕÒÕËºÅ
+    while(fread(stu, sizeof(stu), 1, fp)){
         
         if(strcmp(account, stu->account) == 0){
-            //å¯†ç ç›¸åŒ
+            //ÃÜÂëÏàÍ¬
             if(strcmp(password, stu->password) == 0){
                 fclose(fp);
                 return stu;
@@ -142,30 +151,79 @@ Stu Login_Stu(){
 }
 
 /**
- * @brief æ‰“å°æ³¨å†Œé€‰é¡¹
+ * @name Login_Man
+ * @brief ¹ÜÀíÔ±µÇÂ¼
+ * @param   
+ * @return Status 
+ */
+Manager Login_Man(){
+    Clean();
+    for (int i = 0; i < 10; i++){
+        if(i == 5)
+            printf("µÇÂ¼");
+        printf("__");
+    }
+    printf("\n");
+    FILE *fp = NULL;
+    char account[11];
+    char password[6];
+    Manager manager = NULL;
+    Man_Init(manager);
+    
+    //ÊäÈëÕËºÅÃÜÂë
+    printf("ÇëÊäÈëÕËºÅ:");
+    scanf("%s", account);
+
+    printf("ÇëÊäÈëÃÜÂë:");
+    scanf("%s", password);
+
+    //´ò¿ªÎÄ¼ş
+    fp = fopen(Data_Man, "rb");
+    
+    //ÔÚÊı¾İÎÄ¼şÖĞ²éÕÒÕËºÅ
+    while(fread(manager, sizeof(manager), 1, fp)){
+        
+        if(strcmp(account, manager->account) == 0){
+            //ÃÜÂëÏàÍ¬
+            if(strcmp(password, manager->password) == 0){
+                fclose(fp);
+                return manager;
+            }
+            else
+                break;
+            
+        }
+    }
+    fclose(fp);
+    
+    return NULL;
+}
+
+/**
+ * @brief ´òÓ¡×¢²áÑ¡Ïî
  * 
  */
 void Print_Register_Option(){
     Clean();
     for (int i = 0; i < 10; i++){
         if(i == 5)
-            printf("ç™»å½•ç•Œé¢");
+            printf("µÇÂ¼½çÃæ");
         printf("__");
     }
     printf("\n\n");
-    printf("1.å­¦ç”Ÿæ³¨å†Œ\n");
-    printf("2,ç®¡ç†å‘˜æ³¨å†Œ\n");
-    printf("0.è¿”å›\n\n");
+    printf("1.Ñ§Éú×¢²á\n");
+    printf("2,¹ÜÀíÔ±×¢²á\n");
+    printf("0.·µ»Ø\n\n");
 
     for (int i = 0; i < 15; i++){
         printf("__");
     }
     printf("\n");
-    printf("è¯·é€‰æ‹©æ“ä½œ: "); 
+    printf("ÇëÑ¡Ôñ²Ù×÷: "); 
 }
 
 /**
- * @brief åˆ†æµå­¦ç”Ÿå’Œç®¡ç†å‘˜
+ * @brief ·ÖÁ÷Ñ§ÉúºÍ¹ÜÀíÔ±
  * 
  */
 Status Register_Spilt(){
@@ -178,12 +236,12 @@ Status Register_Spilt(){
 
         switch (choose){
             
-            //è¿”å›
+            //·µ»Ø
             case 0:{
                 return Cancel;
             }break;
 
-            //å­¦ç”Ÿæ³¨å†Œ
+            //Ñ§Éú×¢²á
             case 1:{
                 Status status = Register_Operation(0);
                 if(status == SUCCESS)
@@ -192,13 +250,13 @@ Status Register_Spilt(){
                     return Exist;
             }break;
 
-            //ç®¡ç†å‘˜æ³¨å†Œ
+            //¹ÜÀíÔ±×¢²á
             case 2:{
                 Status status = Register_Operation(1);
                 if(status == SUCCESS)
                     return SUCCESS;
                 else if(status == ERROR){
-                    printf("ç®¡ç†å‘˜æ³¨å†Œæƒé™æ— æ•ˆ\n");
+                    printf("¹ÜÀíÔ±×¢²áÈ¨ÏŞÎŞĞ§\n");
                     return ERROR;
                 }else   
                     return Exist;
@@ -206,7 +264,7 @@ Status Register_Spilt(){
             }break;
 
             default:{
-                printf("\næ“ä½œä¸å­˜åœ¨\n");
+                printf("\n²Ù×÷²»´æÔÚ\n");
                 Pause();
             }break;
         }
@@ -216,27 +274,27 @@ Status Register_Spilt(){
 }
 
 /**
- * @brief æ³¨å†Œ
+ * @brief ×¢²á
  */
 Status Register_Operation(int mode){
 
-    //åˆå§‹åŒ–
+    //³õÊ¼»¯
     FILE *fp = NULL;
 
     switch (mode){
 
-        //å­¦ç”Ÿæ³¨å†Œ
+        //Ñ§Éú×¢²á
         case 0:{     
             Stu stu = NULL, temp = NULL;
             Stu_Init(stu);
             Stu_Init(temp);
 
-            printf("è¯·è¾“å…¥è´¦å·:");
+            printf("ÇëÊäÈëÕËºÅ:");
             scanf("%s", stu->account);
 
-            //=================æ£€æŸ¥è´¦å·æ˜¯å¦å­˜åœ¨=================
+            //=================¼ì²éÕËºÅÊÇ·ñ´æÔÚ=================
 
-            //æ‰“å¼€æ–‡ä»¶
+            //´ò¿ªÎÄ¼ş
             fp = fopen(Data_Stu, "rb");
 
             while(fread(temp, sizeof(student), 1, fp)){
@@ -248,45 +306,45 @@ Status Register_Operation(int mode){
             }
             fclose(fp);
             
-            printf("è¯·è¾“å…¥å­¦å·:");
+            printf("ÇëÊäÈëÑ§ºÅ:");
             scanf("%s", stu->ID);
 
-            printf("è¯·è¾“å…¥å¯†ç (6ä½):");
+            printf("ÇëÊäÈëÃÜÂë(6Î»):");
             scanf("%s", stu->password);
 
-            printf("è¯·è¾“å…¥å§“å:");
+            printf("ÇëÊäÈëĞÕÃû:");
             scanf("%s", stu->name);
 
             stu->power = 0;
 
-            //å†™å…¥æ–‡ä»¶
+            //Ğ´ÈëÎÄ¼ş
             fp = fopen(Data_Stu, "ab+");
             fwrite(stu, sizeof(student), 1, fp);
             
         }break;
-        //ç®¡ç†å‘˜æ³¨å†Œ
+        //¹ÜÀíÔ±×¢²á
         case 1:{
             Manager M = NULL, temp = NULL;
             Man_Init(M);
             Man_Init(temp);
             
-            //æ£€æµ‹ç®¡ç†å‘˜æ³¨å†Œå¯†é’¥
+            //¼ì²â¹ÜÀíÔ±×¢²áÃÜÔ¿
             int Mancode = 0;
-            printf("è¯·è¾“å…¥ç®¡ç†å‘˜æ³¨å†Œå¯†é’¥:");
+            printf("ÇëÊäÈë¹ÜÀíÔ±×¢²áÃÜÔ¿:");
             scanf("%d", &Mancode);
-            //æ³¨å†Œå¯†é’¥é”™è¯¯
+            //×¢²áÃÜÔ¿´íÎó
             if(Mancode != 1234) return FALSE;
 
-            printf("è¯·è¾“å…¥è´¦å·:");
+            printf("ÇëÊäÈëÕËºÅ:");
             scanf("%s", M->account);
             
             
-            //=================æ£€æŸ¥è´¦å·æ˜¯å¦å­˜åœ¨=================
+            //=================¼ì²éÕËºÅÊÇ·ñ´æÔÚ=================
 
-            //æ‰“å¼€æ–‡ä»¶
+            //´ò¿ªÎÄ¼ş
             fp = fopen(Data_Man, "rb");
 
-            while(fread(temp, sizeof(student), 1, fp)){
+            while(fread(temp, sizeof(manager), 1, fp)){
 
                 if(strcmp(temp->account, M->account) == 0){
                     fclose(fp);
@@ -295,15 +353,15 @@ Status Register_Operation(int mode){
             }
             fclose(fp);
             
-            printf("è¯·è¾“å…¥å¯†ç (6ä½):");
+            printf("ÇëÊäÈëÃÜÂë(6Î»):");
             scanf("%s", M->password);
 
-            printf("è¯·è¾“å…¥å§“å:");
+            printf("ÇëÊäÈëĞÕÃû:");
             scanf("%s", M->name);
 
             M->power = 1;
 
-            //å†™å…¥æ–‡ä»¶
+            //Ğ´ÈëÎÄ¼ş
             fp = fopen(Data_Man, "ab+");
             fwrite(M, sizeof(student), 1, fp);
         }break;
