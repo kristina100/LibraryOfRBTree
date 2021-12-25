@@ -8,14 +8,14 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "C:/Users/HUAWEI/CLionProjects/RBTreeOfLibary/SourceFiles/BalancedBinaryTree.cpp" "C:/Users/HUAWEI/CLionProjects/RBTreeOfLibary/cmake-build-debug/CMakeFiles/RBTreeOfLibary.dir/SourceFiles/BalancedBinaryTree.cpp.obj"
-  "C:/Users/HUAWEI/CLionProjects/RBTreeOfLibary/SourceFiles/BinarySearchTree.cpp" "C:/Users/HUAWEI/CLionProjects/RBTreeOfLibary/cmake-build-debug/CMakeFiles/RBTreeOfLibary.dir/SourceFiles/BinarySearchTree.cpp.obj"
-  "C:/Users/HUAWEI/CLionProjects/RBTreeOfLibary/SourceFiles/BinaryTree.cpp" "C:/Users/HUAWEI/CLionProjects/RBTreeOfLibary/cmake-build-debug/CMakeFiles/RBTreeOfLibary.dir/SourceFiles/BinaryTree.cpp.obj"
-  "C:/Users/HUAWEI/CLionProjects/RBTreeOfLibary/SourceFiles/RedBlackTree.cpp" "C:/Users/HUAWEI/CLionProjects/RBTreeOfLibary/cmake-build-debug/CMakeFiles/RBTreeOfLibary.dir/SourceFiles/RedBlackTree.cpp.obj"
-  "C:/Users/HUAWEI/CLionProjects/RBTreeOfLibary/SourceFiles/RedBlackTreeUtils.cpp" "C:/Users/HUAWEI/CLionProjects/RBTreeOfLibary/cmake-build-debug/CMakeFiles/RBTreeOfLibary.dir/SourceFiles/RedBlackTreeUtils.cpp.obj"
-  "C:/Users/HUAWEI/CLionProjects/RBTreeOfLibary/main.cpp" "C:/Users/HUAWEI/CLionProjects/RBTreeOfLibary/cmake-build-debug/CMakeFiles/RBTreeOfLibary.dir/main.cpp.obj"
+  "F:/DataStructure/CurriculumDesign/SourceFiles/BalancedBinaryTree.cpp" "F:/DataStructure/CurriculumDesign/cmake-build-debug/CMakeFiles/RBTreeOfLibary.dir/SourceFiles/BalancedBinaryTree.cpp.obj"
+  "F:/DataStructure/CurriculumDesign/SourceFiles/BinarySearchTree.cpp" "F:/DataStructure/CurriculumDesign/cmake-build-debug/CMakeFiles/RBTreeOfLibary.dir/SourceFiles/BinarySearchTree.cpp.obj"
+  "F:/DataStructure/CurriculumDesign/SourceFiles/BinaryTree.cpp" "F:/DataStructure/CurriculumDesign/cmake-build-debug/CMakeFiles/RBTreeOfLibary.dir/SourceFiles/BinaryTree.cpp.obj"
+  "F:/DataStructure/CurriculumDesign/SourceFiles/RedBlackTree.cpp" "F:/DataStructure/CurriculumDesign/cmake-build-debug/CMakeFiles/RBTreeOfLibary.dir/SourceFiles/RedBlackTree.cpp.obj"
+  "F:/DataStructure/CurriculumDesign/SourceFiles/RedBlackTreeUtils.cpp" "F:/DataStructure/CurriculumDesign/cmake-build-debug/CMakeFiles/RBTreeOfLibary.dir/SourceFiles/RedBlackTreeUtils.cpp.obj"
+  "F:/DataStructure/CurriculumDesign/main.cpp" "F:/DataStructure/CurriculumDesign/cmake-build-debug/CMakeFiles/RBTreeOfLibary.dir/main.cpp.obj"
   )
-set(CMAKE_CXX_COMPILER_ID "GNU")
+set(CMAKE_CXX_COMPILER_ID "MSVC")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH

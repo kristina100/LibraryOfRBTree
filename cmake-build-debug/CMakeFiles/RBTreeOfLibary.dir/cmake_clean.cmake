@@ -7,8 +7,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/RBTreeOfLibary.dir/main.cpp.obj"
   "RBTreeOfLibary.exe"
   "RBTreeOfLibary.exe.manifest"
+  "RBTreeOfLibary.lib"
   "RBTreeOfLibary.pdb"
-  "libRBTreeOfLibary.dll.a"
 )
 
 # Per-language clean rules from dependency scanning.
