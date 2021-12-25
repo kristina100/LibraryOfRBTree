@@ -3,7 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-23 15:56:56
  * @LastEditors: Hx
- * @LastEditTime: 2021-12-24 21:22:36
+ * @LastEditTime: 2021-12-25 21:19:30
  */
 #include"../HeaderFiles/Login.h"
 #include"../HeaderFiles/Utils.h"
@@ -18,23 +18,23 @@ char Data_Man[] = "Managers.dat";
  * @brief 打印登录界面
  */
 void Print_Login_Options(){
-    Clean();
-    for (int i = 0; i < 10; i++){
-        if(i == 5)
-            printf("登录界面");
-        printf("__");
-    }
-    printf("\n\n");
-    printf("1.学生登录\n");
-    printf("2,管理员登录\n");
-    printf("3,注册\n");
-    printf("0.退出\n\n");
 
-    for (int i = 0; i < 15; i++){
-        printf("__");
-    }
-    printf("\n");
-    printf("请选择操作: ");     
+    Clean();
+    printf("\n\n\n\n*-----------------------------------------------------------------*\n");
+    printf("|                            <登录界面>                                    |\n");
+    printf("|                                                                         |\n");
+    printf("|                                                                         |\n");
+    printf("|           1.学生登录                       2理员登录                      |\n");
+    printf("|                                                                         |\n");
+    printf("|           3.注册                           0.返回                        |\n");
+    printf("|                                                                         |\n");
+    printf("|                                                                         |\n");
+    printf("|                                                                         |\n");
+    printf("*-------------------------------------------------------------------------*\n");
+    printf("*-------------------------------------------------------------------------*\n");
+    
+    printf("\n\t\t");
+    printf("请选择: ");     
 }
 
 /**
@@ -132,7 +132,7 @@ Stu Login_Stu(){
     fp = fopen(Data_Stu, "rb");
     
     //在数据文件中查找账号
-    while(fread(stu, sizeof(stu), 1, fp)){
+    while(fread(stu, sizeof(student), 1, fp)){
         
         if(strcmp(account, stu->account) == 0){
             //密码相同

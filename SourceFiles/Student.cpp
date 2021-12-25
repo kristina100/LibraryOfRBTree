@@ -3,14 +3,14 @@
  * @Author: Hx
  * @Date: 2021-12-23 14:33:31
  * @LastEditors: Hx
- * @LastEditTime: 2021-12-24 20:16:15
+ * @LastEditTime: 2021-12-25 21:33:53
  */
 #include"Student.h"
 #include"Utils.h"
 
 
 /**
- * @brief åˆå§‹åŒ–Stu
+ * @brief ³õÊ¼»¯Stu
  */
 Status Stu_Init(Stu &stu){
 
@@ -23,38 +23,35 @@ Status Stu_Init(Stu &stu){
 }
 
 /**
- * @brief æ‰“å°å­¦ç”Ÿé€‰é¡¹
+ * @brief ´òÓ¡Ñ§ÉúÑ¡Ïî
  */
 void Stu_Options(){
-
-    Clean();
-    for (int i = 0; i < 10; i++){
-        if(i == 5)
-            printf("å­¦ç”Ÿé€‰é¡¹");
-        printf("__");
-    }
-    printf("\n\n");
-    printf("1.æŸ¥è¯¢ä¹¦ç±\n");
-    printf("2.å€Ÿé˜…ä¹¦ç±\n");
-    printf("3.å½’è¿˜ä¹¦ç±\n");
-    printf("4.ä¸ªäººä¿¡æ¯\n");
-    printf("0.è¿”å›\n\n");
-
-    for (int i = 0; i < 15; i++){
-        printf("__");
-    }
-    printf("\n");
-    printf("è¯·é€‰æ‹©ç±»å‹: ");                      
+        Clean();
+        printf("\n\n\n\n*-----------------------------------------------------------------*\n");
+        printf("                            <Ñ§ÉúÑ¡Ïî>                                     \n");
+        printf("                                                                          \n");
+        printf("                                                                          \n");
+        printf("           1.²éÑ¯Êé¼®                       2.½èÔÄÊé¼®                     \n");
+        printf("                                                                          \n");
+        printf("           3.¹é»¹Êé¼®                       4.¸öÈËĞÅÏ¢                     \n");
+        printf("                                                                          \n");
+        printf("           0.·µ»Ø                                                         \n");
+        printf("                                                                          \n");
+        printf("*-------------------------------------------------------------------------*\n");
+        printf("*-------------------------------------------------------------------------*\n");
+        
+        printf("\n\t\t");
+        printf("ÇëÑ¡Ôñ: ");                      
 }
 
 /**
- * @brief å­¦ç”Ÿæ“ä½œ
+ * @brief Ñ§Éú²Ù×÷
  */
 void Stu_Operation(Stu &stu){
 
-    //å¾ªç¯æ“ä½œæ ‡å¿—
+    //Ñ­»·²Ù×÷±êÖ¾
     int flag = 1;
-    //é€‰æ‹©
+    //Ñ¡Ôñ
     int choose;
     
     while (flag){
@@ -63,13 +60,18 @@ void Stu_Operation(Stu &stu){
      
         switch (choose){
             
-            //è¿”å›ä¸Šä¸€çº§
+            //·µ»ØÉÏÒ»¼¶
             case 0:{
                 return;
             }break;
 
+            //½èÊé
+            case 1:{
+                
+            }break;
+
             default:{
-                printf("\næ“ä½œä¸å­˜åœ¨\n");
+                printf("\n²Ù×÷²»´æÔÚ\n");
                 Pause();
             }break;
         }
@@ -78,35 +80,35 @@ void Stu_Operation(Stu &stu){
 }
 
 /**
- * @brief å€Ÿä¹¦
+ * @brief ½èÊé
  */
 Status Stu_Borrow(){
     return SUCCESS;
 }
 
 /**
- * @brief è¿˜ä¹¦
+ * @brief »¹Êé
  */
 Status Stu_return(){
     return SUCCESS;
 }
 
 /**
- * @brief æŸ¥çœ‹ä¿¡æ¯
+ * @brief ²é¿´ĞÅÏ¢
  */
 void Stu_MyInfo(){
 
 }
 
 /**
- * @brief æ‰¾å›å¯†ç 
+ * @brief ÕÒ»ØÃÜÂë
  */
 Status Stu_FindPassword(){
     return SUCCESS;
 }
 
 /**
- * @brief æ›´æ”¹å¯†ç 
+ * @brief ¸ü¸ÄÃÜÂë
  */
 Status Stu_ChangePassword(){
     return SUCCESS;

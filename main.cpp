@@ -25,6 +25,7 @@ void Quit(RBRoot *root)
 {
     system("cls");
     int temp;
+    printf("\n\n\n\n")
     printf("\t\t\t------------------------------\n");
     printf("\t\t\t|    Are you sure to quit    |\n");
     printf("\t\t\t|    1.YES      2.NO         |\n");
@@ -103,7 +104,8 @@ void menu(RBRoot *root)
                 exist_flag = 1;
                 printf("Init successfully ~ \n");
                 break;
-            case 2:  /* 随机插入指定数量的结点 */
+            //从文件读出数据并生成红黑树    
+            case 2: 
                 system("cls");
                 if (exist_flag) {
                     FILE_ReadRBT(root);
@@ -220,12 +222,10 @@ void menu(RBRoot *root)
 
             case 8:  /* 把树的的data部分写入文件 */
                 system("cls");
-                if (exist_flag)
-                {
+                if (exist_flag){
 
                     FILE_WriteRBT(*root);
                     printf("\n");
-
                 }
                 else
                     printf("No red-black tree exists, please initialize first!\n");
