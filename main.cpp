@@ -21,28 +21,6 @@ int main()
     return 0;
 }
 
-void FileReadAndBuiltTree(RBRoot *root)
-{
-    int a;
-    FILE *fp=fopen("data.txt","r");
-    if(NULL==fp)
-    {
-        printf ("Failed to open the file!\n");
-        exit (0);
-    }
-    fscanf (fp,"%d",&a) ; //从fp所指文件中读取一个整数保存到变量a中
-    while(!feof(fp))//如果位置指针不在文件末尾,即没有读到文件末尾
-    {
-        fscanf(fp,"%d",&a);//读入下一条记录
-        printf("%d\n",a);
-        RBTreeElemType temp;
-        temp->elem = a;
-        insertRBTree(root, temp);
-    }
-    fclose(fp);
-}
-
-
 void Quit(RBRoot *root)
 {
     system("cls");
@@ -128,7 +106,7 @@ void menu(RBRoot *root)
             case 2:  /* 随机插入指定数量的结点 */
                 system("cls");
                 if (exist_flag) {
-                    FileReadAndBuiltTree(root);
+                    FILE_ReadRBT(root);
                     printf("Read initial data successfully ~ \n");
 //                    /* 设置随机数种子 */
 //                    srand((unsigned int) time(NULL));
@@ -187,13 +165,10 @@ void menu(RBRoot *root)
 
             case 5:  /* 插入 */
                 Clean();
-                if (exist_flag)
-                {
+                if (exist_flag){
                     RBTreeElemType insert_x = NULL;
-
-                    //暂时不输入信息
-                    InitRBTElem(insert_x);
-
+                    inputRBTElem(insert_x);
+                    // InitRBTElem(insert_x);
                     Status insert_status;
                     double cost;
                     printf("Please enter the node you want to insert:");
@@ -248,7 +223,7 @@ void menu(RBRoot *root)
                 if (exist_flag)
                 {
 
-//                    FileWrite(root);
+                    FILE_WriteRBT(*root);
                     printf("\n");
 
                 }
