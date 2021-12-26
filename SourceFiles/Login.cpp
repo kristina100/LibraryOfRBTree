@@ -72,7 +72,16 @@ void Login_Operation(){
 
             //管理员登录
             case 2:{
-
+                Manager manager = NULL;
+                manager =Login_Man();
+                if(manager == NULL){
+                    printf("登录失败，账号或密码错误\n");
+                }else{
+                    printf("登录成功\n");
+                    Sleep(1);
+                    Man_Fuction(manager);
+                }
+                Pause();
             }break;
 
             //注册
@@ -130,6 +139,55 @@ Stu Login_Stu(){
             if(strcmp(password, stu->password) == 0){
                 fclose(fp);
                 return stu;
+            }
+            else
+                break;
+            
+        }
+    }
+    fclose(fp);
+    
+    return NULL;
+}
+
+/**
+ * @name Login_Man
+ * @brief 管理员登录
+ * @param   
+ * @return Status 
+ */
+Manager Login_Man(){
+    Clean();
+    for (int i = 0; i < 10; i++){
+        if(i == 5)
+            printf("登录");
+        printf("__");
+    }
+    printf("\n");
+    FILE *fp = NULL;
+    char account[11];
+    char password[6];
+    Manager man = NULL;
+    Man_Init(man);
+    
+    //输入账号密码
+    printf("请输入账号:");
+    scanf("%s", account);
+
+    printf("请输入密码:");
+    scanf("%s", password);
+
+    //打开文件
+    fp = fopen(Data_Man, "rb");
+    
+    //在数据文件中查找账号
+    while(fread(man, sizeof(manager), 1, fp)){
+        
+        if(strcmp(account, man->account) == 0){
+            //密码相同
+            if(strcmp(password, man->password) == 0){
+                fclose(fp);
+                return man;
             }
             else
                 break;
@@ -305,7 +363,7 @@ Status Register_Operation(int mode){
 
             //写入文件
             fp = fopen(Data_Man, "ab+");
-            fwrite(M, sizeof(student), 1, fp);
+            fwrite(M, sizeof(manager), 1, fp);
         }break;
     }
     fclose(fp);

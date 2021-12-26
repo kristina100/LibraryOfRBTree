@@ -133,4 +133,12 @@ Status FILE_ReadRBT(RBRoot *root);
  */
 RBTreeElemType RBT_SearchByISBN(RBTree R, int ISBN);
 
+/**
+ * @name printBookInfo
+ * @brief Print information about a Book
+ * @param e  
+ * @return Status 
+ */
+Status PrintBookInfo(RBTreeElemType e);
+
 #endif //REDBLACKTREE_REDBLACKTREE_H

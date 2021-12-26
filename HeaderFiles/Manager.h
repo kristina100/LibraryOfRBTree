@@ -9,6 +9,9 @@
 #define MANAGER_H_INCLUDE
 #include"Common.h"
 #include"RedBlackTree.h"
+#include"RedBlackTreeUtils.h"
+#include"BinarySearchTree.h"
+#include"BinaryTree.h"
 
 //管理员结构体
 typedef struct manager{
@@ -32,7 +35,7 @@ Status Man_Init(Manager &M);
  * @param   
  * @return  Status
  */
-void Man_ChoiceMenu(RBRoot *root);
+void Man_ChoiceMenu();
 
 /**
  * @name Man_Fuction
@@ -40,7 +43,55 @@ void Man_ChoiceMenu(RBRoot *root);
  * @param  M
  * @return Status 
  */
-Status Man_Fuction(Manager &M,RBRoot *root);
+Status Man_Fuction(Manager &M);
 
+/**
+ * @name Man_ManageAccount
+ * @brief 管理账号功能
+ * @param   M root
+ * @return  Status
+ */
+Status Man_ManageAccount(Manager M,RBRoot *root);
+
+/**
+ * @name Man_Grounding
+ * @brief  上架书籍
+ * @param   M root
+ * @return  status
+ */
+Status Man_Grounding(Manager M,RBRoot *root);
+
+
+/**
+ * @name Man_OffShelf
+ * @brief 下架书籍
+ * @param   M root
+ * @return  status
+ */
+Status Man_OffShelf(Manager M,RBRoot *root);
+
+/**
+ * @name Man_SearchBook
+ * @brief  搜索书籍
+ * @param   M root
+ * @return  status
+ */
+Status Man_SearchBook(Manager M,RBRoot *root);
+
+/**
+ * @name Man_GetBookTree
+ * @brief 获取书籍
+ * @param  root
+ * @return  Status
+ */
+Status Man_GetBookTree(RBRoot *root);
+
+/**
+ * @name Man_SearchMenu
+ * @brief 管理员查找功能菜单
+ * @param   
+ * @return 
+ */
+void Man_SearchMenu();
 
 #endif  //MANAGER_H_INCLUDE
