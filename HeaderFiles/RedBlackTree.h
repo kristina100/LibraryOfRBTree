@@ -125,4 +125,12 @@ void FILE_preWrite(RBTree tree, FILE *fp);
 Status FILE_ReadRBT(RBRoot *root);
 
 
+/**
+ * @name printBookInfo
+ * @brief Print information about a Book
+ * @param e  
+ * @return Status 
+ */
+Status PrintBookInfo(RBTreeElemType e);
+
 #endif //REDBLACKTREE_REDBLACKTREE_H

@@ -143,7 +143,8 @@ void menu(RBRoot *root)
                 system("cls");
                 if (exist_flag)
                 {
-                    RBTreeElemType delete_x;
+                    //RBTreeElemType delete_x;
+                    RBTreeElemType delete_x=(RBTreeElemType)malloc(sizeof(RBTElem));
                     Status delete_status;
                     double cost;
                     printf("Please enter the node you want to delete:");
@@ -158,6 +159,7 @@ void menu(RBRoot *root)
                     }
                     else
                         printf("Failed to delete node, no node exists!\n");
+                    free(delete_x);
                 }
                 else
                     printf("No red-black tree exists, please initialize first!\n");
@@ -192,7 +194,8 @@ void menu(RBRoot *root)
                 system("cls");
                 if (exist_flag)
                 {
-                    RBTreeElemType search_x;
+                    //RBTreeElemType search_x;
+                    RBTreeElemType search_x=(RBTreeElemType)malloc(sizeof(RBTElem));
                     printf("Please enter the node you want to find:");
                     search_x->elem = InputInteger();
                     if ((recursiveSearchRBTree(root, search_x)) == SUCCESS)

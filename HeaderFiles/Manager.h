@@ -9,6 +9,9 @@
 #define MANAGER_H_INCLUDE
 #include"Common.h"
 #include"RedBlackTree.h"
+#include"RedBlackTreeUtils.h"
+#include"BinarySearchTree.h"
+#include"BinaryTree.h"
 
 //管理员结构体
 typedef struct manager{
@@ -82,5 +85,13 @@ Status Man_SearchBook(Manager M,RBRoot *root);
  * @return  Status
  */
 Status Man_GetBookTree(RBRoot *root);
+
+/**
+ * @name Man_SearchMenu
+ * @brief 管理员查找功能菜单
+ * @param   
+ * @return 
+ */
+void Man_SearchMenu();
 
 #endif  //MANAGER_H_INCLUDE

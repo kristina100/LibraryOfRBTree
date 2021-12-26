@@ -8,14 +8,14 @@
 #include"HeaderFiles/RedBlackTreeUtils.h"
 #include"HeaderFiles/BinarySearchTree.h"
 #include"HeaderFiles/Utils.h"
-#include"HeaderFiles/Manager.h"
+//#include"HeaderFiles/Manager.h"
 #include"HeaderFiles/Login.h"
 
 int main(){
     RBRoot *root;
     Manager M;
-    //Man_Fuction();
-    Login_Operation();
+    Man_Fuction(M);
+    //Login_Operation();
     system("pause");
     return 1;
 }
