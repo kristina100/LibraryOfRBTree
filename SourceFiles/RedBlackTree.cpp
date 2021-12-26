@@ -91,7 +91,8 @@ Status postorderRBTree(RBRoot *root)
  */
 Status recursiveSearchRBTree(RBRoot *root, RBTreeElemType x)
 {
-    if (root) return recursiveSearchNode(root->node, x) ? SUCCESS : FALSE;
+    if (root) 
+        return recursiveSearchNode(root->node, x) ? SUCCESS : FALSE;
     return SUCCESS;
 }
 
@@ -345,3 +346,17 @@ void FILE_preWrite(RBTree tree, FILE *fp){
     FILE_preWrite(tree->right, fp);
 }
 
+/**
+ * @brief 通过ISBN在红黑树中查找书本，并返回
+ */
+RBTreeElemType RBT_SearchByISBN(RBTree R, int ISBN){
+    
+    if (!R || R->data->elem == ISBN) 
+        return R->data;
+    else if (R->data->elem > ISBN) 
+        return RBT_SearchByISBN(R->left, ISBN);
+    else 
+        return RBT_SearchByISBN(R->right, ISBN);
+
+    return NULL;
+}

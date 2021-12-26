@@ -25,7 +25,7 @@ void Quit(RBRoot *root)
 {
     system("cls");
     int temp;
-    printf("\n\n\n\n")
+    printf("\n\n\n\n");
     printf("\t\t\t------------------------------\n");
     printf("\t\t\t|    Are you sure to quit    |\n");
     printf("\t\t\t|    1.YES      2.NO         |\n");
@@ -75,7 +75,7 @@ void menu(RBRoot *root)
         printf("|                                                                         |\n");
         printf("|    3. Shape of tree                9. Display Tree Detail Information   |\n");
         printf("|                                                                         |\n");
-        printf("|    4. Delete Operation             10. Post-Traverse                    |\n");
+        printf("|    4. Delete Operation             10. Post-SqBT_Traverse                    |\n");
         printf("|                                                                         |\n");
         printf("|    5. Insert Operation             11. Find Max and Min Node            |\n");
         printf("|                                                                         |\n");
@@ -145,7 +145,7 @@ void menu(RBRoot *root)
                 system("cls");
                 if (exist_flag)
                 {
-                    RBTreeElemType delete_x;
+                    RBTreeElemType delete_x = (RBTreeElemType)malloc(sizeof(RBTElem));
                     Status delete_status;
                     double cost;
                     printf("Please enter the node you want to delete:");
@@ -194,7 +194,7 @@ void menu(RBRoot *root)
                 system("cls");
                 if (exist_flag)
                 {
-                    RBTreeElemType search_x;
+                    RBTreeElemType search_x = (RBTreeElemType)malloc(sizeof(RBTElem));
                     printf("Please enter the node you want to find:");
                     search_x->elem = InputInteger();
                     if ((recursiveSearchRBTree(root, search_x)) == SUCCESS)

@@ -3,7 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-24 21:49:11
  * @LastEditors: Hx
- * @LastEditTime: 2021-12-25 21:20:32
+ * @LastEditTime: 2021-12-26 22:39:31
  */
 #include"Common.h"
 #include"HeaderFiles/RedBlackTree.h"
@@ -14,7 +14,14 @@
 
 int main(){
 
-    Login_Operation();
+    Stu stu = (Stu)malloc(sizeof(student));
+    
+    strcpy(stu->account, "test");
+    strcpy(stu->ID, "3120004969");
+    strcpy(stu->name, "Hx");
+    strcpy(stu->password, "123456");
+    stu->power = 0;
+    Stu_Operation(stu);
 
     return 1;
 }

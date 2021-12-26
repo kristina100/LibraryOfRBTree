@@ -3,7 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-24 17:05:47
  * @LastEditors: Hx
- * @LastEditTime: 2021-12-25 10:21:53
+ * @LastEditTime: 2021-12-26 21:25:55
  */
 //
 // Created by HUAWEI on 2021-12-04.
@@ -124,5 +124,13 @@ void FILE_preWrite(RBTree tree, FILE *fp);
  */
 Status FILE_ReadRBT(RBRoot *root);
 
+/**
+ * @brief 通过ISBN在红黑树中查找书本，并返回
+ * 
+ * @param R
+ * @param ISBN 
+ * @return RBTreeElemType 
+ */
+RBTreeElemType RBT_SearchByISBN(RBTree R, int ISBN);
 
 #endif //REDBLACKTREE_REDBLACKTREE_H
