@@ -29,4 +29,20 @@ void Clean();
  */
 void Print_BookInfo(RBTreeElemType e);
 
+/*
+ * 检测用户整数输入
+ *
+ * @param[in]  none
+ * @return  legal integer
+ */
+int InputInteger();
+
+/**
+ * @name  Quit()
+ * @brief 退出判断
+ * @param   
+ * @return  
+ */
+void Quit();
+
 #endif  

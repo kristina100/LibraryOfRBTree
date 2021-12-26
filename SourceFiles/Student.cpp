@@ -3,7 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-23 14:33:31
  * @LastEditors: Hx
- * @LastEditTime: 2021-12-27 00:16:29
+ * @LastEditTime: 2021-12-27 00:26:11
  */
 #include"Student.h"
 #include"Utils.h"
@@ -101,7 +101,7 @@ void Stu_Operation(Stu &stu){
             //返回上一级
             case 0:{
                 //将树写入文件
-                FILE_WriteRBT(root);
+                FILE_WriteRBT(*root);
                 return;
             }break;
 

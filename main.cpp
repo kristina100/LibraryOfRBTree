@@ -8,8 +8,6 @@ LARGE_INTEGER freq, begin, end;
 void beginRecord();
 double endRecord();
 void menu(RBRoot *root);
-int InputInteger();
-void Quit();
 
 
 
@@ -145,7 +143,8 @@ void menu(RBRoot *root)
                 system("cls");
                 if (exist_flag)
                 {
-                    RBTreeElemType delete_x = (RBTreeElemType)malloc(sizeof(RBTElem));
+                    //RBTreeElemType delete_x;
+                    RBTreeElemType delete_x=(RBTreeElemType)malloc(sizeof(RBTElem));
                     Status delete_status;
                     double cost;
                     printf("Please enter the node you want to delete:");
@@ -160,6 +159,7 @@ void menu(RBRoot *root)
                     }
                     else
                         printf("Failed to delete node, no node exists!\n");
+                    free(delete_x);
                 }
                 else
                     printf("No red-black tree exists, please initialize first!\n");
@@ -194,7 +194,8 @@ void menu(RBRoot *root)
                 system("cls");
                 if (exist_flag)
                 {
-                    RBTreeElemType search_x = (RBTreeElemType)malloc(sizeof(RBTElem));
+                    //RBTreeElemType search_x;
+                    RBTreeElemType search_x=(RBTreeElemType)malloc(sizeof(RBTElem));
                     printf("Please enter the node you want to find:");
                     search_x->elem = InputInteger();
                     if ((recursiveSearchRBTree(root, search_x)) == SUCCESS)
@@ -275,63 +276,6 @@ void menu(RBRoot *root)
         }
         system("pause");
     }
-}
-
-/**
- * 检测用户整数输入
- *
- * @param[in]  none
- * @return  legal integer
- */
-int InputInteger()
-{
-    /* store converted numbers */
-    int integer;
-    /* flag status */
-    int  status;
-    /* receive string */
-    char str[100];
-
-    do {
-        scanf("%s", str);
-        status = TRUE;
-        int i;
-        for (i = 0; str[i] != '\0'; i++) {
-            /* check for illegal characters */
-            if (i == 0) {
-                if (str[i] == '-' || str[i] == '+') continue;
-            } else {
-                if (str[i] < '0' || str[i] > '9') status = FALSE;
-            }
-        }
-        if (status == FALSE) {
-            printf("Input illegally, please re-enter:");
-            continue;
-        } else {
-            /* Convert string to number */
-            for (i = 0, integer = 0; str[i] != '\0'; i++) {
-                if (i == 0) {
-                    if (str[i] == '-' || str[i] == '+') continue;
-                    else {
-                        integer *= 10;
-                        integer += (str[i] - 48);
-                    }
-                } else {
-                    integer *= 10;
-                    integer += (str[i] - 48);
-                }
-            }
-            if (str[0] == '-') integer = -integer;
-
-            /* check if the number entered is out of bounds */
-            if (i >= 10) {
-                printf("Overflow, please re-enter:");
-                status = FALSE;
-            }
-        }
-    } while (status == FALSE);
-
-    return integer;
 }
 
 /**

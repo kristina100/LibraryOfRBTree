@@ -3,12 +3,11 @@
  * @Author: Hx
  * @Date: 2021-12-23 17:37:27
  * @LastEditors: Hx
- * @LastEditTime: 2021-12-24 20:17:10
+ * @LastEditTime: 2021-12-27 00:30:38
  */
 
 #include"Manager.h"
 #include"Utils.h"
-
 
 /**
  * @brief 初始化Manager
@@ -195,7 +194,7 @@ Status Man_SearchBook(Manager M,RBRoot *root){
 			targe =recursiveSearchNode(root->node, search_x);
             if (targe!=NULL){
                 printf("\nThe information in the book is as follows:\n");
-                PrintBookInfo(targe->data);
+                // PrintBookInfo(targe->data);
 			}else
                 printf("Failed to search, no book exists!\n");		
 			break;
