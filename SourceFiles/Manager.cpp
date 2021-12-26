@@ -7,6 +7,7 @@
  */
 
 #include"Manager.h"
+#include"Utils.h"
 
 /**
  * @brief 初始化Manager
@@ -48,9 +49,12 @@ void Man_ChoiceMenu(){
  * 
  */
 Status Man_Fuction(Manager &M){
+	//创建空树
 	RBRoot *root;
 	root = createRBTree();
-    int choice=-1;
+    //初始化书本树
+	Man_GetBookTree(root);
+	int choice=-1;
     do {
 		Man_ChoiceMenu();
 		//choice = InputInteger();
@@ -58,21 +62,22 @@ Status Man_Fuction(Manager &M){
 		switch (choice) {
 		case 1://管理账号
 		{
-			
+			Man_ManageAccount(M,root);
 			break;
 		}
 		case 2://上架书籍
 		{
-
+			Man_Grounding(M,root);
 			break;
 		}
 		case 3://下架书籍
 		{
+			Man_OffShelf(M,root);
 			break;
 		}
-		case 4:
+		case 4://查找书籍
 		{
-
+			Man_SearchBook(M,root);
 			break;
 		}
 		case 5://退出 返回上一级
@@ -84,4 +89,71 @@ Status Man_Fuction(Manager &M){
 		}
 	} while (choice!=5);
     return SUCCESS;   
+}
+
+/**
+ * @name Man_ManageAccount
+ * @brief 管理账号功能
+ * @param   M root
+ * @return  Status
+ */
+Status Man_ManageAccount(Manager M,RBRoot *root){
+	return SUCCESS;
+}
+
+/**
+ * @name Man_Grounding
+ * @brief  上架书籍
+ * @param   M root
+ * @return  status
+ */
+Status Man_Grounding(Manager M,RBRoot *root){
+	int saveFile;
+	RBTreeElemType insert_x = NULL;
+    inputRBTElem(insert_x);
+    Status insert_status;
+    double cost;
+    printf("Please enter the node you want to insert:");
+    insert_x->elem = InputInteger();
+    insert_status = insertRBTree(root, insert_x);
+    if (insert_status == SUCCESS) {
+        printf("Insert node successfully!\nDelete time consuming: %lf ms.\n", cost);
+        // 文件尚未存盘
+        saveFile = 1;
+    }
+    else
+        printf("Insert node failed, the node already exists!\n");
+	return SUCCESS;
+}
+
+
+/**
+ * @name Man_OffShelf
+ * @brief 下架书籍
+ * @param   M root
+ * @return  status
+ */
+Status Man_OffShelf(Manager M,RBRoot *root){
+	return SUCCESS;
+}
+
+/**
+ * @name Man_SearchBook
+ * @brief  搜索书籍
+ * @param   M root
+ * @return  status
+ */
+Status Man_SearchBook(Manager M,RBRoot *root){
+	return SUCCESS;
+}
+
+/**
+ * @name Man_GetBookTree
+ * @brief 获取书籍(从文件读取树)
+ * @param  root
+ * @return  Status
+ */
+Status Man_GetBookTree(RBRoot *root){
+	FILE_ReadRBT(root);
+	return SUCCESS;
 }

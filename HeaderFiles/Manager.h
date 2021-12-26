@@ -53,10 +53,34 @@ Status Man_ManageAccount(Manager M,RBRoot *root);
 /**
  * @name Man_Grounding
  * @brief  上架书籍
- * @param   
- * @return  
+ * @param   M root
+ * @return  status
  */
 Status Man_Grounding(Manager M,RBRoot *root);
 
+
+/**
+ * @name Man_OffShelf
+ * @brief 下架书籍
+ * @param   M root
+ * @return  status
+ */
+Status Man_OffShelf(Manager M,RBRoot *root);
+
+/**
+ * @name Man_SearchBook
+ * @brief  搜索书籍
+ * @param   M root
+ * @return  status
+ */
+Status Man_SearchBook(Manager M,RBRoot *root);
+
+/**
+ * @name Man_GetBookTree
+ * @brief 获取书籍
+ * @param  root
+ * @return  Status
+ */
+Status Man_GetBookTree(RBRoot *root);
 
 #endif  //MANAGER_H_INCLUDE
