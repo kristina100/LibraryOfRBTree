@@ -3,7 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-22 12:54:10
  * @LastEditors: Hx
- * @LastEditTime: 2021-12-27 00:23:06
+ * @LastEditTime: 2021-12-27 11:21:41
  */
 #include"Utils.h"
 
@@ -25,17 +25,21 @@ void Clean(){
  * @brief 打印书本信息
  */
 void Print_BookInfo(RBTreeElemType e){
-   printf("<书本信息>\n");
-   printf("ISBN: %d\n", e->elem);
-   printf("书名: %s\n", e->Title);
-   printf("作者: %s\n", e->Author);
-   printf("出版社: %s\n", e->press);
-   printf("评分: %s\n", e->score);
-   printf("书本状态:");
-   if(e->status == 1)
-      printf("书本未借出\n");
-   else
-      printf("书本已借出\n");
+    Clean();
+    printf("\n");
+    printf("*-------------------------------------------------------------------------*\n");
+    printf("                              <Book Info>                                  \n");
+    printf("\tISBN: %d", e->elem);
+    printf("\tTitle: %s\n", e->Title);
+    printf("\tAuthor: %s\n", e->Author);
+    printf("\tPress: %s\n", e->press);
+    printf("\tScore: %s\n", e->score);
+    printf("\tStatus: ");
+    if(e->status == 1)
+        printf("Book Available\n");
+    else
+        printf("Book Unavailable\n");
+    printf("*-------------------------------------------------------------------------*\n");     
 }
 
 /**

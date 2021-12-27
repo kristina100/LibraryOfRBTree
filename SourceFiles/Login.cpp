@@ -3,7 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-23 15:56:56
  * @LastEditors: Hx
- * @LastEditTime: 2021-12-25 21:19:30
+ * @LastEditTime: 2021-12-27 22:01:33
  */
 #include"../HeaderFiles/Login.h"
 #include"../HeaderFiles/Utils.h"
@@ -20,21 +20,20 @@ char Data_Man[] = "Managers.dat";
 void Print_Login_Options(){
 
     Clean();
-    printf("\n\n\n\n*-----------------------------------------------------------------*\n");
-    printf("|                            <登录界面>                                    |\n");
+    printf("\n\n\n\n");
+    printf("*-------------------------------------------------------------------------*\n");
+    printf("|                            <Login Interface>                            |\n");
     printf("|                                                                         |\n");
     printf("|                                                                         |\n");
-    printf("|           1.学生登录                       2理员登录                      |\n");
+    printf("|           1.Student Login                  2.Manager Login              |\n");
     printf("|                                                                         |\n");
-    printf("|           3.注册                           0.返回                        |\n");
+    printf("|           3.Register                       0.System Return              |\n");
     printf("|                                                                         |\n");
     printf("|                                                                         |\n");
     printf("|                                                                         |\n");
     printf("*-------------------------------------------------------------------------*\n");
-    printf("*-------------------------------------------------------------------------*\n");
-    
     printf("\n\t\t");
-    printf("请选择: ");     
+    printf("Please Choose: ");     
 }
 
 /**
@@ -61,9 +60,9 @@ void Login_Operation(){
                 Stu stu = NULL;
                 stu = Login_Stu();
                 if(stu == NULL){
-                    printf("登录失败，账号或密码错误\n");
+                    printf("\tLogin failed! Account or password error.\n");
                 }else{
-                    printf("登录成功\n");
+                    printf("\tLogin succeeded.\n");
                     Sleep(1);
                     Stu_Operation(stu);
                 }
@@ -73,11 +72,11 @@ void Login_Operation(){
             //管理员登录
             case 2:{
                 Manager manager = NULL;
-                manager =Login_Man();
+                manager = Login_Man();
                 if(manager == NULL){
-                    printf("登录失败，账号或密码错误\n");
+                    printf("\tLogin failed! Account or password error.\n");
                 }else{
-                    printf("登录成功\n");
+                    printf("\tLogin succeeded.\n");
                     Sleep(1);
                     Man_Fuction(manager);
                 }
@@ -88,15 +87,15 @@ void Login_Operation(){
             case 3:{
                 Status status = Register_Spilt();
                 if(status == SUCCESS){
-                    printf("注册成功\n");
+                    printf("\tRegister was successful.\n");
                 }else if(status == Exist){
-                    printf("账号已存在\n");
+                    printf("\tError! Account already exists.\n");
                 }
                 Pause();
             }break;
         
             default:{
-                printf("\n操作不存在\n");
+                printf("\nOperation does not exist\n");
                 Pause();
             }break;
         }
@@ -109,12 +108,12 @@ void Login_Operation(){
  */
 Stu Login_Stu(){
     Clean();
-    for (int i = 0; i < 10; i++){
-        if(i == 5)
-            printf("登录");
-        printf("__");
-    }
-    printf("\n");
+    printf("\n\n\n\n");
+    printf("*-------------------------------------------------------------------------*\n");
+    printf("                              <Student Login>                              \n");
+    printf("                                                                           \n");
+    printf("                                                                           \n");
+
     FILE *fp = NULL;
     char account[11];
     char password[6];
@@ -122,10 +121,10 @@ Stu Login_Stu(){
     Stu_Init(stu);
 
     //输入账号密码
-    printf("请输入账号:");
+    printf("\t\tPlease input account:");
     scanf("%s", account);
 
-    printf("请输入密码:");
+    printf("\t\tPlease input password:");
     scanf("%s", password);
 
     //打开文件
@@ -158,12 +157,12 @@ Stu Login_Stu(){
  */
 Manager Login_Man(){
     Clean();
-    for (int i = 0; i < 10; i++){
-        if(i == 5)
-            printf("登录");
-        printf("__");
-    }
-    printf("\n");
+    printf("\n\n\n\n");
+    printf("*-------------------------------------------------------------------------*\n");
+    printf("                              <Manager Login>                              \n");
+    printf("                                                                           \n");
+    printf("                                                                           \n");
+
     FILE *fp = NULL;
     char account[11];
     char password[6];
@@ -205,21 +204,20 @@ Manager Login_Man(){
  */
 void Print_Register_Option(){
     Clean();
-    for (int i = 0; i < 10; i++){
-        if(i == 5)
-            printf("登录界面");
-        printf("__");
-    }
-    printf("\n\n");
-    printf("1.学生注册\n");
-    printf("2,管理员注册\n");
-    printf("0.返回\n\n");
-
-    for (int i = 0; i < 15; i++){
-        printf("__");
-    }
-    printf("\n");
-    printf("请选择操作: "); 
+    printf("\n\n\n\n");
+    printf("*-------------------------------------------------------------------------*\n");
+    printf("|                            <Register Interface>                         |\n");
+    printf("|                                                                         |\n");
+    printf("|                                                                         |\n");
+    printf("|           1.Student Register               2.Manager Register           |\n");
+    printf("|                                                                         |\n");
+    printf("|           0.System Return                                               |\n");
+    printf("|                                                                         |\n");
+    printf("|                                                                         |\n");
+    printf("|                                                                         |\n");
+    printf("*-------------------------------------------------------------------------*\n");
+    printf("\n\t\t");
+    printf("Please Choose: "); 
 }
 
 /**
@@ -256,7 +254,7 @@ Status Register_Spilt(){
                 if(status == SUCCESS)
                     return SUCCESS;
                 else if(status == ERROR){
-                    printf("管理员注册权限无效\n");
+                    printf("\tThe administrator registration permission is invalid\n");
                     return ERROR;
                 }else   
                     return Exist;
@@ -264,7 +262,7 @@ Status Register_Spilt(){
             }break;
 
             default:{
-                printf("\n操作不存在\n");
+                printf("\nOperation does not exist\n");
                 Pause();
             }break;
         }
@@ -289,7 +287,7 @@ Status Register_Operation(int mode){
             Stu_Init(stu);
             Stu_Init(temp);
 
-            printf("请输入账号:");
+            printf("\tPlease input your account: ");
             scanf("%s", stu->account);
 
             //=================检查账号是否存在=================
@@ -306,13 +304,13 @@ Status Register_Operation(int mode){
             }
             fclose(fp);
             
-            printf("请输入学号:");
+            printf("\t\tPlease input your ID: ");
             scanf("%s", stu->ID);
 
-            printf("请输入密码(6位):");
+            printf("\t\tPlease input your password: ");
             scanf("%s", stu->password);
 
-            printf("请输入姓名:");
+            printf("\t\tPlease input your name: ");
             scanf("%s", stu->name);
 
             stu->power = 0;
@@ -330,12 +328,12 @@ Status Register_Operation(int mode){
             
             //检测管理员注册密钥
             int Mancode = 0;
-            printf("请输入管理员注册密钥:");
+            printf("\tPlease input the administrator registration key:");
             scanf("%d", &Mancode);
             //注册密钥错误
             if(Mancode != 1234) return FALSE;
 
-            printf("请输入账号:");
+            printf("Please input your account: ");
             scanf("%s", M->account);
             
             
@@ -353,19 +351,81 @@ Status Register_Operation(int mode){
             }
             fclose(fp);
             
-            printf("请输入密码(6位):");
+            printf("\t\tPlease input your password: ");
             scanf("%s", M->password);
 
-            printf("请输入姓名:");
+            printf("\t\tPlease input your name: ");
             scanf("%s", M->name);
 
             M->power = 1;
 
             //写入文件
-            fp = fopen(Data_Man, "ab+");
+            fp = fopen(Data_Man, "ab");
             fwrite(M, sizeof(manager), 1, fp);
         }break;
     }
     fclose(fp);
+    return SUCCESS;
+}
+
+/**
+ * @brief 更新学生文件中的信息
+ */
+Status Updata_StuInfo(Stu &stu){
+    
+    FILE *fp = NULL;
+    Stu t = NULL, p = NULL, head = NULL;
+
+    //以二进制只读"rb"打开学生数据文件
+    fp = fopen(Data_Stu, "rb");
+    if(fp == NULL){
+        printf("Error! Student data does not exist");
+        return ERROR;
+    }
+    //初始化
+    Stu_Init(t);
+
+    //读出学生数据的数量
+    int num = 0;
+    //将学生信息全部从文件中读出
+    while(fread(t, sizeof(student), 1, fp)){
+        num++;
+        if(num == 1){
+            p = head = t;
+        }
+        //将学生数据建成链表
+        else{
+            p->next = t;
+            //p一直指向尾部
+            p = p->next;
+        }
+    }
+    //关闭文件
+    fclose(fp);
+    
+    //找到对应学生，修改对应学生的数据
+    for(p = head; p->next != NULL && p->next->account != stu->account; p = p->next);
+
+    //将新数据替换旧数据
+    t = p->next;
+    stu->next = t->next;
+    p->next = stu;
+    free(t);
+
+    //以二进制写"w"打开文件，覆盖输入
+    fp = fopen(Data_Stu, "wb");
+    for(p = head; p != NULL; p = p->next){
+        fwrite(p, sizeof(student), 1, fp);
+    }
+    //关闭文件
+    fclose(fp);
+    
+    //释放空间
+    p = head;
+    while(p != NULL){
+        p = p->next;
+        free(head);
+        head = p;
+    }
     return SUCCESS;
 }

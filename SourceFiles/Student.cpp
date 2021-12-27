@@ -3,11 +3,12 @@
  * @Author: Hx
  * @Date: 2021-12-23 14:33:31
  * @LastEditors: Hx
- * @LastEditTime: 2021-12-27 00:26:11
+ * @LastEditTime: 2021-12-27 21:34:01
  */
 #include"Student.h"
 #include"Utils.h"
 #include"RedBlackTree.h"
+#include"Login.h"
 
 /**
  * @brief 初始化Stu
@@ -18,6 +19,7 @@ Status Stu_Init(Stu &stu){
     if(stu == NULL) return OVERFLOW;
     stu->mybook = NULL;
     stu->power = 0;
+    stu->next = NULL;
 
     return SUCCESS;
 }
@@ -27,18 +29,21 @@ Status Stu_Init(Stu &stu){
  */
 void Stu_Options(Stu stu){
     Clean();
-    printf("\t\t<学生选项>\n");
     printf("\n");
-    printf("\t1.查询书籍");
-    printf("\t2.借阅书籍");
-    printf("\n");
-    printf("\t3.归还书籍");
-    printf("\t4.个人信息");
-    printf("\n");
-    printf("\t0.返回\n");
-
+    printf("*-------------------------------------------------------------------------*\n");
+    printf("|                         <Student Options>                               |\n");
+    printf("|                                                                         |\n");
+    printf("|                                                                         |\n");
+    printf("|           1.Search Book                 2.Borrow book                   |\n");
+    printf("|                                                                         |\n");
+    printf("|           3.Return book                 4.Self Info                     |\n");
+    printf("|                                                                         |\n");
+    printf("|                         0.System Return                                 |\n");
+    printf("|                                                                         |\n");
+    printf("|                                                                         |\n");
+    printf("*-------------------------------------------------------------------------*\n");     
     printf("\n\t\t");
-    printf("请选择: ");                      
+    printf("Please choose: ");             
 }
 
 /**
@@ -46,18 +51,21 @@ void Stu_Options(Stu stu){
  */
 void Print_Search_Options(){
     Clean();
-    printf("\t\t<查询选项>\n");
     printf("\n");
-    printf("\t[1.ISBN查询]");
-    printf("\t[2.书名查询]");
-    printf("\n");
-    printf("\t[3.作者查询]");
-    printf("\t[4.待定]");
-    printf("\n");
-    printf("\t[0.返回]\n");
-
+    printf("*-------------------------------------------------------------------------*\n");
+    printf("|                           <Search Options>                              |\n");
+    printf("|                                                                         |\n");
+    printf("|                                                                         |\n");
+    printf("|           1.Search By ISBN              2.Search By Title               |\n");
+    printf("|                                                                         |\n");
+    printf("|           3.Search By Author            0.System Return                 |\n");
+    printf("|                                                                         |\n");
+    printf("|                                                                         |\n");
+    printf("|                                                                         |\n");
+    printf("|                                                                         |\n");
+    printf("*-------------------------------------------------------------------------*\n");     
     printf("\n\t\t");
-    printf("请选择: ");      
+    printf("Please choose: ");      
 }
 
 /**
@@ -66,16 +74,29 @@ void Print_Search_Options(){
  */
 void Print_Borrow_Options(){
     Clean();
-    printf("\t\t<借阅书籍>\n");
     printf("\n");
-    printf("\t[0.返回]\n");
-    printf("\t请输入书的ISBN号:");
+    printf("*-------------------------------------------------------------------------*\n");
+    printf("|                         <Search By ISBN>                                |\n");
+    printf("|                                                                         |\n");
+    printf("|                         0.System Return                                 |\n");
+    
+    printf("\n\t\t");
+    printf("Please input ISBN: ");     
 }
 
 /**
- * @brief 查看我的信息
+ * @brief 打印我的信息
  */
-void Stu_MyInfo(Stu stu){
+void Stu_Print_MyInfo(Stu stu){
+
+    Clean();
+    printf("\n");
+    printf("*-------------------------------------------------------------------------*\n");
+    printf("                                 <My Info>                                 \n");
+    printf("Name: %s ", stu->name);
+    printf("ID: %s ", stu->ID);
+    printf("account: %s \n", stu->account);
+    Print_Book(stu->mybook);
     
 }
 
@@ -122,10 +143,11 @@ void Stu_Operation(Stu &stu){
 
             //个人信息
             case 4:{
-                Stu_MyInfo(stu);
+                Stu_Print_MyInfo(stu);
+                Pause();
             }break;
             default:{
-                printf("\n操作不存在\n");
+                printf("\nOperation does not exist\n");
                 Pause();
             }break;
         }
@@ -136,7 +158,7 @@ void Stu_Operation(Stu &stu){
 /**
  * @brief 借书
  */
-Status Stu_Borrow(Stu stu, RBRoot *root){
+void Stu_Borrow(Stu stu, RBRoot *root){
 
     //选择
     int input;
@@ -148,7 +170,7 @@ Status Stu_Borrow(Stu stu, RBRoot *root){
             
             //返回上一级
             case 0:{
-                return FALSE;
+                return;
             }break;
 
             default:{
@@ -164,38 +186,45 @@ Status Stu_Borrow(Stu stu, RBRoot *root){
                         //判断书本状态
                         //书本未借出
                         if(book->status == 1){
-                            printf("是否借阅本书?Y/N");
-                            char ch;
-                            scanf("%c", &ch);
+                            printf("whether borrow this book? 1.Yes  2.No\n");
+                            printf("choose: ");
+                            int confirm = -1;
+                            scanf("%d", &confirm);
                             //确定借阅
-                            if(ch == 'Y' || ch == 'y'){
+                            if(confirm == 1){
                                 if(Stu_AddBook(stu, book) == SUCCESS){
-                                    printf("借阅成功\n");
+                                    printf("Success, you have the book now.\n");
+                                    Updata_StuInfo(stu);
+                                    Pause();
                                 }
                                 else{
-                                    printf("借阅失败\n");
+                                    printf("Fail\n");
                                 }
                             }
                             //放弃借阅
-                            else if(ch == 'N' || ch == 'n'){
+                            else if(confirm == 2){
                                 break;
                             }
                             //输入错误判断
                             else{
-                                printf("请检查输入\n");
+                                printf("Error! Please check your input.\n");
                             }
+                        }
+                        //书本已借出
+                        else{
+                            printf("Fail! The books have been borrowed.");
                         }
                         Pause();
                     }
                 }
                 //书本不存在
                 else{
-                    printf("书本不存在");
+                    printf("The book does not exist");
                 }
             }break;
         }
     Clean();
-    } 
+    }
 }
 
 /**
@@ -217,18 +246,21 @@ Status Stu_return(Stu stu){
  */
 void Print_Book(MyBook b){
 
-    Clean();
-    printf("\n\n\n\n*-----------------------借阅情况----------------------------------*\n");
-    printf("ISBN\t");
-    printf("书名\n");
-
     MyBook p = b;
+    printf("\n");
+    printf("*-------------------------------------------------------------------------*\n");
+    printf("                           <My Books>                                      \n");
+    printf("    ISBN    |        Title        |        Author        |       Press       ");
+    
     while(p != NULL){
-        
         //打印ISBN
-        printf("%d\t", p->book->elem);
+        printf("%-15d | ", p->book->elem);
         //打印书名
-        printf("%s\n", p->book->Title);
+        printf("%-15s | ", p->book->Title);
+        //打印作者
+        printf("%-15s | ", p->book->Author);
+        //打印出版社
+        printf("%-15s \n", p->book->press);
         //指向下一本书
         p = p->next;
     }
@@ -280,7 +312,7 @@ void Stu_SearchBook(RBRoot *root){
             }
 
             default:{
-                printf("\n操作不存在\n");
+                printf("\nOperation does not exist\n");
                 Pause();
             }break;
         }

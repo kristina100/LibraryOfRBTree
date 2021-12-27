@@ -3,7 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-23 14:33:25
  * @LastEditors: Hx
- * @LastEditTime: 2021-12-26 22:02:12
+ * @LastEditTime: 2021-12-27 21:33:13
  */
 #ifndef STUDENT_H_INCLUDE
 #define STUDENT_H_INCLUDE
@@ -23,7 +23,8 @@ typedef struct student{
     char ID[11];   //学号
     char password[10];//密码
     MyBook mybook;    //我借的书
-    int power;
+    int power;  //学生权力
+    struct student *next;//指向下一个学生
 }student, *Stu;
 
 /**
@@ -51,9 +52,8 @@ void Stu_Options(Stu stu);
  * 
  * @param stu 
  * @param root 
- * @return Status 
  */
-Status Stu_Borrow(Stu stu, RBRoot *root);
+void Stu_Borrow(Stu stu, RBRoot *root);
 
 /**
  * @brief 学生还书
@@ -64,11 +64,11 @@ Status Stu_Borrow(Stu stu, RBRoot *root);
 Status Stu_return(Stu stu);
 
 /**
- * @brief 查看我的信息
+ * @brief 打印我的信息
  * 
  * @param stu 
  */
-void Stu_MyInfo(Stu stu);
+void Stu_Print_MyInfo(Stu stu);
 
 /**
  * @brief 找回密码
