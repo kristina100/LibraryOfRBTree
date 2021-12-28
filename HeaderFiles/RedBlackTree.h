@@ -1,20 +1,19 @@
+/*
+ * @Descripttion: 
+ * @Author: Hx
+ * @Date: 2021-12-24 17:05:47
+ * @LastEditors: Hx
+ * @LastEditTime: 2021-12-26 21:25:55
+ */
 //
 // Created by HUAWEI on 2021-12-04.
 //
-
 #ifndef REDBLACKTREE_REDBLACKTREE_H
 #define REDBLACKTREE_REDBLACKTREE_H
-
-
-#include <stdio.h>
+#include"Common.h"
 
 #define RED   0 /* 红色结点标志 */
 #define BLACK 1 /* 黑色结点标志 */
-
-//#define SUCCESS  0
-//#define FAILED  -1
-//#define FALSE  0
-//#define TRUE  1
 
 #define RBTreeColor(r) ((r)->color)
 #define RBTreeParent(r) ((r)->parent)
@@ -25,20 +24,27 @@
 #define RBTreeSetRed(r) do {(r)->color = RED;} while(0)
 #define RBTreeSetBlack(r) do {(r)->color = BLACK;} while(0)
 
-
-
-typedef struct{
+typedef struct RBTElem{
 //    BookNumType number; //no prefix 'ISBN'
 //    NameType name;
 //    NameType author;
 //    int stock; //current amount of the book
 //    int total; //total amount of the book
-    int elem;
-}Book,RBTreeElemType;
+//    int ISBN;   
+    char *Title; //书名
+    char *Author;   //作者
+    char *press;    //出版社
+    char *score;    //书本评分
+    int page_num; //书的页数
+    // char *publishing_year;  //出版时间 
+    // char *classification; //书的类型
+    // float price;    //价格
+    int status;  //状态 0为借出状态, 1为可借状态
+    int elem;   //书的编号ISBN
+}RBTElem, *RBTreeElemType;
 
 /* 红黑树的结点 */
-typedef struct RBTreeNode
-{
+typedef struct RBTreeNode{
     RBTreeElemType data;       /* 数据域 */
     char color;                /* 颜色 */
     struct RBTreeNode *left;   /* 左孩子结点 */
@@ -47,17 +53,9 @@ typedef struct RBTreeNode
 } Node, *RBTree;
 
 /* 红黑树的根结点 */
-typedef struct RB_Root
-{
+typedef struct RB_Root{
     Node *node;
-} RBRoot;
-
-//typedef int Status;
-
-typedef enum {
-    SUCCESS = 0,
-    FAILED = -1
-}Status;
+}RBRoot;
 
 /* 创建红黑树 */
 RBRoot *createRBTree();
@@ -86,5 +84,61 @@ Status deleteRBTree(RBRoot *root, RBTreeElemType x);
 /* 打印红黑树信息 */
 Status printRBTree(RBRoot *root);
 
+/**
+ * @brief 输入elem数据
+ * 
+ * @param e 
+ * @return Status 
+ */
+Status inputRBTElem(RBTreeElemType &e);
+
+/**
+ * @brief 初始化elem
+ * 
+ * @param e 
+ * @return Status 
+ */
+Status InitRBTElem(RBTreeElemType &e);
+
+/**
+ * @brief 将红黑树写入文件
+ * 
+ * @param root 
+ * @return Status 
+ */
+Status FILE_WriteRBT(RBRoot root);
+
+/**
+ * @brief 基于前序遍历的红黑树文件写入
+ * 
+ * @param tree 
+ * @param fp 
+ */
+void FILE_preWrite(RBTree tree, FILE *fp);
+
+/**
+ * @brief 从文件中读取数据并构建红黑树
+ * 
+ * @param root 
+ * @return Status 
+ */
+Status FILE_ReadRBT(RBRoot *root);
+
+/**
+ * @brief 通过ISBN在红黑树中查找书本，并返回
+ * 
+ * @param R
+ * @param ISBN 
+ * @return RBTreeElemType 
+ */
+RBTreeElemType RBT_SearchByISBN(RBTree R, int ISBN);
+
+/**
+ * @name printBookInfo
+ * @brief Print information about a Book
+ * @param e  
+ * @return Status 
+ */
+Status PrintBookInfo(RBTreeElemType e);
 
 #endif //REDBLACKTREE_REDBLACKTREE_H

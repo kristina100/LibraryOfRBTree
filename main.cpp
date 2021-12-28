@@ -1,21 +1,13 @@
-#include <iostream>
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <Windows.h>
 #include "HeaderFiles/RedBlackTree.h"
 #include "HeaderFiles/RedBlackTreeUtils.h"
 #include "HeaderFiles/BinarySearchTree.h"
-//#include "HeaderFiles/FileDo.h"
-
-
+#include "HeaderFiles/Utils.h"
+// #include "HeaderFiles/FileDo.h"
 
 LARGE_INTEGER freq, begin, end;
 void beginRecord();
 double endRecord();
 void menu(RBRoot *root);
-int InputInteger();
-void Quit();
 
 
 
@@ -27,32 +19,11 @@ int main()
     return 0;
 }
 
-void FileReadAndBuiltTree(RBRoot *root)
-{
-    int a;
-    FILE *fp=fopen("data.txt","r");
-    if(NULL==fp)
-    {
-        printf ("Failed to open the file!\n");
-        exit (0);
-    }
-    fscanf (fp,"%d",&a) ; //从fp所指文件中读取一个整数保存到变量a中
-    while(!feof(fp))//如果位置指针不在文件末尾,即没有读到文件末尾
-    {
-        fscanf(fp,"%d",&a);//读入下一条记录
-        printf("%d\n",a);
-        RBTreeElemType temp;
-        temp.elem = a;
-        insertRBTree(root, temp);
-    }
-    fclose(fp);
-}
-
-
 void Quit(RBRoot *root)
 {
     system("cls");
     int temp;
+    printf("\n\n\n\n");
     printf("\t\t\t------------------------------\n");
     printf("\t\t\t|    Are you sure to quit    |\n");
     printf("\t\t\t|    1.YES      2.NO         |\n");
@@ -102,7 +73,7 @@ void menu(RBRoot *root)
         printf("|                                                                         |\n");
         printf("|    3. Shape of tree                9. Display Tree Detail Information   |\n");
         printf("|                                                                         |\n");
-        printf("|    4. Delete Operation             10. Post-Traverse                    |\n");
+        printf("|    4. Delete Operation             10. Post-SqBT_Traverse                    |\n");
         printf("|                                                                         |\n");
         printf("|    5. Insert Operation             11. Find Max and Min Node            |\n");
         printf("|                                                                         |\n");
@@ -131,10 +102,11 @@ void menu(RBRoot *root)
                 exist_flag = 1;
                 printf("Init successfully ~ \n");
                 break;
-            case 2:  /* 随机插入指定数量的结点 */
+            //从文件读出数据并生成红黑树    
+            case 2: 
                 system("cls");
                 if (exist_flag) {
-                    FileReadAndBuiltTree(root);
+                    FILE_ReadRBT(root);
                     printf("Read initial data successfully ~ \n");
 //                    /* 设置随机数种子 */
 //                    srand((unsigned int) time(NULL));
@@ -171,11 +143,12 @@ void menu(RBRoot *root)
                 system("cls");
                 if (exist_flag)
                 {
-                    RBTreeElemType delete_x;
+                    //RBTreeElemType delete_x;
+                    RBTreeElemType delete_x=(RBTreeElemType)malloc(sizeof(RBTElem));
                     Status delete_status;
                     double cost;
                     printf("Please enter the node you want to delete:");
-                    delete_x.elem = InputInteger();
+                    delete_x->elem = InputInteger();
                     beginRecord();
                     delete_status = deleteRBTree(root, delete_x);
                     cost = endRecord();
@@ -186,20 +159,22 @@ void menu(RBRoot *root)
                     }
                     else
                         printf("Failed to delete node, no node exists!\n");
+                    free(delete_x);
                 }
                 else
                     printf("No red-black tree exists, please initialize first!\n");
                 break;
 
             case 5:  /* 插入 */
-                system("cls");
-                if (exist_flag)
-                {
-                    RBTreeElemType insert_x;
+                Clean();
+                if (exist_flag){
+                    RBTreeElemType insert_x = NULL;
+                    inputRBTElem(insert_x);
+                    // InitRBTElem(insert_x);
                     Status insert_status;
                     double cost;
                     printf("Please enter the node you want to insert:");
-                    insert_x.elem = InputInteger();
+                    insert_x->elem = InputInteger();
                     beginRecord();
                     insert_status = insertRBTree(root, insert_x);
                     cost = endRecord();
@@ -219,9 +194,10 @@ void menu(RBRoot *root)
                 system("cls");
                 if (exist_flag)
                 {
-                    RBTreeElemType search_x;
+                    //RBTreeElemType search_x;
+                    RBTreeElemType search_x=(RBTreeElemType)malloc(sizeof(RBTElem));
                     printf("Please enter the node you want to find:");
-                    search_x.elem = InputInteger();
+                    search_x->elem = InputInteger();
                     if ((recursiveSearchRBTree(root, search_x)) == SUCCESS)
                         printf("The search was successful, and the node exists ~\n");
                     else
@@ -247,12 +223,10 @@ void menu(RBRoot *root)
 
             case 8:  /* 把树的的data部分写入文件 */
                 system("cls");
-                if (exist_flag)
-                {
+                if (exist_flag){
 
-//                    FileWrite(root);
+                    FILE_WriteRBT(*root);
                     printf("\n");
-
                 }
                 else
                     printf("No red-black tree exists, please initialize first!\n");
@@ -281,11 +255,11 @@ void menu(RBRoot *root)
                 system("cls");
                 if (exist_flag && root->node)
                 {
-                    RBTreeElemType *max = (RBTreeElemType *)malloc(sizeof(int));
-                    RBTreeElemType *min = (RBTreeElemType *)malloc(sizeof(int));
+                    RBTreeElemType max = (RBTreeElemType)malloc(sizeof(RBTElem));
+                    RBTreeElemType min = (RBTreeElemType)malloc(sizeof(RBTElem));
                     maxRBTreeNode(root, max);
                     minRBTreeNode(root, min);
-                    printf("The maximum node of the red-black tree is [%d], The minimum node is [%d]!\n", *max, *min);
+                    printf("The maximum node of the red-black tree is [%d], The minimum node is [%d]!\n", max->elem, min->elem);
                 }
                 else if (!root->node)
                     printf("The red-black tree is empty!\n");
@@ -302,63 +276,6 @@ void menu(RBRoot *root)
         }
         system("pause");
     }
-}
-
-/**
- * 检测用户整数输入
- *
- * @param[in]  none
- * @return  legal integer
- */
-int InputInteger()
-{
-    /* store converted numbers */
-    int integer;
-    /* flag status */
-    int  status;
-    /* receive string */
-    char str[100];
-
-    do {
-        scanf("%s", str);
-        status = TRUE;
-        int i;
-        for (i = 0; str[i] != '\0'; i++) {
-            /* check for illegal characters */
-            if (i == 0) {
-                if (str[i] == '-' || str[i] == '+') continue;
-            } else {
-                if (str[i] < '0' || str[i] > '9') status = FALSE;
-            }
-        }
-        if (status == FALSE) {
-            printf("Input illegally, please re-enter:");
-            continue;
-        } else {
-            /* Convert string to number */
-            for (i = 0, integer = 0; str[i] != '\0'; i++) {
-                if (i == 0) {
-                    if (str[i] == '-' || str[i] == '+') continue;
-                    else {
-                        integer *= 10;
-                        integer += (str[i] - 48);
-                    }
-                } else {
-                    integer *= 10;
-                    integer += (str[i] - 48);
-                }
-            }
-            if (str[0] == '-') integer = -integer;
-
-            /* check if the number entered is out of bounds */
-            if (i >= 10) {
-                printf("Overflow, please re-enter:");
-                status = FALSE;
-            }
-        }
-    } while (status == FALSE);
-
-    return integer;
 }
 
 /**
