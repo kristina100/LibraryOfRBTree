@@ -3,7 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-23 15:51:52
  * @LastEditors: Hx
- * @LastEditTime: 2021-12-24 20:15:03
+ * @LastEditTime: 2021-12-27 15:14:40
  */
 #include"Common.h"
 #include"Student.h"
@@ -28,6 +28,11 @@ void Login_Operation();
 Stu Login_Stu();
 
 /**
+ * @brief  管理员登录
+ */
+Manager Login_Man();
+
+/**
  * @brief 注册操作,mode == 0 为学生注册, 1为管理员注册
  * 
  * @param mode 
@@ -46,3 +51,10 @@ Status Register_Spilt();
  * 
  */
 void Print_Register_Option();
+
+/**
+ * @brief 更新学生文件中的信息
+ * 
+ * @param stu 
+ */
+Status Updata_StuInfo(Stu &stu);

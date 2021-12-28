@@ -3,73 +3,151 @@
  * @Author: Hx
  * @Date: 2021-12-23 14:33:31
  * @LastEditors: Hx
- * @LastEditTime: 2021-12-24 20:16:15
+ * @LastEditTime: 2021-12-27 21:34:01
  */
 #include"Student.h"
 #include"Utils.h"
-
+#include"RedBlackTree.h"
+#include"Login.h"
 
 /**
- * @brief ÂàùÂßãÂåñStu
+ * @brief ≥ı ºªØStu
  */
 Status Stu_Init(Stu &stu){
 
     stu = (Stu)malloc(sizeof(student));
     if(stu == NULL) return OVERFLOW;
-    stu->book = NULL;
+    stu->mybook = NULL;
     stu->power = 0;
+    stu->next = NULL;
 
     return SUCCESS;
 }
 
 /**
- * @brief ÊâìÂç∞Â≠¶ÁîüÈÄâÈ°π
+ * @brief ¥Ú”°—ß…˙—°œÓ
  */
-void Stu_Options(){
-
+void Stu_Options(Stu stu){
     Clean();
-    for (int i = 0; i < 10; i++){
-        if(i == 5)
-            printf("Â≠¶ÁîüÈÄâÈ°π");
-        printf("__");
-    }
-    printf("\n\n");
-    printf("1.Êü•ËØ¢‰π¶Á±ç\n");
-    printf("2.ÂÄüÈòÖ‰π¶Á±ç\n");
-    printf("3.ÂΩíËøò‰π¶Á±ç\n");
-    printf("4.‰∏™‰∫∫‰ø°ÊÅØ\n");
-    printf("0.ËøîÂõû\n\n");
-
-    for (int i = 0; i < 15; i++){
-        printf("__");
-    }
     printf("\n");
-    printf("ËØ∑ÈÄâÊã©Á±ªÂûã: ");                      
+    printf("*-------------------------------------------------------------------------*\n");
+    printf("|                         <Student Options>                               |\n");
+    printf("|                                                                         |\n");
+    printf("|                                                                         |\n");
+    printf("|           1.Search Book                 2.Borrow book                   |\n");
+    printf("|                                                                         |\n");
+    printf("|           3.Return book                 4.Self Info                     |\n");
+    printf("|                                                                         |\n");
+    printf("|                         0.System Return                                 |\n");
+    printf("|                                                                         |\n");
+    printf("|                                                                         |\n");
+    printf("*-------------------------------------------------------------------------*\n");     
+    printf("\n\t\t");
+    printf("Please choose: ");             
 }
 
 /**
- * @brief Â≠¶ÁîüÊìç‰Ωú
+ * @brief ¥Ú”°≤È—Ø—°œÓ
+ */
+void Print_Search_Options(){
+    Clean();
+    printf("\n");
+    printf("*-------------------------------------------------------------------------*\n");
+    printf("|                           <Search Options>                              |\n");
+    printf("|                                                                         |\n");
+    printf("|                                                                         |\n");
+    printf("|           1.Search By ISBN              2.Search By Title               |\n");
+    printf("|                                                                         |\n");
+    printf("|           3.Search By Author            0.System Return                 |\n");
+    printf("|                                                                         |\n");
+    printf("|                                                                         |\n");
+    printf("|                                                                         |\n");
+    printf("|                                                                         |\n");
+    printf("*-------------------------------------------------------------------------*\n");     
+    printf("\n\t\t");
+    printf("Please choose: ");      
+}
+
+/**
+ * @brief ¥Ú”°ΩË È—°œÓ
+ * 
+ */
+void Print_Borrow_Options(){
+    Clean();
+    printf("\n");
+    printf("*-------------------------------------------------------------------------*\n");
+    printf("|                         <Search By ISBN>                                |\n");
+    printf("|                                                                         |\n");
+    printf("|                         0.System Return                                 |\n");
+    
+    printf("\n\t\t");
+    printf("Please input ISBN: ");     
+}
+
+/**
+ * @brief ¥Ú”°Œ“µƒ–≈œ¢
+ */
+void Stu_Print_MyInfo(Stu stu){
+
+    Clean();
+    printf("\n");
+    printf("*-------------------------------------------------------------------------*\n");
+    printf("                                 <My Info>                                 \n");
+    printf("Name: %s ", stu->name);
+    printf("ID: %s ", stu->ID);
+    printf("account: %s \n", stu->account);
+    Print_Book(stu->mybook);
+    
+}
+
+/**
+ * @brief —ß…˙≤Ÿ◊˜
  */
 void Stu_Operation(Stu &stu){
 
-    //Âæ™ÁéØÊìç‰ΩúÊ†áÂøó
-    int flag = 1;
-    //ÈÄâÊã©
+    //≥ı ºªØ∫Ï∫⁄ ˜
+    RBRoot *root = NULL;
+    root = createRBTree();
+    FILE_ReadRBT(root);
+
+    //—°‘Ò
     int choose;
     
-    while (flag){
-        Stu_Options();
+    while (true){
+        Stu_Options(stu);
         scanf("%d", &choose);
      
         switch (choose){
             
-            //ËøîÂõû‰∏ä‰∏ÄÁ∫ß
+            //∑µªÿ…œ“ªº∂
             case 0:{
+                //Ω´ ˜–¥»ÎŒƒº˛
+                FILE_WriteRBT(*root);
                 return;
             }break;
 
+            //≤È—Ø ÈºÆ
+            case 1:{
+                Stu_SearchBook(root);
+            }break;
+
+            //ΩË‘ƒ ÈºÆ
+            case 2:{
+                Stu_Borrow(stu, root);
+            }break;
+
+            //πÈªπ ÈºÆ
+            case 3:{
+                
+            }break;
+
+            //∏ˆ»À–≈œ¢
+            case 4:{
+                Stu_Print_MyInfo(stu);
+                Pause();
+            }break;
             default:{
-                printf("\nÊìç‰Ωú‰∏çÂ≠òÂú®\n");
+                printf("\nOperation does not exist\n");
                 Pause();
             }break;
         }
@@ -78,36 +156,202 @@ void Stu_Operation(Stu &stu){
 }
 
 /**
- * @brief ÂÄü‰π¶
+ * @brief ΩË È
  */
-Status Stu_Borrow(){
+void Stu_Borrow(Stu stu, RBRoot *root){
+
+    //—°‘Ò
+    int input;
+    while(true){
+        Print_Borrow_Options();
+        scanf("%d", &input);
+
+        switch (input){
+            
+            //∑µªÿ…œ“ªº∂
+            case 0:{
+                return;
+            }break;
+
+            default:{
+                RBTreeElemType book = NULL;
+                //∏˘æ›input‘⁄∫Ï∫⁄ ˜÷–’“ È
+                book = RBT_SearchByISBN(root->node, input);
+                // È±æ¥Ê‘⁄
+                if(book != NULL){
+                    while(true){
+                        Clean();
+                        //¥Ú”° È±æ–≈œ¢
+                        Print_BookInfo(book);
+                        //≈–∂œ È±æ◊¥Ã¨
+                        // È±æŒ¥ΩË≥ˆ
+                        if(book->status == 1){
+                            printf("whether borrow this book? 1.Yes  2.No\n");
+                            printf("choose: ");
+                            int confirm = -1;
+                            scanf("%d", &confirm);
+                            //»∑∂®ΩË‘ƒ
+                            if(confirm == 1){
+                                if(Stu_AddBook(stu, book) == SUCCESS){
+                                    printf("Success, you have the book now.\n");
+                                    Updata_StuInfo(stu);
+                                    Pause();
+                                }
+                                else{
+                                    printf("Fail\n");
+                                }
+                            }
+                            //∑≈∆˙ΩË‘ƒ
+                            else if(confirm == 2){
+                                break;
+                            }
+                            // ‰»Î¥ÌŒÛ≈–∂œ
+                            else{
+                                printf("Error! Please check your input.\n");
+                            }
+                        }
+                        // È±æ“—ΩË≥ˆ
+                        else{
+                            printf("Fail! The books have been borrowed.");
+                        }
+                        Pause();
+                    }
+                }
+                // È±æ≤ª¥Ê‘⁄
+                else{
+                    printf("The book does not exist");
+                }
+            }break;
+        }
+    Clean();
+    }
+}
+
+/**
+ * @brief ªπ È
+ */
+Status Stu_return(Stu stu){
+    
+    //—ß…˙√ª”–ΩË È
+    if(stu->mybook == NULL)
+        return FALSE;
+
+    //¥Ú”°“—ΩËµƒ È
+    Print_Book(stu->mybook);
     return SUCCESS;
 }
 
 /**
- * @brief Ëøò‰π¶
+ * @brief ¥Ú”°“—ΩËµƒ È
  */
-Status Stu_return(){
-    return SUCCESS;
+void Print_Book(MyBook b){
+
+    MyBook p = b;
+    printf("\n");
+    printf("*-------------------------------------------------------------------------*\n");
+    printf("                           <My Books>                                      \n");
+    printf("    ISBN    |        Title        |        Author        |       Press       ");
+    
+    while(p != NULL){
+        //¥Ú”°ISBN
+        printf("%-15d | ", p->book->elem);
+        //¥Ú”° È√˚
+        printf("%-15s | ", p->book->Title);
+        //¥Ú”°◊˜’ﬂ
+        printf("%-15s | ", p->book->Author);
+        //¥Ú”°≥ˆ∞Ê…Á
+        printf("%-15s \n", p->book->press);
+        //÷∏œÚœ¬“ª±æ È
+        p = p->next;
+    }
 }
 
 /**
- * @brief Êü•Áúã‰ø°ÊÅØ
+ * @brief ≤È’“ È±æ
  */
-void Stu_MyInfo(){
+void Stu_SearchBook(RBRoot *root){
 
+    //—≠ª∑≤Ÿ◊˜±Í÷æ
+    int flag = 1;
+    //—°‘Ò
+    int choose;
+    
+    while (flag){
+        Print_Search_Options();
+        scanf("%d", &choose);
+     
+        switch (choose){
+            
+            //∑µªÿ…œ“ªº∂
+            case 0:{
+                return;
+            }break;
+
+            //∞¥ISBN≤È’“
+            case 1:{
+                printf("∞¥ISBN≤È’“");
+                Pause();
+            }break;
+
+            //∞¥ È√˚≤È’“
+            case 2:{
+                printf("∞¥ È√˚≤È’“");
+                Pause();
+            }break;
+
+            //∞¥◊˜’ﬂ≤È’“
+            case 3:{
+                printf("∞¥◊˜’ﬂ≤È’“");
+                Pause();
+            }break;
+
+            //¥˝∂®
+            case 4:{
+                printf("¥˝∂®");
+                Pause();
+            }
+
+            default:{
+                printf("\nOperation does not exist\n");
+                Pause();
+            }break;
+        }
+    Clean();
+    }
 }
 
 /**
- * @brief ÊâæÂõûÂØÜÁ†Å
+ * @brief œÚ—ß…˙’Àªß…œÃÌº”“ª±æ È£¨≤¢Ω´ È…Ë÷√Œ™“—ΩË≥ˆ◊¥Ã¨
  */
-Status Stu_FindPassword(){
-    return SUCCESS;
-}
+Status Stu_AddBook(Stu stu, RBTreeElemType b){
 
-/**
- * @brief Êõ¥ÊîπÂØÜÁ†Å
- */
-Status Stu_ChangePassword(){
+    //—ß…˙µ±«∞√ª”–“—ΩËµƒ È
+    if(stu->mybook = NULL){
+
+        //∑÷≈‰ø’º‰
+        stu->mybook = (MyBook)malloc(sizeof(mybook));
+        if(stu->mybook == NULL)
+            return OVERFLOW;
+
+        //Ω´µ⁄“ª±æ ÈΩ”∏¯—ß…˙
+        stu->mybook->book = b;
+        stu->mybook->next = NULL;
+    }
+    //—ß…˙µ±«∞”–“—ΩËµƒ È
+    else{
+
+        //≥ı ºªØMyBook£¨º”»ÎΩË‘ƒµƒ È
+        MyBook mb = NULL;
+        mb = (MyBook)malloc(sizeof(mybook));
+        if(mb == NULL)
+            return OVERFLOW;
+        mb->book = b;
+
+        //Õ∑≤Â∑®Ω´ΩË‘ƒµƒ È≤Â»Î
+        mb->next = stu->mybook;
+        stu->mybook = mb;
+    }
+    // È±æ◊¥Ã¨÷√Œ™0,Œ™ΩË≥ˆ◊¥Ã¨
+    b->status = 0;
     return SUCCESS;
 }

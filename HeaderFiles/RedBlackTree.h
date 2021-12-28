@@ -3,7 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-24 17:05:47
  * @LastEditors: Hx
- * @LastEditTime: 2021-12-24 21:00:22
+ * @LastEditTime: 2021-12-26 21:25:55
  */
 //
 // Created by HUAWEI on 2021-12-04.
@@ -55,7 +55,7 @@ typedef struct RBTreeNode{
 /* 红黑树的根结点 */
 typedef struct RB_Root{
     Node *node;
-} RBRoot;
+}RBRoot;
 
 /* 创建红黑树 */
 RBRoot *createRBTree();
@@ -93,12 +93,52 @@ Status printRBTree(RBRoot *root);
 Status inputRBTElem(RBTreeElemType &e);
 
 /**
- * @brief 
+ * @brief 初始化elem
  * 
  * @param e 
  * @return Status 
  */
 Status InitRBTElem(RBTreeElemType &e);
 
+/**
+ * @brief 将红黑树写入文件
+ * 
+ * @param root 
+ * @return Status 
+ */
+Status FILE_WriteRBT(RBRoot root);
+
+/**
+ * @brief 基于前序遍历的红黑树文件写入
+ * 
+ * @param tree 
+ * @param fp 
+ */
+void FILE_preWrite(RBTree tree, FILE *fp);
+
+/**
+ * @brief 从文件中读取数据并构建红黑树
+ * 
+ * @param root 
+ * @return Status 
+ */
+Status FILE_ReadRBT(RBRoot *root);
+
+/**
+ * @brief 通过ISBN在红黑树中查找书本，并返回
+ * 
+ * @param R
+ * @param ISBN 
+ * @return RBTreeElemType 
+ */
+RBTreeElemType RBT_SearchByISBN(RBTree R, int ISBN);
+
+/**
+ * @name printBookInfo
+ * @brief Print information about a Book
+ * @param e  
+ * @return Status 
+ */
+Status PrintBookInfo(RBTreeElemType e);
 
 #endif //REDBLACKTREE_REDBLACKTREE_H
