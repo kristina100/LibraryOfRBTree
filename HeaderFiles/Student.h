@@ -3,7 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-23 14:33:25
  * @LastEditors: Hx
- * @LastEditTime: 2021-12-27 21:33:13
+ * @LastEditTime: 2021-12-28 20:37:53
  */
 #ifndef STUDENT_H_INCLUDE
 #define STUDENT_H_INCLUDE
@@ -59,9 +59,10 @@ void Stu_Borrow(Stu stu, RBRoot *root);
  * @brief 学生还书
  * 
  * @param stu 
+ * @param root 
  * @return Status 
  */
-Status Stu_return(Stu stu);
+Status Stu_return(Stu &stu, RBRoot *root);
 
 /**
  * @brief 打印我的信息
@@ -118,6 +119,6 @@ void Print_Borrow_Options();
  * @param b 
  * @return Status 
  */
-Status Stu_AddBook(Stu stu, RBTreeElemType b);
+Status Stu_AddBook(Stu &stu, RBTreeElemType b);
 
 #endif  //STUDENT_H_INCLUDE

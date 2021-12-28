@@ -203,7 +203,7 @@ Status inputRBTElem(RBTreeElemType &e){
     e->press = (char*)malloc(sizeof(char) * strlen(str));
     strcpy(e->press, str);
 
-    //输入出版社
+    //输入书本页数
     printf("please input number of page:");
     scanf("%d", &e->page_num);
     

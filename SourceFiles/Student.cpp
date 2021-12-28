@@ -3,7 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-23 14:33:31
  * @LastEditors: Hx
- * @LastEditTime: 2021-12-28 16:29:34
+ * @LastEditTime: 2021-12-28 21:02:51
  */
 #include"Student.h"
 #include"Utils.h"
@@ -92,10 +92,10 @@ void Stu_Print_MyInfo(Stu stu){
     Clean();
     printf("\n");
     printf("*-------------------------------------------------------------------------*\n");
-    printf("                                 <My Info>                                 \n");
-    printf("Name: %s ", stu->name);
-    printf("ID: %s ", stu->ID);
-    printf("account: %s \n", stu->account);
+    printf("                                 <My Info>                                 \n\n");
+    printf("\tName: %s ", stu->name);
+    printf("\tID: %s ", stu->ID);
+    printf("\t\tAccount: %s \n", stu->account);
     Print_Book(stu->mybook);
     
 }
@@ -138,7 +138,12 @@ void Stu_Operation(Stu &stu){
 
             //归还书籍
             case 3:{
-                
+                if(Stu_return(stu, root) == SUCCESS){
+                    printf("Return the book successfully!");
+                }else{
+                    printf("Failed to return the book!");
+                }
+                Pause();
             }break;
 
             //个人信息
@@ -249,20 +254,23 @@ void Print_Book(MyBook b){
     MyBook p = b;
     printf("\n");
     printf("*-------------------------------------------------------------------------*\n");
-    printf("                           <My Books>                                      \n");
-    printf("    ISBN    |        Title        |        Author        |       Press       ");
-    
+    printf("                                <My Books>                                \n\n");
+    printf("  Num  |     ISBN     |         Title         |      Author      |    Press    \n\n");
+    int num = 1;
     while(p != NULL){
+        //打印编号
+        printf("  %-3d\t",num);
         //打印ISBN
-        printf("%-15lld | ", p->book->elem);
+        printf("%-15lld", p->book->elem);
         //打印书名
-        printf("%-15s | ", p->book->Title);
+        printf("%-25s", p->book->Title);
         //打印作者
-        printf("%-15s | ", p->book->Author);
+        printf("%-20s", p->book->Author);
         //打印出版社
-        printf("%-15s \n", p->book->press);
+        printf("%-20s \n", p->book->press);
         //指向下一本书
         p = p->next;
+        num++;
     }
 }
 
@@ -323,10 +331,10 @@ void Stu_SearchBook(RBRoot *root){
 /**
  * @brief 向学生账户上添加一本书，并将书设置为已借出状态
  */
-Status Stu_AddBook(Stu stu, RBTreeElemType b){
+Status Stu_AddBook(Stu &stu, RBTreeElemType b){
 
     //学生当前没有已借的书
-    if(stu->mybook = NULL){
+    if(stu->mybook == NULL){
 
         //分配空间
         stu->mybook = (MyBook)malloc(sizeof(mybook));
@@ -353,5 +361,15 @@ Status Stu_AddBook(Stu stu, RBTreeElemType b){
     }
     //书本状态置为0,为借出状态
     b->status = 0;
+    return SUCCESS;
+}
+
+/**
+ * @brief 学生还书
+ */
+Status Stu_return(Stu &stu, RBRoot *root){
+    Clean();
+    Print_Book(stu->mybook);
+
     return SUCCESS;
 }
