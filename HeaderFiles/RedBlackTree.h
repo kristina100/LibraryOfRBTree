@@ -3,7 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-24 17:05:47
  * @LastEditors: Hx
- * @LastEditTime: 2021-12-26 21:25:55
+ * @LastEditTime: 2021-12-28 16:18:33
  */
 //
 // Created by HUAWEI on 2021-12-04.
@@ -40,7 +40,7 @@ typedef struct RBTElem{
     // char *classification; //书的类型
     // float price;    //价格
     int status;  //状态 0为借出状态, 1为可借状态
-    int elem;   //书的编号ISBN
+    long long int elem;   //书的编号ISBN
 }RBTElem, *RBTreeElemType;
 
 /* 红黑树的结点 */

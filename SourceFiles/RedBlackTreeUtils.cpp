@@ -355,7 +355,7 @@ Status PrintRBTreeInfo(RBTree tree, RBTreeElemType data, int position)
         if (position == 0)
             printf("[%d] (BLACK) is root.\n", tree->data);
         else
-            printf("[%d] (%s) is [%d] 's {%s} child node\n", tree->data->elem, RBTreeIsRed(tree) ? "RED" : "BLACK",
+            printf("[%lld] (%s) is [%lld] 's {%s} child node\n", tree->data->elem, RBTreeIsRed(tree) ? "RED" : "BLACK",
                     data->elem, position == -1 ? "LEFT" : "RIGHT");
         // 左孩子递归遍历
         PrintRBTreeInfo(tree->left, tree->data, -1);
@@ -379,7 +379,7 @@ Status recessedPrintRBTree(RBTree tree, int depth)
     if (!tree) return FALSE;
     recessedPrintRBTree(tree->right, depth + 1);
     for (int i = 0; i < depth; i++) printf("    ");
-    printf("[%-d(%s)]\n", tree->data->elem, RBTreeIsRed(tree) ? "RED" : "BLACK");
+    printf("[%-lld(%s)]\n", tree->data->elem, RBTreeIsRed(tree) ? "RED" : "BLACK");
     recessedPrintRBTree(tree->left, depth + 1);
     return SUCCESS;
 }

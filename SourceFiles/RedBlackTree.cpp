@@ -6,6 +6,7 @@
 #include "../HeaderFiles/RedBlackTreeUtils.h"
 #include "../HeaderFiles/BinarySearchTree.h"
 #include "../HeaderFiles/BinaryTree.h"
+#include"Utils.h"
 
 //存储书本数据的文件
 char Data_Book[] = "book_data.txt";
@@ -180,8 +181,9 @@ Status inputRBTElem(RBTreeElemType &e){
     strcpy(e->Title, str);
 
     //输入IBSN
-    // printf("please input ISBN:");
-    // scanf("%d", &e->elem);
+    printf("please input ISBN:");
+    e->elem = InputInteger();
+    // scanf("%lld", &e->elem);
 
     //输入作者
     printf("please input Author:");
@@ -234,22 +236,22 @@ Status InitRBTElem(RBTreeElemType &e){
  * @brief 从文件中读取数据并构建红黑树
  */
 Status FILE_ReadRBT(RBRoot *root){
+
     FILE *fp=fopen("book_data.txt","r");
-    if(NULL==fp)
-    {
-        printf ("Failed to open the file!\n");
-        exit (0);
-    }
+
+    if(NULL==fp) return ERROR;
+    
 
     char str[20] = "";
 
-    // fscanf (fp,"%d",&a) ; //从fp所指文件中读取一个整数保存到变量a中
+    //判断
+    int status;
     while(!feof(fp)){//如果位置指针不在文件末尾,即没有读到文件末尾
 
         RBTreeElemType e = NULL;
         InitRBTElem(e);
         //读出elem(ISBN)
-        fscanf(fp, "%d", &e->elem);
+        fscanf(fp, "%lld", &e->elem);
 
         //这条语句用于暴力解决最后一个字符问题
         if(e->elem == 0) break;
@@ -259,17 +261,18 @@ Status FILE_ReadRBT(RBRoot *root){
         e->Title = (char*)malloc(sizeof(char) * strlen(str));
         strcpy(e->Title, str);
         fgetc(fp);
-
+        
         //读出作者
         fscanf(fp, "%s", str);
         e->Author = (char*)malloc(sizeof(char) * strlen(str));
         strcpy(e->Author, str);
         fgetc(fp);
-
+      
         //读出出版社
         fscanf(fp, "%s", str);
         e->press = (char*)malloc(sizeof(char) * strlen(str));
         strcpy(e->press, str);
+        fgetc(fp);
 
         //读出评分
         fscanf(fp, "%s", str);
@@ -279,6 +282,8 @@ Status FILE_ReadRBT(RBRoot *root){
 
         //读出页数
         fscanf(fp, "%d", &e->page_num);
+        fgetc(fp);
+
         //读出状态
         fscanf(fp, "%d", &e->status);   
 
@@ -320,7 +325,7 @@ void FILE_preWrite(RBTree tree, FILE *fp){
 
     //写入结点数据
     //写入ISBN
-    fprintf(fp, "%d", tree->data->elem);
+    fprintf(fp, "%lld", tree->data->elem);
     fputc(mid,fp);
     //写入书名
     fprintf(fp, "%s", tree->data->Title);

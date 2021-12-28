@@ -3,7 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-23 14:33:31
  * @LastEditors: Hx
- * @LastEditTime: 2021-12-27 21:34:01
+ * @LastEditTime: 2021-12-28 16:29:34
  */
 #include"Student.h"
 #include"Utils.h"
@@ -254,7 +254,7 @@ void Print_Book(MyBook b){
     
     while(p != NULL){
         //打印ISBN
-        printf("%-15d | ", p->book->elem);
+        printf("%-15lld | ", p->book->elem);
         //打印书名
         printf("%-15s | ", p->book->Title);
         //打印作者

@@ -3,7 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-24 21:49:11
  * @LastEditors: Hx
- * @LastEditTime: 2021-12-27 21:58:11
+ * @LastEditTime: 2021-12-28 16:21:47
  */
 #include"Common.h"
 #include"HeaderFiles/RedBlackTree.h"
@@ -26,5 +26,6 @@ int main(){
     // stu->mybook = NULL;
     // Stu_Operation(stu);
     Login_Operation();
+    Pause();
     return 1;
 }

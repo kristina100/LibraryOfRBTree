@@ -106,8 +106,10 @@ void menu(RBRoot *root)
             case 2: 
                 system("cls");
                 if (exist_flag) {
-                    FILE_ReadRBT(root);
-                    printf("Read initial data successfully ~ \n");
+                    if(FILE_ReadRBT(root) == SUCCESS){
+                        printf("Read initial data successfully ~ \n");
+                    }else
+                        printf ("Failed to open the file!\n");
 //                    /* 设置随机数种子 */
 //                    srand((unsigned int) time(NULL));
 //                    printf("Please enter information you want to insert:");
@@ -173,8 +175,8 @@ void menu(RBRoot *root)
                     // InitRBTElem(insert_x);
                     Status insert_status;
                     double cost;
-                    printf("Please enter the node you want to insert:");
-                    insert_x->elem = InputInteger();
+                    // printf("Please enter the node you want to insert:");
+                    // insert_x->elem = InputInteger();
                     beginRecord();
                     insert_status = insertRBTree(root, insert_x);
                     cost = endRecord();

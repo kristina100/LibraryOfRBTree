@@ -3,7 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-22 12:54:00
  * @LastEditors: Hx
- * @LastEditTime: 2021-12-26 21:33:48
+ * @LastEditTime: 2021-12-28 16:48:44
  */
 #ifndef UTILS_H_INCLUDE
 #define UTILS_H_INCLUDE
@@ -35,7 +35,7 @@ void Print_BookInfo(RBTreeElemType e);
  * @param[in]  none
  * @return  legal integer
  */
-int InputInteger();
+long long int InputInteger();
 
 /**
  * @name  Quit()
