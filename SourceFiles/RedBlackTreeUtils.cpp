@@ -7,7 +7,7 @@
 #include "../HeaderFiles/BalancedBinaryTree.h"
 
 /**
- * 创建红黑树结点
+ * 鍒涘缓绾㈤粦鏍戠粨鐐�1�7
  *
  * @param[in]  x     : the data of the node
  * @param[in]  parent: its parent node
@@ -30,7 +30,7 @@ RBTree createRBTreeNode(RBTreeElemType x, Node *parent, Node *left, Node *right)
 }
 
 /**
- * 红黑树插入结点后自平衡
+ * 绾㈤粦鏍戞彃鍏ョ粨鐐瑰悗鑷钩琛�1�7
  *
  * @param[in]  root: the root of the red-black tree
  * @param[in]  node: the inserted node
@@ -40,101 +40,101 @@ Status RBTreeInsertSelfBalancing(RBRoot *root, Node *node)
 {
     Node *parent, *grandparent;
 
-    /* 父结点为红色结点 */
+    /* 鐖剁粨鐐逛负绾㈣壊缁撶偣 */
     while ((parent = RBTreeParent(node)) && RBTreeIsRed(parent))
     {
         grandparent = RBTreeParent(parent);
 
-        /* 父结点是祖父结点的左孩子结点” */
+        /* 鐖剁粨鐐规槸绁栫埗缁撶偣鐨勫乏瀛╁瓙缁撶偣鈥�1�7 */
         if (parent == grandparent->left)
         {
             Node *uncle = grandparent->right;
 
-            /* 情况一：叔叔结点是红色结点 */
+            /* 鎯呭喌涓€锛氬彅鍙旂粨鐐规槸绾㈣壊缁撶偣 */
             if (uncle && RBTreeIsRed(uncle))
             {
-                // 先将父结点和叔叔结点染成黑色
+                // 鍏堝皢鐖剁粨鐐瑰拰鍙斿彅缁撶偣鏌撴垚榛戣壊
                 RBTreeSetBlack(parent);
                 RBTreeSetBlack(uncle);
-                // 再将祖父的结点染成黑色
+                // 鍐嶅皢绁栫埗鐨勭粨鐐规煋鎴愰粦鑹�1�7
                 RBTreeSetRed(grandparent);
-                // 可能与祖父的父结点形成连续的红色结点，需要递归向上调整
+                // 鍙兘涓庣鐖剁殑鐖剁粨鐐瑰舰鎴愯繛缁殑绾㈣壊缁撶偣锛岄渶瑕侀€掑綊鍚戜笂璋冩暣
                 node = grandparent;
                 continue;
             }
 
-            /* 情况二：插入结点是其父结点的左孩子结点 */
+            /* 鎯呭喌浜岋細鎻掑叆缁撶偣鏄叾鐖剁粨鐐圭殑宸﹀瀛愮粨鐐�1�7 */
             if (node == parent->left)
             {
-                // 父亲变成黑色 祖父变成红色 右子树的黑色高度变低
+                // 鐖朵翰鍙樻垚榛戣壊 绁栫埗鍙樻垚绾㈣壊 鍙冲瓙鏍戠殑榛戣壊楂樺害鍙樹綆
                 RBTreeSetBlack(parent);
                 RBTreeSetRed(grandparent);
-                // 对祖父进行左旋，让父结点成为新的祖父，恢复右子树的高度
+                // 瀵圭鐖惰繘琛屽乏鏃嬶紝璁╃埗缁撶偣鎴愪负鏂扮殑绁栫埗锛屾仮澶嶅彸瀛愭爲鐨勯珮搴�1�7
                 RBTreeRightRotate(root, grandparent);
             }
 
-            /* 情况三：插入结点是其父结点的右孩子结点，构造成情况二 */
+            /* 鎯呭喌涓夛細鎻掑叆缁撶偣鏄叾鐖剁粨鐐圭殑鍙冲瀛愮粨鐐癸紝鏋勯€犳垚鎯呭喌浜�1�7 */
             if (node == parent->right)
             {
                 Node *temp;
                 temp = parent;
-                // 父亲成为新的目标结点node
+                // 鐖朵翰鎴愪负鏂扮殑鐩爣缁撶偣node
                 parent = node;
-                // 对父亲进行左旋操作，构造成情况二
+                // 瀵圭埗浜茶繘琛屽乏鏃嬫搷浣滐紝鏋勯€犳垚鎯呭喌浜�1�7
                 RBTreeLeftRotate(root, parent);
-                // 对新的node进行处理 即原来的父亲结点
+                // 瀵规柊鐨刵ode杩涜澶勭悊 鍗冲師鏉ョ殑鐖朵翰缁撶偣
                 node = temp;
             }
         }
         else
-        { /* 父结点是祖父结点的右孩子结点” */
+        { /* 鐖剁粨鐐规槸绁栫埗缁撶偣鐨勫彸瀛╁瓙缁撶偣鈥�1�7 */
             Node *uncle = grandparent->left;
 
-            /* 情况四：叔叔结点是红色结点 */
+            /* 鎯呭喌鍥涳細鍙斿彅缁撶偣鏄孩鑹茬粨鐐�1�7 */
             if (uncle && RBTreeIsRed(uncle))
             {
-                // 父亲和叔叔都变成黑色 保证规则四
+                // 鐖朵翰鍜屽彅鍙旈兘鍙樻垚榛戣壊 淇濊瘉瑙勫垯鍥�1�7
                 RBTreeSetBlack(uncle);
                 RBTreeSetBlack(parent);
-                // 将祖父变成红色 保证规则五
+                // 灏嗙鐖跺彉鎴愮孩鑹�1�7 淇濊瘉瑙勫垯浜�1�7
                 RBTreeSetRed(grandparent);
-                // 从祖父开始，继续调整
+                // 浠庣鐖跺紑濮嬶紝缁х画璋冩暣
                 node = grandparent;
                 continue;
             }
 
-            /* 情况五：插入结点是其父结点的右孩子结点 */
+            /* 鎯呭喌浜旓細鎻掑叆缁撶偣鏄叾鐖剁粨鐐圭殑鍙冲瀛愮粨鐐�1�7 */
             if (node == parent->right)
             {
-                // 父亲变为黑色
+                // 鐖朵翰鍙樹负榛戣壊
                 RBTreeSetBlack(parent);
-                // 祖父变为红色 左子树黑色高度降低
+                // 绁栫埗鍙樹负绾㈣壊 宸﹀瓙鏍戦粦鑹查珮搴﹂檷浣�1�7
                 RBTreeSetRed(grandparent);
-                // 对祖父进行左旋，恢复左子树黑色高度
+                // 瀵圭鐖惰繘琛屽乏鏃嬶紝鎭㈠宸﹀瓙鏍戦粦鑹查珮搴�1�7
                 RBTreeLeftRotate(root, grandparent);
             }
 
-            /* 叔叔结点为黑色，或者叔叔节点不存在 插入结点是其父结点的左孩子结点 */
+            /* 鍙斿彅缁撶偣涓洪粦鑹诧紝鎴栬€呭彅鍙旇妭鐐逛笉瀛樺湪 鎻掑叆缁撶偣鏄叾鐖剁粨鐐圭殑宸﹀瀛愮粨鐐�1�7 */
             if (node == parent->left)
             {
                 Node *temp;
                 temp = parent;
                 parent = node;
-                // 对父亲进行右旋操作，构造情况二的初始情况
+                // 瀵圭埗浜茶繘琛屽彸鏃嬫搷浣滐紝鏋勯€犳儏鍐典簩鐨勫垵濮嬫儏鍐�1�7
                 RBTreeRightRotate(root, parent);
-                // 对新的node进行处理 即原来的父亲结点
+                // 瀵规柊鐨刵ode杩涜澶勭悊 鍗冲師鏉ョ殑鐖朵翰缁撶偣
                 node = temp;
             }
         }
     }
-    // 父结点为黑色的情况最简单，不需要做调整
+    // 鐖剁粨鐐逛负榛戣壊鐨勬儏鍐垫渶绠€鍗曪紝涓嶉渶瑕佸仛璋冩暣
     RBTreeSetBlack(root->node);
 
     return SUCCESS;
 }
 
 /**
- * 红黑树查找最小结点
+ * 绾㈤粦鏍戞煡鎵炬渶灏忕粨鐐�1�7
  *
  * @param[in]  root  : the root of the red-black tree
  * @param[in]  minVal: the minimum value of the red-black tree
@@ -153,7 +153,7 @@ Status minRBTreeNode(RBRoot *root, RBTreeElemType minVal)
 }
 
 /**
- * 红黑树查找最大结点
+ * 绾㈤粦鏍戞煡鎵炬渶澶х粨鐐�1�7
  *
  * @param[in]  root  : the root of the red-black tree
  * @param[in]  maxVal: the maximum value of the red-black tree
@@ -172,9 +172,9 @@ Status maxRBTreeNode(RBRoot *root, RBTreeElemType maxVal)
 }
 
 /**
- * 红黑树删除结点后自平衡
+ * 绾㈤粦鏍戝垹闄ょ粨鐐瑰悗鑷钩琛�1�7
  *
- * @param[in]  root  : 红黑树根节点
+ * @param[in]  root  : 绾㈤粦鏍戞牴鑺傜偣
  * @param[in]  node  : the deleted node
  * @param[in]  parent: the deleted node
  * @return  the operation status, SUCCESS is 1, FALSE is 0
@@ -186,7 +186,7 @@ Status RBTreeDeleteSelfBalancing(RBRoot *root, Node *node, Node *parent)
     while ((!node || RBTreeIsBlack(node)) && node != root->node) {
         if (node == parent->left) {
             Sibling = parent->right;
-            /* node的兄弟结点sibling是红色结点 */
+            /* node鐨勫厔寮熺粨鐐箂ibling鏄孩鑹茬粨鐐�1�7 */
             if (RBTreeIsRed(Sibling))
             {
                 RBTreeSetBlack(Sibling);
@@ -194,7 +194,7 @@ Status RBTreeDeleteSelfBalancing(RBRoot *root, Node *node, Node *parent)
                 RBTreeLeftRotate(root, parent);
                 Sibling = parent->right;
             }
-            /* node的兄弟结点sibling是黑色结点, sibling的2个孩子结点都是黑色结点 */
+            /* node鐨勫厔寮熺粨鐐箂ibling鏄粦鑹茬粨鐐�1�7, sibling鐨�1�72涓瀛愮粨鐐归兘鏄粦鑹茬粨鐐�1�7 */
             if ((!Sibling->left || RBTreeIsBlack(Sibling->left)) &&
                 (!Sibling->right || RBTreeIsBlack(Sibling->right)))
             {
@@ -202,7 +202,7 @@ Status RBTreeDeleteSelfBalancing(RBRoot *root, Node *node, Node *parent)
                 node = parent;
                 parent = RBTreeParent(node);
             } else {
-                /* node的兄弟结点sibling是黑色结点, sibling的左孩子是红色, 右孩子是黑色 */
+                /* node鐨勫厔寮熺粨鐐箂ibling鏄粦鑹茬粨鐐�1�7, sibling鐨勫乏瀛╁瓙鏄孩鑹�1�7, 鍙冲瀛愭槸榛戣壊 */
                 if (!Sibling->right || RBTreeIsBlack(Sibling->right))
                 {
                     RBTreeSetRed(Sibling);
@@ -210,7 +210,7 @@ Status RBTreeDeleteSelfBalancing(RBRoot *root, Node *node, Node *parent)
                     RBTreeRightRotate(root, Sibling);
                     Sibling = parent->right;
                 }
-                /* node的兄弟结点sibling是黑色结点, sibling的左孩子是任意颜色, 右孩子是红色 */
+                /* node鐨勫厔寮熺粨鐐箂ibling鏄粦鑹茬粨鐐�1�7, sibling鐨勫乏瀛╁瓙鏄换鎰忛鑹�1�7, 鍙冲瀛愭槸绾㈣壊 */
                 RBTreeSetColor(Sibling, RBTreeColor(parent));
                 RBTreeSetBlack(parent);
                 RBTreeSetBlack(Sibling->right);
@@ -222,7 +222,7 @@ Status RBTreeDeleteSelfBalancing(RBRoot *root, Node *node, Node *parent)
         else
         {
             Sibling = parent->left;
-            /* node的兄弟结点sibling是红色结点 */
+            /* node鐨勫厔寮熺粨鐐箂ibling鏄孩鑹茬粨鐐�1�7 */
             if (RBTreeIsRed(Sibling))
             {
                 RBTreeSetBlack(Sibling);
@@ -230,7 +230,7 @@ Status RBTreeDeleteSelfBalancing(RBRoot *root, Node *node, Node *parent)
                 RBTreeRightRotate(root, parent);
                 Sibling = parent->left;
             }
-            /* node的兄弟结点sibling是黑色结点, sibling的2个孩子结点都是黑色结点 */
+            /* node鐨勫厔寮熺粨鐐箂ibling鏄粦鑹茬粨鐐�1�7, sibling鐨�1�72涓瀛愮粨鐐归兘鏄粦鑹茬粨鐐�1�7 */
             if ((!Sibling->left || RBTreeIsBlack(Sibling->left)) &&
                 (!Sibling->right || RBTreeIsBlack(Sibling->right)))
             {
@@ -238,7 +238,7 @@ Status RBTreeDeleteSelfBalancing(RBRoot *root, Node *node, Node *parent)
                 node = parent;
                 parent = RBTreeParent(node);
             } else {
-                /* node的兄弟结点sibling是黑色结点, sibling的左孩子是红色, 右孩子是黑色 */
+                /* node鐨勫厔寮熺粨鐐箂ibling鏄粦鑹茬粨鐐�1�7, sibling鐨勫乏瀛╁瓙鏄孩鑹�1�7, 鍙冲瀛愭槸榛戣壊 */
                 if (!Sibling->left || RBTreeIsBlack(Sibling->left))
                 {
                     RBTreeSetBlack(Sibling->right);
@@ -246,7 +246,7 @@ Status RBTreeDeleteSelfBalancing(RBRoot *root, Node *node, Node *parent)
                     RBTreeLeftRotate(root, Sibling);
                     Sibling = parent->left;
                 }
-                /* node的兄弟结点sibling是黑色结点, sibling的左孩子是任意颜色, 右孩子是红色 */
+                /* node鐨勫厔寮熺粨鐐箂ibling鏄粦鑹茬粨鐐�1�7, sibling鐨勫乏瀛╁瓙鏄换鎰忛鑹�1�7, 鍙冲瀛愭槸绾㈣壊 */
                 RBTreeSetColor(Sibling, RBTreeColor(parent));
                 RBTreeSetBlack(parent);
                 RBTreeSetBlack(Sibling->left);
@@ -262,28 +262,28 @@ Status RBTreeDeleteSelfBalancing(RBRoot *root, Node *node, Node *parent)
 }
 
 /**
- * 红黑树删除结点指针
+ * 绾㈤粦鏍戝垹闄ょ粨鐐规寚閽�1�7
  *
- * @param[in]  root: 红黑树的根
- * @param[in]  node: 被删除的结点
- * @return  操作状态, SUCCESS : 0, FALSE : -1
+ * @param[in]  root: 绾㈤粦鏍戠殑鏍�1�7
+ * @param[in]  node: 琚垹闄ょ殑缁撶偣
+ * @return  鎿嶄綔鐘舵€�1�7, SUCCESS : 0, FALSE : -1
  */
 Status deleteRBTreeNode(RBRoot *root, Node *node)
 {
     Node *child = NULL, *parent = NULL;
     int color;
 
-    // 删除结点的左右孩子结点都存在
+    // 鍒犻櫎缁撶偣鐨勫乏鍙冲瀛愮粨鐐归兘瀛樺湪
     if (node->left && node->right)
     {
         Node *successor = node;
-        // 替代结点, 即后继结点
+        // 鏇夸唬缁撶偣, 鍗冲悗缁х粨鐐�1�7
         successor = successor->right;
-        // 获取最小的后继结点
+        // 鑾峰彇鏈€灏忕殑鍚庣户缁撶偣
         while (successor->left)
             successor = successor->left;
 
-        // node结点不是根结点
+        // node缁撶偣涓嶆槸鏍圭粨鐐�1�7
         if (RBTreeParent(node))
         {
             if (node == RBTreeParent(node)->left)
@@ -292,42 +292,42 @@ Status deleteRBTreeNode(RBRoot *root, Node *node)
                 RBTreeParent(node)->right = successor;
         }
         else
-            root->node = successor;  // node结点是根结点
+            root->node = successor;  // node缁撶偣鏄牴缁撶偣
 
-        // child是替代结点的右孩子, 可能需要填补替代结点的位置
+        // child鏄浛浠ｇ粨鐐圭殑鍙冲瀛�1�7, 鍙兘闇€瑕佸～琛ユ浛浠ｇ粨鐐圭殑浣嶇疆
         child = successor->right;
-        // 保存替代结点的父结点
+        // 淇濆瓨鏇夸唬缁撶偣鐨勭埗缁撶偣
         parent = RBTreeParent(successor);
-        // 保存替代结点的颜色
+        // 淇濆瓨鏇夸唬缁撶偣鐨勯鑹�1�7
         color = RBTreeColor(successor);
 
-        // 替代结点是删除结点的右孩子结点
+        // 鏇夸唬缁撶偣鏄垹闄ょ粨鐐圭殑鍙冲瀛愮粨鐐�1�7
         if (parent == node)
             parent = successor;
         else
         {
             if (child)
                 RBTreeSetParent(child, parent);
-            // 替代结点的右孩子结点填补替代结点的位置(替代结点不可能有左孩子结点, 否则其才是后继结点)
+            // 鏇夸唬缁撶偣鐨勫彸瀛╁瓙缁撶偣濉ˉ鏇夸唬缁撶偣鐨勪綅缃�1�7(鏇夸唬缁撶偣涓嶅彲鑳芥湁宸﹀瀛愮粨鐐�1�7, 鍚﹀垯鍏舵墠鏄悗缁х粨鐐�1�7)
             parent->left = child;
             successor->right = node->right;
             RBTreeSetParent(node->right, successor);
         }
 
-        // 替代结点操作
+        // 鏇夸唬缁撶偣鎿嶄綔
         successor->parent = node->parent;
         successor->color = node->color;
         successor->left = node->left;
         node->left->parent = successor;
 
-        // 替代结点为黑色, 需要自平衡 
+        // 鏇夸唬缁撶偣涓洪粦鑹�1�7, 闇€瑕佽嚜骞宠　 
         if (color == BLACK) RBTreeDeleteSelfBalancing(root, child, parent);
         free(node);
 
         return SUCCESS;
     }
 
-    // 删除结点只存在一个孩子结点或者没有孩子结点
+    // 鍒犻櫎缁撶偣鍙瓨鍦ㄤ竴涓瀛愮粨鐐规垨鑰呮病鏈夊瀛愮粨鐐�1�7
     if (node->left)
         child = node->left;
     else
@@ -337,7 +337,7 @@ Status deleteRBTreeNode(RBRoot *root, Node *node)
     if (child)
         child->parent = parent;
 
-    /* node结点不是根结点 */
+    /* node缁撶偣涓嶆槸鏍圭粨鐐�1�7 */
     if (parent)
     {
         if (node == parent->left)
@@ -355,14 +355,14 @@ Status deleteRBTreeNode(RBRoot *root, Node *node)
 }
 
 /**
- * 红黑树信息的打印
+ * 绾㈤粦鏍戜俊鎭殑鎵撳嵃
  *
- * @param[in]  tree    : 红黑树的结点集合
- * @param[in]  data    : 结点数值
- * @param[in]  position: 0 - 当前结点是根节点
- *                      -1 - 当前节点是左孩子
- *                       1 - 当前结点是右孩子
- * @return  返回操作状态, SUCCESS : 0, FALSE : -1
+ * @param[in]  tree    : 绾㈤粦鏍戠殑缁撶偣闆嗗悎
+ * @param[in]  data    : 缁撶偣鏁板€�1�7
+ * @param[in]  position: 0 - 褰撳墠缁撶偣鏄牴鑺傜偣
+ *                      -1 - 褰撳墠鑺傜偣鏄乏瀛╁瓙
+ *                       1 - 褰撳墠缁撶偣鏄彸瀛╁瓙
+ * @return  杩斿洖鎿嶄綔鐘舵€�1�7, SUCCESS : 0, FALSE : -1
  */
 Status PrintRBTreeInfo(RBTree tree, RBTreeElemType data, int position)
 {
@@ -373,9 +373,9 @@ Status PrintRBTreeInfo(RBTree tree, RBTreeElemType data, int position)
         else
             printf("[%lld] (%s) is [%lld] 's {%s} child node\n", tree->data->elem, RBTreeIsRed(tree) ? "RED" : "BLACK",
                     data->elem, position == -1 ? "LEFT" : "RIGHT");
-        // 左孩子递归遍历
+        // 宸﹀瀛愰€掑綊閬嶅巻
         PrintRBTreeInfo(tree->left, tree->data, -1);
-        // 右孩子递归遍历
+        // 鍙冲瀛愰€掑綊閬嶅巻
         PrintRBTreeInfo(tree->right, tree->data, 1);
         return SUCCESS;
     }
@@ -383,11 +383,11 @@ Status PrintRBTreeInfo(RBTree tree, RBTreeElemType data, int position)
 }
 
 /**
- * 打印红黑树
+ * 鎵撳嵃绾㈤粦鏍�1�7
  *
- * @param[in]  tree : 红黑树的结点集合
- * @param[in]  depth: 红黑树的深度
- * @return  操作状态 SUCCESS : 0, FALSE : -1
+ * @param[in]  tree : 绾㈤粦鏍戠殑缁撶偣闆嗗悎
+ * @param[in]  depth: 绾㈤粦鏍戠殑娣卞害
+ * @return  鎿嶄綔鐘舵€�1�7 SUCCESS : 0, FALSE : -1
  */
 Status recessedPrintRBTree(RBTree tree, int depth)
 {

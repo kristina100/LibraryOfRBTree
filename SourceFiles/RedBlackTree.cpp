@@ -8,11 +8,11 @@
 #include "../HeaderFiles/BinaryTree.h"
 #include"Utils.h"
 
-//´æ´¢Êé±¾Êý¾ÝµÄÎÄ¼þ
+//å­˜å‚¨ä¹¦æœ¬æ•°æ®çš„æ–‡ä»¶
 char Data_Book[] = "book_data.txt";
 
 /**
- * ´´½¨ºìºÚÊ÷
+ * åˆ›å»ºçº¢é»‘æ ‘
  *
  * @param[in]  none
  * @return  the root of the red-black tree
@@ -25,7 +25,7 @@ RBRoot *createRBTree()
 }
 
 /**
- * Ïú»ÙºìºÚÊ÷
+ * é”€æ¯çº¢é»‘æ ‘
  *
  * @param[in]  root  the root of the red-black tree
  * @return  the operation status, SUCCESS is 0, FALSE is -1
@@ -41,7 +41,7 @@ Status destroyRBTree(RBRoot *root)
 }
 
 /**
- * Ç°Ðò±éÀúºìºÚÊ÷
+ * å‰åºéåŽ†çº¢é»‘æ ‘
  *
  * @param[in]  root: the root of the red-black tree
  * @return  the operation status, SUCCESS is 0, FALSE is -1
@@ -55,7 +55,7 @@ Status preorderRBTree(RBRoot *root)
 }
 
 /**
- * ÖÐÐò±éÀúºìºÚÊ÷
+ * ä¸­åºéåŽ†çº¢é»‘æ ‘
  *
  * @param[in]  root: the root of the red-black tree
  * @return  the operation status, SUCCESS is 0, FALSE is -1
@@ -70,7 +70,7 @@ Status inorderRBTree(RBRoot *root)
 }
 
 /**
- * ºóÐò±éÀúºìºÚÊ÷
+ * åŽåºéåŽ†çº¢é»‘æ ‘
  *
  * @param[in]  root: the root of the red-black tree
  * @return  the operation status, SUCCESS is 0, FALSE is -1
@@ -84,7 +84,7 @@ Status postorderRBTree(RBRoot *root)
 }
 
 /**
- * µÝ¹é²éÕÒºìºÚÊ÷treeÖÐÊý¾ÝÓòÎªxµÄ½áµã
+ * é€’å½’æŸ¥æ‰¾çº¢é»‘æ ‘treeä¸­æ•°æ®åŸŸä¸ºxçš„ç»“ç‚¹
  *
  * @param[in]  root: the root of the red-black tree
  * @param[in]  x   : the data of the node
@@ -98,7 +98,7 @@ Status recursiveSearchRBTree(RBRoot *root, RBTreeElemType x)
 }
 
 /**
- * ºìºÚÊ÷²åÈëÊý¾ÝÓòÎªxµÄ½áµã
+ * çº¢é»‘æ ‘æ’å…¥æ•°æ®åŸŸä¸ºxçš„ç»“ç‚¹
  *
  * @param[in]  root: the root of the red-black tree
  * @param[in]  x   : the data of the node
@@ -106,7 +106,7 @@ Status recursiveSearchRBTree(RBRoot *root, RBTreeElemType x)
  */
 Status insertRBTree(RBRoot *root, RBTreeElemType x)
 {
-    // ÒÑ´æÔÚ
+    // å·²å­˜åœ¨
     if (recursiveSearchNode(root->node, x)) return FALSE;
 
     Node *node;
@@ -120,7 +120,7 @@ Status insertRBTree(RBRoot *root, RBTreeElemType x)
 }
 
 /**
- * ºìºÚÊ÷É¾³ýÊý¾ÝÓòÎªxµÄ½áµã
+ * çº¢é»‘æ ‘åˆ é™¤æ•°æ®åŸŸä¸ºxçš„ç»“ç‚¹
  *
  * @param[in]  root: the root of the red-black tree
  * @param[in]  key : the data of the node to be deleted
@@ -129,7 +129,7 @@ Status insertRBTree(RBRoot *root, RBTreeElemType x)
 Status deleteRBTree(RBRoot *root, RBTreeElemType x)
 {
     Node *p;
-    // µÝ¹é²éÕÒ
+    // é€’å½’æŸ¥æ‰¾
     p = recursiveSearchNode(root->node, x);
     if (p)
     {
@@ -140,7 +140,7 @@ Status deleteRBTree(RBRoot *root, RBTreeElemType x)
 }
 
 /**
- * ´òÓ¡ºìºÚÊ÷ÐÅÏ¢
+ * æ‰“å°çº¢é»‘æ ‘ä¿¡æ¯
  *
  * @param[in]  root: the root of the red-black tree
  * @return  the operation status, SUCCESS is 0, FALSE is -1
@@ -152,21 +152,21 @@ Status printRBTree(RBRoot *root)
         PrintRBTreeInfo(root->node, root->node->data, 0);
         return SUCCESS;
     }
-    // ¸ù½ÚµãÎªÍ·½áµã£¬²»´æ´¢ÐÅÏ¢
+    // æ ¹èŠ‚ç‚¹ä¸ºå¤´ç»“ç‚¹ï¼Œä¸å­˜å‚¨ä¿¡æ¯
     return FALSE;
 }
 
 /**
- * @brief ÊäÈëelemÊý¾Ý
- *        Ö»ÓÐ¹ÜÀíÔ±Ìí¼ÓÊé±¾µÄÊ±ºò»áµ÷ÓÃ´Ë·½·¨´´½¨ÐÂelem
- *        ¸ù¾ÝÊäÈëµÄ×Ö³¤·ÖÅä¿Õ¼äÖ®ºó¸³¸ø¶ÔÓ¦Öµ
+ * @brief è¾“å…¥elemæ•°æ®
+ *        åªæœ‰ç®¡ç†å‘˜æ·»åŠ ä¹¦æœ¬çš„æ—¶å€™ä¼šè°ƒç”¨æ­¤æ–¹æ³•åˆ›å»ºæ–°elem
+ *        æ ¹æ®è¾“å…¥çš„å­—é•¿åˆ†é…ç©ºé—´ä¹‹åŽèµ‹ç»™å¯¹åº”å€¼
  */
 Status inputRBTElem(RBTreeElemType &e){
 
     e = (RBTreeElemType)malloc(sizeof(RBTElem));
     if(e == NULL)   return OVERFLOW;
 
-    //³õÊ¼»¯ÊäÈëÓò£¬×÷Õß£¬ÆÀ·Ö£¬ÊéÃû
+    //åˆå§‹åŒ–è¾“å…¥åŸŸï¼Œä½œè€…ï¼Œè¯„åˆ†ï¼Œä¹¦å
     // char *author = NULL, *score = NULL, *title = NULL;
     // author = (char*)malloc(sizeof(char)*20);
     // score = (char*)malloc(sizeof(char)*20);
@@ -174,47 +174,47 @@ Status inputRBTElem(RBTreeElemType &e){
 
     char str[20] = "";
 
-    //ÊäÈëÊéÃû
+    //è¾“å…¥ä¹¦å
     printf("please input Title:");
     scanf("%s", str);
     e->Title = (char*)malloc(sizeof(char) * strlen(str));
     strcpy(e->Title, str);
 
-    //ÊäÈëIBSN
+    //è¾“å…¥IBSN
     printf("please input ISBN:");
     e->elem = InputInteger();
     // scanf("%lld", &e->elem);
 
-    //ÊäÈë×÷Õß
+    //è¾“å…¥ä½œè€…
     printf("please input Author:");
     scanf("%s", str);
     e->Author = (char*)malloc(sizeof(char) * strlen(str));
     strcpy(e->Author, str);
 
-    //ÊäÈëÆÀ·Ö
+    //è¾“å…¥è¯„åˆ†
     printf("please input score:");
     scanf("%s", str);
     e->score = (char*)malloc(sizeof(char) * strlen(str));
     strcpy(e->score, str);
 
-    //ÊäÈë³ö°æÉç
+    //è¾“å…¥å‡ºç‰ˆç¤¾
     printf("please input press:");
     scanf("%s", str);
     e->press = (char*)malloc(sizeof(char) * strlen(str));
     strcpy(e->press, str);
 
-    //ÊäÈëÊé±¾Ò³Êý
+    //è¾“å…¥ä¹¦æœ¬é¡µæ•°
     printf("please input number of page:");
     scanf("%d", &e->page_num);
     
-    //ÐÂ²åÈëµÄÊéÄ¬ÈÏÎ´½è³ö
+    //æ–°æ’å…¥çš„ä¹¦é»˜è®¤æœªå€Ÿå‡º
     e->status = 1;
    
     return SUCCESS;
 }
 
 /**
- * @brief ³õÊ¼»¯elem(²âÊÔÓÃ)
+ * @brief åˆå§‹åŒ–elem(æµ‹è¯•ç”¨)
  */
 Status InitRBTElem(RBTreeElemType &e){
 
@@ -233,7 +233,7 @@ Status InitRBTElem(RBTreeElemType &e){
 }
 
 /**
- * @brief ´ÓÎÄ¼þÖÐ¶ÁÈ¡Êý¾Ý²¢¹¹½¨ºìºÚÊ÷
+ * @brief ä»Žæ–‡ä»¶ä¸­è¯»å–æ•°æ®å¹¶æž„å»ºçº¢é»‘æ ‘
  */
 Status FILE_ReadRBT(RBRoot *root){
 
@@ -244,50 +244,50 @@ Status FILE_ReadRBT(RBRoot *root){
 
     char str[20] = "";
 
-    //ÅÐ¶Ï
+    //åˆ¤æ–­
     int status;
-    while(!feof(fp)){//Èç¹ûÎ»ÖÃÖ¸Õë²»ÔÚÎÄ¼þÄ©Î²,¼´Ã»ÓÐ¶Áµ½ÎÄ¼þÄ©Î²
+    while(!feof(fp)){//å¦‚æžœä½ç½®æŒ‡é’ˆä¸åœ¨æ–‡ä»¶æœ«å°¾,å³æ²¡æœ‰è¯»åˆ°æ–‡ä»¶æœ«å°¾
 
         RBTreeElemType e = NULL;
         InitRBTElem(e);
-        //¶Á³öelem(ISBN)
+        //è¯»å‡ºelem(ISBN)
         fscanf(fp, "%lld", &e->elem);
 
-        //ÕâÌõÓï¾äÓÃÓÚ±©Á¦½â¾ö×îºóÒ»¸ö×Ö·ûÎÊÌâ
+        //è¿™æ¡è¯­å¥ç”¨äºŽæš´åŠ›è§£å†³æœ€åŽä¸€ä¸ªå­—ç¬¦é—®é¢˜
         if(e->elem == 0) break;
 
-        //¶Á³öÊéÃû
+        //è¯»å‡ºä¹¦å
         fscanf(fp, "%s", str);
         e->Title = (char*)malloc(sizeof(char) * strlen(str));
         strcpy(e->Title, str);
         fgetc(fp);
         
-        //¶Á³ö×÷Õß
+        //è¯»å‡ºä½œè€…
         fscanf(fp, "%s", str);
         e->Author = (char*)malloc(sizeof(char) * strlen(str));
         strcpy(e->Author, str);
         fgetc(fp);
       
-        //¶Á³ö³ö°æÉç
+        //è¯»å‡ºå‡ºç‰ˆç¤¾
         fscanf(fp, "%s", str);
         e->press = (char*)malloc(sizeof(char) * strlen(str));
         strcpy(e->press, str);
         fgetc(fp);
 
-        //¶Á³öÆÀ·Ö
+        //è¯»å‡ºè¯„åˆ†
         fscanf(fp, "%s", str);
         e->score = (char*)malloc(sizeof(char) * strlen(str));
         strcpy(e->score, str);
         fgetc(fp);
 
-        //¶Á³öÒ³Êý
+        //è¯»å‡ºé¡µæ•°
         fscanf(fp, "%d", &e->page_num);
         fgetc(fp);
 
-        //¶Á³ö×´Ì¬
+        //è¯»å‡ºçŠ¶æ€
         fscanf(fp, "%d", &e->status);   
 
-        //Ð´ÈëÊ÷ÖÐ
+        //å†™å…¥æ ‘ä¸­
         insertRBTree(root, e);
     }
     fclose(fp);
@@ -295,18 +295,18 @@ Status FILE_ReadRBT(RBRoot *root){
 }
 
 /**
- * @brief ½«ºìºÚÊ÷Ð´ÈëÎÄ¼þ
+ * @brief å°†çº¢é»‘æ ‘å†™å…¥æ–‡ä»¶
  */
 Status FILE_WriteRBT(RBRoot root){
 
-    //¿ÕÊ÷
+    //ç©ºæ ‘
     if(root.node == NULL) return ERROR;
 
     FILE *fp = NULL;
-    //ÒÔ"w"Ä£Ê½´ò¿ªÎÄ¼þ, ÎÄ¼þ²»´æÔÚÔò´´½¨ÐÂÎÄ¼þ£¬ÎÄ¼þ´æÔÚÔò¸²¸ÇÔ­ÄÚÈÝ
+    //ä»¥"w"æ¨¡å¼æ‰“å¼€æ–‡ä»¶, æ–‡ä»¶ä¸å­˜åœ¨åˆ™åˆ›å»ºæ–°æ–‡ä»¶ï¼Œæ–‡ä»¶å­˜åœ¨åˆ™è¦†ç›–åŽŸå†…å®¹
     fp = fopen(Data_Book, "w");
 
-    //´«Èë¸ù½Úµã£¬¿ªÊ¼Ç°ÐòµÝ¹é²åÈë
+    //ä¼ å…¥æ ¹èŠ‚ç‚¹ï¼Œå¼€å§‹å‰åºé€’å½’æ’å…¥
     FILE_preWrite(root.node, fp);
     fclose(fp);
 
@@ -314,45 +314,45 @@ Status FILE_WriteRBT(RBRoot root){
 }
 
 /**
- * @brief »ùÓÚÇ°Ðò±éÀúµÄºìºÚÊ÷ÎÄ¼þÐ´Èë
+ * @brief åŸºäºŽå‰åºéåŽ†çš„çº¢é»‘æ ‘æ–‡ä»¶å†™å…¥
  */
 void FILE_preWrite(RBTree tree, FILE *fp){
     
     if(!tree) return;
     
-    //¶¨ÒåÊý¾Ý·Ö¸î·ûºÍ½áÊø
+    //å®šä¹‰æ•°æ®åˆ†å‰²ç¬¦å’Œç»“æŸ
     char mid = ' ', end = '\n';
 
-    //Ð´Èë½áµãÊý¾Ý
-    //Ð´ÈëISBN
+    //å†™å…¥ç»“ç‚¹æ•°æ®
+    //å†™å…¥ISBN
     fprintf(fp, "%lld", tree->data->elem);
     fputc(mid,fp);
-    //Ð´ÈëÊéÃû
+    //å†™å…¥ä¹¦å
     fprintf(fp, "%s", tree->data->Title);
     fputc(mid,fp);
-    //Ð´Èë×÷Õß
+    //å†™å…¥ä½œè€…
     fprintf(fp, "%s", tree->data->Author);
     fputc(mid,fp);
-    //Ð´Èë³ö°æÉç
+    //å†™å…¥å‡ºç‰ˆç¤¾
     fprintf(fp, "%s", tree->data->press);
     fputc(mid,fp);
-    //Ð´ÈëµÃ·Ö
+    //å†™å…¥å¾—åˆ†
     fprintf(fp, "%s", tree->data->score);
     fputc(mid,fp);
-    //Ð´ÈëÒ³Êý
+    //å†™å…¥é¡µæ•°
     fprintf(fp, "%d", tree->data->page_num);
     fputc(mid,fp);
-    //Ð´Èë×´Ì¬
+    //å†™å…¥çŠ¶æ€
     fprintf(fp, "%d", tree->data->status);
     fputc(end,fp);
     
-    //µÝ¹é²åÈë
+    //é€’å½’æ’å…¥
     FILE_preWrite(tree->left, fp);
     FILE_preWrite(tree->right, fp);
 }
 
 /**
- * @brief Í¨¹ýISBNÔÚºìºÚÊ÷ÖÐ²éÕÒÊé±¾£¬²¢·µ»Ø
+ * @brief é€šè¿‡ISBNåœ¨çº¢é»‘æ ‘ä¸­æŸ¥æ‰¾ä¹¦æœ¬ï¼Œå¹¶è¿”å›ž
  */
 RBTreeElemType RBT_SearchByISBN(RBTree R, long long int ISBN){
     

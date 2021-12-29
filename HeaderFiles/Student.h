@@ -10,25 +10,25 @@
 #include"Common.h"
 #include"RedBlackTree.h"
 
-//我的书
+//鎴戠殑涔�
 typedef struct mybook{
-    RBTreeElemType book;//借的书
-    struct mybook *next;//下一本书
+    RBTreeElemType book;//鍊熺殑涔�
+    struct mybook *next;//涓嬩竴鏈功
 }mybook,*MyBook;
 
-//学生结构体
+//瀛︾敓缁撴瀯浣�
 typedef struct student{
-    char name[10]; //学生姓名
-    char account[10];  //账号
-    char ID[11];   //学号
-    char password[10];//密码
-    MyBook mybook;    //我借的书
-    int power;  //学生权力
-    struct student *next;//指向下一个学生
+    char name[10]; //瀛︾敓濮撳悕
+    char account[10];  //璐﹀彿
+    char ID[11];   //瀛﹀彿
+    char password[10];//瀵嗙爜
+    MyBook mybook;    //鎴戝€熺殑涔�
+    int power;  //瀛︾敓鏉冨姏
+    struct student *next;//鎸囧悜涓嬩竴涓鐢�
 }student, *Stu;
 
 /**
- * @brief 初始化Stu
+ * @brief 鍒濆鍖朣tu
  * 
  * @param stu 
  * @return Status 
@@ -36,19 +36,19 @@ typedef struct student{
 Status Stu_Init(Stu &stu);
 
 /**
- * @brief 学生操作
+ * @brief 瀛︾敓鎿嶄綔
  * 
  */
 void Stu_Operation(Stu &stu);
 
 /**
- * @brief 打印学生选项
+ * @brief 鎵撳嵃瀛︾敓閫夐」
  * 
  */
 void Stu_Options();
 
 /**
- * @brief 学生借书
+ * @brief 瀛︾敓鍊熶功
  * 
  * @param stu 
  * @param root 
@@ -56,7 +56,7 @@ void Stu_Options();
 void Stu_Borrow(Stu stu, RBRoot *root);
 
 /**
- * @brief 学生还书
+ * @brief 瀛︾敓杩樹功
  * 
  * @param stu 
  * @param root 
@@ -65,14 +65,14 @@ void Stu_Borrow(Stu stu, RBRoot *root);
 Status Stu_return(Stu &stu, RBRoot *root);
 
 /**
- * @brief 打印我的信息
+ * @brief 鎵撳嵃鎴戠殑淇℃伅
  * 
  * @param stu 
  */
 void Stu_Print_MyInfo(Stu stu);
 
 /**
- * @brief 找回密码
+ * @brief 鎵惧洖瀵嗙爜
  * 
  * @param stu 
  * @return Status 
@@ -80,40 +80,40 @@ void Stu_Print_MyInfo(Stu stu);
 Status Stu_FindPassword(Stu stu);
 
 /**
- * @brief 更改密码
+ * @brief 鏇存敼瀵嗙爜
  * 
  * @return Status 
  */
 Status Stu_ChangePassword(Stu stu);
 
 /**
- * @brief 打印已借的书
+ * @brief 鎵撳嵃宸插€熺殑涔�
  * 
  * @param b 
  */
 void Print_Book(MyBook b);
 
 /**
- * @brief 查找书本
+ * @brief 鏌ユ壘涔︽湰
  * 
  * @param root 
  */
 void Stu_SearchBook(RBRoot *root);
 
 /**
- * @brief 打印查询选项
+ * @brief 鎵撳嵃鏌ヨ閫夐」
  * 
  */
 void Print_Search_Options();
 
 /**
- * @brief 打印借书选项
+ * @brief 鎵撳嵃鍊熶功閫夐」
  * 
  */
 void Print_Borrow_Options();
 
 /**
- * @brief 向学生账户上添加一本书，并将书设置为已借出状态
+ * @brief 鍚戝鐢熻处鎴蜂笂娣诲姞涓€鏈功锛屽苟灏嗕功璁剧疆涓哄凡鍊熷嚭鐘舵€�
  * 
  * @param stu 
  * @param b 

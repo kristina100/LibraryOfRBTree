@@ -7,6 +7,7 @@
  */
 
 #include"Manager.h"
+#include"Login.h"
 #include"Utils.h"
 
 /**
@@ -27,7 +28,7 @@ Status Man_Init(Manager &M);
  * @return  Status
  */
 void Man_ChoiceMenu(){
-    printf("\n*-----------------------------------------------------------------------*\n");
+    printf("\n*-------------------------------------------------------------------------*\n");
     printf("|         Welcome to MangerFuction !  Some operations on it               |\n");
     printf("|                                                                         |\n");
     printf("|                                                                         |\n");
@@ -49,7 +50,7 @@ void Man_ChoiceMenu(){
  * @return  Status
  */
 void Man_SearchMenu(){
-	printf("\n*-----------------------------------------------------------------------*\n");
+	printf("\n*-------------------------------------------------------------------------*\n");
     printf("|       Welcome to MangerSearchingFuction !  Some operations on it        |\n");
     printf("|                                                                         |\n");
     printf("|                                                                         |\n");
@@ -59,6 +60,28 @@ void Man_SearchMenu(){
     printf("|                                                                         |\n");
     printf("|                                                                         |\n");
     printf("*-------------------------------------------------------------------------*\n");
+	return;
+}
+
+/**
+ * @name Man_AccountMenu
+ * @brief 账号管理菜单
+ * @param   
+ * @return 
+ */
+void Man_AccountMenu(){
+	printf("\n*-------------------------------------------------------------------------*\n");
+    printf("|         Welcome to MangerAccountFuction !  Some operations on it        |\n");
+    printf("|                                                                         |\n");
+    printf("|                                                                         |\n");
+    printf("|         1.get the information              2.change password            |\n");
+    printf("|                                                                         |\n");
+    printf("|         3.change power level               4.change books               |\n");
+    printf("|                                                                         |\n");
+	printf("|         5.change name                      0.back                       |\n");
+    printf("|                                                                         |\n");
+    printf("|                                                                         |\n");
+	printf("*-------------------------------------------------------------------------*\n");
 	return;
 }
 
@@ -85,22 +108,26 @@ Status Man_Fuction(Manager &M){
 		switch (choice) {
 		case 1://管理账号
 		{
-			Man_ManageAccount(M,root);
+			if(Man_ManageAccount(M,root)!=SUCCESS)
+				printf("管理账号失败!\n");
 			break;
 		}
 		case 2://上架书籍
 		{
-			Man_Grounding(M,root);
+			if(Man_Grounding(M,root)!=SUCCESS)
+				printf("上架书籍失败!\n");
 			break;
 		}
 		case 3://下架书籍
 		{
-			Man_OffShelf(M,root);
+			if(Man_OffShelf(M,root)!=SUCCESS)
+				printf("下架书籍失败!\n");
 			break;
 		}
 		case 4://查找书籍
 		{
-			Man_SearchBook(M,root);
+			if(Man_SearchBook(M,root)!=SUCCESS)
+				printf("查找书籍失败!\n");
 			break;
 		}
 		case 6://退出 返回上一级
@@ -126,6 +153,101 @@ Status Man_Fuction(Manager &M){
  * @return  Status
  */
 Status Man_ManageAccount(Manager M,RBRoot *root){
+    //读取学生文件
+	FILE *fp = NULL;
+    char stu_ID[11];
+    Stu stu = NULL;
+    Stu_Init(stu);
+
+    //输入学生账号
+	printf("Please enter the ID of the student you want to manage:\n");
+    scanf("%s",&stu_ID);
+
+    //打开文件
+    fp = fopen("Students.dat", "rb");
+    
+    //在数据文件中查找账号
+    while(fread(stu, sizeof(student), 1, fp)){
+        if(strcmp(stu_ID, stu->ID) == 0)
+            //账号相同找到对应学生
+			fclose(fp);
+    }
+    fclose(fp);
+
+	int choice=-1;
+    do {
+		Man_AccountMenu();
+		//打印测试
+		recessedPrintRBTree(root->node, 0);
+		printRBTree(root);
+        choice = InputInteger();
+		switch (choice) {
+		case 1://获取信息
+		{
+			//打印学生信息
+			printf("\tID: %s ", stu->ID);
+			printf("\tName: %s ", stu->name);
+			printf("\tPower: %d ", stu->power);
+    		printf("\t\tAccount: %s \n", stu->account);
+    		Print_Book(stu->mybook);
+			break;
+		}
+		case 2://修改密码
+		{
+			char new_password[10];
+			printf("Please enter the new password:\n");
+			scanf("%s",&new_password);
+            if(stu!=NULL) {
+				strcpy(stu->password,new_password);
+				Updata_StuInfo(stu);
+				printf("Change password successfully!");
+			}else{
+				printf("Change password faile!");
+			}
+			break;
+		}
+		case 3://修改权力
+		{
+			int power;
+			printf("Please enter the new power:\n");
+			scanf("%d",&power);
+            if(stu!=NULL) {
+				stu->power=power;
+				Updata_StuInfo(stu);
+				printf("Change power successfully!");	
+			}else{
+				printf("Change power faile!");
+			}
+			break;
+		}
+		case 4://修改已借的书
+		{
+
+            return SUCCESS;
+			break;
+		}
+		case 5://修改姓名
+		{
+            char new_name[10];
+			printf("Please enter the new name:\n");
+			scanf("%s",&new_name);
+            if(stu!=NULL) {
+				strcpy(stu->name,new_name);
+				Updata_StuInfo(stu);
+				printf("Change name successfully!");
+			}else{
+				printf("Change name faile!");
+			}
+			break;
+		}
+		case 0://退出
+		{
+            return SUCCESS;
+			break;
+		}
+		default:printf("输入有误，请重新输入!（0-5）");
+		}
+	} while (choice!=0);
 	return SUCCESS;
 }
 

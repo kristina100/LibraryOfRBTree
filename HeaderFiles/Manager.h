@@ -15,7 +15,7 @@
 
 //管理员结构体
 typedef struct manager{
-    char name[10]; //管理员姓名
+    char name[10]; //管理员姓�?
     char account[10]; //账号
     char password[10];//密码
     int power;
@@ -93,5 +93,14 @@ Status Man_GetBookTree(RBRoot *root);
  * @return 
  */
 void Man_SearchMenu();
+
+/**
+ * @name Man_AccountMenu
+ * @brief 账号管理菜单
+ * @param   
+ * @return 
+ */
+void Man_AccountMenu();
+
 
 #endif  //MANAGER_H_INCLUDE

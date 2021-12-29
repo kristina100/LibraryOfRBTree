@@ -73,7 +73,7 @@ void menu(RBRoot *root)
         printf("|                                                                         |\n");
         printf("|    3. Shape of tree                9. Display Tree Detail Information   |\n");
         printf("|                                                                         |\n");
-        printf("|    4. Delete Operation             10. Post-SqBT_Traverse                    |\n");
+        printf("|    4. Delete Operation             10. Post-Traverse                    |\n");
         printf("|                                                                         |\n");
         printf("|    5. Insert Operation             11. Find Max and Min Node            |\n");
         printf("|                                                                         |\n");
@@ -106,10 +106,8 @@ void menu(RBRoot *root)
             case 2: 
                 system("cls");
                 if (exist_flag) {
-                    if(FILE_ReadRBT(root) == SUCCESS){
-                        printf("Read initial data successfully ~ \n");
-                    }else
-                        printf ("Failed to open the file!\n");
+                    FILE_ReadRBT(root);
+                    printf("Read initial data successfully ~ \n");
 //                    /* 设置随机数种子 */
 //                    srand((unsigned int) time(NULL));
 //                    printf("Please enter information you want to insert:");
@@ -175,8 +173,8 @@ void menu(RBRoot *root)
                     // InitRBTElem(insert_x);
                     Status insert_status;
                     double cost;
-                    // printf("Please enter the node you want to insert:");
-                    // insert_x->elem = InputInteger();
+                    printf("Please enter the node you want to insert:");
+                    insert_x->elem = InputInteger();
                     beginRecord();
                     insert_status = insertRBTree(root, insert_x);
                     cost = endRecord();
@@ -204,6 +202,7 @@ void menu(RBRoot *root)
                         printf("The search was successful, and the node exists ~\n");
                     else
                         printf("Failed to find, no node exists!\n");
+                    free(search_x);
                 }
                 else
                     printf("No red-black tree exists, please initialize first!\n");
