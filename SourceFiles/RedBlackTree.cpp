@@ -354,9 +354,10 @@ void FILE_preWrite(RBTree tree, FILE *fp){
 /**
  * @brief 通过ISBN在红黑树中查找书本，并返回
  */
-RBTreeElemType RBT_SearchByISBN(RBTree R, int ISBN){
+RBTreeElemType RBT_SearchByISBN(RBTree R, long long int ISBN){
     
-    if (!R || R->data->elem == ISBN) 
+    if(R == NULL) return NULL;
+    if (R->data->elem == ISBN) 
         return R->data;
     else if (R->data->elem > ISBN) 
         return RBT_SearchByISBN(R->left, ISBN);

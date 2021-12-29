@@ -3,7 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-24 17:05:47
  * @LastEditors: Hx
- * @LastEditTime: 2021-12-28 16:18:33
+ * @LastEditTime: 2021-12-29 11:32:21
  */
 //
 // Created by HUAWEI on 2021-12-04.
@@ -131,7 +131,7 @@ Status FILE_ReadRBT(RBRoot *root);
  * @param ISBN 
  * @return RBTreeElemType 
  */
-RBTreeElemType RBT_SearchByISBN(RBTree R, int ISBN);
+RBTreeElemType RBT_SearchByISBN(RBTree R, long long int ISBN);
 
 /**
  * @name printBookInfo

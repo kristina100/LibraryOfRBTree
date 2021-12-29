@@ -3,7 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-23 14:33:25
  * @LastEditors: Hx
- * @LastEditTime: 2021-12-28 20:37:53
+ * @LastEditTime: 2021-12-29 11:26:12
  */
 #ifndef STUDENT_H_INCLUDE
 #define STUDENT_H_INCLUDE
@@ -45,7 +45,7 @@ void Stu_Operation(Stu &stu);
  * @brief 打印学生选项
  * 
  */
-void Stu_Options(Stu stu);
+void Stu_Options();
 
 /**
  * @brief 学生借书

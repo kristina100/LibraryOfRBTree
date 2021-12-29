@@ -3,7 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-24 21:49:11
  * @LastEditors: Hx
- * @LastEditTime: 2021-12-28 20:35:13
+ * @LastEditTime: 2021-12-29 11:39:57
  */
 #include"Common.h"
 #include"HeaderFiles/RedBlackTree.h"
@@ -46,7 +46,7 @@ int main(){
     strcpy(str, "Harper&Row");
     e1->press = (char*)malloc(sizeof(char) * strlen(str));
     strcpy(e1->press, str);
-    e1->elem = 9878786926581;
+    e1->elem = 123434567543;
     
     
     strcpy(str,"Charlotte'sWeb");
@@ -64,8 +64,8 @@ int main(){
     strcpy(str, "HarperCollins");
     e2->press = (char*)malloc(sizeof(char) * strlen(str));
     strcpy(e2->press, str);
-    
-    e2->elem = 9878376497823;
+    e2->elem = 254622366234;
+
     Stu_AddBook(stu, e1);
     Stu_AddBook(stu, e2);
     Stu_Operation(stu);
