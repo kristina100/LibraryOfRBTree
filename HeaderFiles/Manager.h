@@ -8,6 +8,7 @@
 #ifndef MANAGER_H_INCLUDE
 #define MANAGER_H_INCLUDE
 #include"Common.h"
+#include"Student.h"
 #include"RedBlackTree.h"
 #include"RedBlackTreeUtils.h"
 #include"BinarySearchTree.h"
@@ -15,7 +16,7 @@
 
 //管理员结构体
 typedef struct manager{
-    char name[10]; //管理员姓�?
+    char name[10]; //管理员姓�???
     char account[10]; //账号
     char password[10];//密码
     int power;
@@ -31,7 +32,7 @@ Status Man_Init(Manager &M);
 
 /**
  * @name Man_ChoiceMenu
- * @brief 打印管理员菜单
+ * @brief 打印管理员菜�??
  * @param   
  * @return  Status
  */
@@ -88,7 +89,7 @@ Status Man_GetBookTree(RBRoot *root);
 
 /**
  * @name Man_SearchMenu
- * @brief 管理员查找功能菜单
+ * @brief 管理员查找功能菜�??
  * @param   
  * @return 
  */
@@ -102,5 +103,38 @@ void Man_SearchMenu();
  */
 void Man_AccountMenu();
 
+/**
+ * @name SearchByName
+ * @brief 根据书名准确搜索
+ * @param  root
+ * @param  name
+ * @return  status
+ */
+Status SearchByName(RBRoot *root,RBTreeElemType &e);
+
+/**
+ * @name SearchBookByAuthor
+ * @brief 根据作者准确搜�?
+ * @param  root
+ * @param  author
+ * @return  status
+ */
+Status SearchBookByAuthor(RBRoot *root,RBTreeElemType &e);
+
+/**
+ * @name FuzzySearchByName
+ * @brief 根据书名模糊搜索
+ * @param  root
+ * @return  status
+ */
+Status FuzzySearchByName(RBRoot *root,MyBook books);
+
+/**
+ * @name printBookInfo
+ * @brief Print information about a Book
+ * @param e  
+ * @return Status 
+ */
+Status PrintBookInfo(RBTreeElemType e);
 
 #endif  //MANAGER_H_INCLUDE

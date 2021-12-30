@@ -278,8 +278,8 @@ Status Man_Grounding(Manager M,RBRoot *root){
 	RBTreeElemType insert_x = NULL;
     inputRBTElem(insert_x);
     Status insert_status;
-    printf("Please enter the ISBN of the book you want to input:");
-    insert_x->elem = InputInteger();
+    //printf("Please enter the ISBN of the book you want to input:");
+    //insert_x->elem = InputInteger();
     insert_status = insertRBTree(root, insert_x);
     if (insert_status == SUCCESS) {
         printf("Insert node successfully!\n");
@@ -333,22 +333,33 @@ Status Man_SearchBook(Manager M,RBRoot *root){
 			targe =recursiveSearchNode(root->node, search_x);
             if (targe!=NULL){
                 printf("\nThe information in the book is as follows:\n");
-                // PrintBookInfo(targe->data);
+                PrintBookInfo(targe->data);
 			}else
                 printf("Failed to search, no book exists!\n");		
 			break;
 		}
 		case 2://按书名搜索
 		{
-			Man_Grounding(M,root);
+            RBTreeElemType e = (RBTreeElemType)malloc(sizeof(RBTElem));
+			SearchByName(root,e);
+			free(e);
 			break;
 		}
 		case 3://按作者搜索
 		{
-			Man_OffShelf(M,root);
+			RBTreeElemType e = (RBTreeElemType)malloc(sizeof(RBTElem));
+			SearchBookByAuthor(root,e);
+			free(e);
 			break;
 		}
-		case 4://退出 返回上一级
+		case 4://按书名模糊搜索
+		{
+			MyBook books = (MyBook)malloc(sizeof(mybook));
+			//FuzzySearchByName(root,books);
+			free(books);
+			break;
+		}
+		case 0://退出 返回上一级
 		{
             return SUCCESS;
 			break;
@@ -369,4 +380,88 @@ Status Man_GetBookTree(RBRoot *root){
 	return FILE_ReadRBT(root);
 }
 
+/**
+ * @name SearchByName
+ * @brief 根据书名准确搜索
+ * @param  root
+ * @param  name
+ * @return  status
+ */
+Status SearchByName(RBRoot *root,RBTreeElemType &e){
+	char str[20] = "";
+	printf("Please enter the title of the book you want to search:");
+	scanf("%s", str);
+	if(SUCCESS==RBT_SearchByName(root->node,str,e)){
+		PrintBookInfo(e);
+		return SUCCESS;
+	}else{
+        printf("No book exists!Try again!\n");
+		return ERROR;
+	}
+}
+
+/**
+ * @name SearchBookByAuthor
+ * @brief 根据作者准确搜索
+ * @param  root
+ * @param  author
+ * @return  status
+ */
+Status SearchBookByAuthor(RBRoot *root,RBTreeElemType &e){
+	char str[20] = "";
+	printf("Please enter the author of the book you want to search:");
+	scanf("%s", str);
+	if(SUCCESS==RBT_SearchBookByAuthor(root->node,str,e)){
+		PrintBookInfo(e);
+		return SUCCESS;
+	}else{
+        printf("No book exists!Try again!\n");
+		return ERROR;
+	}
+}
+
+// /**
+//  * @name FuzzySearchByName
+//  * @brief 根据书名模糊搜索
+//  * @param  root
+//  * @param  name
+//  * @return  status
+//  */
+// Status RBT_FuzzySearchByName(RBRoot *root,MyBook books){
+// 	char str[20] = "";
+// 	printf("Please enter the author of the book you want to search:");
+// 	scanf("%s", str);
+// 	// if(SUCCESS==RBT_FuzzySearchByName(root->node,str,books)){
+// 	// 	Print_Book(books);
+// 	// 	return SUCCESS;
+// 	// }else{
+//     //     printf("No book exists!Try again!\n");
+// 	// 	return ERROR;
+// 	// }
+// }
+
+/**
+ * @name printBookInfo
+ * @brief Print information about a Book
+ * @param e  
+ * @return Status 
+ */
+Status PrintBookInfo(RBTreeElemType e){
+	if(NULL==e) return ERROR;
+	printf("*---------------------------------------------------------------------------------------*\n");
+    printf("                                <Book Infomation>                                     \n\n");
+    printf("     ISBN     |         Title         |      Author      |    Press     |     Score   \n\n");
+
+    //打印ISBN
+    printf("%lld",e->elem);
+    //打印书名
+    printf("%-20s",e->Title);
+    //打印作者
+    printf("%-20s",e->Author);
+    //打印出版社
+    printf("%-20s",e->press);
+	//打印评分
+	printf("%-20d",e->score);
+	return SUCCESS;
+}
 

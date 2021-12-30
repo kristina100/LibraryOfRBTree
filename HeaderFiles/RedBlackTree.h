@@ -32,56 +32,56 @@ typedef struct RBTElem{
 //    int total; //total amount of the book
 //    int ISBN;   
     char *Title; //书名
-    char *Author;   //作者
-    char *press;    //出版社
+    char *Author;   //作�?
+    char *press;    //出版�?
     char *score;    //书本评分
     int page_num; //书的页数
     // char *publishing_year;  //出版时间 
     // char *classification; //书的类型
     // float price;    //价格
-    int status;  //状态 0为借出状态, 1为可借状态
+    int status;  //状�? 0为借出状�?, 1为可借状�?
     long long int elem;   //书的编号ISBN
 }RBTElem, *RBTreeElemType;
 
 /* 红黑树的结点 */
 typedef struct RBTreeNode{
-    RBTreeElemType data;       /* 数据域 */
+    RBTreeElemType data;       /* 数据�? */
     char color;                /* 颜色 */
-    struct RBTreeNode *left;   /* 左孩子结点 */
-    struct RBTreeNode *right;  /* 右孩子结点 */
-    struct RBTreeNode *parent; /* 父结点 */
+    struct RBTreeNode *left;   /* 左孩子结�? */
+    struct RBTreeNode *right;  /* 右孩子结�? */
+    struct RBTreeNode *parent; /* 父结�? */
 } Node, *RBTree;
 
-/* 红黑树的根结点 */
+/* 红黑树的根结�? */
 typedef struct RB_Root{
     Node *node;
 }RBRoot;
 
-/* 创建红黑树 */
+/* 创建红黑�? */
 RBRoot *createRBTree();
 
 /* 销毁红黑树 */
 Status destroyRBTree(RBRoot *root);
 
-/* 前序遍历红黑树 */
+/* 前序遍历红黑�? */
 Status preorderRBTree(RBRoot *root);
 
-/* 中序遍历红黑树 */
+/* 中序遍历红黑�? */
 Status inorderRBTree(RBRoot *root);
 
-/* 后序遍历红黑树 */
+/* 后序遍历红黑�? */
 Status postorderRBTree(RBRoot *root);
 
-/* 递归查找红黑树 */
+/* 递归查找红黑�? */
 Status recursiveSearchRBTree(RBRoot *root, RBTreeElemType x);
 
-/* 红黑树插入结点 */
+/* 红黑树插入结�? */
 Status insertRBTree(RBRoot *root, RBTreeElemType x);
 
-/* 红黑树删除结点 */
+/* 红黑树删除结�? */
 Status deleteRBTree(RBRoot *root, RBTreeElemType x);
 
-/* 打印红黑树信息 */
+/* 打印红黑树信�? */
 Status printRBTree(RBRoot *root);
 
 /**
@@ -125,7 +125,7 @@ void FILE_preWrite(RBTree tree, FILE *fp);
 Status FILE_ReadRBT(RBRoot *root);
 
 /**
- * @brief 通过ISBN在红黑树中查找书本，并返回
+ * @brief 通过ISBN在红黑树中查找书本，并返�?
  * 
  * @param R
  * @param ISBN 
@@ -133,12 +133,33 @@ Status FILE_ReadRBT(RBRoot *root);
  */
 RBTreeElemType RBT_SearchByISBN(RBTree R, long long int ISBN);
 
+
 /**
- * @name printBookInfo
- * @brief Print information about a Book
- * @param e  
- * @return Status 
+ * @name RBT_SearchByName
+ * @brief 根据书名准确搜索
+ * @param  root
+ * @param  name
+ * @return  status
  */
-Status PrintBookInfo(RBTreeElemType e);
+Status RBT_SearchByName(RBTree node,char *name,RBTreeElemType &e);
+
+/**
+ * @name RBT_SearchBookByAuthor
+ * @brief 根据作者准确搜�?
+ * @param  root
+ * @param  author
+ * @return  status
+ */
+Status RBT_SearchBookByAuthor(RBTree node,char *author,RBTreeElemType &e);
+
+// /**
+//  * @name RBT_FuzzySearchByName
+//  * @brief 根据书名模糊搜索
+//  * @param  root
+//  * @param  name
+//  * @param  books
+//  * @return  status
+//  */
+// Status RBT_FuzzySearchByName(RBTree node,char *name,MyBook books);
 
 #endif //REDBLACKTREE_REDBLACKTREE_H
