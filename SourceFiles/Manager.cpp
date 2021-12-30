@@ -76,9 +76,9 @@ void Man_AccountMenu(){
     printf("|                                                                         |\n");
     printf("|         1.get the information              2.change password            |\n");
     printf("|                                                                         |\n");
-    printf("|         3.change power level               4.change books               |\n");
+    printf("|         3.change power level               4.Set book return               |\n");
     printf("|                                                                         |\n");
-	printf("|         5.change name                      0.back                       |\n");
+	printf("|         5.change name                      6.Set borrowing                       |\n");
     printf("|                                                                         |\n");
     printf("|                                                                         |\n");
 	printf("*-------------------------------------------------------------------------*\n");
@@ -98,7 +98,7 @@ Status Man_Fuction(Manager &M){
 	root = createRBTree();
     //初始化书本树
 	//Man_GetBookTree(root);
-	int choice=-1;
+	int choice;
     do {
 		Man_ChoiceMenu();
 		//打印测试
@@ -108,26 +108,26 @@ Status Man_Fuction(Manager &M){
 		switch (choice) {
 		case 1://管理账号
 		{
-			if(Man_ManageAccount(M,root)!=SUCCESS)
-				printf("管理账号失败!\n");
+			if(Man_ManageAccount(M,root)==ERROR)
+				printf("Account does not exist!\n");
 			break;
 		}
 		case 2://上架书籍
 		{
 			if(Man_Grounding(M,root)!=SUCCESS)
-				printf("上架书籍失败!\n");
+				printf("Failed to put the book on the shelf!\n");
 			break;
 		}
 		case 3://下架书籍
 		{
 			if(Man_OffShelf(M,root)!=SUCCESS)
-				printf("下架书籍失败!\n");
+				printf("Book off shelf failed!\n");
 			break;
 		}
 		case 4://查找书籍
 		{
 			if(Man_SearchBook(M,root)!=SUCCESS)
-				printf("查找书籍失败!\n");
+				printf("Failed to query books!\n");
 			break;
 		}
 		case 6://退出 返回上一级
@@ -155,6 +155,7 @@ Status Man_Fuction(Manager &M){
 Status Man_ManageAccount(Manager M,RBRoot *root){
     //读取学生文件
 	FILE *fp = NULL;
+	int flag=0;
     char stu_ID[11];
     Stu stu = NULL;
     Stu_Init(stu);
@@ -166,13 +167,19 @@ Status Man_ManageAccount(Manager M,RBRoot *root){
     //打开文件
     fp = fopen("Students.dat", "rb");
     
-    //在数据文件中查找账号
+    //在数据文件中查找学号
     while(fread(stu, sizeof(student), 1, fp)){
-        if(strcmp(stu_ID, stu->ID) == 0)
-            //账号相同找到对应学生
+        if(strcmp(stu_ID, stu->ID) == 0){
+			//账号相同找到对应学生
 			fclose(fp);
+			flag =1;
+		} 
     }
     fclose(fp);
+	if(!flag){//判断是否找到
+		stu =NULL;
+		return ERROR;
+	}
 
 	int choice=-1;
     do {
@@ -184,19 +191,21 @@ Status Man_ManageAccount(Manager M,RBRoot *root){
 		switch (choice) {
 		case 1://获取信息
 		{
+			if(!stu) break;
 			//打印学生信息
 			printf("\tID: %s ", stu->ID);
 			printf("\tName: %s ", stu->name);
-			printf("\tPower: %d ", stu->power);
-    		printf("\t\tAccount: %s \n", stu->account);
-    		Print_Book(stu->mybook);
+			printf("\t\tAccount: %s ", stu->account);
+			printf("\tPower: %d\n ", stu->power);
+			if(!stu->mybook) printf("Have no books!\n");
+    		else Print_Book(stu->mybook);
 			break;
 		}
 		case 2://修改密码
 		{
-			char new_password[10];
+			char new_password[10] ="";
 			printf("Please enter the new password:\n");
-			scanf("%s",&new_password);
+			scanf("%s",new_password);
             if(stu!=NULL) {
 				strcpy(stu->password,new_password);
 				Updata_StuInfo(stu);
@@ -220,10 +229,13 @@ Status Man_ManageAccount(Manager M,RBRoot *root){
 			}
 			break;
 		}
-		case 4://修改已借的书
+		case 4://设置新增还书
 		{
-
-            return SUCCESS;
+			if(Stu_return(stu, root) == SUCCESS){
+                printf("Return the book successfully!\n");
+            }else{
+				printf("Failed to return book!\n");
+			}
 			break;
 		}
 		case 5://修改姓名
@@ -238,6 +250,11 @@ Status Man_ManageAccount(Manager M,RBRoot *root){
 			}else{
 				printf("Change name faile!");
 			}
+			break;
+		}
+		case 6://设置新增借书
+		{
+			Stu_Borrow(stu, root);	
 			break;
 		}
 		case 0://退出

@@ -13,24 +13,24 @@
 #include"Manager.h"
 
 /**
- * @brief 暂停
+ * @brief 鏆傚仠
  */
 void Pause();
 
 /**
- * @brief 清空屏幕
+ * @brief 娓呯┖灞忓箷
  */
 void Clean();
 
 /**
- * @brief 打印书本信息
+ * @brief 鎵撳嵃涔︽湰淇℃伅
  * 
  * @param e 
  */
 void Print_BookInfo(RBTreeElemType e);
 
 /*
- * 检测用户整数输入
+ * 妫€娴嬬敤鎴锋暣鏁拌緭鍏�
  *
  * @param[in]  none
  * @return  legal integer
@@ -39,7 +39,7 @@ long long int InputInteger();
 
 /**
  * @name  Quit()
- * @brief 退出判断
+ * @brief 閫€鍑哄垽鏂�
  * @param   
  * @return  
  */
