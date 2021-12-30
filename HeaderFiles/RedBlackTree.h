@@ -139,18 +139,18 @@ RBTreeElemType RBT_SearchByISBN(RBTree R, long long int ISBN);
  * @brief 根据书名准确搜索
  * @param  root
  * @param  name
- * @return  status
+ * @return  RBTreeElemType
  */
-Status RBT_SearchByName(RBTree node,char *name,RBTreeElemType &e);
+RBTreeElemType RBT_SearchByName(RBTree node,char *name);
 
 /**
  * @name RBT_SearchBookByAuthor
  * @brief 根据作者准确搜�?
  * @param  root
  * @param  author
- * @return  status
+ * @return  RBTreeElemType
  */
-Status RBT_SearchBookByAuthor(RBTree node,char *author,RBTreeElemType &e);
+RBTreeElemType RBT_SearchBookByAuthor(RBTree node,char *author);
 
 // /**
 //  * @name RBT_FuzzySearchByName

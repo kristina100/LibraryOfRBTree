@@ -372,17 +372,14 @@ RBTreeElemType RBT_SearchByISBN(RBTree R, long long int ISBN){
  * @brief 根据书名准确搜索
  * @param  root
  * @param  name
- * @return  status
+ * @return  RBTreeElemType
  */
-Status RBT_SearchByName(RBTree node,char *name,RBTreeElemType &e){
-    if(node == NULL) return ERROR;
-    if (strcmp(name,node->data->Title)==0) {
-        e = node->data;
-        return SUCCESS;
-    }
-    RBT_SearchByName(node->left,name,e);
-    RBT_SearchByName(node->right,name,e);
-    return OVERFLOW;
+RBTreeElemType RBT_SearchByName(RBTree node,char *name){
+    if (!node || strcmp(name,node->data->Title)==0) 
+        return node->data;
+    if(NULL!=RBT_SearchByName(node->right,name))return RBT_SearchByName(node->right,name);
+    else if(NULL!=RBT_SearchByName(node->left,name))return RBT_SearchByName(node->left,name);
+    else return NULL;
 }
 
 /**
@@ -390,17 +387,14 @@ Status RBT_SearchByName(RBTree node,char *name,RBTreeElemType &e){
  * @brief 根据作者准确搜�?
  * @param  root
  * @param  author
- * @return  status
+ * @return  RBTreeElemType
  */
-Status RBT_SearchBookByAuthor(RBTree node,char *author,RBTreeElemType &e){
-    if(node == NULL) return ERROR;
-    if (strcmp(author,node->data->Author)==0) {
-        e = node->data;
-        return SUCCESS;
-    }
-    RBT_SearchByName(node->left,author,e);
-    RBT_SearchByName(node->right,author,e);
-    return OVERFLOW;
+RBTreeElemType RBT_SearchBookByAuthor(RBTree node,char *author){
+    if (!node || strcmp(author,node->data->Author)==0) 
+        return node->data;
+    if(NULL!=RBT_SearchByName(node->right,author))return RBT_SearchByName(node->right,author);
+    else if(NULL!=RBT_SearchByName(node->left,author))return RBT_SearchByName(node->left,author);
+    else return NULL;
 }
 
 /**

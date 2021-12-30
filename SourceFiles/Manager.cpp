@@ -316,6 +316,7 @@ Status Man_OffShelf(Manager M,RBRoot *root){
  */
 Status Man_SearchBook(Manager M,RBRoot *root){
 	int choice=-1;
+	RBTreeElemType e = (RBTreeElemType)malloc(sizeof(RBTElem));
     do {
 		Man_SearchMenu();
 		//打印测试
@@ -340,16 +341,13 @@ Status Man_SearchBook(Manager M,RBRoot *root){
 		}
 		case 2://按书名搜索
 		{
-            RBTreeElemType e = (RBTreeElemType)malloc(sizeof(RBTElem));
-			SearchByName(root,e);
-			free(e);
+			e = SearchByName(root);
 			break;
 		}
 		case 3://按作者搜索
 		{
-			RBTreeElemType e = (RBTreeElemType)malloc(sizeof(RBTElem));
-			SearchBookByAuthor(root,e);
-			free(e);
+			
+			e = SearchBookByAuthor(root);
 			break;
 		}
 		case 4://按书名模糊搜索
@@ -361,12 +359,14 @@ Status Man_SearchBook(Manager M,RBRoot *root){
 		}
 		case 0://退出 返回上一级
 		{
+			free(e);
             return SUCCESS;
 			break;
 		}
 		default:printf("输入有误，请重新输入!（1-4）");
 		}
 	} while (choice!=4);
+	free(e);
 	return SUCCESS;
 }
 
@@ -385,18 +385,20 @@ Status Man_GetBookTree(RBRoot *root){
  * @brief 根据书名准确搜索
  * @param  root
  * @param  name
- * @return  status
+ * @return  RBTreeElemType
  */
-Status SearchByName(RBRoot *root,RBTreeElemType &e){
+RBTreeElemType SearchByName(RBRoot *root){
+	RBTreeElemType e =(RBTreeElemType)malloc(sizeof(RBTElem));
 	char str[20] = "";
 	printf("Please enter the title of the book you want to search:");
 	scanf("%s", str);
-	if(SUCCESS==RBT_SearchByName(root->node,str,e)){
+	e = RBT_SearchByName(root->node,str);
+	if(e){
 		PrintBookInfo(e);
-		return SUCCESS;
+		return e;
 	}else{
         printf("No book exists!Try again!\n");
-		return ERROR;
+		return NULL;
 	}
 }
 
@@ -405,18 +407,20 @@ Status SearchByName(RBRoot *root,RBTreeElemType &e){
  * @brief 根据作者准确搜索
  * @param  root
  * @param  author
- * @return  status
+ * @return  RBTreeElemType
  */
-Status SearchBookByAuthor(RBRoot *root,RBTreeElemType &e){
+RBTreeElemType SearchBookByAuthor(RBRoot *root){
+	RBTreeElemType e =(RBTreeElemType)malloc(sizeof(RBTElem));
 	char str[20] = "";
 	printf("Please enter the author of the book you want to search:");
 	scanf("%s", str);
-	if(SUCCESS==RBT_SearchBookByAuthor(root->node,str,e)){
+	e = RBT_SearchBookByAuthor(root->node,str);
+	if(e){
 		PrintBookInfo(e);
-		return SUCCESS;
+		return e;
 	}else{
         printf("No book exists!Try again!\n");
-		return ERROR;
+		return NULL;
 	}
 }
 
@@ -448,20 +452,20 @@ Status SearchBookByAuthor(RBRoot *root,RBTreeElemType &e){
  */
 Status PrintBookInfo(RBTreeElemType e){
 	if(NULL==e) return ERROR;
-	printf("*---------------------------------------------------------------------------------------*\n");
-    printf("                                <Book Infomation>                                     \n\n");
-    printf("     ISBN     |         Title         |      Author      |    Press     |     Score   \n\n");
+	printf("*------------------------------------------------------------------------*\n");
+    printf("                          <Book Infomation>                               \n\n");
+    printf("     ISBN     |    Title    |    Author   |   Press   |   Score   \n\n");
 
     //打印ISBN
-    printf("%lld",e->elem);
+    printf("%-15lld",e->elem);
     //打印书名
-    printf("%-20s",e->Title);
+    printf("%-15s",e->Title);
     //打印作者
-    printf("%-20s",e->Author);
+    printf("%-15s",e->Author);
     //打印出版社
-    printf("%-20s",e->press);
+    printf("%-15s",e->press);
 	//打印评分
-	printf("%-20d",e->score);
+	printf("%-10d",e->score);
 	return SUCCESS;
 }
 

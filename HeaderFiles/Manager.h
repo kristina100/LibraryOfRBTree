@@ -105,21 +105,21 @@ void Man_AccountMenu();
 
 /**
  * @name SearchByName
- * @brief 鏍规嵁涔﹀悕鍑嗙‘鎼滅储
+ * @brief 根据书名准确搜索
  * @param  root
  * @param  name
- * @return  status
+ * @return  RBTreeElemType
  */
-Status SearchByName(RBRoot *root,RBTreeElemType &e);
+RBTreeElemType SearchByName(RBRoot *root);
 
 /**
  * @name SearchBookByAuthor
- * @brief 鏍规嵁浣滆�呭噯纭悳绱?
+ * @brief 根据作者准确搜索
  * @param  root
  * @param  author
- * @return  status
+ * @return  RBTreeElemType
  */
-Status SearchBookByAuthor(RBRoot *root,RBTreeElemType &e);
+RBTreeElemType SearchBookByAuthor(RBRoot *root);
 
 /**
  * @name FuzzySearchByName
