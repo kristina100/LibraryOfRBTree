@@ -1,3 +1,10 @@
+/*
+ * @Descripttion: 
+ * @Author: Hx
+ * @Date: 2021-12-24 17:05:47
+ * @LastEditors: Hx
+ * @LastEditTime: 2022-01-02 00:12:18
+ */
 //
 // Created by HUAWEI on 2021-12-05.
 //
@@ -7,10 +14,10 @@
 #include"Common.h"
 #include "RedBlackTree.h"
 
-/* å¹³è¡¡äºŒå‰æ ‘ç»“ç‚¹å·¦æ—‹ */
+/* Æ½ºâ¶ş²æÊ÷½áµã×óĞı */
 Status RBTreeLeftRotate(RBRoot *root, Node *node);
 
-/* å¹³è¡¡äºŒå‰æ ‘ç»“ç‚¹å³æ—‹ */
+/* Æ½ºâ¶ş²æÊ÷½áµãÓÒĞı */
 Status RBTreeRightRotate(RBRoot *root, Node *node);
 
 #endif //REDBLACKTREE_BALANCEDBINARYTREE_H

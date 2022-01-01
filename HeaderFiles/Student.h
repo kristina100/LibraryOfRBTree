@@ -3,11 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-23 14:33:25
  * @LastEditors: Hx
-<<<<<<< HEAD
- * @LastEditTime: 2022-01-01 23:45:20
-=======
- * @LastEditTime: 2021-12-28 20:37:53
->>>>>>> parent of f7c6dce (瀹屽杽杩樹功绯荤粺锛屽垵姝ユ祴璇曟病闂)
+ * @LastEditTime: 2022-01-01 23:57:31
  */
 #ifndef STUDENT_H_INCLUDE
 #define STUDENT_H_INCLUDE
@@ -49,7 +45,7 @@ void Stu_Operation(Stu &stu);
  * @brief 打印学生选项
  * 
  */
-void Stu_Options(Stu stu);
+void Stu_Options();
 
 /**
  * @brief 借书
@@ -60,7 +56,7 @@ void Stu_Options(Stu stu);
 void Stu_Borrow(Stu stu, RBRoot *root);
 
 /**
- * @brief 鐎涳妇鏁撴潻妯瑰姛
+ * @brief 学生还书
  * 
  * @param stu 
  * @param root 
@@ -69,7 +65,7 @@ void Stu_Borrow(Stu stu, RBRoot *root);
 Status Stu_return(Stu &stu, RBRoot *root);
 
 /**
- * @brief 閹垫挸宓冮幋鎴犳畱娣団剝浼?
+ * @brief 打印我的信息
  * 
  * @param stu 
  */
@@ -91,33 +87,33 @@ Status Stu_FindPassword(Stu stu);
 Status Stu_ChangePassword(Stu stu);
 
 /**
- * @brief 閹垫挸宓冨鎻掆偓鐔烘畱娑旓拷
+ * @brief 打印已借的书
  * 
  * @param b 
  */
 void Print_Book(MyBook b);
 
 /**
- * @brief 閺屻儲澹樻稊锔芥拱
+ * @brief 查找书本
  * 
  * @param root 
  */
 void Stu_SearchBook(RBRoot *root);
 
 /**
- * @brief 閹垫挸宓冮弻銉嚄闁銆?
+ * @brief 打印查询选项
  * 
  */
 void Print_Search_Options();
 
 /**
- * @brief 閹垫挸宓冮崐鐔跺姛闁銆?
+ * @brief 打印借书选项
  * 
  */
 void Print_Borrow_Options();
 
 /**
- * @brief 
+ * @brief 向学生账户上添加一本书，并将书设置为已借出状态
  * 
  * @param stu 
  * @param b 

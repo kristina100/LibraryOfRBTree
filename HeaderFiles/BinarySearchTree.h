@@ -1,3 +1,10 @@
+/*
+ * @Descripttion: 
+ * @Author: Hx
+ * @Date: 2021-12-24 17:05:47
+ * @LastEditors: Hx
+ * @LastEditTime: 2022-01-02 00:12:09
+ */
 //
 // Created by HUAWEI on 2021-12-04.
 //
@@ -6,19 +13,19 @@
 #include"Common.h"
 #include "RedBlackTree.h"
 
-/* äºŒå‰æŸ¥æ‰¾æ ‘æ’å…¥ç»“ç‚¹ */
+/* ¶ş²æ²éÕÒÊ÷²åÈë½áµã */
 Status insertBinarySearchTree(RBRoot *root, Node *node);
 
-/* äºŒå‰æŸ¥æ‰¾æ ‘æŸ¥æ‰¾æœ€å°ç»“ç‚¹ */
+/* ¶ş²æ²éÕÒÊ÷²éÕÒ×îĞ¡½áµã */
 RBTree minBinarySearchTreeNode(RBTree tree);
 
-/* äºŒå‰æŸ¥æ‰¾æ ‘æŸ¥æ‰¾æœ€å¤§ç»“ç‚¹ */
+/* ¶ş²æ²éÕÒÊ÷²éÕÒ×î´ó½áµã */
 RBTree maxBinarySearchTreeNode(RBTree tree);
 
-/* äºŒå‰æŸ¥æ‰¾æ ‘æŸ¥æ‰¾å‰é©±ç»“ç‚¹ */
+/* ¶ş²æ²éÕÒÊ÷²éÕÒÇ°Çı½áµã */
 RBTree BSTreePrecursor(RBTree node);
 
-/* äºŒå‰æŸ¥æ‰¾æ ‘æŸ¥æ‰¾åç»§ç»“ç‚¹ */
+/* ¶ş²æ²éÕÒÊ÷²éÕÒºó¼Ì½áµã */
 RBTree BSTreeSuccessor(RBTree node);
 
 #endif //REDBLACKTREE_BINARYSEARCHTREE_H

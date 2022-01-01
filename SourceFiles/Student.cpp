@@ -3,7 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-23 14:33:31
  * @LastEditors: Hx
- * @LastEditTime: 2022-01-01 23:56:55
+ * @LastEditTime: 2022-01-02 00:03:44
  */
 #include"Student.h"
 #include"Utils.h"
@@ -137,7 +137,7 @@ void Stu_Operation(Stu &stu){
             //归还书籍
             case 3:{
                 if(Stu_return(stu, root) == SUCCESS){
-                    printf("Return the book successfully!");
+                    printf("Return the book successfully!\n");
                 }
                 Pause();
             }break;
@@ -148,7 +148,7 @@ void Stu_Operation(Stu &stu){
                 Pause();
             }break;
             default:{
-                printf("\nOperation does not exist\n");
+                printf("\nOperation does not exist!\n");
                 Pause();
             }break;
         }
@@ -213,14 +213,14 @@ void Stu_Borrow(Stu stu, RBRoot *root){
                         }
                         //书本已借出
                         else{
-                            printf("Fail! The books have been borrowed.");
+                            printf("Fail! The books have been borrowed.\n");
                         }
                         Pause();
                     }
                 }
                 //书本不存在
                 else{
-                    printf("The book does not exist");
+                    printf("The book does not exist!\n");
                 }
             }break;
         }
@@ -361,7 +361,7 @@ Status Stu_return(Stu &stu, RBRoot *root){
 
     //学生没有借书
     if(stu->mybook == NULL || stu->mybook->book == NULL){
-        printf("You have borrowed no books!");
+        printf("You have borrowed no books!\n");
         return ERROR;
     }
     //打印已借的书
@@ -385,7 +385,8 @@ Status Stu_return(Stu &stu, RBRoot *root){
     }
     //编号错误，书不存在
     if(!p){
-        printf("Input error!, the book does not exist!");
+        printf("Input error!, the book does not exist!\n");
+        continue;
     }
 
     //删去第一本书

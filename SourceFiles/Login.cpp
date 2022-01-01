@@ -3,7 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-23 15:56:56
  * @LastEditors: Hx
- * @LastEditTime: 2021-12-27 22:01:33
+ * @LastEditTime: 2022-01-01 23:57:31
  */
 #include"../HeaderFiles/Login.h"
 #include"../HeaderFiles/Utils.h"
@@ -379,7 +379,7 @@ Status Updata_StuInfo(Stu &stu){
     //以二进制只读"rb"打开学生数据文件
     fp = fopen(Data_Stu, "rb");
     if(fp == NULL){
-        printf("Error! Student data does not exist");
+         printf("Error! Student data does not exist!\n");
         return ERROR;
     }
     //初始化
@@ -410,7 +410,6 @@ Status Updata_StuInfo(Stu &stu){
     t = p->next;
     stu->next = t->next;
     p->next = stu;
-    free(t);
 
     //以二进制写"w"打开文件，覆盖输入
     fp = fopen(Data_Stu, "wb");
@@ -427,5 +426,6 @@ Status Updata_StuInfo(Stu &stu){
         free(head);
         head = p;
     }
+    free(t);
     return SUCCESS;
 }
