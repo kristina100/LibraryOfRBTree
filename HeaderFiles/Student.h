@@ -3,32 +3,32 @@
  * @Author: Hx
  * @Date: 2021-12-23 14:33:25
  * @LastEditors: Hx
- * @LastEditTime: 2021-12-28 20:37:53
+ * @LastEditTime: 2022-01-01 23:33:23
  */
 #ifndef STUDENT_H_INCLUDE
 #define STUDENT_H_INCLUDE
 #include"Common.h"
 #include"RedBlackTree.h"
 
-//鎴戠殑涔�
+//�鱾�ṹ��
 typedef struct mybook{
-    RBTreeElemType book;//鍊熺殑涔�
-    struct mybook *next;//涓嬩竴鏈功
+    RBTreeElemType book; //
+    struct mybook *next; //��һ��
 }mybook,*MyBook;
 
-//瀛︾敓缁撴瀯浣�
+//ѧ���ṹ��
 typedef struct student{
-    char name[10]; //瀛︾敓濮撳悕
-    char account[10];  //璐﹀彿
-    char ID[11];   //瀛﹀彿
-    char password[10];//瀵嗙爜
-    MyBook mybook;    //鎴戝€熺殑涔�
-    int power;  //瀛︾敓鏉冨姏
-    struct student *next;//鎸囧悜涓嬩竴涓鐢�
+    char name[10]; //����
+    char account[10];  //�˺�
+    char ID[11];   //ѧ��
+    char password[10];//����
+    MyBook mybook;    //��
+    int power;  //Ȩ��
+    struct student *next;   //��һ��ѧ��
 }student, *Stu;
 
 /**
- * @brief 鍒濆鍖朣tu
+ * @brief ��ʼ��Stu
  * 
  * @param stu 
  * @return Status 
@@ -42,7 +42,7 @@ Status Stu_Init(Stu &stu);
 void Stu_Operation(Stu &stu);
 
 /**
- * @brief 鎵撳嵃瀛︾敓閫夐」
+ * @brief ��ӡѧ��ѡ��
  * 
  */
 void Stu_Options(Stu stu);
@@ -65,14 +65,14 @@ void Stu_Borrow(Stu stu, RBRoot *root);
 Status Stu_return(Stu &stu, RBRoot *root);
 
 /**
- * @brief 鎵撳嵃鎴戠殑淇℃伅
+ * @brief 鎵撳嵃鎴戠殑淇℃�?
  * 
  * @param stu 
  */
 void Stu_Print_MyInfo(Stu stu);
 
 /**
- * @brief 鎵惧洖瀵嗙爜
+ * @brief 鎵惧洖瀵嗙�?
  * 
  * @param stu 
  * @return Status 
@@ -80,7 +80,7 @@ void Stu_Print_MyInfo(Stu stu);
 Status Stu_FindPassword(Stu stu);
 
 /**
- * @brief 鏇存敼瀵嗙爜
+ * @brief 鏇存敼瀵嗙�?
  * 
  * @return Status 
  */
@@ -101,13 +101,13 @@ void Print_Book(MyBook b);
 void Stu_SearchBook(RBRoot *root);
 
 /**
- * @brief 鎵撳嵃鏌ヨ閫夐」
+ * @brief 鎵撳嵃鏌ヨ閫夐�?
  * 
  */
 void Print_Search_Options();
 
 /**
- * @brief 鎵撳嵃鍊熶功閫夐」
+ * @brief 鎵撳嵃鍊熶功閫夐�?
  * 
  */
 void Print_Borrow_Options();
