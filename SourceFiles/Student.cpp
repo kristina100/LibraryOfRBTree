@@ -3,7 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-23 14:33:31
  * @LastEditors: Hx
- * @LastEditTime: 2021-12-28 21:02:51
+ * @LastEditTime: 2022-01-01 23:56:55
  */
 #include"Student.h"
 #include"Utils.h"
@@ -27,7 +27,7 @@ Status Stu_Init(Stu &stu){
 /**
  * @brief 打印学生选项
  */
-void Stu_Options(Stu stu){
+void Stu_Options(){
     Clean();
     printf("\n");
     printf("*-------------------------------------------------------------------------*\n");
@@ -114,15 +114,13 @@ void Stu_Operation(Stu &stu){
     int choose;
     
     while (true){
-        Stu_Options(stu);
+        Stu_Options();
         scanf("%d", &choose);
      
         switch (choose){
             
             //返回上一级
             case 0:{
-                //将树写入文件
-                FILE_WriteRBT(*root);
                 return;
             }break;
 
@@ -140,8 +138,6 @@ void Stu_Operation(Stu &stu){
             case 3:{
                 if(Stu_return(stu, root) == SUCCESS){
                     printf("Return the book successfully!");
-                }else{
-                    printf("Failed to return the book!");
                 }
                 Pause();
             }break;
@@ -297,27 +293,21 @@ void Stu_SearchBook(RBRoot *root){
 
             //按ISBN查找
             case 1:{
-                printf("按ISBN查找");
+                
                 Pause();
             }break;
 
             //按书名查找
             case 2:{
-                printf("按书名查找");
+
                 Pause();
             }break;
 
             //按作者查找
             case 3:{
-                printf("按作者查找");
+
                 Pause();
             }break;
-
-            //待定
-            case 4:{
-                printf("待定");
-                Pause();
-            }
 
             default:{
                 printf("\nOperation does not exist\n");
@@ -368,8 +358,60 @@ Status Stu_AddBook(Stu &stu, RBTreeElemType b){
  * @brief 学生还书
  */
 Status Stu_return(Stu &stu, RBRoot *root){
+
+    //学生没有借书
+    if(stu->mybook == NULL || stu->mybook->book == NULL){
+        printf("You have borrowed no books!");
+        return ERROR;
+    }
+    //打印已借的书
     Clean();
     Print_Book(stu->mybook);
 
+    int num = 0;
+    printf("\rPlease choose a book to return: ");
+    num = InputInteger();
+    
+    RBTreeElemType e = NULL;
+    MyBook q = NULL, p = NULL;
+    q = p = stu->mybook;
+    //在stu->mybook中找到对应书
+    while(p && num != 1){
+        num--;
+        //指向上一本
+        q = p;
+        //指向下一本
+        p = p->next;
+    }
+    //编号错误，书不存在
+    if(!p){
+        printf("Input error!, the book does not exist!");
+    }
+
+    //删去第一本书
+    if(q == p){
+        //?直接指向下一本
+        stu->mybook = stu->mybook->next;
+    }
+    //连接
+    else{
+        q->next = p->next;
+        p->next = NULL;
+    }
+    //在树中根据ISBN找到书
+    e = RBT_SearchByISBN(root->node, p->book->elem);
+
+    //书不存在
+    if(e == NULL){
+        return ERROR;
+    }
+
+    //树状态置为1
+    e->status = 1;
+
+    //更新书本文件
+    FILE_WriteRBT(*root);
+    //更新学生文件
+    Updata_StuInfo(stu);
     return SUCCESS;
 }

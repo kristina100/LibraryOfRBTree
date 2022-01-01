@@ -118,14 +118,13 @@ void FILE_preWrite(RBTree tree, FILE *fp);
 Status FILE_ReadRBT(RBRoot *root);
 
 /**
- * @brief 閫氳繃ISBN鍦ㄧ孩榛戞爲涓煡鎵句功鏈紝骞惰繑锟�?
+ * @brief 
  * 
- * @param R
+ * @param R 
  * @param ISBN 
  * @return RBTreeElemType 
  */
-RBTreeElemType RBT_SearchByISBN(RBTree R, int ISBN);
-
+RBTreeElemType RBT_SearchByISBN(RBTree R, long long int ISBN);
 
 /**
  * @name RBT_SearchByName
