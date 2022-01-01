@@ -3,7 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-23 14:33:25
  * @LastEditors: Hx
- * @LastEditTime: 2022-01-01 23:33:23
+ * @LastEditTime: 2022-01-01 23:41:44
  */
 #ifndef STUDENT_H_INCLUDE
 #define STUDENT_H_INCLUDE
@@ -36,7 +36,7 @@ typedef struct student{
 Status Stu_Init(Stu &stu);
 
 /**
- * @brief 瀛︾敓鎿嶄綔
+ * @brief ѧ������
  * 
  */
 void Stu_Operation(Stu &stu);
@@ -48,7 +48,7 @@ void Stu_Operation(Stu &stu);
 void Stu_Options(Stu stu);
 
 /**
- * @brief 瀛︾敓鍊熶功
+ * @brief ����
  * 
  * @param stu 
  * @param root 
@@ -113,7 +113,7 @@ void Print_Search_Options();
 void Print_Borrow_Options();
 
 /**
- * @brief 鍚戝鐢熻处鎴蜂笂娣诲姞涓€鏈功锛屽苟灏嗕功璁剧疆涓哄凡鍊熷嚭鐘舵€�
+ * @brief 
  * 
  * @param stu 
  * @param b 

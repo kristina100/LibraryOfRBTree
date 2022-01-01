@@ -1,10 +1,3 @@
-/*
- * @Descripttion: 
- * @Author: Hx
- * @Date: 2021-12-24 17:05:47
- * @LastEditors: Hx
- * @LastEditTime: 2021-12-28 16:18:33
- */
 //
 // Created by HUAWEI on 2021-12-04.
 //
@@ -12,8 +5,8 @@
 #define REDBLACKTREE_REDBLACKTREE_H
 #include"Common.h"
 
-#define RED   0 /* 红色结点标志 */
-#define BLACK 1 /* 黑色结点标志 */
+#define RED   0 /* 绾㈣壊缁撶偣鏍囧織 */
+#define BLACK 1 /* 榛戣壊缁撶偣鏍囧織 */
 
 #define RBTreeColor(r) ((r)->color)
 #define RBTreeParent(r) ((r)->parent)
@@ -31,61 +24,61 @@ typedef struct RBTElem{
 //    int stock; //current amount of the book
 //    int total; //total amount of the book
 //    int ISBN;   
-    char *Title; //书名
-    char *Author;   //作�?
-    char *press;    //出版�?
-    char *score;    //书本评分
-    int page_num; //书的页数
-    // char *publishing_year;  //出版时间 
-    // char *classification; //书的类型
-    // float price;    //价格
-    int status;  //状�? 0为借出状�?, 1为可借状�?
-    long long int elem;   //书的编号ISBN
+    char *Title; //涔﹀悕
+    char *Author;   //浣滐拷?
+    char *press;    //鍑虹増锟�?
+    char *score;    //涔︽湰璇勫垎
+    int page_num; //涔︾殑椤垫暟
+    // char *publishing_year;  //鍑虹増鏃堕棿 
+    // char *classification; //涔︾殑绫诲瀷
+    // float price;    //浠锋牸
+    int status;  //鐘讹拷? 0涓哄€熷嚭鐘讹拷?, 1涓哄彲鍊熺姸锟�?
+    long long int elem;   //涔︾殑缂栧彿ISBN
 }RBTElem, *RBTreeElemType;
 
-/* 红黑树的结点 */
+/* 绾㈤粦鏍戠殑缁撶偣 */
 typedef struct RBTreeNode{
-    RBTreeElemType data;       /* 数据�? */
-    char color;                /* 颜色 */
-    struct RBTreeNode *left;   /* 左孩子结�? */
-    struct RBTreeNode *right;  /* 右孩子结�? */
-    struct RBTreeNode *parent; /* 父结�? */
+    RBTreeElemType data;       /* 鏁版嵁锟�? */
+    char color;                /* 棰滆壊 */
+    struct RBTreeNode *left;   /* 宸﹀瀛愮粨锟�? */
+    struct RBTreeNode *right;  /* 鍙冲瀛愮粨锟�? */
+    struct RBTreeNode *parent; /* 鐖剁粨锟�? */
 } Node, *RBTree;
 
-/* 红黑树的根结�? */
+/* 绾㈤粦鏍戠殑鏍圭粨锟�? */
 typedef struct RB_Root{
     Node *node;
 }RBRoot;
 
-/* 创建红黑�? */
+/* 鍒涘缓绾㈤粦锟�? */
 RBRoot *createRBTree();
 
-/* 销毁红黑树 */
+/* 閿€姣佺孩榛戞爲 */
 Status destroyRBTree(RBRoot *root);
 
-/* 前序遍历红黑�? */
+/* 鍓嶅簭閬嶅巻绾㈤粦锟�? */
 Status preorderRBTree(RBRoot *root);
 
-/* 中序遍历红黑�? */
+/* 涓簭閬嶅巻绾㈤粦锟�? */
 Status inorderRBTree(RBRoot *root);
 
-/* 后序遍历红黑�? */
+/* 鍚庡簭閬嶅巻绾㈤粦锟�? */
 Status postorderRBTree(RBRoot *root);
 
-/* 递归查找红黑�? */
+/* 閫掑綊鏌ユ壘绾㈤粦锟�? */
 Status recursiveSearchRBTree(RBRoot *root, RBTreeElemType x);
 
-/* 红黑树插入结�? */
+/* 绾㈤粦鏍戞彃鍏ョ粨锟�? */
 Status insertRBTree(RBRoot *root, RBTreeElemType x);
 
-/* 红黑树删除结�? */
+/* 绾㈤粦鏍戝垹闄ょ粨锟�? */
 Status deleteRBTree(RBRoot *root, RBTreeElemType x);
 
-/* 打印红黑树信�? */
+/* 鎵撳嵃绾㈤粦鏍戜俊锟�? */
 Status printRBTree(RBRoot *root);
 
 /**
- * @brief 输入elem数据
+ * @brief 杈撳叆elem鏁版嵁
  * 
  * @param e 
  * @return Status 
@@ -93,7 +86,7 @@ Status printRBTree(RBRoot *root);
 Status inputRBTElem(RBTreeElemType &e);
 
 /**
- * @brief 初始化elem
+ * @brief 鍒濆鍖杄lem
  * 
  * @param e 
  * @return Status 
@@ -101,7 +94,7 @@ Status inputRBTElem(RBTreeElemType &e);
 Status InitRBTElem(RBTreeElemType &e);
 
 /**
- * @brief 将红黑树写入文件
+ * @brief 灏嗙孩榛戞爲鍐欏叆鏂囦欢
  * 
  * @param root 
  * @return Status 
@@ -109,7 +102,7 @@ Status InitRBTElem(RBTreeElemType &e);
 Status FILE_WriteRBT(RBRoot root);
 
 /**
- * @brief 基于前序遍历的红黑树文件写入
+ * @brief 鍩轰簬鍓嶅簭閬嶅巻鐨勭孩榛戞爲鏂囦欢鍐欏叆
  * 
  * @param tree 
  * @param fp 
@@ -117,7 +110,7 @@ Status FILE_WriteRBT(RBRoot root);
 void FILE_preWrite(RBTree tree, FILE *fp);
 
 /**
- * @brief 从文件中读取数据并构建红黑树
+ * @brief 浠庢枃浠朵腑璇诲彇鏁版嵁骞舵瀯寤虹孩榛戞爲
  * 
  * @param root 
  * @return Status 
@@ -125,7 +118,7 @@ void FILE_preWrite(RBTree tree, FILE *fp);
 Status FILE_ReadRBT(RBRoot *root);
 
 /**
- * @brief 通过ISBN在红黑树中查找书本，并返�?
+ * @brief 閫氳繃ISBN鍦ㄧ孩榛戞爲涓煡鎵句功鏈紝骞惰繑锟�?
  * 
  * @param R
  * @param ISBN 
@@ -136,7 +129,7 @@ RBTreeElemType RBT_SearchByISBN(RBTree R, int ISBN);
 
 /**
  * @name RBT_SearchByName
- * @brief 根据书名准确搜索
+ * @brief 鏍规嵁涔﹀悕鍑嗙‘鎼滅储
  * @param  root
  * @param  name
  * @return  RBTreeElemType
@@ -145,7 +138,7 @@ RBTreeElemType RBT_SearchByName(RBTree node,char *name);
 
 /**
  * @name RBT_SearchBookByAuthor
- * @brief 根据作者准确搜�?
+ * @brief 鏍规嵁浣滆€呭噯纭悳锟�?
  * @param  root
  * @param  author
  * @return  RBTreeElemType
