@@ -3,7 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-23 14:33:31
  * @LastEditors: Hx
- * @LastEditTime: 2022-01-02 00:03:44
+ * @LastEditTime: 2022-01-02 01:26:12
  */
 #include"Student.h"
 #include"Utils.h"
@@ -76,7 +76,7 @@ void Print_Borrow_Options(){
     Clean();
     printf("\n");
     printf("*-------------------------------------------------------------------------*\n");
-    printf("|                         <Search By ISBN>                                |\n");
+    printf("|                              <Input ISBN>                               |\n");
     printf("|                                                                         |\n");
     printf("|                         0.System Return                                 |\n");
     
@@ -132,6 +132,7 @@ void Stu_Operation(Stu &stu){
             //借阅书籍
             case 2:{
                 Stu_Borrow(stu, root);
+                Pause();
             }break;
 
             //归还书籍
@@ -229,28 +230,14 @@ void Stu_Borrow(Stu stu, RBRoot *root){
 }
 
 /**
- * @brief 还书
- */
-Status Stu_return(Stu stu){
-    
-    //学生没有借书
-    if(stu->mybook == NULL)
-        return FALSE;
-
-    //打印已借的书
-    Print_Book(stu->mybook);
-    return SUCCESS;
-}
-
-/**
- * @brief 打印已借的书
+ * @brief 打印书本
  */
 void Print_Book(MyBook b){
 
     MyBook p = b;
     printf("\n");
     printf("*-------------------------------------------------------------------------*\n");
-    printf("                                <My Books>                                \n\n");
+    printf("                                <Books>                                \n\n");
     printf("  Num  |     ISBN     |         Title         |      Author      |    Press    \n\n");
     int num = 1;
     while(p != NULL&&p->book!=NULL){
@@ -293,12 +280,29 @@ void Stu_SearchBook(RBRoot *root){
 
             //按ISBN查找
             case 1:{
-                
+                Stu_SearchBookByISBN(root);
                 Pause();
             }break;
 
             //按书名查找
             case 2:{
+                //创建返回载体
+                MyBook books = (MyBook)malloc(sizeof(mybook));
+                books->book = NULL;
+                books->next = NULL;
+                char str[20] = "";
+
+                printf("Please enter the title: ");
+                scanf("%s", str);
+
+                //搜索
+                Stu_SearchBookByTitle(root->node, str, books);
+                
+                //打印书本
+                if(books->book)
+                    Print_Book(books);
+                else
+                    printf("No book exists!\n");
 
                 Pause();
             }break;
@@ -306,7 +310,6 @@ void Stu_SearchBook(RBRoot *root){
             //按作者查找
             case 3:{
 
-                Pause();
             }break;
 
             default:{
@@ -316,6 +319,66 @@ void Stu_SearchBook(RBRoot *root){
         }
     Clean();
     }
+}
+/**
+ * @brief 根据ISBN查找书本
+ */
+void Stu_SearchBookByISBN(RBRoot *root){
+    
+    Clean();
+    printf("\n");
+    printf("*-------------------------------------------------------------------------*\n");
+    printf("|                            <Search By ISBN>                             |\n");
+    printf("|                                                                         |\n");
+    printf("|                             0.System Return                             |\n");
+    
+    printf("\n\t\t");
+    printf("Please input ISBN: ");   
+    long long int ISBN = InputInteger();
+
+    if(ISBN == 0)
+        return;
+
+    RBTreeElemType e = NULL;
+    //在树中找书
+    e = RBT_SearchByISBN(root->node, ISBN);
+    
+    if(e == NULL)
+        printf("Sorry, Book does not exist!\n");
+    else 
+        Print_BookInfo(e);
+
+}
+
+/**
+ * @brief 根据书名搜索
+ */
+void Stu_SearchBookByTitle(RBTree node, char *name, MyBook &books){
+
+    //node判空
+    if(node == NULL) return;
+    
+    //字符串判断
+    if(strpbrk(name, node->data->Title) != NULL){
+
+        MyBook newBook = (MyBook)malloc(sizeof(mybook));
+        
+        //books内没有数据
+        if(books->book == NULL)
+            books->book = node->data;
+        
+        //books内有数据
+        else{
+            newBook->book = node->data;
+            newBook->next = NULL;
+            //头插入
+            newBook->next = books;
+            books = newBook;
+        }
+    }
+    //前序遍历递归查找
+    Stu_SearchBookByTitle(node->left, name, books);
+    Stu_SearchBookByTitle(node->right, name, books);
 }
 
 /**
@@ -386,12 +449,12 @@ Status Stu_return(Stu &stu, RBRoot *root){
     //编号错误，书不存在
     if(!p){
         printf("Input error!, the book does not exist!\n");
-        continue;
+        return FALSE;
     }
 
     //删去第一本书
     if(q == p){
-        //?直接指向下一本
+        //直接指向下一本
         stu->mybook = stu->mybook->next;
     }
     //连接

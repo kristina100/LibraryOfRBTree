@@ -1,10 +1,3 @@
-/*
- * @Descripttion: 
- * @Author: Hx
- * @Date: 2021-12-24 17:05:47
- * @LastEditors: Hx
- * @LastEditTime: 2022-01-02 00:12:09
- */
 //
 // Created by HUAWEI on 2021-12-04.
 //

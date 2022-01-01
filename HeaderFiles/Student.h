@@ -3,7 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-23 14:33:25
  * @LastEditors: Hx
- * @LastEditTime: 2022-01-01 23:57:31
+ * @LastEditTime: 2022-01-02 01:25:39
  */
 #ifndef STUDENT_H_INCLUDE
 #define STUDENT_H_INCLUDE
@@ -72,7 +72,7 @@ Status Stu_return(Stu &stu, RBRoot *root);
 void Stu_Print_MyInfo(Stu stu);
 
 /**
- * @brief 閹垫儳娲栫�靛棛鐖?
+ * @brief 找回密码
  * 
  * @param stu 
  * @return Status 
@@ -80,14 +80,14 @@ void Stu_Print_MyInfo(Stu stu);
 Status Stu_FindPassword(Stu stu);
 
 /**
- * @brief 閺囧瓨鏁肩�靛棛鐖?
+ * @brief 修改密码
  * 
  * @return Status 
  */
 Status Stu_ChangePassword(Stu stu);
 
 /**
- * @brief 打印已借的书
+ * @brief 打印书本
  * 
  * @param b 
  */
@@ -99,6 +99,22 @@ void Print_Book(MyBook b);
  * @param root 
  */
 void Stu_SearchBook(RBRoot *root);
+
+/**
+ * @brief 根据ISBN查找书本
+ * 
+ * @param root 
+ */
+void Stu_SearchBookByISBN(RBRoot *root);
+
+/**
+ * @brief 根据书名搜索
+ * 
+ * @param node 
+ * @param name 
+ * @param books 
+ */
+void Stu_SearchBookByTitle(RBTree node, char *name, MyBook &books);
 
 /**
  * @brief 打印查询选项
