@@ -94,12 +94,14 @@ void Man_AccountMenu(){
  */
 Status Man_Fuction(Manager &M){
 	//创建空树
-	RBRoot *root;
+	RBRoot *root = NULL;
 	root = createRBTree();
     //初始化书本树
 	//Man_GetBookTree(root);
 	int choice;
     do {
+		Pause();
+		Clean();
 		Man_ChoiceMenu();
 		//打印测试
 		recessedPrintRBTree(root->node, 0);
@@ -282,7 +284,7 @@ Status Man_Grounding(Manager M,RBRoot *root){
     //insert_x->elem = InputInteger();
     insert_status = insertRBTree(root, insert_x);
     if (insert_status == SUCCESS) {
-        printf("Insert node successfully!\n");
+        printf("Input book successfully!\n");
     }
     else
         printf("Inputing failed, the book already exists!\n");
@@ -315,8 +317,9 @@ Status Man_OffShelf(Manager M,RBRoot *root){
  * @return  status
  */
 Status Man_SearchBook(Manager M,RBRoot *root){
+	RBTreeElemType e1 = (RBTreeElemType)malloc(sizeof(RBTElem));
+	RBTreeElemType e2 = (RBTreeElemType)malloc(sizeof(RBTElem));
 	int choice=-1;
-	RBTreeElemType e = (RBTreeElemType)malloc(sizeof(RBTElem));
     do {
 		Man_SearchMenu();
 		//打印测试
@@ -338,35 +341,46 @@ Status Man_SearchBook(Manager M,RBRoot *root){
 			}else
                 printf("Failed to search, no book exists!\n");		
 			break;
+			search_x = NULL;
+			free(search_x);
 		}
 		case 2://按书名搜索
 		{
-			e = SearchByName(root);
+			e1 = SearchByName(root);
+			e1 = NULL;
 			break;
 		}
 		case 3://按作者搜索
 		{
-			
-			e = SearchBookByAuthor(root);
+			e2 = SearchBookByAuthor(root);
+			e2 = NULL;
 			break;
 		}
 		case 4://按书名模糊搜索
 		{
-			MyBook books = (MyBook)malloc(sizeof(mybook));
-			//FuzzySearchByName(root,books);
-			free(books);
+			MyBook books,p=NULL;
+			books=FuzzySearchByName(root);
+			p = books;
+			while (p)
+			{
+				books=p->next;
+				free(p);
+				p = books;
+			}
 			break;
 		}
 		case 0://退出 返回上一级
 		{
-			free(e);
+			free(e1);
+			free(e2);
             return SUCCESS;
 			break;
 		}
 		default:printf("输入有误，请重新输入!（1-4）");
 		}
 	} while (choice!=4);
-	free(e);
+	free(e1);
+	free(e2);
 	return SUCCESS;
 }
 
@@ -422,27 +436,62 @@ RBTreeElemType SearchBookByAuthor(RBRoot *root){
         printf("No book exists!Try again!\n");
 		return NULL;
 	}
+	e=NULL;
+	free(e);
 }
 
-// /**
-//  * @name FuzzySearchByName
-//  * @brief 根据书名模糊搜索
-//  * @param  root
-//  * @param  name
-//  * @return  status
-//  */
-// Status RBT_FuzzySearchByName(RBRoot *root,MyBook books){
-// 	char str[20] = "";
-// 	printf("Please enter the author of the book you want to search:");
-// 	scanf("%s", str);
-// 	// if(SUCCESS==RBT_FuzzySearchByName(root->node,str,books)){
-// 	// 	Print_Book(books);
-// 	// 	return SUCCESS;
-// 	// }else{
-//     //     printf("No book exists!Try again!\n");
-// 	// 	return ERROR;
-// 	// }
-// }
+/**
+ * @name FuzzySearchByName
+ * @brief 按书名模糊搜索
+ * @param  root
+ * @return  status
+ */
+MyBook FuzzySearchByName(RBRoot *root){
+	MyBook books=(MyBook)malloc(sizeof(mybook));
+	books->book=NULL;
+	books->next=NULL;
+	char str[20] = "";
+	printf("Please enter the title of the book you want to search:");
+	scanf("%s", str);
+	RBT_FuzzySearchByName(root->node,str,books);
+	if(books){
+		Print_Book(books);
+		return books;
+	}else{
+        printf("No book exists!Try again!\n");
+		return ERROR;
+	}
+}
+
+/**
+ * @name RBT_FuzzySearchByName
+ * @brief 根据书名模糊搜索
+ * @param  root
+ * @param  name
+ * @return  status
+ */
+Status RBT_FuzzySearchByName(RBTree node,char *name,MyBook &books){
+    if(node == NULL) return ERROR;
+    if (strpbrk(name,node->data->Title)!=NULL) {
+        MyBook newBook = (MyBook)malloc(sizeof(mybook));
+        if(newBook == NULL)
+            return OVERFLOW;
+        
+        if(books->book==NULL) {
+            //have no book
+            books->book = node->data;
+        }else{
+            //have
+			newBook->book = node->data;
+            newBook->next =NULL;
+            newBook->next = books;
+            books = newBook;
+        }
+    }
+    RBT_FuzzySearchByName(node->left,name,books);
+    RBT_FuzzySearchByName(node->right,name,books);
+    return OVERFLOW;
+}
 
 /**
  * @name printBookInfo

@@ -253,7 +253,7 @@ void Print_Book(MyBook b){
     printf("                                <My Books>                                \n\n");
     printf("  Num  |     ISBN     |         Title         |      Author      |    Press    \n\n");
     int num = 1;
-    while(p != NULL){
+    while(p != NULL&&p->book!=NULL){
         //¥Ú”°±‡∫≈
         printf("  %-3d\t",num);
         //¥Ú”°ISBN

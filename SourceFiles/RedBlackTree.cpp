@@ -8,11 +8,11 @@
 #include "../HeaderFiles/BinaryTree.h"
 #include"Utils.h"
 
-//存储书本数据的文�?
+//存储书本数据的文�?
 char Data_Book[] = "book_data.txt";
 
 /**
- * 创建红黑�?
+ * 创建红黑�?
  *
  * @param[in]  none
  * @return  the root of the red-black tree
@@ -41,7 +41,7 @@ Status destroyRBTree(RBRoot *root)
 }
 
 /**
- * 前序遍历红黑�?
+ * 前序遍历红黑�?
  *
  * @param[in]  root: the root of the red-black tree
  * @return  the operation status, SUCCESS is 0, FALSE is -1
@@ -55,7 +55,7 @@ Status preorderRBTree(RBRoot *root)
 }
 
 /**
- * 中序遍历红黑�?
+ * 中序遍历红黑�?
  *
  * @param[in]  root: the root of the red-black tree
  * @return  the operation status, SUCCESS is 0, FALSE is -1
@@ -70,7 +70,7 @@ Status inorderRBTree(RBRoot *root)
 }
 
 /**
- * 后序遍历红黑�?
+ * 后序遍历红黑�?
  *
  * @param[in]  root: the root of the red-black tree
  * @return  the operation status, SUCCESS is 0, FALSE is -1
@@ -84,7 +84,7 @@ Status postorderRBTree(RBRoot *root)
 }
 
 /**
- * 递归查找红黑树tree中数据域为x的结�?
+ * 递归查找红黑树tree中数据域为x的结�?
  *
  * @param[in]  root: the root of the red-black tree
  * @param[in]  x   : the data of the node
@@ -98,7 +98,7 @@ Status recursiveSearchRBTree(RBRoot *root, RBTreeElemType x)
 }
 
 /**
- * 红黑树插入数据域为x的结�?
+ * 红黑树插入数据域为x的结�?
  *
  * @param[in]  root: the root of the red-black tree
  * @param[in]  x   : the data of the node
@@ -106,7 +106,7 @@ Status recursiveSearchRBTree(RBRoot *root, RBTreeElemType x)
  */
 Status insertRBTree(RBRoot *root, RBTreeElemType x)
 {
-    // 已存�?
+    // 已存�?
     if (recursiveSearchNode(root->node, x)) return FALSE;
 
     Node *node;
@@ -120,7 +120,7 @@ Status insertRBTree(RBRoot *root, RBTreeElemType x)
 }
 
 /**
- * 红黑树删除数据域为x的结�?
+ * 红黑树删除数据域为x的结�?
  *
  * @param[in]  root: the root of the red-black tree
  * @param[in]  key : the data of the node to be deleted
@@ -140,7 +140,7 @@ Status deleteRBTree(RBRoot *root, RBTreeElemType x)
 }
 
 /**
- * 打印红黑树信�?
+ * 打印红黑树信�?
  *
  * @param[in]  root: the root of the red-black tree
  * @return  the operation status, SUCCESS is 0, FALSE is -1
@@ -152,21 +152,21 @@ Status printRBTree(RBRoot *root)
         PrintRBTreeInfo(root->node, root->node->data, 0);
         return SUCCESS;
     }
-    // 根节点为头结点，不存储信�?
+    // 根节点为头结点，不存储信�?
     return FALSE;
 }
 
 /**
  * @brief 输入elem数据
  *        只有管理员添加书本的时候会调用此方法创建新elem
- *        根据输入的字长分配空间之后赋给对应�?
+ *        根据输入的字长分配空间之后赋给对应�?
  */
 Status inputRBTElem(RBTreeElemType &e){
 
     e = (RBTreeElemType)malloc(sizeof(RBTElem));
     if(e == NULL)   return OVERFLOW;
 
-    //初始化输入域，作者，评分，书�?
+    //初始化输入域，作者，评分，书�?
     // char *author = NULL, *score = NULL, *title = NULL;
     // author = (char*)malloc(sizeof(char)*20);
     // score = (char*)malloc(sizeof(char)*20);
@@ -185,7 +185,7 @@ Status inputRBTElem(RBTreeElemType &e){
     e->elem = InputInteger();
     // scanf("%lld", &e->elem);
 
-    //输入作�?
+    //输入作�?
     printf("please input Author:");
     scanf("%s", str);
     e->Author = (char*)malloc(sizeof(char) * strlen(str));
@@ -197,7 +197,7 @@ Status inputRBTElem(RBTreeElemType &e){
     e->score = (char*)malloc(sizeof(char) * strlen(str));
     strcpy(e->score, str);
 
-    //输入出版�?
+    //输入出版�?
     printf("please input press:");
     scanf("%s", str);
     e->press = (char*)malloc(sizeof(char) * strlen(str));
@@ -214,7 +214,7 @@ Status inputRBTElem(RBTreeElemType &e){
 }
 
 /**
- * @brief 初始化elem(测试�?)
+ * @brief 初始化elem(测试�?)
  */
 Status InitRBTElem(RBTreeElemType &e){
 
@@ -246,14 +246,14 @@ Status FILE_ReadRBT(RBRoot *root){
 
     //判断
     int status;
-    while(!feof(fp)){//如果位置指针不在文件末尾,即没有读到文件末�?
+    while(!feof(fp)){//如果位置指针不在文件末尾,即没有读到文件末�?
 
         RBTreeElemType e = NULL;
         InitRBTElem(e);
         //读出elem(ISBN)
         fscanf(fp, "%lld", &e->elem);
 
-        //这条语句用于暴力解决最后一个字符问�?
+        //这条语句用于暴力解决最后一个字符问�?
         if(e->elem == 0) break;
 
         //读出书名
@@ -262,13 +262,13 @@ Status FILE_ReadRBT(RBRoot *root){
         strcpy(e->Title, str);
         fgetc(fp);
         
-        //读出作�?
+        //读出作�?
         fscanf(fp, "%s", str);
         e->Author = (char*)malloc(sizeof(char) * strlen(str));
         strcpy(e->Author, str);
         fgetc(fp);
       
-        //读出出版�?
+        //读出出版�?
         fscanf(fp, "%s", str);
         e->press = (char*)malloc(sizeof(char) * strlen(str));
         strcpy(e->press, str);
@@ -284,7 +284,7 @@ Status FILE_ReadRBT(RBRoot *root){
         fscanf(fp, "%d", &e->page_num);
         fgetc(fp);
 
-        //读出状�?
+        //读出状�?
         fscanf(fp, "%d", &e->status);   
 
         //写入树中
@@ -303,7 +303,7 @@ Status FILE_WriteRBT(RBRoot root){
     if(root.node == NULL) return ERROR;
 
     FILE *fp = NULL;
-    //�?"w"模式打开文件, 文件不存在则创建新文件，文件存在则覆盖原内容
+    //�?"w"模式打开文件, 文件不存在则创建新文件，文件存在则覆盖原内容
     fp = fopen(Data_Book, "w");
 
     //传入根节点，开始前序递归插入
@@ -330,10 +330,10 @@ void FILE_preWrite(RBTree tree, FILE *fp){
     //写入书名
     fprintf(fp, "%s", tree->data->Title);
     fputc(mid,fp);
-    //写入作�?
+    //写入作�?
     fprintf(fp, "%s", tree->data->Author);
     fputc(mid,fp);
-    //写入出版�?
+    //写入出版�?
     fprintf(fp, "%s", tree->data->press);
     fputc(mid,fp);
     //写入得分
@@ -342,7 +342,7 @@ void FILE_preWrite(RBTree tree, FILE *fp){
     //写入页数
     fprintf(fp, "%d", tree->data->page_num);
     fputc(mid,fp);
-    //写入状�?
+    //写入状�?
     fprintf(fp, "%d", tree->data->status);
     fputc(end,fp);
     
@@ -352,7 +352,7 @@ void FILE_preWrite(RBTree tree, FILE *fp){
 }
 
 /**
- * @brief 通过ISBN在红黑树中查找书本，并返�?
+ * @brief 通过ISBN在红黑树中查找书本，并返�?
  */
 RBTreeElemType RBT_SearchByISBN(RBTree R, long long int ISBN){
     
@@ -384,7 +384,7 @@ RBTreeElemType RBT_SearchByName(RBTree node,char *name){
 
 /**
  * @name RBT_SearchBookByAuthor
- * @brief 根据作者准确搜�?
+ * @brief 根据作者准确搜�?
  * @param  root
  * @param  author
  * @return  RBTreeElemType
@@ -397,31 +397,4 @@ RBTreeElemType RBT_SearchBookByAuthor(RBTree node,char *author){
     else return NULL;
 }
 
-/**
- * @name RBT_FuzzySearchByName
- * @brief 根据书名模糊搜索
- * @param  root
- * @param  name
- * @return  status
- */
-Status RBT_FuzzySearchByName(RBTree node,char *name,MyBook books){
-    if(node == NULL) return ERROR;
-    if (strcmp(name,node->data->Title)==0) {
-        MyBook newBook = (MyBook)malloc(sizeof(mybook));
-        if(newBook == NULL)
-            return OVERFLOW;
-        newBook->book = node->data;
-        newBook->next =NULL;
-        if(books==NULL) {
-            //�ڴ�֮ǰû���ҵ���
-            books=newBook;
-        }else{
-            //�����飬ͷ����
-            newBook->next = books;
-            books = newBook;
-        }
-    }
-    RBT_FuzzySearchByName(node->left,name,books);
-    RBT_FuzzySearchByName(node->right,name,books);
-    return OVERFLOW;
-}
+
