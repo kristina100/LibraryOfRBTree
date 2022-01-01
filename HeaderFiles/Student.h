@@ -3,7 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-23 14:33:25
  * @LastEditors: Hx
- * @LastEditTime: 2021-12-29 11:26:12
+ * @LastEditTime: 2021-12-28 20:37:53
  */
 #ifndef STUDENT_H_INCLUDE
 #define STUDENT_H_INCLUDE
@@ -45,7 +45,7 @@ void Stu_Operation(Stu &stu);
  * @brief 鎵撳嵃瀛︾敓閫夐」
  * 
  */
-void Stu_Options();
+void Stu_Options(Stu stu);
 
 /**
  * @brief 瀛︾敓鍊熶功

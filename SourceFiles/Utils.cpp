@@ -3,7 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-22 12:54:10
  * @LastEditors: Hx
- * @LastEditTime: 2021-12-29 10:59:23
+ * @LastEditTime: 2021-12-28 16:48:24
  */
 #include"Utils.h"
 
@@ -98,3 +98,5 @@ long long int InputInteger()
 
     return integer;
 }
+
+
