@@ -5,7 +5,7 @@
 #include "../HeaderFiles/BinarySearchTree.h"
 
 /**
- * äºŒå‰æŸ¥æ‰¾æ ‘æ’å…¥ç»“ç‚¹
+ * ¶ş²æ²éÕÒÊ÷²åÈë½áµã
  *
  * @param[in]  root: the root of the binary search tree
  * @param[in]  node: the inserted node
@@ -19,15 +19,15 @@ Status insertBinarySearchTree(RBRoot *root, Node *node)
     while (p)
     {
         last = p;
-        // äºŒå‰æŸ¥æ‰¾æ ‘çš„ç‰¹æ€§
+        // ¶ş²æ²éÕÒÊ÷µÄÌØĞÔ
         if (node->data->elem < p->data->elem)
             p = p->left;
         else
             p = p->right;
     }
-    // last æ­¤æ—¶ä¸ºnodeçš„parent
+    // last ´ËÊ±ÎªnodeµÄparent
     RBTreeParent(node) = last;
-    // lastå­˜åœ¨
+    // last´æÔÚ
     if (last)
     {
         if (node->data->elem < last->data->page_num)
@@ -44,7 +44,7 @@ Status insertBinarySearchTree(RBRoot *root, Node *node)
 }
 
 /**
- * äºŒå‰æŸ¥æ‰¾æ ‘æŸ¥æ‰¾æœ€å°ç»“ç‚¹
+ * ¶ş²æ²éÕÒÊ÷²éÕÒ×îĞ¡½áµã
  *
  * @param[in]  tree: the root of the binary search tree
  * @return  the minimum node of the binary search tree
@@ -59,7 +59,7 @@ RBTree minBinarySearchTreeNode(RBTree tree)
 }
 
 /**
- * äºŒå‰æŸ¥æ‰¾æ ‘æŸ¥æ‰¾æœ€å¤§ç»“ç‚¹
+ * ¶ş²æ²éÕÒÊ÷²éÕÒ×î´ó½áµã
  *
  * @param[in]  tree: the root of the binary search tree
  * @return  the maximum node of the binary search tree
@@ -75,7 +75,7 @@ RBTree maxBinarySearchTreeNode(RBTree tree)
 }
 
 /**
- * äºŒå‰æŸ¥æ‰¾æ ‘æŸ¥æ‰¾ç»“ç‚¹nodeçš„å‰é©±ç»“ç‚¹
+ * ¶ş²æ²éÕÒÊ÷²éÕÒ½áµãnodeµÄÇ°Çı½áµã
  *
  * @param[in]  node: the node to be found its precursor
  * @return  the target precursor node
@@ -94,7 +94,7 @@ RBTree BSTreePrecursor(RBTree node)
 }
 
 ///**
-// * äºŒå‰æŸ¥æ‰¾æ ‘æŸ¥æ‰¾ç»“ç‚¹nodeçš„åç»§ç»“ç‚¹
+// * ¶ş²æ²éÕÒÊ÷²éÕÒ½áµãnodeµÄºó¼Ì½áµã
 // *
 // * @param[in]  node: the node to be found its successor
 // * @return  the target successor node

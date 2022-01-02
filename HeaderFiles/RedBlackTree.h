@@ -1,10 +1,3 @@
-/*
- * @Descripttion: 
- * @Author: Hx
- * @Date: 2021-12-24 17:05:47
- * @LastEditors: Hx
- * @LastEditTime: 2021-12-29 11:32:21
- */
 //
 // Created by HUAWEI on 2021-12-04.
 //
@@ -12,8 +5,8 @@
 #define REDBLACKTREE_REDBLACKTREE_H
 #include"Common.h"
 
-#define RED   0 /* çº¢è‰²ç»“ç‚¹æ ‡å¿— */
-#define BLACK 1 /* é»‘è‰²ç»“ç‚¹æ ‡å¿— */
+#define RED   0 /* ºìÉ«½áµã±êÖ¾ */
+#define BLACK 1 /* ºÚÉ«½áµã±êÖ¾ */
 
 #define RBTreeColor(r) ((r)->color)
 #define RBTreeParent(r) ((r)->parent)
@@ -24,68 +17,62 @@
 #define RBTreeSetRed(r) do {(r)->color = RED;} while(0)
 #define RBTreeSetBlack(r) do {(r)->color = BLACK;} while(0)
 
-typedef struct RBTElem{
-//    BookNumType number; //no prefix 'ISBN'
-//    NameType name;
-//    NameType author;
-//    int stock; //current amount of the book
-//    int total; //total amount of the book
-//    int ISBN;   
-    char *Title; //ä¹¦å
-    char *Author;   //ä½œï¿½?
-    char *press;    //å‡ºç‰ˆï¿½?
-    char *score;    //ä¹¦æœ¬è¯„åˆ†
-    int page_num; //ä¹¦çš„é¡µæ•°
-    // char *publishing_year;  //å‡ºç‰ˆæ—¶é—´ 
-    // char *classification; //ä¹¦çš„ç±»å‹
-    // float price;    //ä»·æ ¼
-    int status;  //çŠ¶ï¿½? 0ä¸ºå€Ÿå‡ºçŠ¶ï¿½?, 1ä¸ºå¯å€ŸçŠ¶ï¿½?
-    long long int elem;   //ä¹¦çš„ç¼–å·ISBN
+typedef struct RBTElem{ 
+    char *Title; //ÊéÃû
+    char *Author;   //×÷Õß
+    char *press;    //³ö°æÉç
+    char *score;    //Êé±¾ÆÀ·Ö
+    int page_num; //ÊéµÄÒ³Êı
+    // char *publishing_year;  //³ö°æÊ±¼ä 
+    // char *classification; //ÊéµÄÀàĞÍ
+    // float price;    //¼Û¸ñ
+    int status;  //×´Ì¬ 0Îª½è³ö×´Ì¬, 1Îª¿É½è×´Ì¬
+    long long int elem;   //ÊéµÄ±àºÅISBN
 }RBTElem, *RBTreeElemType;
 
-/* çº¢é»‘æ ‘çš„ç»“ç‚¹ */
+/* ºìºÚÊ÷µÄ½áµã */
 typedef struct RBTreeNode{
-    RBTreeElemType data;       /* æ•°æ®ï¿½? */
-    char color;                /* é¢œè‰² */
-    struct RBTreeNode *left;   /* å·¦å­©å­ç»“ï¿½? */
-    struct RBTreeNode *right;  /* å³å­©å­ç»“ï¿½? */
-    struct RBTreeNode *parent; /* çˆ¶ç»“ï¿½? */
+    RBTreeElemType data;       /* Êı¾İÓò */
+    char color;                /* ÑÕÉ« */
+    struct RBTreeNode *left;   /* ×óº¢×Ó½áµã */
+    struct RBTreeNode *right;  /* ÓÒº¢×Ó½áµã */
+    struct RBTreeNode *parent; /* ¸¸½áµã */
 } Node, *RBTree;
 
-/* çº¢é»‘æ ‘çš„æ ¹ç»“ï¿½? */
+/* ºìºÚÊ÷µÄ¸ù½áµã */
 typedef struct RB_Root{
     Node *node;
 }RBRoot;
 
-/* åˆ›å»ºçº¢é»‘ï¿½? */
+/* ´´½¨ºìºÚÊ÷ */
 RBRoot *createRBTree();
 
-/* é”€æ¯çº¢é»‘æ ‘ */
+/* Ïú»ÙºìºÚÊ÷ */
 Status destroyRBTree(RBRoot *root);
 
-/* å‰åºéå†çº¢é»‘ï¿½? */
+/* Ç°Ğò±éÀúºìºÚÊ÷ */
 Status preorderRBTree(RBRoot *root);
 
-/* ä¸­åºéå†çº¢é»‘ï¿½? */
+/* ÖĞĞò±éÀúºìºÚÊ÷ */
 Status inorderRBTree(RBRoot *root);
 
-/* ååºéå†çº¢é»‘ï¿½? */
+/* ºóĞò±éÀúºìºÚÊ÷ */
 Status postorderRBTree(RBRoot *root);
 
-/* é€’å½’æŸ¥æ‰¾çº¢é»‘ï¿½? */
+/* µİ¹é²éÕÒºìºÚÊ÷ */
 Status recursiveSearchRBTree(RBRoot *root, RBTreeElemType x);
 
-/* çº¢é»‘æ ‘æ’å…¥ç»“ï¿½? */
+/* ºìºÚÊ÷²åÈë½áµã */
 Status insertRBTree(RBRoot *root, RBTreeElemType x);
 
-/* çº¢é»‘æ ‘åˆ é™¤ç»“ï¿½? */
+/* ºìºÚÊ÷É¾³ı½áµã */
 Status deleteRBTree(RBRoot *root, RBTreeElemType x);
 
-/* æ‰“å°çº¢é»‘æ ‘ä¿¡ï¿½? */
+/* ´òÓ¡ºìºÚÊ÷ĞÅÏ¢ */
 Status printRBTree(RBRoot *root);
 
 /**
- * @brief è¾“å…¥elemæ•°æ®
+ * @brief ÊäÈëelemÊı¾İ
  * 
  * @param e 
  * @return Status 
@@ -93,7 +80,7 @@ Status printRBTree(RBRoot *root);
 Status inputRBTElem(RBTreeElemType &e);
 
 /**
- * @brief åˆå§‹åŒ–elem
+ * @brief ³õÊ¼»¯elem
  * 
  * @param e 
  * @return Status 
@@ -101,7 +88,7 @@ Status inputRBTElem(RBTreeElemType &e);
 Status InitRBTElem(RBTreeElemType &e);
 
 /**
- * @brief å°†çº¢é»‘æ ‘å†™å…¥æ–‡ä»¶
+ * @brief ½«ºìºÚÊ÷Ğ´ÈëÎÄ¼ş
  * 
  * @param root 
  * @return Status 
@@ -109,7 +96,7 @@ Status InitRBTElem(RBTreeElemType &e);
 Status FILE_WriteRBT(RBRoot root);
 
 /**
- * @brief åŸºäºå‰åºéå†çš„çº¢é»‘æ ‘æ–‡ä»¶å†™å…¥
+ * @brief »ùÓÚÇ°Ğò±éÀúµÄºìºÚÊ÷ÎÄ¼şĞ´Èë
  * 
  * @param tree 
  * @param fp 
@@ -117,7 +104,7 @@ Status FILE_WriteRBT(RBRoot root);
 void FILE_preWrite(RBTree tree, FILE *fp);
 
 /**
- * @brief ä»æ–‡ä»¶ä¸­è¯»å–æ•°æ®å¹¶æ„å»ºçº¢é»‘æ ‘
+ * @brief ´ÓÎÄ¼şÖĞ¶ÁÈ¡Êı¾İ²¢¹¹½¨ºìºÚÊ÷
  * 
  * @param root 
  * @return Status 
@@ -125,18 +112,17 @@ void FILE_preWrite(RBTree tree, FILE *fp);
 Status FILE_ReadRBT(RBRoot *root);
 
 /**
- * @brief é€šè¿‡ISBNåœ¨çº¢é»‘æ ‘ä¸­æŸ¥æ‰¾ä¹¦æœ¬ï¼Œå¹¶è¿”ï¿½?
+ * @brief Í¨¹ıISBNÔÚºìºÚÊ÷ÖĞ²éÕÒÊé±¾£¬²¢·µ»Ø
  * 
- * @param R
+ * @param R 
  * @param ISBN 
  * @return RBTreeElemType 
  */
 RBTreeElemType RBT_SearchByISBN(RBTree R, long long int ISBN);
 
-
 /**
  * @name RBT_SearchByName
- * @brief æ ¹æ®ä¹¦åå‡†ç¡®æœç´¢
+ * @brief éè§„åµæ¶”ï¹€æ‚•é‘å—™â€˜é¼æ»…å‚¨
  * @param  root
  * @param  name
  * @return  RBTreeElemType
@@ -145,7 +131,7 @@ RBTreeElemType RBT_SearchByName(RBTree node,char *name);
 
 /**
  * @name RBT_SearchBookByAuthor
- * @brief æ ¹æ®ä½œè€…å‡†ç¡®æœï¿½?
+ * @brief éè§„åµæµ£æ»†â‚¬å‘­å™¯çº­î†½æ‚³é”Ÿï¿??
  * @param  root
  * @param  author
  * @return  RBTreeElemType
