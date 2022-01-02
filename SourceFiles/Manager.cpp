@@ -9,6 +9,7 @@
 #include"Manager.h"
 #include"Login.h"
 #include"Utils.h"
+#include"EscapeRote.h"
 
 /**
  * @brief 初始化Manager
@@ -36,7 +37,7 @@ void Man_ChoiceMenu(){
     printf("|                                                                         |\n");
     printf("|           3.get off book                4.search book                   |\n");
     printf("|                                                                         |\n");
-    printf("|           5.exchange id                 6.Quit System                   |\n");
+    printf("|           5.Show escape rote            0.back                          |\n");
     printf("|                                                                         |\n");
     printf("|                                                                         |\n");
     printf("*-------------------------------------------------------------------------*\n");
@@ -56,7 +57,7 @@ void Man_SearchMenu(){
     printf("|                                                                         |\n");
     printf("|       1.Search By the ISBN of book     2.Search By the name of book     |\n");
     printf("|                                                                         |\n");
-    printf("|       3.Search By the author of book   4.Return to the previous level   |\n");
+    printf("|       3.Search By the author of book   4.Fuzzy search by the name       |\n");
     printf("|                                                                         |\n");
     printf("|                                                                         |\n");
     printf("*-------------------------------------------------------------------------*\n");
@@ -76,9 +77,9 @@ void Man_AccountMenu(){
     printf("|                                                                         |\n");
     printf("|         1.get the information              2.change password            |\n");
     printf("|                                                                         |\n");
-    printf("|         3.change power level               4.Set book return               |\n");
+    printf("|         3.change power level               4.Set book return            |\n");
     printf("|                                                                         |\n");
-	printf("|         5.change name                      6.Set borrowing                       |\n");
+	printf("|         5.change name                      6.Set borrowing              |\n");
     printf("|                                                                         |\n");
     printf("|                                                                         |\n");
 	printf("*-------------------------------------------------------------------------*\n");
@@ -100,8 +101,6 @@ Status Man_Fuction(Manager &M){
 	//Man_GetBookTree(root);
 	int choice;
     do {
-		Pause();
-		Clean();
 		Man_ChoiceMenu();
 		//打印测试
 		recessedPrintRBTree(root->node, 0);
@@ -132,14 +131,22 @@ Status Man_Fuction(Manager &M){
 				printf("Failed to query books!\n");
 			break;
 		}
-		case 6://退出 返回上一级
+		case 6://逃生路线
+		{
+            if(getEscapeRote()!=SUCCESS)
+				printf("Failed to show escape rote!\n");
+			break;
+		}
+		case 0://退出 返回上一级
 		{
             return SUCCESS;
 			break;
 		}
 		default:printf("输入有误，请重新输入!（0-10）");
 		}
-	} while (choice!=6);
+		Pause();
+		Clean();
+	} while (choice!=0);
 	//返回上一级后保存图书信息--把树存到文件里面
 	FILE_WriteRBT(*root);
     printf("\n");

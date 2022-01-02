@@ -9,6 +9,7 @@
 #include"Utils.h"
 #include"RedBlackTree.h"
 #include"Login.h"
+#include"EscapeRote.h"
 
 /**
  * @brief 初始化Stu
@@ -38,7 +39,7 @@ void Stu_Options(){
     printf("|                                                                         |\n");
     printf("|           3.Return book                 4.Self Info                     |\n");
     printf("|                                                                         |\n");
-    printf("|                         0.System Return                                 |\n");
+    printf("|           4.Show escape Rote            0.System Return                 |\n");
     printf("|                                                                         |\n");
     printf("|                                                                         |\n");
     printf("*-------------------------------------------------------------------------*\n");     
@@ -147,6 +148,13 @@ void Stu_Operation(Stu &stu){
                 Stu_Print_MyInfo(stu);
                 Pause();
             }break;
+
+            case 5://逃生路线
+		{
+            if(getEscapeRote()!=SUCCESS)
+				printf("Failed to show escape rote!\n");
+			break;
+		}
             default:{
                 printf("\nOperation does not exist\n");
                 Pause();
