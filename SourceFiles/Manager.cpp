@@ -98,7 +98,7 @@ Status Man_Fuction(Manager &M){
 	RBRoot *root = NULL;
 	root = createRBTree();
     //初始化书本树
-	//Man_GetBookTree(root);
+	Man_GetBookTree(root);
 	int choice;
     do {
 		Man_ChoiceMenu();
