@@ -5,28 +5,29 @@
 #define REDBLACKTREE_REDBLACKTREEUTILS_H
 #include"Common.h"
 
-/* åˆ›å»ºçº¢é»‘æ ‘ç»“ç‚¹ */
+/* ´´½¨ºìºÚÊ÷½áµã */
 RBTree createRBTreeNode(RBTreeElemType x, Node *parent, Node *left, Node *right);
 
-/* çº¢é»‘æ ‘æ’å…¥ç»“ç‚¹åè‡ªå¹³è¡¡ */
+/* ºìºÚÊ÷²åÈë½áµãºó×ÔÆ½ºâ */
 Status RBTreeInsertSelfBalancing(RBRoot *root, Node *node);
 
-/* çº¢é»‘æ ‘æŸ¥æ‰¾æœ€å°ç»“ç‚¹ */
+/* ºìºÚÊ÷²éÕÒ×îĞ¡½áµã */
 Status minRBTreeNode(RBRoot *root, RBTreeElemType minVal);
 
-/* çº¢é»‘æ ‘æŸ¥æ‰¾æœ€å¤§ç»“ç‚¹ */
+/* ºìºÚÊ÷²éÕÒ×î´ó½áµã */
 Status maxRBTreeNode(RBRoot *root, RBTreeElemType maxVal);
 
-/* çº¢é»‘æ ‘åˆ é™¤ç»“ç‚¹åè‡ªå¹³è¡¡ */
+/* ºìºÚÊ÷É¾³ı½áµãºó×ÔÆ½ºâ */
 Status RBTreeDeleteSelfBalancing(RBRoot *root, Node *node, Node *parent);
 
-/* çº¢é»‘æ ‘åˆ é™¤ç»“ç‚¹æŒ‡é’ˆ */
+/* ºìºÚÊ÷É¾³ı½áµãÖ¸Õë */
+//__attribute__((unused)) Status deleteRBTreeNode(RBRoot *root, Node *node);
 Status deleteRBTreeNode(RBRoot *root, Node *node);
 
-/* çº¢é»‘æ ‘ä¿¡æ¯çš„æ‰“å° */
+/* ºìºÚÊ÷ĞÅÏ¢µÄ´òÓ¡ */
 Status PrintRBTreeInfo(RBTree tree, RBTreeElemType data, int position);
 
-/* å‡¹å…¥æ³•æ‰“å°çº¢é»‘æ ‘ */
+/* °¼Èë·¨´òÓ¡ºìºÚÊ÷ */
 Status recessedPrintRBTree(RBTree tree, int depth);
 
 #endif //REDBLACKTREE_REDBLACKTREEUTILS_H

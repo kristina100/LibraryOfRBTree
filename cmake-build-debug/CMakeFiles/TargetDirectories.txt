@@ -1,3 +1,0 @@
-F:/mechine_learning_suanfa/LibraryOfRBTree/cmake-build-debug/CMakeFiles/RBTreeOfLibary.dir
-F:/mechine_learning_suanfa/LibraryOfRBTree/cmake-build-debug/CMakeFiles/edit_cache.dir
-F:/mechine_learning_suanfa/LibraryOfRBTree/cmake-build-debug/CMakeFiles/rebuild_cache.dir

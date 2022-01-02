@@ -7,10 +7,10 @@
 #include"Common.h"
 #include "RedBlackTree.h"
 
-/* å¹³è¡¡äºŒå‰æ ‘ç»“ç‚¹å·¦æ—‹ */
+/* Æ½ºâ¶ş²æÊ÷½áµã×óĞı */
 Status RBTreeLeftRotate(RBRoot *root, Node *node);
 
-/* å¹³è¡¡äºŒå‰æ ‘ç»“ç‚¹å³æ—‹ */
+/* Æ½ºâ¶ş²æÊ÷½áµãÓÒĞı */
 Status RBTreeRightRotate(RBRoot *root, Node *node);
 
 #endif //REDBLACKTREE_BALANCEDBINARYTREE_H

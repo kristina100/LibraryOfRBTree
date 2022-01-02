@@ -3,32 +3,37 @@
  * @Author: Hx
  * @Date: 2021-12-23 15:51:52
  * @LastEditors: Hx
- * @LastEditTime: 2021-12-24 20:15:03
+ * @LastEditTime: 2022-01-02 00:11:54
  */
 #include"Common.h"
 #include"Student.h"
 #include"Manager.h"
 
 /**
- * @brief æ‰“å°ç™»å½•ç•Œé¢
+ * @brief ´òÓ¡µÇÂ¼½çÃæ
  * 
  */
 void Print_Login_Options();
 
 /**
- * @brief ç™»å½•æ“ä½œ
+ * @brief µÇÂ¼²Ù×÷
  */
 void Login_Operation();
 
 /**
- * @brief å­¦ç”Ÿç™»å½•
+ * @brief Ñ§ÉúµÇÂ¼
  * 
  * @return Stu 
  */
 Stu Login_Stu();
 
 /**
- * @brief æ³¨å†Œæ“ä½œ,mode == 0 ä¸ºå­¦ç”Ÿæ³¨å†Œ, 1ä¸ºç®¡ç†å‘˜æ³¨å†Œ
+ * @brief  ¹ÜÀíÔ±µÇÂ¼
+ */
+Manager Login_Man();
+
+/**
+ * @brief ×¢²á²Ù×÷,mode == 0 ÎªÑ§Éú×¢²á, 1Îª¹ÜÀíÔ±×¢²á
  * 
  * @param mode 
  * @return Status 
@@ -36,13 +41,20 @@ Stu Login_Stu();
 Status Register_Operation(int mode);
 
 /**
- * @brief åˆ†æµå­¦ç”Ÿå’Œç®¡ç†å‘˜
+ * @brief ·ÖÁ÷Ñ§ÉúºÍ¹ÜÀíÔ±
  * 
  */
 Status Register_Spilt();
 
 /**
- * @brief æ‰“å°æ³¨å†Œé€‰é¡¹
+ * @brief ´òÓ¡×¢²áÑ¡Ïî
  * 
  */
 void Print_Register_Option();
+
+/**
+ * @brief ¸üĞÂÑ§ÉúÎÄ¼şÖĞµÄĞÅÏ¢
+ * 
+ * @param stu 
+ */
+Status Updata_StuInfo(Stu &stu);
