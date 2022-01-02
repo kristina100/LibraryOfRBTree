@@ -3,10 +3,11 @@
  * @Author: Hx
  * @Date: 2021-12-23 15:56:56
  * @LastEditors: Hx
- * @LastEditTime: 2022-01-02 16:26:40
+ * @LastEditTime: 2022-01-02 16:44:46
  */
 #include"../HeaderFiles/Login.h"
 #include"../HeaderFiles/Utils.h"
+#include"EscapeRote.h"
 
 //存储学生数据的文件
 char Data_Stu[] = "Students.dat";
@@ -27,9 +28,9 @@ void Print_Login_Options(){
     printf("|                                                                         |\n");
     printf("|           1.Student Login                  2.Manager Login              |\n");
     printf("|                                                                         |\n");
-    printf("|           3.Register                       0.Exit                       |\n");
+    printf("|           3.Register                       4.Escape Rote                |\n");
     printf("|                                                                         |\n");
-    printf("|                                                                         |\n");
+    printf("|                            0.System Return                              |\n");
     printf("|                                                                         |\n");
     printf("*-------------------------------------------------------------------------*\n");
     printf("\n\t\t");
@@ -93,7 +94,12 @@ void Login_Operation(){
                 }
                 Pause();
             }break;
-        
+            case 4://逃生路线
+		   {
+                if(getEscapeRote()!=SUCCESS)
+				    printf("Failed to show escape rote!\n");
+			    break;
+		    }
             default:{
                 printf("\nOperation does not exist\n");
                 Pause();

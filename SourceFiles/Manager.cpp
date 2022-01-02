@@ -3,15 +3,16 @@
  * @Author: Hx
  * @Date: 2021-12-23 17:37:27
  * @LastEditors: Hx
- * @LastEditTime: 2022-01-02 00:10:22
+ * @LastEditTime: 2021-12-27 00:30:38
  */
 
 #include"Manager.h"
 #include"Login.h"
 #include"Utils.h"
+#include"EscapeRote.h"
 
 /**
- * @brief ³õÊ¼»¯Manager
+ * @brief åˆå§‹åŒ–Manager
  */
 Status Man_Init(Manager &M){
     M = (Manager)malloc(sizeof(manager));
@@ -23,7 +24,7 @@ Status Man_Init(Manager &M);
 
 /**
  * @name Man_ChoiceMenu
- * @brief ´òÓ¡¹ÜÀíÔ±²Ëµ¥
+ * @brief æ‰“å°ç®¡ç†å‘˜èœå•
  * @param   
  * @return  Status
  */
@@ -36,7 +37,7 @@ void Man_ChoiceMenu(){
     printf("|                                                                         |\n");
     printf("|           3.get off book                4.search book                   |\n");
     printf("|                                                                         |\n");
-    printf("|           5.exchange id                 6.Quit System                   |\n");
+    printf("|           5.Show escape rote            0.back                          |\n");
     printf("|                                                                         |\n");
     printf("|                                                                         |\n");
     printf("*-------------------------------------------------------------------------*\n");
@@ -45,7 +46,7 @@ void Man_ChoiceMenu(){
 
 /**
  * @name Man_SearchMenu
- * @brief ¹ÜÀíÔ±²éÕÒ¹¦ÄÜ
+ * @brief ç®¡ç†å‘˜æŸ¥æ‰¾åŠŸèƒ½
  * @param  root 
  * @return  Status
  */
@@ -56,7 +57,7 @@ void Man_SearchMenu(){
     printf("|                                                                         |\n");
     printf("|       1.Search By the ISBN of book     2.Search By the name of book     |\n");
     printf("|                                                                         |\n");
-    printf("|       3.Search By the author of book   4.Return to the previous level   |\n");
+    printf("|       3.Search By the author of book   4.Fuzzy search by the name       |\n");
     printf("|                                                                         |\n");
     printf("|                                                                         |\n");
     printf("*-------------------------------------------------------------------------*\n");
@@ -65,7 +66,7 @@ void Man_SearchMenu(){
 
 /**
  * @name Man_AccountMenu
- * @brief ÕËºÅ¹ÜÀí²Ëµ¥
+ * @brief è´¦å·ç®¡ç†èœå•
  * @param   
  * @return 
  */
@@ -76,9 +77,9 @@ void Man_AccountMenu(){
     printf("|                                                                         |\n");
     printf("|         1.get the information              2.change password            |\n");
     printf("|                                                                         |\n");
-    printf("|         3.change power level               4.Set book return               |\n");
+    printf("|         3.change power level               4.Set book return            |\n");
     printf("|                                                                         |\n");
-	printf("|         5.change name                      6.Set borrowing                       |\n");
+	printf("|         5.change name                      6.Set borrowing              |\n");
     printf("|                                                                         |\n");
     printf("|                                                                         |\n");
 	printf("*-------------------------------------------------------------------------*\n");
@@ -87,98 +88,104 @@ void Man_AccountMenu(){
 
 /**
  * @name Man_Fuction
- * @brief µÇÂ¼³É¹¦ºó½øÈë¹ÜÀíÔ±Ò³Ãæ
+ * @brief ç™»å½•æˆåŠŸåè¿›å…¥ç®¡ç†å‘˜é¡µé¢
  * @param  M
  * @return Status 
  * 
  */
 Status Man_Fuction(Manager &M){
-	//´´½¨¿ÕÊ÷
+	//åˆ›å»ºç©ºæ ‘
 	RBRoot *root = NULL;
 	root = createRBTree();
-    //³õÊ¼»¯Êé±¾Ê÷
+    //åˆå§‹åŒ–ä¹¦æœ¬æ ‘
 	//Man_GetBookTree(root);
 	int choice;
     do {
-		Pause();
-		Clean();
 		Man_ChoiceMenu();
-		//´òÓ¡²âÊÔ
+		//æ‰“å°æµ‹è¯•
 		recessedPrintRBTree(root->node, 0);
 		printRBTree(root);
         choice = InputInteger();
 		switch (choice) {
-		case 1://¹ÜÀíÕËºÅ
+		case 1://ç®¡ç†è´¦å·
 		{
 			if(Man_ManageAccount(M,root)==ERROR)
 				printf("Account does not exist!\n");
 			break;
 		}
-		case 2://ÉÏ¼ÜÊé¼®
+		case 2://ä¸Šæ¶ä¹¦ç±
 		{
 			if(Man_Grounding(M,root)!=SUCCESS)
 				printf("Failed to put the book on the shelf!\n");
 			break;
 		}
-		case 3://ÏÂ¼ÜÊé¼®
+		case 3://ä¸‹æ¶ä¹¦ç±
 		{
 			if(Man_OffShelf(M,root)!=SUCCESS)
 				printf("Book off shelf failed!\n");
 			break;
 		}
-		case 4://²éÕÒÊé¼®
+		case 4://æŸ¥æ‰¾ä¹¦ç±
 		{
 			if(Man_SearchBook(M,root)!=SUCCESS)
 				printf("Failed to query books!\n");
 			break;
 		}
-		case 6://ÍË³ö ·µ»ØÉÏÒ»¼¶
+		case 6://é€ƒç”Ÿè·¯çº¿
+		{
+            if(getEscapeRote()!=SUCCESS)
+				printf("Failed to show escape rote!\n");
+			break;
+		}
+		case 0://é€€å‡º è¿”å›ä¸Šä¸€çº§
 		{
             return SUCCESS;
 			break;
 		}
-		default:printf("ÊäÈëÓĞÎó£¬ÇëÖØĞÂÊäÈë!£¨0-10£©");
+		default:printf("è¾“å…¥æœ‰è¯¯ï¼Œè¯·é‡æ–°è¾“å…¥!ï¼ˆ0-10ï¼‰");
 		}
-	} while (choice!=6);
-	//·µ»ØÉÏÒ»¼¶ºó±£´æÍ¼ÊéĞÅÏ¢--°ÑÊ÷´æµ½ÎÄ¼şÀïÃæ
+		Pause();
+		Clean();
+	} while (choice!=0);
+	//è¿”å›ä¸Šä¸€çº§åä¿å­˜å›¾ä¹¦ä¿¡æ¯--æŠŠæ ‘å­˜åˆ°æ–‡ä»¶é‡Œé¢
 	FILE_WriteRBT(*root);
     printf("\n");
-	//±£´æºóÉ¾³ıÊ÷
+	//ä¿å­˜ååˆ é™¤æ ‘
 	destroyRBTree(root);
     return SUCCESS;   
 }
 
 /**
  * @name Man_ManageAccount
- * @brief ¹ÜÀíÕËºÅ¹¦ÄÜ
+ * @brief ç®¡ç†è´¦å·åŠŸèƒ½
  * @param   M root
  * @return  Status
  */
 Status Man_ManageAccount(Manager M,RBRoot *root){
-    //¶ÁÈ¡Ñ§ÉúÎÄ¼ş
+    //è¯»å–å­¦ç”Ÿæ–‡ä»¶
 	FILE *fp = NULL;
 	int flag=0;
     char stu_ID[11];
     Stu stu = NULL;
     Stu_Init(stu);
 
-    //ÊäÈëÑ§ÉúÕËºÅ
+    //è¾“å…¥å­¦ç”Ÿè´¦å·
 	printf("Please enter the ID of the student you want to manage:\n");
     scanf("%s",&stu_ID);
 
-    //´ò¿ªÎÄ¼ş
+    //æ‰“å¼€æ–‡ä»¶
     fp = fopen("Students.dat", "rb");
     
-    //ÔÚÊı¾İÎÄ¼şÖĞ²éÕÒÑ§ºÅ
+    //åœ¨æ•°æ®æ–‡ä»¶ä¸­æŸ¥æ‰¾å­¦å·
     while(fread(stu, sizeof(student), 1, fp)){
         if(strcmp(stu_ID, stu->ID) == 0){
-			//ÕËºÅÏàÍ¬ÕÒµ½¶ÔÓ¦Ñ§Éú
+			//è´¦å·ç›¸åŒæ‰¾åˆ°å¯¹åº”å­¦ç”Ÿ
 			fclose(fp);
 			flag =1;
 		} 
     }
     fclose(fp);
-	if(!flag){//ÅĞ¶ÏÊÇ·ñÕÒµ½
+	if(!flag){//åˆ¤æ–­æ˜¯å¦æ‰¾åˆ°
 		stu =NULL;
 		return ERROR;
 	}
@@ -186,15 +193,15 @@ Status Man_ManageAccount(Manager M,RBRoot *root){
 	int choice=-1;
     do {
 		Man_AccountMenu();
-		//´òÓ¡²âÊÔ
+		//æ‰“å°æµ‹è¯•
 		recessedPrintRBTree(root->node, 0);
 		printRBTree(root);
         choice = InputInteger();
 		switch (choice) {
-		case 1://»ñÈ¡ĞÅÏ¢
+		case 1://è·å–ä¿¡æ¯
 		{
 			if(!stu) break;
-			//´òÓ¡Ñ§ÉúĞÅÏ¢
+			//æ‰“å°å­¦ç”Ÿä¿¡æ¯
 			printf("\tID: %s ", stu->ID);
 			printf("\tName: %s ", stu->name);
 			printf("\t\tAccount: %s ", stu->account);
@@ -203,7 +210,7 @@ Status Man_ManageAccount(Manager M,RBRoot *root){
     		else Print_Book(stu->mybook);
 			break;
 		}
-		case 2://ĞŞ¸ÄÃÜÂë
+		case 2://ä¿®æ”¹å¯†ç 
 		{
 			char new_password[10] ="";
 			printf("Please enter the new password:\n");
@@ -217,7 +224,7 @@ Status Man_ManageAccount(Manager M,RBRoot *root){
 			}
 			break;
 		}
-		case 3://ĞŞ¸ÄÈ¨Á¦
+		case 3://ä¿®æ”¹æƒåŠ›
 		{
 			int power;
 			printf("Please enter the new power:\n");
@@ -231,7 +238,7 @@ Status Man_ManageAccount(Manager M,RBRoot *root){
 			}
 			break;
 		}
-		case 4://ÉèÖÃĞÂÔö»¹Êé
+		case 4://è®¾ç½®æ–°å¢è¿˜ä¹¦
 		{
 			if(Stu_return(stu, root) == SUCCESS){
                 printf("Return the book successfully!\n");
@@ -240,7 +247,7 @@ Status Man_ManageAccount(Manager M,RBRoot *root){
 			}
 			break;
 		}
-		case 5://ĞŞ¸ÄĞÕÃû
+		case 5://ä¿®æ”¹å§“å
 		{
             char new_name[10];
 			printf("Please enter the new name:\n");
@@ -254,17 +261,17 @@ Status Man_ManageAccount(Manager M,RBRoot *root){
 			}
 			break;
 		}
-		case 6://ÉèÖÃĞÂÔö½èÊé
+		case 6://è®¾ç½®æ–°å¢å€Ÿä¹¦
 		{
 			Stu_Borrow(stu, root);	
 			break;
 		}
-		case 0://ÍË³ö
+		case 0://é€€å‡º
 		{
             return SUCCESS;
 			break;
 		}
-		default:printf("ÊäÈëÓĞÎó£¬ÇëÖØĞÂÊäÈë!£¨0-5£©");
+		default:printf("è¾“å…¥æœ‰è¯¯ï¼Œè¯·é‡æ–°è¾“å…¥!ï¼ˆ0-5ï¼‰");
 		}
 	} while (choice!=0);
 	return SUCCESS;
@@ -272,7 +279,7 @@ Status Man_ManageAccount(Manager M,RBRoot *root){
 
 /**
  * @name Man_Grounding
- * @brief  ÉÏ¼ÜÊé¼®
+ * @brief  ä¸Šæ¶ä¹¦ç±
  * @param   M root
  * @return  status
  */
@@ -294,7 +301,7 @@ Status Man_Grounding(Manager M,RBRoot *root){
 
 /**
  * @name Man_OffShelf
- * @brief ÏÂ¼ÜÊé¼®
+ * @brief ä¸‹æ¶ä¹¦ç±
  * @param   M root
  * @return  status
  */
@@ -312,7 +319,7 @@ Status Man_OffShelf(Manager M,RBRoot *root){
 
 /**
  * @name Man_SearchBook
- * @brief  ËÑË÷Êé¼®
+ * @brief  æœç´¢ä¹¦ç±
  * @param   M root
  * @return  status
  */
@@ -322,12 +329,12 @@ Status Man_SearchBook(Manager M,RBRoot *root){
 	int choice=-1;
     do {
 		Man_SearchMenu();
-		//´òÓ¡²âÊÔ
+		//æ‰“å°æµ‹è¯•
 		recessedPrintRBTree(root->node, 0);
 		printRBTree(root);
         choice = InputInteger();
 		switch (choice) {
-		case 1://°´ISBNËÑË÷
+		case 1://æŒ‰ISBNæœç´¢
 		{
 			RBTreeElemType search_x=(RBTreeElemType)malloc(sizeof(RBTElem));
             RBTree targe,first;
@@ -344,19 +351,19 @@ Status Man_SearchBook(Manager M,RBRoot *root){
 			search_x = NULL;
 			free(search_x);
 		}
-		case 2://°´ÊéÃûËÑË÷
+		case 2://æŒ‰ä¹¦åæœç´¢
 		{
 			e1 = SearchByName(root);
 			e1 = NULL;
 			break;
 		}
-		case 3://°´×÷ÕßËÑË÷
+		case 3://æŒ‰ä½œè€…æœç´¢
 		{
 			e2 = SearchBookByAuthor(root);
 			e2 = NULL;
 			break;
 		}
-		case 4://°´ÊéÃûÄ£ºıËÑË÷
+		case 4://æŒ‰ä¹¦åæ¨¡ç³Šæœç´¢
 		{
 			MyBook books,p=NULL;
 			books=FuzzySearchByName(root);
@@ -369,14 +376,14 @@ Status Man_SearchBook(Manager M,RBRoot *root){
 			}
 			break;
 		}
-		case 0://ÍË³ö ·µ»ØÉÏÒ»¼¶
+		case 0://é€€å‡º è¿”å›ä¸Šä¸€çº§
 		{
 			free(e1);
 			free(e2);
             return SUCCESS;
 			break;
 		}
-		default:printf("ÊäÈëÓĞÎó£¬ÇëÖØĞÂÊäÈë!£¨1-4£©");
+		default:printf("è¾“å…¥æœ‰è¯¯ï¼Œè¯·é‡æ–°è¾“å…¥!ï¼ˆ1-4ï¼‰");
 		}
 	} while (choice!=4);
 	free(e1);
@@ -386,7 +393,7 @@ Status Man_SearchBook(Manager M,RBRoot *root){
 
 /**
  * @name Man_GetBookTree
- * @brief »ñÈ¡Êé¼®(´ÓÎÄ¼ş¶ÁÈ¡Ê÷)
+ * @brief è·å–ä¹¦ç±(ä»æ–‡ä»¶è¯»å–æ ‘)
  * @param  root
  * @return  Status
  */
@@ -396,7 +403,7 @@ Status Man_GetBookTree(RBRoot *root){
 
 /**
  * @name SearchByName
- * @brief ¸ù¾İÊéÃû×¼È·ËÑË÷
+ * @brief æ ¹æ®ä¹¦åå‡†ç¡®æœç´¢
  * @param  root
  * @param  name
  * @return  RBTreeElemType
@@ -418,7 +425,7 @@ RBTreeElemType SearchByName(RBRoot *root){
 
 /**
  * @name SearchBookByAuthor
- * @brief ¸ù¾İ×÷Õß×¼È·ËÑË÷
+ * @brief æ ¹æ®ä½œè€…å‡†ç¡®æœç´¢
  * @param  root
  * @param  author
  * @return  RBTreeElemType
@@ -442,7 +449,7 @@ RBTreeElemType SearchBookByAuthor(RBRoot *root){
 
 /**
  * @name FuzzySearchByName
- * @brief °´ÊéÃûÄ£ºıËÑË÷
+ * @brief æŒ‰ä¹¦åæ¨¡ç³Šæœç´¢
  * @param  root
  * @return  status
  */
@@ -465,7 +472,7 @@ MyBook FuzzySearchByName(RBRoot *root){
 
 /**
  * @name RBT_FuzzySearchByName
- * @brief ¸ù¾İÊéÃûÄ£ºıËÑË÷
+ * @brief æ ¹æ®ä¹¦åæ¨¡ç³Šæœç´¢
  * @param  root
  * @param  name
  * @return  status
@@ -505,15 +512,15 @@ Status PrintBookInfo(RBTreeElemType e){
     printf("                          <Book Infomation>                               \n\n");
     printf("     ISBN     |    Title    |    Author   |   Press   |   Score   \n\n");
 
-    //´òÓ¡ISBN
+    //æ‰“å°ISBN
     printf("%-15lld",e->elem);
-    //´òÓ¡ÊéÃû
+    //æ‰“å°ä¹¦å
     printf("%-15s",e->Title);
-    //´òÓ¡×÷Õß
+    //æ‰“å°ä½œè€…
     printf("%-15s",e->Author);
-    //´òÓ¡³ö°æÉç
+    //æ‰“å°å‡ºç‰ˆç¤¾
     printf("%-15s",e->press);
-	//´òÓ¡ÆÀ·Ö
+	//æ‰“å°è¯„åˆ†
 	printf("%-10d",e->score);
 	return SUCCESS;
 }
