@@ -3,7 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-23 14:33:31
  * @LastEditors: Hx
- * @LastEditTime: 2022-01-02 16:06:55
+ * @LastEditTime: 2022-01-02 22:20:58
  */
 #include"Student.h"
 #include"Utils.h"
@@ -20,6 +20,7 @@ Status Stu_Init(Stu &stu){
     if(stu == NULL) return OVERFLOW;
     stu->mybook = NULL;
     stu->power = 0;
+    stu->bookNum = 0;
     stu->next = NULL;
 
     return SUCCESS;
@@ -201,11 +202,16 @@ void Stu_Borrow(Stu stu, RBRoot *root){
                             scanf("%d", &confirm);
                             //确定借阅
                             if(confirm == 1){
-                                if(Stu_AddBook(stu, book) == SUCCESS){
-                                    printf("Success, you have the book now.\n");
-                                    Updata_StuInfo(stu);
+                                if(Stu_AddBook(stu, book) == SUCCESS){ 
+
                                     //书本状态置为0,为借出状态
                                     book->status = 0;
+                                    //更新书本信息
+                                    FILE_WriteRBT(*root);
+                                    //更新学生信息
+                                    Updata_StuInfo(stu);
+
+                                    printf("Success, you have the book now.\n");
                                     Pause();
                                     break;
                                 }
@@ -252,7 +258,7 @@ void Print_Book(MyBook b){
     printf("                                <Books>                                \n\n");
     printf("  Num  |     ISBN     |         Title         |      Author      |    Press    \n\n");
     int num = 1;
-    while(p != NULL&&p->book!=NULL){
+    while(p != NULL && p->book != NULL){
         //打印编号
         printf("  %-3d\t",num);
         //打印ISBN
@@ -443,7 +449,7 @@ void Stu_SearchBookByAuthor(RBTree node, char *author, MyBook &books){
 }
 
 /**
- * @brief 向学生账户上添加一本书，并将书设置为已借出状态
+ * @brief 向学生账户上添加一本书
  */
 Status Stu_AddBook(Stu &stu, RBTreeElemType b){
 
@@ -455,7 +461,7 @@ Status Stu_AddBook(Stu &stu, RBTreeElemType b){
         if(stu->mybook == NULL)
             return OVERFLOW;
 
-        //将第一本书接给学生
+        //添加第一本书
         stu->mybook->book = b;
         stu->mybook->next = NULL;
     }
@@ -473,6 +479,8 @@ Status Stu_AddBook(Stu &stu, RBTreeElemType b){
         mb->next = stu->mybook;
         stu->mybook = mb;
     }
+    //书的数量+1
+    stu->bookNum++;
     return SUCCESS;
 }
 
@@ -532,9 +540,114 @@ Status Stu_return(Stu &stu, RBRoot *root){
     //树状态置为1
     e->status = 1;
 
+    //书的数量减1
+    stu->bookNum--;
+
     //更新书本文件
     FILE_WriteRBT(*root);
     //更新学生文件
     Updata_StuInfo(stu);
+    return SUCCESS;
+}
+
+/**
+ * @brief 读取学生信息，返回链表
+ */
+Stu Stu_ReadData(){
+
+    //存储学生数据的文件
+    char Data_Stu[] = "Students.dat";
+
+    //打开学生数据文件
+    FILE *fp = NULL;
+    fp = fopen(Data_Stu, "rb");
+
+    if(fp == NULL)
+        return NULL;
+
+    //初始化
+    Stu temp = NULL, head = NULL;
+    Stu_Init(temp);
+    RBTreeElemType e = NULL;
+    MyBook MB = NULL;
+    
+    //读出学生结构体
+    while(fread(temp, sizeof(student), 1, fp)){
+        
+        //学生有借书记录，开始读取书本信息过程
+        if(temp->bookNum != 0){
+
+            //读出学生书本信息
+            for(int i = 0; i < temp->bookNum; i++){
+
+                //分配空间
+                MB = (MyBook)malloc(sizeof(mybook));
+                InitRBTElem(e);
+
+                //读出一本书
+                fread(e, sizeof(RBTElem), 1, fp);
+                MB->book = e;
+                //第一本书
+                if(i == 0){
+                    MB->next = NULL;
+                    temp->mybook = MB;
+                }
+                //非第一本书，头插法插入
+                else{
+                    MB->next = temp->mybook;
+                    temp->mybook = MB;
+                }
+            }
+        }
+
+        //头插法插入学生信息
+        if(head != NULL){
+            temp->next = head;
+            head = temp;
+        }else
+            head = temp;
+    }
+
+    return head;
+}
+
+/**
+ * @brief 格式化写入学生文件
+ */
+Status Stu_WriteData(Stu stu){
+
+    //存储学生数据的文件
+    char Data_Stu[] = "Students.dat";
+
+    //空stu
+    if(stu == NULL) return ERROR;
+    
+    //打开学生数据文件
+    FILE *fp = NULL;
+    fp = fopen(Data_Stu, "wb");
+
+    if(fp == NULL)
+        return ERROR;
+
+    //初始化
+    Stu p = stu;
+    MyBook mb = NULL;
+    //写入学生信息
+    while(p != NULL){
+        //写入学生结构体
+        fwrite(p, sizeof(student), 1, fp);
+        //学生有已借书籍，写入书本信息
+        if(stu->bookNum != 0){
+            mb = stu->mybook;
+            while(mb != NULL){
+                fwrite(mb->book, sizeof(RBTElem), 1, fp);
+                mb = mb->next;
+            }
+        }
+        //指向下一个学生
+        p = p->next;
+    }
+    //关闭文件
+    fclose(fp);
     return SUCCESS;
 }
