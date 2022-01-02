@@ -14,8 +14,9 @@
 int main(){
     RBRoot *root;
     Manager M;
+    Login_Operation();
     //Register_Spilt();
-    Man_Fuction(M);
+    //Man_Fuction(M);
     system("pause");
     return 1;
 }
