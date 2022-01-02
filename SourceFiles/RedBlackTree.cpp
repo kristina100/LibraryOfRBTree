@@ -164,14 +164,9 @@ Status inputRBTElem(RBTreeElemType &e){
     e = (RBTreeElemType)malloc(sizeof(RBTElem));
     if(e == NULL)   return OVERFLOW;
 
-    char str[20] = "";
-
     //输入书名
     printf("please input Title:");
     scanf("%s", e->Title);
-    // scanf("%s", str);
-    // e->Title = (char*)malloc(sizeof(char) * strlen(str));
-    // strcpy(e->Title, str);
 
     //输入IBSN
     printf("please input ISBN:");
@@ -181,23 +176,14 @@ Status inputRBTElem(RBTreeElemType &e){
     //输入作者
     printf("please input Author:");
     scanf("%s", e->Author);
-    // scanf("%s", str);
-    // e->Author = (char*)malloc(sizeof(char) * strlen(str));
-    // strcpy(e->Author, str);
 
     //输入评分
     printf("please input score:");
     scanf("%s", e->score);
-    // scanf("%s", str);
-    // e->score = (char*)malloc(sizeof(char) * strlen(str));
-    // strcpy(e->score, str);
 
     //输入出版社
     printf("please input press:");
     scanf("%s", e->press);
-    // scanf("%s", str);
-    // e->press = (char*)malloc(sizeof(char) * strlen(str));
-    // strcpy(e->press, str);
 
     //输入书本页数
     printf("please input number of page:");
@@ -233,6 +219,7 @@ Status FILE_ReadRBT(RBRoot *root){
     
     char str[20] = "";
 
+    int num = 0;
     //判断
     int status;
     while(!feof(fp)){
@@ -247,30 +234,18 @@ Status FILE_ReadRBT(RBRoot *root){
 
         //读取书名
         fscanf(fp, "%s", e->Title);
-        // fscanf(fp, "%s", str);
-        // e->Title = (char*)malloc(sizeof(char) * strlen(str));
-        // strcpy(e->Title, str);
         fgetc(fp);
         
         //读取作者
         fscanf(fp, "%s", e->Author);
-        // fscanf(fp, "%s", str);
-        // e->Author = (char*)malloc(sizeof(char) * strlen(str));
-        // strcpy(e->Author, str);
         fgetc(fp);
 
         //读取出版社
         fscanf(fp, "%s", e->press);
-        // fscanf(fp, "%s", str);
-        // e->press = (char*)malloc(sizeof(char) * strlen(str));
-        // strcpy(e->press, str);
         fgetc(fp);
 
         //读取评分
         fscanf(fp, "%s", e->score);
-        // fscanf(fp, "%s", str);
-        // e->score = (char*)malloc(sizeof(char) * strlen(str));
-        // strcpy(e->score, str);
         fgetc(fp);
 
         //读取页码
@@ -282,8 +257,10 @@ Status FILE_ReadRBT(RBRoot *root){
 
         //插入红黑树
         insertRBTree(root, e);
+        num++;
     }
     fclose(fp);
+    printf("%d", num);
     return SUCCESS;
 }
 
