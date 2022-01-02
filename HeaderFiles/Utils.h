@@ -3,7 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-22 12:54:00
  * @LastEditors: Hx
- * @LastEditTime: 2021-12-28 16:48:44
+ * @LastEditTime: 2022-01-02 14:32:59
  */
 #ifndef UTILS_H_INCLUDE
 #define UTILS_H_INCLUDE
@@ -13,24 +13,24 @@
 #include"Manager.h"
 
 /**
- * @brief é†å‚šä» 
+ * @brief ÔİÍ£
  */
 void Pause();
 
 /**
- * @brief å¨“å‘¯â”–çå¿“ç®·
+ * @brief Çå¿ÕÆÁÄ»
  */
 void Clean();
 
 /**
- * @brief éµæ’³åµƒæ¶”ï¸½æ¹°æ·‡â„ƒä¼…
+ * @brief ´òÓ¡Êé±¾ĞÅÏ¢
  * 
  * @param e 
  */
 void Print_BookInfo(RBTreeElemType e);
 
 /*
- * å¦«â‚¬å¨´å¬¬æ•¤é´é”‹æš£éæ‹Œç·­éï¿½
+ * ¼ì²âÓÃ»§ÕûÊıÊäÈë
  *
  * @param[in]  none
  * @return  legal integer
@@ -39,7 +39,7 @@ long long int InputInteger();
 
 /**
  * @name  Quit()
- * @brief é–«â‚¬é‘å“„å½é‚ï¿½
+ * @brief é–«â‚¬é‘å“„å½é‚ï¿?
  * @param   
  * @return  
  */

@@ -8,7 +8,7 @@
 #include "../HeaderFiles/BinaryTree.h"
 #include"Utils.h"
 
-//瀛樺偍涔︽湰鏁版嵁鐨勬枃锟??
+//书的数据文件
 char Data_Book[] = "book_data.txt";
 
 /**
@@ -157,20 +157,12 @@ Status printRBTree(RBRoot *root)
 }
 
 /**
- * @brief 杈撳叆elem鏁版嵁
- *        鍙?鏈夌?＄悊鍛樻坊鍔犱功鏈?鐨勬椂鍊欎細璋冪敤姝ゆ柟娉曞垱寤烘柊elem
- *        鏍规嵁杈撳叆鐨勫瓧闀垮垎閰嶇┖闂翠箣鍚庤祴缁欏?瑰簲锟??
+ * @brief 输入elem数据
  */
 Status inputRBTElem(RBTreeElemType &e){
 
     e = (RBTreeElemType)malloc(sizeof(RBTElem));
     if(e == NULL)   return OVERFLOW;
-
-    //鍒濆?嬪寲杈撳叆鍩燂紝浣滆�咃紝璇勫垎锛屼功锟??
-    // char *author = NULL, *score = NULL, *title = NULL;
-    // author = (char*)malloc(sizeof(char)*20);
-    // score = (char*)malloc(sizeof(char)*20);
-    // title = (char*)malloc(sizeof(char)*20);
 
     char str[20] = "";
 
@@ -233,11 +225,11 @@ Status InitRBTElem(RBTreeElemType &e){
 }
 
 /**
- * @brief 浠庢枃浠朵腑璇诲彇鏁版嵁骞舵瀯寤虹孩榛戞爲
+ * @brief 从文件中读取数据并构建红黑树
  */
 Status FILE_ReadRBT(RBRoot *root){
 
-    FILE *fp=fopen("book_data.txt","r");
+    FILE *fp = fopen(Data_Book,"r");
 
     if(NULL==fp) return ERROR;
     
@@ -246,48 +238,48 @@ Status FILE_ReadRBT(RBRoot *root){
 
     //鍒ゆ柇
     int status;
-    while(!feof(fp)){//濡傛灉浣嶇疆鎸囬拡涓嶅湪鏂囦欢鏈?灏?,鍗虫病鏈夎?诲埌鏂囦欢鏈?锟??
+    while(!feof(fp)){
 
         RBTreeElemType e = NULL;
         InitRBTElem(e);
-        //璇诲嚭elem(ISBN)
+        //读取elem(ISBN)
         fscanf(fp, "%lld", &e->elem);
 
-        //杩欐潯璇?鍙ョ敤浜庢毚鍔涜В鍐虫渶鍚庝竴涓?瀛楃?﹂棶锟??
+        //解决最后一个字符问题
         if(e->elem == 0) break;
 
-        //璇诲嚭涔﹀悕
+        //读取书名
         fscanf(fp, "%s", str);
         e->Title = (char*)malloc(sizeof(char) * strlen(str));
         strcpy(e->Title, str);
         fgetc(fp);
         
-        //璇诲嚭浣滐拷?
+        //读取作者
         fscanf(fp, "%s", str);
         e->Author = (char*)malloc(sizeof(char) * strlen(str));
         strcpy(e->Author, str);
         fgetc(fp);
-      
-        //璇诲嚭鍑虹増锟??
+
+        //读取出版社
         fscanf(fp, "%s", str);
         e->press = (char*)malloc(sizeof(char) * strlen(str));
         strcpy(e->press, str);
         fgetc(fp);
 
-        //璇诲嚭璇勫垎
+        //读取评分
         fscanf(fp, "%s", str);
         e->score = (char*)malloc(sizeof(char) * strlen(str));
         strcpy(e->score, str);
         fgetc(fp);
 
-        //璇诲嚭椤垫暟
+        //读取页码
         fscanf(fp, "%d", &e->page_num);
         fgetc(fp);
 
-        //璇诲嚭鐘讹拷?
+        //读取状态
         fscanf(fp, "%d", &e->status);   
 
-        //鍐欏叆鏍戜腑
+        //插入树中
         insertRBTree(root, e);
     }
     fclose(fp);

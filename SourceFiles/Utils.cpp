@@ -3,7 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-22 12:54:10
  * @LastEditors: Hx
- * @LastEditTime: 2021-12-28 16:48:24
+ * @LastEditTime: 2022-01-02 14:22:46
  */
 #include"Utils.h"
 
@@ -28,9 +28,9 @@ void Print_BookInfo(RBTreeElemType e){
     Clean();
     printf("\n");
     printf("*-------------------------------------------------------------------------*\n");
-    printf("                              <Book Info>                                  \n");
-    printf("\tISBN: %d", e->elem);
+    printf("                              <Book Info>                                  \n\n");
     printf("\tTitle: %s\n", e->Title);
+    printf("\tISBN: %d\n", e->elem);
     printf("\tAuthor: %s\n", e->Author);
     printf("\tPress: %s\n", e->press);
     printf("\tScore: %s\n", e->score);

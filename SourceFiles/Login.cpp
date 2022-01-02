@@ -3,11 +3,10 @@
  * @Author: Hx
  * @Date: 2021-12-23 15:56:56
  * @LastEditors: Hx
- * @LastEditTime: 2022-01-01 23:57:31
+ * @LastEditTime: 2022-01-02 16:26:40
  */
 #include"../HeaderFiles/Login.h"
 #include"../HeaderFiles/Utils.h"
-#include"EscapeRote.h"
 
 //存储学生数据的文件
 char Data_Stu[] = "Students.dat";
@@ -23,14 +22,14 @@ void Print_Login_Options(){
     Clean();
     printf("\n\n\n\n");
     printf("*-------------------------------------------------------------------------*\n");
-    printf("|                            <Login Interface>                            |\n");
+    printf("|                           <Login Interface>                             |\n");
     printf("|                                                                         |\n");
     printf("|                                                                         |\n");
     printf("|           1.Student Login                  2.Manager Login              |\n");
     printf("|                                                                         |\n");
-    printf("|           3.Register                       4.Escape Rote                |\n");
+    printf("|           3.Register                       0.Exit                       |\n");
     printf("|                                                                         |\n");
-    printf("|                            0.System Return                              |\n");
+    printf("|                                                                         |\n");
     printf("|                                                                         |\n");
     printf("*-------------------------------------------------------------------------*\n");
     printf("\n\t\t");
@@ -61,9 +60,9 @@ void Login_Operation(){
                 Stu stu = NULL;
                 stu = Login_Stu();
                 if(stu == NULL){
-                    printf("\tLogin failed! Account or password error.\n");
+                    printf("\t\tLogin failed! Account or password error.\n");
                 }else{
-                    printf("\tLogin succeeded.\n");
+                    printf("\t\tLogin succeeded.\n");
                     Sleep(1);
                     Stu_Operation(stu);
                 }
@@ -88,18 +87,13 @@ void Login_Operation(){
             case 3:{
                 Status status = Register_Spilt();
                 if(status == SUCCESS){
-                    printf("\tRegister was successful.\n");
+                    printf("\t\tRegister was successful.\n");
                 }else if(status == Exist){
-                    printf("\tError! Account already exists.\n");
+                    printf("\t\tError! Account already exists.\n");
                 }
                 Pause();
             }break;
-            case 4://逃生路线
-		   {
-                if(getEscapeRote()!=SUCCESS)
-				    printf("Failed to show escape rote!\n");
-			    break;
-		    }
+        
             default:{
                 printf("\nOperation does not exist\n");
                 Pause();
@@ -121,16 +115,17 @@ Stu Login_Stu(){
     printf("                                                                           \n");
 
     FILE *fp = NULL;
-    char account[11];
-    char password[6];
     Stu stu = NULL;
     Stu_Init(stu);
+    char password[6] = "";
+    char account[20] = "";
 
-    //输入账号密码
-    printf("\t\tPlease input account:");
+    //输入账号
+    printf("\t\t\tAccount: ");
     scanf("%s", account);
 
-    printf("\t\tPlease input password:");
+    //输入密码
+    printf("\t\t\tPassword: ");
     scanf("%s", password);
 
     //打开文件
@@ -170,29 +165,30 @@ Manager Login_Man(){
     printf("                                                                           \n");
 
     FILE *fp = NULL;
-    char account[11];
-    char password[6];
-    Manager man = NULL;
-    Man_Init(man);
-    
-    //输入账号密码
-    printf("请输入账号:");
+    Manager Man = NULL;
+    Man_Init(Man);
+    char password[6] = "";
+    char account[20] = "";
+
+    //输入账号
+    printf("\t\t\tAccount: ");
     scanf("%s", account);
 
-    printf("请输入密码:");
+    //输入密码
+    printf("\t\t\tPassword: ");
     scanf("%s", password);
 
     //打开文件
     fp = fopen(Data_Man, "rb");
     
     //在数据文件中查找账号
-    while(fread(man, sizeof(manager), 1, fp)){
+    while(fread(Man, sizeof(manager), 1, fp)){
         
-        if(strcmp(account, man->account) == 0){
+        if(strcmp(account, Man->account) == 0){
             //密码相同
-            if(strcmp(password, man->password) == 0){
+            if(strcmp(password, Man->password) == 0){
                 fclose(fp);
-                return man;
+                return Man;
             }
             else
                 break;
@@ -293,7 +289,7 @@ Status Register_Operation(int mode){
             Stu_Init(stu);
             Stu_Init(temp);
 
-            printf("\tPlease input your account: ");
+            printf("\t\tPlease input your account: ");
             scanf("%s", stu->account);
 
             //=================检查账号是否存在=================
@@ -409,28 +405,46 @@ Status Updata_StuInfo(Stu &stu){
     //关闭文件
     fclose(fp);
     
-    //找到对应学生，修改对应学生的数据
-    for(p = head; p->next != NULL && p->next->account != stu->account; p = p->next);
+    //找到学生
+    for(p = t = head; t->next != NULL; t = t->next){
+    
+        //找到对应学生
+        if(t->account == stu->account) 
+            break;
+
+        //p指向对应学生的上一位
+        p = t;
+    }
 
     //将新数据替换旧数据
-    t = p->next;
-    stu->next = t->next;
-    p->next = stu;
+    //对应学生为第一位
+    if(p == t){
+        stu->next = t->next;
+        t = stu;
+    }
+    //对应学生不为第一位
+    else{     
+        stu->next = t->next;
+        p->next = stu;
+    }
+
+    //释放旧数据
+    t->next = NULL;
 
     //以二进制写"w"打开文件，覆盖输入
     fp = fopen(Data_Stu, "wb");
-    for(p = head; p != NULL; p = p->next){
-        fwrite(p, sizeof(student), 1, fp);
+    for(t = head; t != NULL; t = t->next){
+        fwrite(t, sizeof(student), 1, fp);
     }
     //关闭文件
     fclose(fp);
     
     //释放空间
-    p = head;
-    while(p != NULL){
-        p = p->next;
+    t = head;
+    while(t != NULL){
+        t = t->next;
         free(head);
-        head = p;
+        head = t;
     }
     free(t);
     return SUCCESS;
