@@ -3,7 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-23 14:33:31
  * @LastEditors: Hx
- * @LastEditTime: 2022-01-02 01:26:12
+ * @LastEditTime: 2022-01-02 16:06:55
  */
 #include"Student.h"
 #include"Utils.h"
@@ -132,7 +132,6 @@ void Stu_Operation(Stu &stu){
             //借阅书籍
             case 2:{
                 Stu_Borrow(stu, root);
-                Pause();
             }break;
 
             //归还书籍
@@ -197,10 +196,13 @@ void Stu_Borrow(Stu stu, RBRoot *root){
                                 if(Stu_AddBook(stu, book) == SUCCESS){
                                     printf("Success, you have the book now.\n");
                                     Updata_StuInfo(stu);
+                                    //书本状态置为0,为借出状态
+                                    book->status = 0;
                                     Pause();
+                                    break;
                                 }
                                 else{
-                                    printf("Fail\n");
+                                    printf("Fail!\n");
                                 }
                             }
                             //放弃借阅
@@ -210,13 +212,15 @@ void Stu_Borrow(Stu stu, RBRoot *root){
                             //输入错误判断
                             else{
                                 printf("Error! Please check your input.\n");
+                                Pause();
                             }
                         }
                         //书本已借出
                         else{
                             printf("Fail! The books have been borrowed.\n");
+                            Pause();
+                            break;
                         }
-                        Pause();
                     }
                 }
                 //书本不存在
@@ -225,7 +229,7 @@ void Stu_Borrow(Stu stu, RBRoot *root){
                 }
             }break;
         }
-    Clean();
+//    Clean();
     }
 }
 
@@ -292,7 +296,7 @@ void Stu_SearchBook(RBRoot *root){
                 books->next = NULL;
                 char str[20] = "";
 
-                printf("Please enter the title: ");
+                printf("\tPlease enter the title: ");
                 scanf("%s", str);
 
                 //搜索
@@ -309,7 +313,25 @@ void Stu_SearchBook(RBRoot *root){
 
             //按作者查找
             case 3:{
+                //创建返回载体
+                MyBook books = (MyBook)malloc(sizeof(mybook));
+                books->book = NULL;
+                books->next = NULL;
+                char str[20] = "";
 
+                printf("\tPlease enter the title: ");
+                scanf("%s", str);
+
+                //搜索
+                Stu_SearchBookByAuthor(root->node, str, books);
+
+                //打印书本
+                if(books->book)
+                    Print_Book(books);
+                else
+                    printf("No book exists!\n");
+
+                Pause();
             }break;
 
             default:{
@@ -382,6 +404,37 @@ void Stu_SearchBookByTitle(RBTree node, char *name, MyBook &books){
 }
 
 /**
+ * @brief 根据作者模糊搜索
+ */
+void Stu_SearchBookByAuthor(RBTree node, char *author, MyBook &books){
+
+    //node判空
+    if(node == NULL) return;
+    
+    //字符串判断
+    if(strpbrk(author, node->data->Author) != NULL){
+
+        MyBook newBook = (MyBook)malloc(sizeof(mybook));
+        
+        //books内没有数据
+        if(books->book == NULL)
+            books->book = node->data;
+        
+        //books内有数据
+        else{
+            newBook->book = node->data;
+            newBook->next = NULL;
+            //头插入
+            newBook->next = books;
+            books = newBook;
+        }
+    }
+    //前序遍历递归查找
+    Stu_SearchBookByAuthor(node->left, author, books);
+    Stu_SearchBookByAuthor(node->right, author, books);
+}
+
+/**
  * @brief 向学生账户上添加一本书，并将书设置为已借出状态
  */
 Status Stu_AddBook(Stu &stu, RBTreeElemType b){
@@ -412,8 +465,6 @@ Status Stu_AddBook(Stu &stu, RBTreeElemType b){
         mb->next = stu->mybook;
         stu->mybook = mb;
     }
-    //书本状态置为0,为借出状态
-    b->status = 0;
     return SUCCESS;
 }
 

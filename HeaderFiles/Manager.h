@@ -3,7 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-23 17:37:21
  * @LastEditors: Hx
- * @LastEditTime: 2021-12-24 20:14:20
+ * @LastEditTime: 2022-01-02 16:23:49
  */
 #ifndef MANAGER_H_INCLUDE
 #define MANAGER_H_INCLUDE
@@ -14,16 +14,16 @@
 #include"BinarySearchTree.h"
 #include"BinaryTree.h"
 
-//ç» ï¼„æ‚Šé›æ¨¼ç²¨é‹å‹ªç¶‹
+//¹ÜÀíÔ±½á¹¹Ìå
 typedef struct manager{
-    char name[10]; //ç» ï¼„æ‚Šé›æ¨ºî˜é”Ÿ???
-    char account[10]; //ç’ï¹€å½¿
-    char password[10];//ç€µå—™çˆœ
+    char name[10]; //ĞÕÃû
+    char account[10]; //ÕËºÅ
+    char password[10];//ÃÜÂë
     int power;
 }manager, *Manager;
 
 /**
- * @brief é’æ¿†îé–æœšanager
+ * @brief ³õÊ¼»¯Manager
  * 
  * @param man 
  * @return Status 
@@ -32,7 +32,7 @@ Status Man_Init(Manager &M);
 
 /**
  * @name Man_ChoiceMenu
- * @brief éµæ’³åµƒç» ï¼„æ‚Šé›æ¨¿å½é”Ÿ??
+ * @brief ´òÓ¡¹ÜÀíÔ±²Ëµ¥
  * @param   
  * @return  Status
  */
@@ -40,7 +40,7 @@ void Man_ChoiceMenu();
 
 /**
  * @name Man_Fuction
- * @brief é§è¯²ç¶é´æ„¬å§›éšåº¤ç¹˜éãƒ§î…¸éå——æ†³æ¤¤ç”¸æ½°
+ * @brief µÇÂ¼³É¹¦ºó½øÈë¹ÜÀíÔ±Ò³Ãæ
  * @param  M
  * @return Status 
  */
@@ -48,7 +48,7 @@ Status Man_Fuction(Manager &M);
 
 /**
  * @name Man_ManageAccount
- * @brief ç» ï¼„æ‚Šç’ï¹€å½¿é”ç†»å…˜
+ * @brief ¹ÜÀíÕËºÅ¹¦ÄÜ
  * @param   M root
  * @return  Status
  */
@@ -56,7 +56,7 @@ Status Man_ManageAccount(Manager M,RBRoot *root);
 
 /**
  * @name Man_Grounding
- * @brief  æ¶“å©ƒç¦æ¶”ï¸¾ç„
+ * @brief  ÉÏ¼ÜÊé¼®
  * @param   M root
  * @return  status
  */
@@ -65,7 +65,7 @@ Status Man_Grounding(Manager M,RBRoot *root);
 
 /**
  * @name Man_OffShelf
- * @brief æ¶“å¬«ç¦æ¶”ï¸¾ç„
+ * @brief ÏÂ¼ÜÊé¼®
  * @param   M root
  * @return  status
  */
@@ -73,7 +73,7 @@ Status Man_OffShelf(Manager M,RBRoot *root);
 
 /**
  * @name Man_SearchBook
- * @brief  é¼æ»…å‚¨æ¶”ï¸¾ç„
+ * @brief  ËÑË÷Êé¼®
  * @param   M root
  * @return  status
  */
@@ -81,7 +81,7 @@ Status Man_SearchBook(Manager M,RBRoot *root);
 
 /**
  * @name Man_GetBookTree
- * @brief é‘¾å³°å½‡æ¶”ï¸¾ç„
+ * @brief »ñÈ¡Êé¼®(´ÓÎÄ¼ş¶ÁÈ¡Ê÷)
  * @param  root
  * @return  Status
  */
@@ -89,7 +89,7 @@ Status Man_GetBookTree(RBRoot *root);
 
 /**
  * @name Man_SearchMenu
- * @brief ç» ï¼„æ‚Šé›æ¨»ç…¡éµæƒ§å§›é‘³å€Ÿå½é”Ÿ??
+ * @brief ¹ÜÀíÔ±²éÕÒ¹¦ÄÜ
  * @param   
  * @return 
  */
@@ -97,7 +97,7 @@ void Man_SearchMenu();
 
 /**
  * @name Man_AccountMenu
- * @brief ç’ï¹€å½¿ç» ï¼„æ‚Šé‘¿æ»ƒå´Ÿ
+ * @brief ÕËºÅ¹ÜÀí²Ëµ¥
  * @param   
  * @return 
  */
@@ -105,7 +105,7 @@ void Man_AccountMenu();
 
 /**
  * @name SearchByName
- * @brief æ ¹æ®ä¹¦åå‡†ç¡®æœç´¢
+ * @brief ¸ù¾İÊéÃû×¼È·ËÑË÷
  * @param  root
  * @param  name
  * @return  RBTreeElemType
@@ -114,7 +114,7 @@ RBTreeElemType SearchByName(RBRoot *root);
 
 /**
  * @name SearchBookByAuthor
- * @brief æ ¹æ®ä½œè€…å‡†ç¡®æœç´¢
+ * @brief ¸ù¾İ×÷Õß×¼È·ËÑË÷
  * @param  root
  * @param  author
  * @return  RBTreeElemType
@@ -123,7 +123,7 @@ RBTreeElemType SearchBookByAuthor(RBRoot *root);
 
 /**
  * @name FuzzySearchByName
- * @brief æŒ‰ä¹¦åæ¨¡ç³Šæœç´¢
+ * @brief °´ÊéÃûÄ£ºıËÑË÷
  * @param  root
  * @return  status
  */
@@ -131,7 +131,7 @@ MyBook FuzzySearchByName(RBRoot *root);
 
 /**
  * @name RBT_FuzzySearchByName
- * @brief æ ¹æ®ä¹¦åæ¨¡ç³Šæœç´¢
+ * @brief °´ÊéÃûÄ£ºıËÑË÷
  * @param  root
  * @param  name
  * @return  status

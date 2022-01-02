@@ -3,7 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-23 14:33:25
  * @LastEditors: Hx
- * @LastEditTime: 2022-01-02 01:25:39
+ * @LastEditTime: 2022-01-02 15:25:49
  */
 #ifndef STUDENT_H_INCLUDE
 #define STUDENT_H_INCLUDE
@@ -19,9 +19,9 @@ typedef struct mybook{
 //学生结构体
 typedef struct student{
     char name[10]; //姓名
-    char account[10];  //账号
+    char account[15];  //账号
     char ID[11];   //学号
-    char password[10];//密码
+    char password[15];//密码
     MyBook mybook;    //书
     int power;  //权限
     struct student *next;   //下一个学生
@@ -108,13 +108,22 @@ void Stu_SearchBook(RBRoot *root);
 void Stu_SearchBookByISBN(RBRoot *root);
 
 /**
- * @brief 根据书名搜索
+ * @brief 根据书名模糊搜索
  * 
  * @param node 
  * @param name 
  * @param books 
  */
 void Stu_SearchBookByTitle(RBTree node, char *name, MyBook &books);
+
+/**
+ * @brief 根据作者模糊搜索
+ * 
+ * @param node 
+ * @param author 
+ * @param books 
+ */
+void Stu_SearchBookByAuthor(RBTree node, char *author, MyBook &books);
 
 /**
  * @brief 打印查询选项
