@@ -14,7 +14,7 @@ void InitGroup(ALGraph &G);
 
 /**
  * @name SOSFuction
- * @brief 根据地点查询逃生路径，里面封装了图的创建和销毁
+ * @brief 根据地点查询逃生路径
  * @param  G
  * @param  position 
  */

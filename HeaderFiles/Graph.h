@@ -12,7 +12,6 @@
 #define SELECTED 1
 #define INFINITY 32567 //计算机允许的整数最大值
 #define NAMESIZE 20
-#include"Common.h"
 
 
 
@@ -105,6 +104,14 @@ int NextAdjVex_AL(ALGraph G, int k, AdjVexNodePtr &p);
  */
 Status DeatroyDG_AL(ALGraph &G);
 
+/**
+ * @brief 在图G中删除k顶点到m顶点的边
+ *
+ * @param G
+ * @param k
+ * @param m
+ * @return Status
+ */
 Status Delarc_AL(ALGraph& G, int k, int m);
 
 /**

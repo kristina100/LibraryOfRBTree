@@ -124,17 +124,6 @@ int NextAdjVex_ALM(ALGraph G, int k, int m) {
  * @return Status
  */
 Status DeatroyDG_AL(ALGraph &G) {
-    // Delarc_AL(G,5,9);
-    // Delarc_AL(G,5,7);
-    // Delarc_AL(G,5,1);
-    // Delarc_AL(G,1,2);
-    // Delarc_AL(G,1,5);
-    // Delarc_AL(G,3,8);
-    // Delarc_AL(G,3,4);
-    // Delarc_AL(G,3,2);
-    // Delarc_AL(G,2,6);
-    // Delarc_AL(G,2,8);
-    // Delarc_AL(G,2,7);
 	AdjVexNode* p, *temp;
 	for (int i = 0; i < G.n; i++) {
 		p = G.vexs[i].firstArc;
