@@ -79,7 +79,7 @@ void Man_AccountMenu(){
     printf("|                                                                         |\n");
     printf("|         3.change power level               4.Set book return            |\n");
     printf("|                                                                         |\n");
-	printf("|         5.change name                      6.Set borrowing              |\n");
+	printf("|         5.change name                      0.Set borrowing              |\n");
     printf("|                                                                         |\n");
     printf("|                                                                         |\n");
 	printf("*-------------------------------------------------------------------------*\n");
@@ -131,7 +131,7 @@ Status Man_Fuction(Manager &M){
 				printf("Failed to query books!\n");
 			break;
 		}
-		case 6://逃生路线
+		case 5://逃生路线
 		{
             if(getEscapeRote()!=SUCCESS)
 				printf("Failed to show escape rote!\n");
@@ -385,7 +385,7 @@ Status Man_SearchBook(Manager M,RBRoot *root){
 		}
 		default:printf("输入有误，请重新输入!（1-4）");
 		}
-	} while (choice!=4);
+	} while (choice!=0);
 	free(e1);
 	free(e2);
 	return SUCCESS;
