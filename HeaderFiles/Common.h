@@ -3,12 +3,12 @@
  * @Author: Hx
  * @Date: 2021-12-24 17:07:20
  * @LastEditors: Hx
- * @LastEditTime: 2021-12-25 20:35:37
+ * @LastEditTime: 2022-01-02 00:11:46
  */
 #ifndef COMMON_H_INCLUDE
 #define COMMON_H_INCLDUE
 
-//Â∏∏Áî®Â∫ì
+//≥£”√ø‚
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
@@ -16,7 +16,7 @@
 #include<time.h>
 #include<iostream>
 
-//Â∏∏Áî®Áä∂ÊÄÅ
+//≥£”√◊¥Ã¨
 #define ERROR 0
 #define OVERFLOW -1
 #define SUCCESS 1
@@ -28,7 +28,7 @@
 #define Cancel -1
 #define Exist 2
 
-//Â∏∏Áî®Á±ªÂûã
+//≥£”√¿‡–Õ
 typedef int Status;
 typedef int KeyType;
 

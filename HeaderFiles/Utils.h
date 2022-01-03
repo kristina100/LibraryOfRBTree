@@ -3,7 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-22 12:54:00
  * @LastEditors: Hx
- * @LastEditTime: 2021-12-26 21:33:48
+ * @LastEditTime: 2021-12-28 16:48:44
  */
 #ifndef UTILS_H_INCLUDE
 #define UTILS_H_INCLUDE
@@ -13,33 +13,33 @@
 #include"Manager.h"
 
 /**
- * @brief 暂停
+ * @brief 鏆傚仠
  */
 void Pause();
 
 /**
- * @brief 清空屏幕
+ * @brief 娓呯┖灞忓箷
  */
 void Clean();
 
 /**
- * @brief 打印书本信息
+ * @brief 鎵撳嵃涔︽湰淇℃伅
  * 
  * @param e 
  */
 void Print_BookInfo(RBTreeElemType e);
 
 /*
- * 检测用户整数输入
+ * 妫€娴嬬敤鎴锋暣鏁拌緭鍏�
  *
  * @param[in]  none
  * @return  legal integer
  */
-int InputInteger();
+long long int InputInteger();
 
 /**
  * @name  Quit()
- * @brief 退出判断
+ * @brief 閫€鍑哄垽鏂�
  * @param   
  * @return  
  */

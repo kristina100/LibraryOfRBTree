@@ -6,12 +6,13 @@
 #include "../HeaderFiles/RedBlackTreeUtils.h"
 #include "../HeaderFiles/BinarySearchTree.h"
 #include "../HeaderFiles/BinaryTree.h"
+#include"Utils.h"
 
-//存储书本数据的文件
+//瀛樺偍涔︽湰鏁版嵁鐨勬枃锟??
 char Data_Book[] = "book_data.txt";
 
 /**
- * 创建红黑树
+ * 鍒涘缓绾㈤粦锟??
  *
  * @param[in]  none
  * @return  the root of the red-black tree
@@ -24,7 +25,7 @@ RBRoot *createRBTree()
 }
 
 /**
- * 销毁红黑树
+ * 閿�姣佺孩榛戞爲
  *
  * @param[in]  root  the root of the red-black tree
  * @return  the operation status, SUCCESS is 0, FALSE is -1
@@ -40,7 +41,7 @@ Status destroyRBTree(RBRoot *root)
 }
 
 /**
- * 前序遍历红黑树
+ * 鍓嶅簭閬嶅巻绾㈤粦锟??
  *
  * @param[in]  root: the root of the red-black tree
  * @return  the operation status, SUCCESS is 0, FALSE is -1
@@ -54,7 +55,7 @@ Status preorderRBTree(RBRoot *root)
 }
 
 /**
- * 中序遍历红黑树
+ * 涓?搴忛亶鍘嗙孩榛戯拷?
  *
  * @param[in]  root: the root of the red-black tree
  * @return  the operation status, SUCCESS is 0, FALSE is -1
@@ -69,7 +70,7 @@ Status inorderRBTree(RBRoot *root)
 }
 
 /**
- * 后序遍历红黑树
+ * 鍚庡簭閬嶅巻绾㈤粦锟??
  *
  * @param[in]  root: the root of the red-black tree
  * @return  the operation status, SUCCESS is 0, FALSE is -1
@@ -83,7 +84,7 @@ Status postorderRBTree(RBRoot *root)
 }
 
 /**
- * 递归查找红黑树tree中数据域为x的结点
+ * 閫掑綊鏌ユ壘绾㈤粦鏍憈ree涓?鏁版嵁鍩熶负x鐨勭粨锟??
  *
  * @param[in]  root: the root of the red-black tree
  * @param[in]  x   : the data of the node
@@ -97,7 +98,7 @@ Status recursiveSearchRBTree(RBRoot *root, RBTreeElemType x)
 }
 
 /**
- * 红黑树插入数据域为x的结点
+ * 绾㈤粦鏍戞彃鍏ユ暟鎹?鍩熶负x鐨勭粨锟??
  *
  * @param[in]  root: the root of the red-black tree
  * @param[in]  x   : the data of the node
@@ -105,7 +106,7 @@ Status recursiveSearchRBTree(RBRoot *root, RBTreeElemType x)
  */
 Status insertRBTree(RBRoot *root, RBTreeElemType x)
 {
-    // 已存在
+    // 宸插瓨锟??
     if (recursiveSearchNode(root->node, x)) return FALSE;
 
     Node *node;
@@ -119,7 +120,7 @@ Status insertRBTree(RBRoot *root, RBTreeElemType x)
 }
 
 /**
- * 红黑树删除数据域为x的结点
+ * 绾㈤粦鏍戝垹闄ゆ暟鎹?鍩熶负x鐨勭粨锟??
  *
  * @param[in]  root: the root of the red-black tree
  * @param[in]  key : the data of the node to be deleted
@@ -128,7 +129,7 @@ Status insertRBTree(RBRoot *root, RBTreeElemType x)
 Status deleteRBTree(RBRoot *root, RBTreeElemType x)
 {
     Node *p;
-    // 递归查找
+    // 閫掑綊鏌ユ壘
     p = recursiveSearchNode(root->node, x);
     if (p)
     {
@@ -139,7 +140,7 @@ Status deleteRBTree(RBRoot *root, RBTreeElemType x)
 }
 
 /**
- * 打印红黑树信息
+ * 鎵撳嵃绾㈤粦鏍戜俊锟??
  *
  * @param[in]  root: the root of the red-black tree
  * @return  the operation status, SUCCESS is 0, FALSE is -1
@@ -151,21 +152,21 @@ Status printRBTree(RBRoot *root)
         PrintRBTreeInfo(root->node, root->node->data, 0);
         return SUCCESS;
     }
-    // 根节点为头结点，不存储信息
+    // 鏍硅妭鐐逛负澶寸粨鐐癸紝涓嶅瓨鍌ㄤ俊锟??
     return FALSE;
 }
 
 /**
- * @brief 输入elem数据
- *        只有管理员添加书本的时候会调用此方法创建新elem
- *        根据输入的字长分配空间之后赋给对应值
+ * @brief 杈撳叆elem鏁版嵁
+ *        鍙?鏈夌?＄悊鍛樻坊鍔犱功鏈?鐨勬椂鍊欎細璋冪敤姝ゆ柟娉曞垱寤烘柊elem
+ *        鏍规嵁杈撳叆鐨勫瓧闀垮垎閰嶇┖闂翠箣鍚庤祴缁欏?瑰簲锟??
  */
 Status inputRBTElem(RBTreeElemType &e){
 
     e = (RBTreeElemType)malloc(sizeof(RBTElem));
     if(e == NULL)   return OVERFLOW;
 
-    //初始化输入域，作者，评分，书名
+    //鍒濆?嬪寲杈撳叆鍩燂紝浣滆�咃紝璇勫垎锛屼功锟??
     // char *author = NULL, *score = NULL, *title = NULL;
     // author = (char*)malloc(sizeof(char)*20);
     // score = (char*)malloc(sizeof(char)*20);
@@ -173,46 +174,47 @@ Status inputRBTElem(RBTreeElemType &e){
 
     char str[20] = "";
 
-    //输入书名
+    //杈撳叆涔﹀悕
     printf("please input Title:");
     scanf("%s", str);
     e->Title = (char*)malloc(sizeof(char) * strlen(str));
     strcpy(e->Title, str);
 
-    //输入IBSN
-    // printf("please input ISBN:");
-    // scanf("%d", &e->elem);
+    //杈撳叆IBSN
+    printf("please input ISBN:");
+    e->elem = InputInteger();
+    // scanf("%lld", &e->elem);
 
-    //输入作者
+    //杈撳叆浣滐拷?
     printf("please input Author:");
     scanf("%s", str);
     e->Author = (char*)malloc(sizeof(char) * strlen(str));
     strcpy(e->Author, str);
 
-    //输入评分
+    //杈撳叆璇勫垎
     printf("please input score:");
     scanf("%s", str);
     e->score = (char*)malloc(sizeof(char) * strlen(str));
     strcpy(e->score, str);
 
-    //输入出版社
+    //杈撳叆鍑虹増锟??
     printf("please input press:");
     scanf("%s", str);
     e->press = (char*)malloc(sizeof(char) * strlen(str));
     strcpy(e->press, str);
 
-    //输入出版社
+    //杈撳叆涔︽湰椤垫暟
     printf("please input number of page:");
     scanf("%d", &e->page_num);
     
-    //新插入的书默认未借出
+    //鏂版彃鍏ョ殑涔﹂粯璁ゆ湭鍊熷嚭
     e->status = 1;
    
     return SUCCESS;
 }
 
 /**
- * @brief 初始化elem(测试用)
+ * @brief 鍒濆?嬪寲elem(娴嬭瘯锟??)
  */
 Status InitRBTElem(RBTreeElemType &e){
 
@@ -231,58 +233,61 @@ Status InitRBTElem(RBTreeElemType &e){
 }
 
 /**
- * @brief 从文件中读取数据并构建红黑树
+ * @brief 浠庢枃浠朵腑璇诲彇鏁版嵁骞舵瀯寤虹孩榛戞爲
  */
 Status FILE_ReadRBT(RBRoot *root){
+
     FILE *fp=fopen("book_data.txt","r");
-    if(NULL==fp)
-    {
-        printf ("Failed to open the file!\n");
-        exit (0);
-    }
+
+    if(NULL==fp) return ERROR;
+    
 
     char str[20] = "";
 
-    // fscanf (fp,"%d",&a) ; //从fp所指文件中读取一个整数保存到变量a中
-    while(!feof(fp)){//如果位置指针不在文件末尾,即没有读到文件末尾
+    //鍒ゆ柇
+    int status;
+    while(!feof(fp)){//濡傛灉浣嶇疆鎸囬拡涓嶅湪鏂囦欢鏈?灏?,鍗虫病鏈夎?诲埌鏂囦欢鏈?锟??
 
         RBTreeElemType e = NULL;
         InitRBTElem(e);
-        //读出elem(ISBN)
-        fscanf(fp, "%d", &e->elem);
+        //璇诲嚭elem(ISBN)
+        fscanf(fp, "%lld", &e->elem);
 
-        //这条语句用于暴力解决最后一个字符问题
+        //杩欐潯璇?鍙ョ敤浜庢毚鍔涜В鍐虫渶鍚庝竴涓?瀛楃?﹂棶锟??
         if(e->elem == 0) break;
 
-        //读出书名
+        //璇诲嚭涔﹀悕
         fscanf(fp, "%s", str);
         e->Title = (char*)malloc(sizeof(char) * strlen(str));
         strcpy(e->Title, str);
         fgetc(fp);
-
-        //读出作者
+        
+        //璇诲嚭浣滐拷?
         fscanf(fp, "%s", str);
         e->Author = (char*)malloc(sizeof(char) * strlen(str));
         strcpy(e->Author, str);
         fgetc(fp);
-
-        //读出出版社
+      
+        //璇诲嚭鍑虹増锟??
         fscanf(fp, "%s", str);
         e->press = (char*)malloc(sizeof(char) * strlen(str));
         strcpy(e->press, str);
+        fgetc(fp);
 
-        //读出评分
+        //璇诲嚭璇勫垎
         fscanf(fp, "%s", str);
         e->score = (char*)malloc(sizeof(char) * strlen(str));
         strcpy(e->score, str);
         fgetc(fp);
 
-        //读出页数
+        //璇诲嚭椤垫暟
         fscanf(fp, "%d", &e->page_num);
-        //读出状态
+        fgetc(fp);
+
+        //璇诲嚭鐘讹拷?
         fscanf(fp, "%d", &e->status);   
 
-        //写入树中
+        //鍐欏叆鏍戜腑
         insertRBTree(root, e);
     }
     fclose(fp);
@@ -290,18 +295,18 @@ Status FILE_ReadRBT(RBRoot *root){
 }
 
 /**
- * @brief 将红黑树写入文件
+ * @brief 灏嗙孩榛戞爲鍐欏叆鏂囦欢
  */
 Status FILE_WriteRBT(RBRoot root){
 
-    //空树
+    //绌烘爲
     if(root.node == NULL) return ERROR;
 
     FILE *fp = NULL;
-    //以"w"模式打开文件, 文件不存在则创建新文件，文件存在则覆盖原内容
+    //锟??"w"妯″紡鎵撳紑鏂囦欢, 鏂囦欢涓嶅瓨鍦ㄥ垯鍒涘缓鏂版枃浠讹紝鏂囦欢瀛樺湪鍒欒?嗙洊鍘熷唴瀹?
     fp = fopen(Data_Book, "w");
 
-    //传入根节点，开始前序递归插入
+    //浼犲叆鏍硅妭鐐癸紝寮�濮嬪墠搴忛�掑綊鎻掑叆
     FILE_preWrite(root.node, fp);
     fclose(fp);
 
@@ -309,49 +314,50 @@ Status FILE_WriteRBT(RBRoot root){
 }
 
 /**
- * @brief 基于前序遍历的红黑树文件写入
+ * @brief 鍩轰簬鍓嶅簭閬嶅巻鐨勭孩榛戞爲鏂囦欢鍐欏叆
  */
 void FILE_preWrite(RBTree tree, FILE *fp){
     
     if(!tree) return;
     
-    //定义数据分割符和结束
+    //瀹氫箟鏁版嵁鍒嗗壊绗﹀拰缁撴潫
     char mid = ' ', end = '\n';
 
-    //写入结点数据
-    //写入ISBN
-    fprintf(fp, "%d", tree->data->elem);
+    //鍐欏叆缁撶偣鏁版嵁
+    //鍐欏叆ISBN
+    fprintf(fp, "%lld", tree->data->elem);
     fputc(mid,fp);
-    //写入书名
+    //鍐欏叆涔﹀悕
     fprintf(fp, "%s", tree->data->Title);
     fputc(mid,fp);
-    //写入作者
+    //鍐欏叆浣滐拷?
     fprintf(fp, "%s", tree->data->Author);
     fputc(mid,fp);
-    //写入出版社
+    //鍐欏叆鍑虹増锟??
     fprintf(fp, "%s", tree->data->press);
     fputc(mid,fp);
-    //写入得分
+    //鍐欏叆寰楀垎
     fprintf(fp, "%s", tree->data->score);
     fputc(mid,fp);
-    //写入页数
+    //鍐欏叆椤垫暟
     fprintf(fp, "%d", tree->data->page_num);
     fputc(mid,fp);
-    //写入状态
+    //鍐欏叆鐘讹拷?
     fprintf(fp, "%d", tree->data->status);
     fputc(end,fp);
     
-    //递归插入
+    //閫掑綊鎻掑叆
     FILE_preWrite(tree->left, fp);
     FILE_preWrite(tree->right, fp);
 }
 
 /**
- * @brief 通过ISBN在红黑树中查找书本，并返回
+ * @brief 閫氳繃ISBN鍦ㄧ孩榛戞爲涓?鏌ユ壘涔︽湰锛屽苟杩旓拷?
  */
-RBTreeElemType RBT_SearchByISBN(RBTree R, int ISBN){
+RBTreeElemType RBT_SearchByISBN(RBTree R, long long int ISBN){
     
-    if (!R || R->data->elem == ISBN) 
+    if(R == NULL) return NULL;
+    if (R->data->elem == ISBN) 
         return R->data;
     else if (R->data->elem > ISBN) 
         return RBT_SearchByISBN(R->left, ISBN);
@@ -360,3 +366,35 @@ RBTreeElemType RBT_SearchByISBN(RBTree R, int ISBN){
 
     return NULL;
 }
+
+/**
+ * @name RBT_SearchByName
+ * @brief 鏍规嵁涔﹀悕鍑嗙‘鎼滅储
+ * @param  root
+ * @param  name
+ * @return  RBTreeElemType
+ */
+RBTreeElemType RBT_SearchByName(RBTree node,char *name){
+    if (!node || strcmp(name,node->data->Title)==0) 
+        return node->data;
+    if(NULL!=RBT_SearchByName(node->right,name))return RBT_SearchByName(node->right,name);
+    else if(NULL!=RBT_SearchByName(node->left,name))return RBT_SearchByName(node->left,name);
+    else return NULL;
+}
+
+/**
+ * @name RBT_SearchBookByAuthor
+ * @brief 鏍规嵁浣滆�呭噯纭?鎼滐拷?
+ * @param  root
+ * @param  author
+ * @return  RBTreeElemType
+ */
+RBTreeElemType RBT_SearchBookByAuthor(RBTree node,char *author){
+    if (!node || strcmp(author,node->data->Author)==0) 
+        return node->data;
+    if(NULL!=RBT_SearchByName(node->right,author))return RBT_SearchByName(node->right,author);
+    else if(NULL!=RBT_SearchByName(node->left,author))return RBT_SearchByName(node->left,author);
+    else return NULL;
+}
+
+

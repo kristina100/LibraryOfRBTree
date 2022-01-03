@@ -3,7 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-22 12:54:10
  * @LastEditors: Hx
- * @LastEditTime: 2021-12-27 11:21:41
+ * @LastEditTime: 2021-12-28 16:48:24
  */
 #include"Utils.h"
 
@@ -48,14 +48,14 @@ void Print_BookInfo(RBTreeElemType e){
  * @param[in]  none
  * @return  legal integer
  */
-int InputInteger()
+long long int InputInteger()
 {
     /* store converted numbers */
-    int integer;
+    long long int integer;
     /* flag status */
     int  status;
     /* receive string */
-    char str[100];
+    char str[100] = "";
 
     do {
         scanf("%s", str);
@@ -89,7 +89,7 @@ int InputInteger()
             if (str[0] == '-') integer = -integer;
 
             /* check if the number entered is out of bounds */
-            if (i >= 10) {
+            if (i >= 20) {
                 printf("Overflow, please re-enter:");
                 status = FALSE;
             }

@@ -3,7 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-24 17:05:47
  * @LastEditors: Hx
- * @LastEditTime: 2021-12-24 21:22:36
+ * @LastEditTime: 2022-01-02 00:09:54
  */
 //
 // Created by HUAWEI on 2021-12-06.
@@ -13,7 +13,7 @@
 #include "../HeaderFiles/BinaryTree.h"
 
 /**
- * é”€æ¯äºŒå‰æ ‘
+ * Ïú»Ù¶ş²æÊ÷
  *
  * @param[in]  tree  the node of the binary tree
  * @return  the operation status, SUCCESS is 1, FALSE is 0
@@ -31,7 +31,7 @@ Status destroyBinaryTree(RBTree tree)
 }
 
 /**
- * å‰åºéå†äºŒå‰æ ‘
+ * Ç°Ğò±éÀú¶ş²æÊ÷
  *
  * @param[in]  tree: the node of the binary tree
  * @return  the operation status, SUCCESS is 1, FALSE is 0
@@ -48,7 +48,7 @@ Status preorderBiTree(RBTree tree)
 }
 
 /**
- * ä¸­åºéå†äºŒå‰æ ‘
+ * ÖĞĞò±éÀú¶ş²æÊ÷
  *
  * @param[in]  tree: the node of the binary tree
  * @return  the operation status, SUCCESS is 1, FALSE is 0
@@ -66,7 +66,7 @@ Status inorderBiTree(RBTree tree)
 }
 
 /**
- * ååºéå†äºŒå‰æ ‘
+ * ºóĞò±éÀú¶ş²æÊ÷
  *
  * @param[in]  tree: the node of the binary tree
  * @return  the operation status, SUCCESS is 1, FALSE is 0
@@ -84,7 +84,7 @@ Status postorderBiTree(RBTree tree)
 }
 
 /**
- * é€’å½’æŸ¥æ‰¾äºŒå‰æ ‘treeä¸­æ•°æ®åŸŸä¸ºxçš„ç»“ç‚¹
+ * µİ¹é²éÕÒ¶ş²æÊ÷treeÖĞÊı¾İÓòÎªxµÄ½áµã
  *
  * @param[in]  tree: the node of the binary tree
  * @param[in]  x   : the data of the node

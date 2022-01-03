@@ -3,32 +3,32 @@
  * @Author: Hx
  * @Date: 2021-12-23 14:33:25
  * @LastEditors: Hx
- * @LastEditTime: 2021-12-27 21:33:13
+ * @LastEditTime: 2022-01-02 01:25:39
  */
 #ifndef STUDENT_H_INCLUDE
 #define STUDENT_H_INCLUDE
 #include"Common.h"
 #include"RedBlackTree.h"
 
-//æˆ‘çš„ä¹¦
+//Êé±¾½á¹¹Ìå
 typedef struct mybook{
-    RBTreeElemType book;//å€Ÿçš„ä¹¦
-    struct mybook *next;//ä¸‹ä¸€æœ¬ä¹¦
+    RBTreeElemType book; //
+    struct mybook *next; //ÏÂÒ»±¾
 }mybook,*MyBook;
 
-//å­¦ç”Ÿç»“æ„ä½“
+//Ñ§Éú½á¹¹Ìå
 typedef struct student{
-    char name[10]; //å­¦ç”Ÿå§“å
-    char account[10];  //è´¦å·
-    char ID[11];   //å­¦å·
-    char password[10];//å¯†ç 
-    MyBook mybook;    //æˆ‘å€Ÿçš„ä¹¦
-    int power;  //å­¦ç”ŸæƒåŠ›
-    struct student *next;//æŒ‡å‘ä¸‹ä¸€ä¸ªå­¦ç”Ÿ
+    char name[10]; //ĞÕÃû
+    char account[10];  //ÕËºÅ
+    char ID[11];   //Ñ§ºÅ
+    char password[10];//ÃÜÂë
+    MyBook mybook;    //Êé
+    int power;  //È¨ÏŞ
+    struct student *next;   //ÏÂÒ»¸öÑ§Éú
 }student, *Stu;
 
 /**
- * @brief åˆå§‹åŒ–Stu
+ * @brief ³õÊ¼»¯Stu
  * 
  * @param stu 
  * @return Status 
@@ -36,19 +36,19 @@ typedef struct student{
 Status Stu_Init(Stu &stu);
 
 /**
- * @brief å­¦ç”Ÿæ“ä½œ
+ * @brief Ñ§Éú²Ù×÷
  * 
  */
 void Stu_Operation(Stu &stu);
 
 /**
- * @brief æ‰“å°å­¦ç”Ÿé€‰é¡¹
+ * @brief ´òÓ¡Ñ§ÉúÑ¡Ïî
  * 
  */
-void Stu_Options(Stu stu);
+void Stu_Options();
 
 /**
- * @brief å­¦ç”Ÿå€Ÿä¹¦
+ * @brief ½èÊé
  * 
  * @param stu 
  * @param root 
@@ -56,22 +56,23 @@ void Stu_Options(Stu stu);
 void Stu_Borrow(Stu stu, RBRoot *root);
 
 /**
- * @brief å­¦ç”Ÿè¿˜ä¹¦
+ * @brief Ñ§Éú»¹Êé
  * 
  * @param stu 
+ * @param root 
  * @return Status 
  */
-Status Stu_return(Stu stu);
+Status Stu_return(Stu &stu, RBRoot *root);
 
 /**
- * @brief æ‰“å°æˆ‘çš„ä¿¡æ¯
+ * @brief ´òÓ¡ÎÒµÄĞÅÏ¢
  * 
  * @param stu 
  */
 void Stu_Print_MyInfo(Stu stu);
 
 /**
- * @brief æ‰¾å›å¯†ç 
+ * @brief ÕÒ»ØÃÜÂë
  * 
  * @param stu 
  * @return Status 
@@ -79,45 +80,61 @@ void Stu_Print_MyInfo(Stu stu);
 Status Stu_FindPassword(Stu stu);
 
 /**
- * @brief æ›´æ”¹å¯†ç 
+ * @brief ĞŞ¸ÄÃÜÂë
  * 
  * @return Status 
  */
 Status Stu_ChangePassword(Stu stu);
 
 /**
- * @brief æ‰“å°å·²å€Ÿçš„ä¹¦
+ * @brief ´òÓ¡Êé±¾
  * 
  * @param b 
  */
 void Print_Book(MyBook b);
 
 /**
- * @brief æŸ¥æ‰¾ä¹¦æœ¬
+ * @brief ²éÕÒÊé±¾
  * 
  * @param root 
  */
 void Stu_SearchBook(RBRoot *root);
 
 /**
- * @brief æ‰“å°æŸ¥è¯¢é€‰é¡¹
+ * @brief ¸ù¾İISBN²éÕÒÊé±¾
+ * 
+ * @param root 
+ */
+void Stu_SearchBookByISBN(RBRoot *root);
+
+/**
+ * @brief ¸ù¾İÊéÃûËÑË÷
+ * 
+ * @param node 
+ * @param name 
+ * @param books 
+ */
+void Stu_SearchBookByTitle(RBTree node, char *name, MyBook &books);
+
+/**
+ * @brief ´òÓ¡²éÑ¯Ñ¡Ïî
  * 
  */
 void Print_Search_Options();
 
 /**
- * @brief æ‰“å°å€Ÿä¹¦é€‰é¡¹
+ * @brief ´òÓ¡½èÊéÑ¡Ïî
  * 
  */
 void Print_Borrow_Options();
 
 /**
- * @brief å‘å­¦ç”Ÿè´¦æˆ·ä¸Šæ·»åŠ ä¸€æœ¬ä¹¦ï¼Œå¹¶å°†ä¹¦è®¾ç½®ä¸ºå·²å€Ÿå‡ºçŠ¶æ€
+ * @brief ÏòÑ§ÉúÕË»§ÉÏÌí¼ÓÒ»±¾Êé£¬²¢½«ÊéÉèÖÃÎªÒÑ½è³ö×´Ì¬
  * 
  * @param stu 
  * @param b 
  * @return Status 
  */
-Status Stu_AddBook(Stu stu, RBTreeElemType b);
+Status Stu_AddBook(Stu &stu, RBTreeElemType b);
 
 #endif  //STUDENT_H_INCLUDE
