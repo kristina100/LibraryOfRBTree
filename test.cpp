@@ -3,7 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-24 21:49:11
  * @LastEditors: Hx
- * @LastEditTime: 2022-01-02 22:30:51
+ * @LastEditTime: 2022-01-03 11:19:18
  */
 #include"Common.h"
 #include"HeaderFiles/RedBlackTree.h"
@@ -52,6 +52,6 @@ int main(){
 
     // Stu_Operation(stu);
     Login_Operation();
-    Pause();
+    // Pause();
     return 1;
 }

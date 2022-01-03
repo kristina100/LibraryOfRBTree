@@ -107,7 +107,8 @@ Status recursiveSearchRBTree(RBRoot *root, RBTreeElemType x)
 Status insertRBTree(RBRoot *root, RBTreeElemType x)
 {
     // ря╢Ф???
-    if (recursiveSearchNode(root->node, x)) return FALSE;
+    if (recursiveSearchNode(root->node, x)) 
+        return FALSE;
 
     Node *node;
     node = createRBTreeNode(x, NULL, NULL, NULL);

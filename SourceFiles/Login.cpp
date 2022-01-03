@@ -3,7 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-23 15:56:56
  * @LastEditors: Hx
- * @LastEditTime: 2022-01-02 22:12:00
+ * @LastEditTime: 2022-01-03 11:39:08
  */
 #include"../HeaderFiles/Login.h"
 #include"../HeaderFiles/Utils.h"
@@ -76,6 +76,7 @@ void Login_Operation(){
                 manager = Login_Man();
                 if(manager == NULL){
                     printf("\tLogin failed! Account or password error.\n");
+                    Pause();
                 }else{
                     printf("\tLogin succeeded.\n");
                     Sleep(1);
@@ -301,6 +302,8 @@ Status Register_Operation(int mode){
             while(temp != NULL){
                 if(strcmp(temp->account, stu->account) == 0)
                     return Exist;
+                
+                temp = temp->next;
             }
 
             printf("\t\tPlease input your ID: ");
@@ -313,7 +316,7 @@ Status Register_Operation(int mode){
             scanf("%s", stu->name);
             
             //Ğ´ÈëÎÄ¼ş
-            fp = fopen(Data_Stu, "ab+");
+            fp = fopen(Data_Stu, "ab");
             fwrite(stu, sizeof(student), 1, fp);
             
         }break;

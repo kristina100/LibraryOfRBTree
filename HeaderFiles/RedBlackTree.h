@@ -18,10 +18,10 @@
 #define RBTreeSetBlack(r) do {(r)->color = BLACK;} while(0)
 
 typedef struct RBTElem{ 
-    char Title[20]; //书名
-    char Author[20];   //作者
-    char press[20];    //出版社
-    char score[100];    //书本评分
+    char Title[100]; //书名
+    char Author[100];   //作者
+    char press[100];    //出版社
+    char score[150];    //书本评分
     int page_num; //书的页数
     // char *publishing_year;  //出版时间 
     // char *classification; //书的类型

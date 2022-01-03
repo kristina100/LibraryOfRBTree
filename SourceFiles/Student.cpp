@@ -3,7 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-23 14:33:31
  * @LastEditors: Hx
- * @LastEditTime: 2022-01-02 22:20:58
+ * @LastEditTime: 2022-01-03 11:41:27
  */
 #include"Student.h"
 #include"Utils.h"
@@ -40,7 +40,7 @@ void Stu_Options(){
     printf("|                                                                         |\n");
     printf("|           3.Return book                 4.Self Info                     |\n");
     printf("|                                                                         |\n");
-    printf("|           4.Show escape Rote            0.System Return                 |\n");
+    printf("|           5.Show escape Rote            0.System Return                 |\n");
     printf("|                                                                         |\n");
     printf("|                                                                         |\n");
     printf("*-------------------------------------------------------------------------*\n");     
@@ -171,10 +171,10 @@ void Stu_Operation(Stu &stu){
 void Stu_Borrow(Stu stu, RBRoot *root){
 
     //选择
-    int input;
+    long long int input;
     while(true){
         Print_Borrow_Options();
-        scanf("%d", &input);
+        input = InputInteger();
 
         switch (input){
             
@@ -240,6 +240,7 @@ void Stu_Borrow(Stu stu, RBRoot *root){
                 //书本不存在
                 else{
                     printf("The book does not exist!\n");
+                    Pause();
                 }
             }break;
         }
@@ -260,15 +261,15 @@ void Print_Book(MyBook b){
     int num = 1;
     while(p != NULL && p->book != NULL){
         //打印编号
-        printf("  %-3d\t",num);
+        printf("  %-3d   ",num);
         //打印ISBN
-        printf("%-15lld", p->book->elem);
+        printf("%20lld\t", p->book->elem);
         //打印书名
-        printf("%-25s", p->book->Title);
+        printf("%10s\t", p->book->Title);
         //打印作者
-        printf("%-20s", p->book->Author);
+        printf("%10s\t", p->book->Author);
         //打印出版社
-        printf("%-20s \n", p->book->press);
+        printf("%10s \n", p->book->press);
         //指向下一本书
         p = p->next;
         num++;
@@ -351,9 +352,8 @@ void Stu_SearchBook(RBRoot *root){
             default:{
                 printf("\nOperation does not exist\n");
                 Pause();
-            }break;
+            }
         }
-    Clean();
     }
 }
 /**
@@ -567,13 +567,13 @@ Stu Stu_ReadData(){
 
     //初始化
     Stu temp = NULL, head = NULL;
-    Stu_Init(temp);
     RBTreeElemType e = NULL;
     MyBook MB = NULL;
     
     //读出学生结构体
-    while(fread(temp, sizeof(student), 1, fp)){
-        
+    while(!feof(fp)){
+        Stu_Init(temp);
+        fread(temp, sizeof(student), 1, fp);
         //学生有借书记录，开始读取书本信息过程
         if(temp->bookNum != 0){
 

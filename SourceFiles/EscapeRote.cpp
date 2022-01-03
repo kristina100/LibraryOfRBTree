@@ -61,7 +61,7 @@ void PositionMenu(){
     printf("|                                                                         |\n");
     printf("|             3.science                      4.children                   |\n");
     printf("|                                                                         |\n");
-	printf("|             5.humatity                     6.back                       |\n");
+	printf("|             5.humatity                     0.back                       |\n");
     printf("|                                                                         |\n");
     printf("|                                                                         |\n");
 	printf("*-------------------------------------------------------------------------*\n");
