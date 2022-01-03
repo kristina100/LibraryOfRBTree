@@ -95,7 +95,7 @@ void Login_Operation(){
                 Pause();
             }break;
         
-            case 5://逃生路线
+            case 4://逃生路线
 		    {
                 if(getEscapeRote()!=SUCCESS)
 				printf("Failed to show escape rote!\n");

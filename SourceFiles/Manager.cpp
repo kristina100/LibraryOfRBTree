@@ -20,7 +20,6 @@ Status Man_Init(Manager &M){
     M->power = 0;
     return SUCCESS;
 }
-Status Man_Init(Manager &M);
 
 /**
  * @name Man_ChoiceMenu
@@ -513,7 +512,7 @@ Status PrintBookInfo(RBTreeElemType e){
     printf("     ISBN     |    Title    |    Author   |   Press   |   Score   \n\n");
 
     //打印ISBN
-    printf("%-15lld",e->elem);
+    printf("\t\t%-15lld",e->elem);
     //打印书名
     printf("%-15s",e->Title);
     //打印作者

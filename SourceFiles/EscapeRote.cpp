@@ -39,14 +39,18 @@ void InitGroup(ALGraph &G) {
 	ArcInfo arcs4 = { computer,history,1 };//1 2
 	ArcInfo arcs5 = { computer,humatity,3 };//1 5
 	ArcInfo arcs6 = { science ,Vex2 ,6}; //3 8
-	ArcInfo arcs7 = { science,children ,8}; //3 4
+	ArcInfo arcs7 = { science,children ,1}; //3 4
 	ArcInfo arcs8 = { science,history,3 };//3 2
 	ArcInfo arcs9 = { history ,Vex0 ,2};//2 6
-	ArcInfo arcs10 = { history ,Vex2 ,1 }; //2 8
-	ArcInfo arcs11 = { history ,Vex1 ,4 }; //2 7
-	ArcInfo arcs[11]{ arcs1,arcs2,arcs3,arcs4,arcs5,arcs6,arcs7,arcs8,arcs9,arcs10,arcs11 };
+	ArcInfo arcs10 = { history ,Vex2 ,8 }; //2 8
+	ArcInfo arcs11 = { children ,Vex1 ,4 }; //4 7
+	ArcInfo arcs12 = { history ,computer ,1 }; //2 1
+	ArcInfo arcs13= { science,humatity,3 };//3 5
+	ArcInfo arcs14 = { children ,science,1}; //4 3
+	ArcInfo arcs15= { humatity,science,3 };//5 3
+	ArcInfo arcs[15]{ arcs1,arcs2,arcs3,arcs4,arcs5,arcs6,arcs7,arcs8,arcs9,arcs10,arcs11,arcs12,arcs13,arcs14,arcs15 };
 
-	createDG_AL(G, vexs, 9, arcs, 11);
+	createDG_AL(G, vexs, 9, arcs, 15);
 }
 /**
  * @name PositionMenu
@@ -86,6 +90,7 @@ void SOSFuction(ALGraph &G, int position) {
     if(ERROR==Outputpath(G, dist, LocateVex_AL(G, GATE_S))) printf("无此路径!");
 	printf("\n到北门: ");
     if(ERROR==Outputpath(G, dist, LocateVex_AL(G, GATE_N))) printf("无此路径!");
+	printf("\n\n");
 }
 
 /**
