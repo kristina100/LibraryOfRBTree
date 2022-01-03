@@ -257,8 +257,8 @@ Status FILE_ReadRBT(RBRoot *root){
         fscanf(fp, "%d", &e->status);   
 
         //²åÈëºìºÚÊ÷
-        insertRBTree(root, e);
-        num++;
+        if(insertRBTree(root, e) != FALSE)
+            num++;
     }
     fclose(fp);
     printf("%d", num);

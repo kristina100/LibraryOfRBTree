@@ -3,7 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-23 14:33:31
  * @LastEditors: Hx
- * @LastEditTime: 2022-01-03 11:41:27
+ * @LastEditTime: 2022-01-03 15:23:12
  */
 #include"Student.h"
 #include"Utils.h"
@@ -23,6 +23,14 @@ Status Stu_Init(Stu &stu){
     stu->bookNum = 0;
     stu->next = NULL;
 
+    for(int i = 0; i < 15; i++){
+        stu->account[i] = '\0';
+        stu->password[i] = '\0';
+        if(i < 10)
+            stu->name[i] = '\0';
+        if(i < 11)
+            stu->ID[i] = '\0';
+    }
     return SUCCESS;
 }
 
@@ -261,7 +269,7 @@ void Print_Book(MyBook b){
     int num = 1;
     while(p != NULL && p->book != NULL){
         //打印编号
-        printf("  %-3d   ",num);
+        printf("  %-3d",num);
         //打印ISBN
         printf("%20lld\t", p->book->elem);
         //打印书名
@@ -574,6 +582,11 @@ Stu Stu_ReadData(){
     while(!feof(fp)){
         Stu_Init(temp);
         fread(temp, sizeof(student), 1, fp);
+
+        //跳过空数据
+        if(strcmp(temp->account,"") == 0)
+            break;
+
         //学生有借书记录，开始读取书本信息过程
         if(temp->bookNum != 0){
 
@@ -582,6 +595,8 @@ Stu Stu_ReadData(){
 
                 //分配空间
                 MB = (MyBook)malloc(sizeof(mybook));
+                MB->book = NULL;
+                MB->next = NULL;
                 InitRBTElem(e);
 
                 //读出一本书
@@ -634,11 +649,13 @@ Status Stu_WriteData(Stu stu){
     MyBook mb = NULL;
     //写入学生信息
     while(p != NULL){
+
         //写入学生结构体
         fwrite(p, sizeof(student), 1, fp);
+
         //学生有已借书籍，写入书本信息
-        if(stu->bookNum != 0){
-            mb = stu->mybook;
+        if(p->bookNum > 0){
+            mb = p->mybook;
             while(mb != NULL){
                 fwrite(mb->book, sizeof(RBTElem), 1, fp);
                 mb = mb->next;

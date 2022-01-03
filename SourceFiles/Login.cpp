@@ -3,7 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-23 15:56:56
  * @LastEditors: Hx
- * @LastEditTime: 2022-01-03 11:39:08
+ * @LastEditTime: 2022-01-03 13:48:35
  */
 #include"../HeaderFiles/Login.h"
 #include"../HeaderFiles/Utils.h"
@@ -384,10 +384,10 @@ Status Updata_StuInfo(Stu &stu){
         return ERROR;
     
     //找到学生
-    for(p = t = head; t->next != NULL; t = t->next){
+    for(p = t = head; t != NULL; t = t->next){
     
         //找到对应学生
-        if(t->account == stu->account) 
+        if(strcmp(t->account, stu->account) == 0) 
             break;
 
         //p指向对应学生的上一位
@@ -410,12 +410,5 @@ Status Updata_StuInfo(Stu &stu){
     //格式化写入数据
     Stu_WriteData(head);
     
-    //释放空间
-    t = head;
-    while(t != NULL){
-        t = t->next;
-        free(head);
-        head = t;
-    }
     return SUCCESS;
 }
