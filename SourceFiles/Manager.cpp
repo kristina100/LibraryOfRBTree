@@ -32,7 +32,7 @@ void Man_ChoiceMenu(){
     printf("|         Welcome to MangerFuction !  Some operations on it               |\n");
     printf("|                                                                         |\n");
     printf("|                                                                         |\n");
-    printf("|           1.mamager                     2.put book                      |\n");
+    printf("|           1.manager                     2.put book                      |\n");
     printf("|                                                                         |\n");
     printf("|           3.get off book                4.search book                   |\n");
     printf("|                                                                         |\n");
@@ -106,8 +106,8 @@ Status Man_Fuction(Manager &M){
     do {
 		Man_ChoiceMenu();
 		//打印测试
-		recessedPrintRBTree(root->node, 0);
-		printRBTree(root);
+		//recessedPrintRBTree(root->node, 0);
+		//printRBTree(root);
         choice = InputInteger();
 		switch (choice) {
 		case 1://管理账号
