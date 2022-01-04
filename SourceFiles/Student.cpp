@@ -3,7 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-23 14:33:31
  * @LastEditors: Hx
- * @LastEditTime: 2022-01-03 15:23:12
+ * @LastEditTime: 2022-01-04 11:49:43
  */
 #include"Student.h"
 #include"Utils.h"
@@ -176,7 +176,7 @@ void Stu_Operation(Stu &stu){
 /**
  * @brief 借书
  */
-void Stu_Borrow(Stu stu, RBRoot *root){
+void Stu_Borrow(Stu &stu, RBRoot *root){
 
     //选择
     long long int input;
@@ -252,7 +252,6 @@ void Stu_Borrow(Stu stu, RBRoot *root){
                 }
             }break;
         }
-//    Clean();
     }
 }
 
@@ -269,9 +268,9 @@ void Print_Book(MyBook b){
     int num = 1;
     while(p != NULL && p->book != NULL){
         //打印编号
-        printf("  %-3d",num);
+        printf(" %-3d",num);
         //打印ISBN
-        printf("%20lld\t", p->book->elem);
+        printf("%15lld\t", p->book->elem);
         //打印书名
         printf("%10s\t", p->book->Title);
         //打印作者
@@ -656,7 +655,7 @@ Status Stu_WriteData(Stu stu){
         //学生有已借书籍，写入书本信息
         if(p->bookNum > 0){
             mb = p->mybook;
-            while(mb != NULL){
+            while(mb != NULL && mb->book != NULL){
                 fwrite(mb->book, sizeof(RBTElem), 1, fp);
                 mb = mb->next;
             }
