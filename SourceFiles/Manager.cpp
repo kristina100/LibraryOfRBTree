@@ -3,7 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-23 17:37:27
  * @LastEditors: Hx
- * @LastEditTime: 2022-01-02 16:45:10
+ * @LastEditTime: 2022-01-04 16:22:43
  */
 
 #include"Manager.h"
@@ -98,7 +98,7 @@ Status Man_Fuction(Manager &M){
 	RBRoot *root = NULL;
 	root = createRBTree();
     //初始化书本树
-	//Man_GetBookTree(root);
+	Man_GetBookTree(root);
 	int choice;
     do {
 		Man_ChoiceMenu();
