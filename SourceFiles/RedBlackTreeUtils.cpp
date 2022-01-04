@@ -30,7 +30,7 @@ RBTree createRBTreeNode(RBTreeElemType x, Node *parent, Node *left, Node *right)
 }
 
 /**
- * 绾㈤粦鏍戞彃鍏ョ粨鐐瑰悗鑷钩琛�?1�?7
+ *
  *
  * @param[in]  root: the root of the red-black tree
  * @param[in]  node: the inserted node
@@ -40,94 +40,94 @@ Status RBTreeInsertSelfBalancing(RBRoot *root, Node *node)
 {
     Node *parent, *grandparent;
 
-    /* 鐖剁粨鐐逛负绾㈣壊缁撶偣 */
+    /* �����Ϊ��ɫ��� */
     while ((parent = RBTreeParent(node)) && RBTreeIsRed(parent))
     {
         grandparent = RBTreeParent(parent);
 
-        /* 鐖剁粨鐐规槸绁栫埗缁撶偣鐨勫乏瀛╁瓙缁撶偣鈥�1�?7 */
+        /* ��������游�������ӽ�㡱 */
         if (parent == grandparent->left)
         {
             Node *uncle = grandparent->right;
 
-            /* 鎯呭喌涓€锛氬彅鍙旂粨鐐规槸绾㈣壊缁撶偣 */
+            /* ���һ���������Ǻ�ɫ��� */
             if (uncle && RBTreeIsRed(uncle))
             {
-                // 鍏堝皢鐖剁粨鐐瑰拰鍙斿彅缁撶偣鏌撴垚榛戣�?
+                // �Ƚ�������������Ⱦ�ɺ�ɫ
                 RBTreeSetBlack(parent);
                 RBTreeSetBlack(uncle);
-                // 鍐嶅皢绁栫埗鐨勭粨鐐规煋鎴愰粦鑹�?1�?7
+                // �ٽ��游�Ľ��Ⱦ�ɺ�ɫ
                 RBTreeSetRed(grandparent);
-                // 鍙兘涓庣鐖剁殑鐖剁粨鐐瑰舰鎴愯繛缁殑绾㈣壊缁撶偣锛岄渶瑕侀€掑綊鍚戜笂璋冩�?
+                // �������游�ĸ�����γ������ĺ�ɫ��㣬��Ҫ�ݹ����ϵ���
                 node = grandparent;
                 continue;
             }
 
-            /* 鎯呭喌浜岋細鎻掑叆缁撶偣鏄叾鐖剁粨鐐圭殑宸﹀瀛愮粨鐐�?1�?7 */
+            /* ����������������丸�������ӽ�� */
             if (node == parent->left)
             {
-                // 鐖朵翰鍙樻垚榛戣�? 绁栫埗鍙樻垚绾㈣�? 鍙冲瓙鏍戠殑榛戣壊楂樺害鍙樹�?
+                // ���ױ�ɺ�ɫ �游��ɺ�ɫ �������ĺ�ɫ�߶ȱ��
                 RBTreeSetBlack(parent);
                 RBTreeSetRed(grandparent);
-                // 瀵圭鐖惰繘琛屽乏鏃嬶紝璁╃埗缁撶偣鎴愪负鏂扮殑绁栫埗锛屾仮澶嶅彸瀛愭爲鐨勯珮搴�1�?7
+                // ���游�����������ø�����Ϊ�µ��游���ָ��������ĸ߶�
                 RBTreeRightRotate(root, grandparent);
             }
 
-            /* 鎯呭喌涓夛細鎻掑叆缁撶偣鏄叾鐖剁粨鐐圭殑鍙冲瀛愮粨鐐癸紝鏋勯€犳垚鎯呭喌浜�1�?7 */
+            /* ����������������丸�����Һ��ӽ�㣬���������� */
             if (node == parent->right)
             {
                 Node *temp;
                 temp = parent;
-                // 鐖朵翰鎴愪负鏂扮殑鐩爣缁撶偣node
+                // ���׳�Ϊ�µ�Ŀ����node
                 parent = node;
-                // 瀵圭埗浜茶繘琛屽乏鏃嬫搷浣滐紝鏋勯€犳垚鎯呭喌浜�?1�?7
+                // �Ը��׽�����������������������
                 RBTreeLeftRotate(root, parent);
-                // 瀵规柊鐨刵ode杩涜澶勭悊 鍗冲師鏉ョ殑鐖朵翰缁撶偣
+                // ���µ�node���д��� ��ԭ���ĸ��׽��
                 node = temp;
             }
         }
         else
-        { /* 鐖剁粨鐐规槸绁栫埗缁撶偣鐨勫彸瀛╁瓙缁撶偣鈥�1�?7 */
+        { /* ��������游�����Һ��ӽ�㡱 */
             Node *uncle = grandparent->left;
 
-            /* 鎯呭喌鍥涳細鍙斿彅缁撶偣鏄孩鑹茬粨鐐�1�?7 */
+            /* ����ģ��������Ǻ�ɫ��� */
             if (uncle && RBTreeIsRed(uncle))
             {
-                // 鐖朵翰鍜屽彅鍙旈兘鍙樻垚榛戣�? 淇濊瘉瑙勫垯鍥�1�?7
+                // ���׺����嶼��ɺ�ɫ ��֤������
                 RBTreeSetBlack(uncle);
                 RBTreeSetBlack(parent);
-                // 灏嗙鐖跺彉鎴愮孩鑹�?1�?7 淇濊瘉瑙勫垯浜�1�?7
+                // ���游��ɺ�ɫ ��֤������
                 RBTreeSetRed(grandparent);
-                // 浠庣鐖跺紑濮嬶紝缁х画璋冩暣
+                // ���游��ʼ����������
                 node = grandparent;
                 continue;
             }
 
-            /* 鎯呭喌浜旓細鎻掑叆缁撶偣鏄叾鐖剁粨鐐圭殑鍙冲瀛愮粨鐐�?1�?7 */
+            /* ����壺���������丸�����Һ��ӽ�� */
             if (node == parent->right)
             {
-                // 鐖朵翰鍙樹负榛戣�?
+                // ���ױ�Ϊ��ɫ
                 RBTreeSetBlack(parent);
-                // 绁栫埗鍙樹负绾㈣�? 宸﹀瓙鏍戦粦鑹查珮搴﹂檷浣�1�?7
+                // �游��Ϊ��ɫ ��������ɫ�߶Ƚ���
                 RBTreeSetRed(grandparent);
-                // 瀵圭鐖惰繘琛屽乏鏃嬶紝鎭㈠宸﹀瓙鏍戦粦鑹查珮搴�?1�?7
+                // ���游�����������ָ���������ɫ�߶�
                 RBTreeLeftRotate(root, grandparent);
             }
 
-            /* 鍙斿彅缁撶偣涓洪粦鑹诧紝鎴栬€呭彅鍙旇妭鐐逛笉瀛樺�? 鎻掑叆缁撶偣鏄叾鐖剁粨鐐圭殑宸﹀瀛愮粨鐐�?1�?7 */
+            /* ������Ϊ��ɫ����������ڵ㲻���� ���������丸�������ӽ�� */
             if (node == parent->left)
             {
                 Node *temp;
                 temp = parent;
                 parent = node;
-                // 瀵圭埗浜茶繘琛屽彸鏃嬫搷浣滐紝鏋勯€犳儏鍐典簩鐨勫垵濮嬫儏鍐�?1�?7
+                // �Ը��׽�����������������������ĳ�ʼ���
                 RBTreeRightRotate(root, parent);
-                // 瀵规柊鐨刵ode杩涜澶勭悊 鍗冲師鏉ョ殑鐖朵翰缁撶偣
+                // ���µ�node���д��� ��ԭ���ĸ��׽��
                 node = temp;
             }
         }
     }
-    // 鐖剁粨鐐逛负榛戣壊鐨勬儏鍐垫渶绠€鍗曪紝涓嶉渶瑕佸仛璋冩�?
+    // �����Ϊ��ɫ�������򵥣�����Ҫ������
     RBTreeSetBlack(root->node);
 
     return SUCCESS;

@@ -3,7 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-23 14:33:25
  * @LastEditors: Hx
- * @LastEditTime: 2022-01-02 15:25:49
+ * @LastEditTime: 2022-01-02 21:22:51
  */
 #ifndef STUDENT_H_INCLUDE
 #define STUDENT_H_INCLUDE
@@ -24,6 +24,7 @@ typedef struct student{
     char password[15];//密码
     MyBook mybook;    //书
     int power;  //权限
+    int bookNum; //书的数量
     struct student *next;   //下一个学生
 }student, *Stu;
 
@@ -145,5 +146,20 @@ void Print_Borrow_Options();
  * @return Status 
  */
 Status Stu_AddBook(Stu &stu, RBTreeElemType b);
+
+/**
+ * @brief 读取学生信息，返回链表
+ * 
+ * @return Stu 
+ */
+Stu Stu_ReadData();
+
+/**
+ * @brief 格式化写入学生文件
+ * 
+ * @param stu 
+ * @return Status 
+ */
+Status Stu_WriteData(Stu stu);
 
 #endif  //STUDENT_H_INCLUDE

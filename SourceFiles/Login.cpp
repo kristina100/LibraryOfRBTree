@@ -3,7 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-23 15:56:56
  * @LastEditors: Hx
- * @LastEditTime: 2022-01-02 16:26:40
+ * @LastEditTime: 2022-01-03 13:48:35
  */
 #include"../HeaderFiles/Login.h"
 #include"../HeaderFiles/Utils.h"
@@ -30,7 +30,7 @@ void Print_Login_Options(){
     printf("|                                                                         |\n");
     printf("|           3.Register                       4.Escape Rote                |\n");
     printf("|                                                                         |\n");
-    printf("|                              0.Exit                                     |\n");
+    printf("|                            0.System Return                              |\n");
     printf("|                                                                         |\n");
     printf("*-------------------------------------------------------------------------*\n");
     printf("\n\t\t");
@@ -62,12 +62,12 @@ void Login_Operation(){
                 stu = Login_Stu();
                 if(stu == NULL){
                     printf("\t\tLogin failed! Account or password error.\n");
+                    Pause();
                 }else{
                     printf("\t\tLogin succeeded.\n");
                     Sleep(1);
                     Stu_Operation(stu);
                 }
-                Pause();
             }break;
 
             //管理员登录
@@ -76,12 +76,12 @@ void Login_Operation(){
                 manager = Login_Man();
                 if(manager == NULL){
                     printf("\tLogin failed! Account or password error.\n");
+                    Pause();
                 }else{
                     printf("\tLogin succeeded.\n");
                     Sleep(1);
                     Man_Fuction(manager);
                 }
-                Pause();
             }break;
 
             //注册
@@ -94,11 +94,10 @@ void Login_Operation(){
                 }
                 Pause();
             }break;
-        
             case 4://逃生路线
-		    {
+		   {
                 if(getEscapeRote()!=SUCCESS)
-				printf("Failed to show escape rote!\n");
+				    printf("Failed to show escape rote!\n");
 			    break;
 		    }
             default:{
@@ -123,7 +122,6 @@ Stu Login_Stu(){
 
     FILE *fp = NULL;
     Stu stu = NULL;
-    Stu_Init(stu);
     char password[6] = "";
     char account[20] = "";
 
@@ -135,25 +133,23 @@ Stu Login_Stu(){
     printf("\t\t\tPassword: ");
     scanf("%s", password);
 
-    //打开文件
-    fp = fopen(Data_Stu, "rb");
+    //读出学生信息数据
+    stu = Stu_ReadData();
     
-    //在数据文件中查找账号
-    while(fread(stu, sizeof(student), 1, fp)){
-        
+    //检查数据是否存在且对应
+    while(stu != NULL){
+        //账号相同
         if(strcmp(account, stu->account) == 0){
             //密码相同
-            if(strcmp(password, stu->password) == 0){
-                fclose(fp);
-                return stu;
-            }
+            if(strcmp(password, stu->password) == 0)
+                return stu;  
             else
                 break;
-            
         }
+        //指向下一个
+        stu = stu->next;
     }
-    fclose(fp);
-    
+
     return NULL;
 }
 
@@ -294,25 +290,22 @@ Status Register_Operation(int mode){
         case 0:{     
             Stu stu = NULL, temp = NULL;
             Stu_Init(stu);
-            Stu_Init(temp);
 
             printf("\t\tPlease input your account: ");
             scanf("%s", stu->account);
 
             //=================检查账号是否存在=================
-
-            //打开文件
-            fp = fopen(Data_Stu, "rb");
-
-            while(fread(temp, sizeof(student), 1, fp)){
-
-                if(strcmp(temp->account, stu->account) == 0){
-                    fclose(fp);
-                    return Exist;
-                }
-            }
-            fclose(fp);
             
+            //读出学生信息数据
+            temp = Stu_ReadData();
+            //检查数据是否存在
+            while(temp != NULL){
+                if(strcmp(temp->account, stu->account) == 0)
+                    return Exist;
+                
+                temp = temp->next;
+            }
+
             printf("\t\tPlease input your ID: ");
             scanf("%s", stu->ID);
 
@@ -321,11 +314,9 @@ Status Register_Operation(int mode){
 
             printf("\t\tPlease input your name: ");
             scanf("%s", stu->name);
-
-            stu->power = 0;
-
+            
             //写入文件
-            fp = fopen(Data_Stu, "ab+");
+            fp = fopen(Data_Stu, "ab");
             fwrite(stu, sizeof(student), 1, fp);
             
         }break;
@@ -343,7 +334,7 @@ Status Register_Operation(int mode){
             if(Mancode != 1234) return FALSE;
 
             printf("Please input your account: ");
-            scanf("%s", M->account);
+            scanf("%s", M->account);      
             
             
             //=================检查账号是否存在=================
@@ -385,38 +376,18 @@ Status Updata_StuInfo(Stu &stu){
     FILE *fp = NULL;
     Stu t = NULL, p = NULL, head = NULL;
 
-    //以二进制只读"rb"打开学生数据文件
-    fp = fopen(Data_Stu, "rb");
-    if(fp == NULL){
-         printf("Error! Student data does not exist!\n");
-        return ERROR;
-    }
-    //初始化
-    Stu_Init(t);
+    //读取学生信息数据
+    head = Stu_ReadData();
 
-    //读出学生数据的数量
-    int num = 0;
-    //将学生信息全部从文件中读出
-    while(fread(t, sizeof(student), 1, fp)){
-        num++;
-        if(num == 1){
-            p = head = t;
-        }
-        //将学生数据建成链表
-        else{
-            p->next = t;
-            //p一直指向尾部
-            p = p->next;
-        }
-    }
-    //关闭文件
-    fclose(fp);
+    //head空
+    if(head == NULL)
+        return ERROR;
     
     //找到学生
-    for(p = t = head; t->next != NULL; t = t->next){
+    for(p = t = head; t != NULL; t = t->next){
     
         //找到对应学生
-        if(t->account == stu->account) 
+        if(strcmp(t->account, stu->account) == 0) 
             break;
 
         //p指向对应学生的上一位
@@ -426,33 +397,18 @@ Status Updata_StuInfo(Stu &stu){
     //将新数据替换旧数据
     //对应学生为第一位
     if(p == t){
-        stu->next = t->next;
-        t = stu;
+        stu->next = head->next;
+        head = stu;
     }
     //对应学生不为第一位
     else{     
         stu->next = t->next;
         p->next = stu;
     }
-
-    //释放旧数据
     t->next = NULL;
-
-    //以二进制写"w"打开文件，覆盖输入
-    fp = fopen(Data_Stu, "wb");
-    for(t = head; t != NULL; t = t->next){
-        fwrite(t, sizeof(student), 1, fp);
-    }
-    //关闭文件
-    fclose(fp);
     
-    //释放空间
-    t = head;
-    while(t != NULL){
-        t = t->next;
-        free(head);
-        head = t;
-    }
-    free(t);
+    //格式化写入数据
+    Stu_WriteData(head);
+    
     return SUCCESS;
 }
