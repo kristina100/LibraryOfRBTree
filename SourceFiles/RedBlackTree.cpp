@@ -346,7 +346,8 @@ RBTreeElemType RBT_SearchByISBN(RBTree R, long long int ISBN){
  * @return  RBTreeElemType
  */
 RBTreeElemType RBT_SearchByName(RBTree node,char *name){
-    if (!node || strcmp(name,node->data->Title)==0) 
+    if(node==NULL) return NULL;
+    if ( strcmp(name,node->data->Title)==0) 
         return node->data;
     if(NULL!=RBT_SearchByName(node->right,name))return RBT_SearchByName(node->right,name);
     else if(NULL!=RBT_SearchByName(node->left,name))return RBT_SearchByName(node->left,name);
@@ -361,10 +362,11 @@ RBTreeElemType RBT_SearchByName(RBTree node,char *name){
  * @return  RBTreeElemType
  */
 RBTreeElemType RBT_SearchBookByAuthor(RBTree node,char *author){
-    if (!node || strcmp(author,node->data->Author)==0) 
+    if(node==NULL) return NULL;
+    if (strcmp(author,node->data->Author)==0) 
         return node->data;
-    if(NULL!=RBT_SearchByName(node->right,author))return RBT_SearchByName(node->right,author);
-    else if(NULL!=RBT_SearchByName(node->left,author))return RBT_SearchByName(node->left,author);
+    if(NULL!=RBT_SearchBookByAuthor(node->right,author))return RBT_SearchByName(node->right,author);
+    else if(NULL!= RBT_SearchBookByAuthor(node->left,author))return RBT_SearchByName(node->left,author);
     else return NULL;
 }
 

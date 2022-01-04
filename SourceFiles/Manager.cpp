@@ -58,7 +58,9 @@ void Man_SearchMenu(){
     printf("|                                                                         |\n");
     printf("|       3.Search By the author of book   4.Fuzzy search by the name       |\n");
     printf("|                                                                         |\n");
+    printf("|                 0.Return to the previous level                          |\n");
     printf("|                                                                         |\n");
+	printf("|                                                                         |\n");
     printf("*-------------------------------------------------------------------------*\n");
 	return;
 }
@@ -78,7 +80,9 @@ void Man_AccountMenu(){
     printf("|                                                                         |\n");
     printf("|         3.change power level               4.Set book return            |\n");
     printf("|                                                                         |\n");
-	printf("|         5.change name                      0.Set borrowing              |\n");
+	printf("|         5.change name                      6.Set borrowing              |\n");
+    printf("|                                                                         |\n");
+	printf("|                    0.Return to the previous level                       |\n");
     printf("|                                                                         |\n");
     printf("|                                                                         |\n");
 	printf("*-------------------------------------------------------------------------*\n");
@@ -193,8 +197,8 @@ Status Man_ManageAccount(Manager M,RBRoot *root){
     do {
 		Man_AccountMenu();
 		//打印测试
-		recessedPrintRBTree(root->node, 0);
-		printRBTree(root);
+		//recessedPrintRBTree(root->node, 0);
+		//printRBTree(root);
         choice = InputInteger();
 		switch (choice) {
 		case 1://获取信息
@@ -329,8 +333,8 @@ Status Man_SearchBook(Manager M,RBRoot *root){
     do {
 		Man_SearchMenu();
 		//打印测试
-		recessedPrintRBTree(root->node, 0);
-		printRBTree(root);
+		//recessedPrintRBTree(root->node, 0);
+		//printRBTree(root);
         choice = InputInteger();
 		switch (choice) {
 		case 1://按ISBN搜索
@@ -512,7 +516,7 @@ Status PrintBookInfo(RBTreeElemType e){
     printf("     ISBN     |    Title    |    Author   |   Press   |   Score   \n\n");
 
     //打印ISBN
-    printf("\t\t%-15lld",e->elem);
+    printf("%-15lld",e->elem);
     //打印书名
     printf("%-15s",e->Title);
     //打印作者
@@ -520,7 +524,7 @@ Status PrintBookInfo(RBTreeElemType e){
     //打印出版社
     printf("%-15s",e->press);
 	//打印评分
-	printf("%-10d",e->score);
+	printf("%-10s",e->score);
 	return SUCCESS;
 }
 

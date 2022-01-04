@@ -39,7 +39,7 @@ int main(){
     
     // strcpy(e2->Title, "Charlotte'sWeb");
     // strcpy(e2->Author, "None");
-    // strcpy(e2->score, "¶¹°ê8.5·Ö");
+    // strcpy(e2->score, "¶¹°ê8.5·Ö");2
     // strcpy(e2->press, "HarperCollins");
     
     // e2->elem = 9878376497823;
