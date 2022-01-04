@@ -3,16 +3,16 @@
  * @Author: Hx
  * @Date: 2021-12-23 14:33:25
  * @LastEditors: Hx
- * @LastEditTime: 2022-01-02 21:22:51
+ * @LastEditTime: 2022-01-03 22:26:24
  */
 #ifndef STUDENT_H_INCLUDE
 #define STUDENT_H_INCLUDE
 #include"Common.h"
 #include"RedBlackTree.h"
 
-//书本结构体
+//书本数据结构体
 typedef struct mybook{
-    RBTreeElemType book; //
+    RBTreeElemType book; //存储的书
     struct mybook *next; //下一本
 }mybook,*MyBook;
 
@@ -39,6 +39,7 @@ Status Stu_Init(Stu &stu);
 /**
  * @brief 学生操作
  * 
+ * @param stu 
  */
 void Stu_Operation(Stu &stu);
 
@@ -54,7 +55,7 @@ void Stu_Options();
  * @param stu 
  * @param root 
  */
-void Stu_Borrow(Stu stu, RBRoot *root);
+void Stu_Borrow(Stu &stu, RBRoot *root);
 
 /**
  * @brief 学生还书
@@ -71,21 +72,6 @@ Status Stu_return(Stu &stu, RBRoot *root);
  * @param stu 
  */
 void Stu_Print_MyInfo(Stu stu);
-
-/**
- * @brief 找回密码
- * 
- * @param stu 
- * @return Status 
- */
-Status Stu_FindPassword(Stu stu);
-
-/**
- * @brief 修改密码
- * 
- * @return Status 
- */
-Status Stu_ChangePassword(Stu stu);
 
 /**
  * @brief 打印书本
@@ -139,7 +125,7 @@ void Print_Search_Options();
 void Print_Borrow_Options();
 
 /**
- * @brief 向学生账户上添加一本书，并将书设置为已借出状态
+ * @brief 向学生账户上添加一本书
  * 
  * @param stu 
  * @param b 

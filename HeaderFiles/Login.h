@@ -3,7 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-23 15:51:52
  * @LastEditors: Hx
- * @LastEditTime: 2022-01-02 00:11:54
+ * @LastEditTime: 2022-01-03 21:57:56
  */
 #include"Common.h"
 #include"Student.h"
@@ -16,7 +16,7 @@
 void Print_Login_Options();
 
 /**
- * @brief 登录操作
+ * @brief 登录界面操作
  */
 void Login_Operation();
 
@@ -28,7 +28,9 @@ void Login_Operation();
 Stu Login_Stu();
 
 /**
- * @brief  管理员登录
+ * @brief 管理员登录
+ * 
+ * @return Manager 
  */
 Manager Login_Man();
 
