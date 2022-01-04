@@ -60,63 +60,7 @@ int LocateVex_AL(ALGraph G, int num) {
 	return -1;
 }
 
-/**
- * @brief 查找图G中k顶点对应邻接链表中的第一个节点，若存在，返回其位序，
- *        并令指针p指向该节点，否则，返回-1，并令指针p为NULL。
- */
-int FirstAdjVex_AL_OLD(ALGraph G, int k, AdjVexNodePtr &p) {
 
-	//k顶点不存在
-	if (k < 0 || k >= G.n) return -1;
-
-	p = G.vexs[k].firstArc;
-
-	//返回第一个结点存储的顶点位序
-	if (p != NULL) return p->adjvex;
-	else return -1;
-}
-
-int FirstAdjVex_AL(ALGraph G, VexType e) {
-
-
-	int k = LocateVex_AL(G,e.num);
-
-	if (k < 0 || k >= G.n) return -1;
-
-	AdjVexNodePtr p = G.vexs[k].firstArc;
-
-	//返回第一个结点存储的顶点位序
-	if (p != NULL) return p->adjvex;
-	else return -1;
-}
-
-/**
- * @brief 查找图G中k顶点对应邻接链表中的下一个节点，若存在，返回其位序，
- *        并令指针p指向该节点，否则，返回-1，并令指针p为NULL。
- */
-int NextAdjVex_AL(ALGraph G, int k, AdjVexNodePtr &p) {
-
-	//k顶点不存在
-	if (k < 0 || k >= G.n) return -1;
-	if (p == NULL) return -1;
-
-	p = p->nextArc;
-
-	if (p != NULL) return p->adjvex;
-	else return -1;
-}
-
-int NextAdjVex_ALM(ALGraph G, int k, int m) {
-	//k顶点不存在
-	if (k < 0 || k >= G.n) return -1;
-	if (m < 0 || m >= G.n) return -1;
-	AdjVexNodePtr p = G.vexs[m].firstArc;
-	for (int i = 0; i < m; i++) {
-		p = p->nextArc;
-	}
-	if (p != NULL) return p->nextArc->adjvex;
-	else return -1;
-}
 /**
  * @brief 销毁
  *
@@ -143,37 +87,6 @@ Status DeatroyDG_AL(ALGraph &G) {
 	return SUCCESS;
 }
 
-int Degree_AL(ALGraph G, int k) {//无权图
-	if (k < 0 || k >= G.n) return -1;
-	AdjVexNode* p, *q;
-	q = G.vexs[k].firstArc;
-	int dep = 0;
-	if (G.kind == UDG) {
-		while (q) {
-			dep++;
-			q = q->nextArc;
-		}
-	}
-	else {
-		for (int i = 0; i < G.n; i++) {
-			p = G.vexs[i].firstArc;
-			if (i == k) {
-				for (int j = 0; p != NULL; j++) {
-					dep++;
-					p = p->nextArc;
-				}
-			}
-			else {
-				for (int j = 0; p != NULL; j++) {
-					if (p->adjvex == k)dep++;
-					p = p->nextArc;
-				}
-			}
-		}
-	}
-
-	return dep;
-}
 
 Status Delarc_AL(ALGraph& G, int k, int m)//在图G中删除k顶点到m顶点的边
 {
@@ -215,12 +128,8 @@ Status Delarc_AL(ALGraph& G, int k, int m)//在图G中删除k顶点到m顶点的边
 				q = q->nextArc;
 			}
 		}
-
 	}
-
 	return SUCCESS;
-
-
 }
 
 Status Dijkstra(ALGraph G, int i, Dist &Dist) {
