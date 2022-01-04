@@ -77,11 +77,11 @@ Status RBTreeInsertSelfBalancing(RBRoot *root, Node *node)
             if (node == parent->right)
             {
                 Node *temp;
+                 // 对父亲进行左旋操作，构造成情况二
+                RBTreeLeftRotate(root, parent);
                 temp = parent;
                 // 父亲成为新的目标结点node
                 parent = node;
-                // 对父亲进行左旋操作，构造成情况二
-                RBTreeLeftRotate(root, parent);
                 // 对新的node进行处理 即原来的父亲结点
                 node = temp;
             }
@@ -119,9 +119,9 @@ Status RBTreeInsertSelfBalancing(RBRoot *root, Node *node)
             {
                 Node *temp;
                 temp = parent;
-                parent = node;
-                // 对父亲进行右旋操作，构造情况二的初始情况
+                 // 对父亲进行右旋操作，构造情况二的初始情况
                 RBTreeRightRotate(root, parent);
+                parent = node;
                 // 对新的node进行处理 即原来的父亲结点
                 node = temp;
             }
