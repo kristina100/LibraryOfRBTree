@@ -6,19 +6,19 @@
 #include"Common.h"
 #include "RedBlackTree.h"
 
-/* 闁库偓濮ｄ椒绨╅崣澶嬬埐 */
+/* 销毁二叉树 */
 Status destroyBinaryTree(RBTree tree);
 
-/* 閸撳秴绨柆宥呭坊娴滃苯寮堕弽锟 */
+/* 前序遍历二叉树 */
 Status preorderBiTree(RBTree tree);
 
-/* 娑擃厼绨柆宥呭坊娴滃苯寮堕弽锟 */
+/* 中序遍历二叉树 */
 Status inorderBiTree(RBTree tree);
 
-/* 閸氬骸绨柆宥呭坊娴滃苯寮堕弽锟 */
+/* 后序遍历二叉树 */
 Status postorderBiTree(RBTree tree);
 
-/* 閺屻儲澹樼紒鎾跺仯 */
+/* 递归查找二叉树tree中数据域为x的结点 */
 RBTree recursiveSearchNode(RBTree tree, RBTreeElemType x);
 
 #endif //REDBLACKTREE_BINARYTREE_H
