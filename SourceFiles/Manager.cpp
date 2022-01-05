@@ -3,7 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-23 17:37:27
  * @LastEditors: Hx
- * @LastEditTime: 2022-01-05 16:55:24
+ * @LastEditTime: 2022-01-05 17:14:26
  */
 
 #include"Manager.h"
@@ -23,7 +23,7 @@ Status Man_Init(Manager &M){
 
 /**
  * @name Man_ChoiceMenu
- * @brief 打印管理员菜??
+ * @brief 打印管理员菜单
  * @param   
  * @return  Status
  */
@@ -45,7 +45,7 @@ void Man_ChoiceMenu(){
 
 /**
  * @name Man_SearchMenu
- * @brief 管理员查找功??
+ * @brief 管理员查找功能
  * @param  root 
  * @return  Status
  */
@@ -172,28 +172,27 @@ Status Man_Fuction(Manager &M){
  */
 Status Man_ManageAccount(Manager M,RBRoot *root){
     //读取学生文件
-	FILE *fp = NULL;
 	int flag=0;
     char stu_ID[11];
-    Stu stu = NULL;
+    Stu stu = NULL,allstu=NULL;
     Stu_Init(stu);
 
     //输入学生账号
 	printf("Please enter the ID of the student you want to manage:\n");
     scanf("%s",&stu_ID);
-
-    //打开文件
-    fp = fopen("Students.dat", "rb");
     
+	allstu = Stu_ReadData();
+
+	stu=allstu;
     //在数据文件中查找学号
-    while(fread(stu, sizeof(student), 1, fp)){
-        if(strcmp(stu_ID, stu->ID) == 0){
+    while(stu){
+        if(strcmp(stu_ID,stu->ID) == 0){
 			//账号相同找到对应学生
-			fclose(fp);
 			flag =1;
-		} 
+			break;
+		}else stu=stu->next; 
     }
-    fclose(fp);
+
 	if(!flag){//判断是否找到
 		stu =NULL;
 		return ERROR;
@@ -275,14 +274,17 @@ Status Man_ManageAccount(Manager M,RBRoot *root){
 			Stu_Borrow(stu, root);	
 			break;
 		}
-		case 0://退??
+		case 0://退出
 		{
             return SUCCESS;
 			break;
 		}
-		default:printf("输入有误，请重新输入!??0-5??");
+		default:printf("输入有误，请重新输入!（0-5）");
 		}
+		Pause();
+		Clean();
 	} while (choice!=0);
+	
 	return SUCCESS;
 }
 
@@ -360,19 +362,19 @@ Status Man_SearchBook(Manager M,RBRoot *root){
 			search_x = NULL;
 			free(search_x);
 		}
-		case 2://按书名搜??
+		case 2://按书名搜索
 		{
 			e1 = SearchByName(root);
 			e1 = NULL;
 			break;
 		}
-		case 3://按作者搜??
+		case 3://按作者搜索
 		{
 			e2 = SearchBookByAuthor(root);
 			e2 = NULL;
 			break;
 		}
-		case 4://按书名模糊搜??
+		case 4://按书名模糊搜索
 		{
 			MyBook books,p=NULL;
 			books=FuzzySearchByName(root);
@@ -385,15 +387,17 @@ Status Man_SearchBook(Manager M,RBRoot *root){
 			}
 			break;
 		}
-		case 0://退?? 返回上一??
+		case 0://退出 返回上一级
 		{
 			free(e1);
 			free(e2);
             return SUCCESS;
 			break;
 		}
-		default:printf("输入有误，请重新输入!??1-4??");
+		default:printf("输入有误，请重新输入!（1-4）");
 		}
+		Pause();
+		Clean();
 	} while (choice!=0);
 	free(e1);
 	free(e2);
@@ -434,7 +438,7 @@ RBTreeElemType SearchByName(RBRoot *root){
 
 /**
  * @name SearchBookByAuthor
- * @brief 根据作者准确搜??
+ * @brief 根据作者准确搜索
  * @param  root
  * @param  author
  * @return  RBTreeElemType
@@ -458,7 +462,7 @@ RBTreeElemType SearchBookByAuthor(RBRoot *root){
 
 /**
  * @name FuzzySearchByName
- * @brief 按书名模糊搜??
+ * @brief 按书名模糊搜索
  * @param  root
  * @return  status
  */
@@ -525,12 +529,11 @@ Status PrintBookInfo(RBTreeElemType e){
     printf("%-15lld",e->elem);
     //打印书名
     printf("%-15s",e->Title);
-    //打印作??
+    //打印作者
     printf("%-15s",e->Author);
-    //打印出版??
+    //打印出版社
     printf("%-15s",e->press);
 	//打印评分
 	printf("%-10s",e->score);
 	return SUCCESS;
 }
-
