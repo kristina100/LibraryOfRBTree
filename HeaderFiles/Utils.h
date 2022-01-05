@@ -3,7 +3,7 @@
  * @Author: Hx
  * @Date: 2021-12-22 12:54:00
  * @LastEditors: Hx
- * @LastEditTime: 2022-01-02 14:32:59
+ * @LastEditTime: 2022-01-06 01:57:37
  */
 #ifndef UTILS_H_INCLUDE
 #define UTILS_H_INCLUDE
@@ -39,7 +39,7 @@ long long int InputInteger();
 
 /**
  * @name  Quit()
- * @brief 閫€鍑哄垽鏂�?
+ * @brief �˳�
  * @param   
  * @return  
  */

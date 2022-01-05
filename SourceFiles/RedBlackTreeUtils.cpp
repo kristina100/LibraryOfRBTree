@@ -7,7 +7,7 @@
 #include "../HeaderFiles/BalancedBinaryTree.h"
 
 /**
- * 鍒涘缓绾㈤粦鏍戠粨鐐�?1�?7
+ * ������������
  *
  * @param[in]  x     : the data of the node
  * @param[in]  parent: its parent node
@@ -134,7 +134,7 @@ Status RBTreeInsertSelfBalancing(RBRoot *root, Node *node)
 }
 
 /**
- * 绾㈤粦鏍戞煡鎵炬渶灏忕粨鐐�1�?7
+ * �����������С���
  *
  * @param[in]  root  : the root of the red-black tree
  * @param[in]  minVal: the minimum value of the red-black tree
@@ -153,7 +153,7 @@ Status minRBTreeNode(RBRoot *root, RBTreeElemType minVal)
 }
 
 /**
- * 绾㈤粦鏍戞煡鎵炬渶澶х粨鐐�?1�?7
+ * ��������������
  *
  * @param[in]  root  : the root of the red-black tree
  * @param[in]  maxVal: the maximum value of the red-black tree
@@ -275,28 +275,28 @@ Status RBTreeDeleteSelfBalancing(RBRoot *root, Node *node, Node *parent)
 }
 
 /**
- * 绾㈤粦鏍戝垹闄ょ粨鐐规寚閽�1�?7
+ * �����ɾ�����ָ��
  *
- * @param[in]  root: 绾㈤粦鏍戠殑鏍�1�?7
- * @param[in]  node: 琚垹闄ょ殑缁撶�?
- * @return  鎿嶄綔鐘舵€�?1�?7, SUCCESS : 0, FALSE : -1
+ * @param[in]  root: ������ĸ�
+ * @param[in]  node: ��ɾ���Ľ��
+ * @return  ����״̬,SUCCESS : 0, FALSE : -1
  */
 Status deleteRBTreeNode(RBRoot *root, Node *node)
 {
     Node *child = NULL, *parent = NULL;
     int color;
 
-    // 鍒犻櫎缁撶偣鐨勫乏鍙冲瀛愮粨鐐归兘瀛樺�?
+    // ɾ���������Һ��ӽ�㶼����
     if (node->left && node->right)
     {
         Node *successor = node;
-        // 鏇夸唬缁撶偣, 鍗冲悗缁х粨鐐�?1�?7
+        // ������, ����̽��
         successor = successor->right;
-        // 鑾峰彇鏈€灏忕殑鍚庣户缁撶偣
+        // ��ȡ��С�ĺ�̽��
         while (successor->left)
             successor = successor->left;
 
-        // node缁撶偣涓嶆槸鏍圭粨鐐�?1�?7
+        // node��㲻�Ǹ����
         if (RBTreeParent(node))
         {
             if (node == RBTreeParent(node)->left)
@@ -305,42 +305,42 @@ Status deleteRBTreeNode(RBRoot *root, Node *node)
                 RBTreeParent(node)->right = successor;
         }
         else
-            root->node = successor;  // node缁撶偣鏄牴缁撶�?
+            root->node = successor;  // node����Ǹ����
 
-        // child鏄浛浠ｇ粨鐐圭殑鍙冲瀛�1�?7, 鍙兘闇€瑕佸～琛ユ浛浠ｇ粨鐐圭殑浣嶇疆
+        // child����������Һ���, ������Ҫ��������λ��
         child = successor->right;
-        // 淇濆瓨鏇夸唬缁撶偣鐨勭埗缁撶�?
+        // ����������ĸ����
         parent = RBTreeParent(successor);
-        // 淇濆瓨鏇夸唬缁撶偣鐨勯鑹�1�?7
+        // �������������ɫ
         color = RBTreeColor(successor);
 
-        // 鏇夸唬缁撶偣鏄垹闄ょ粨鐐圭殑鍙冲瀛愮粨鐐�?1�?7
+        // ��������ɾ�������Һ��ӽ��
         if (parent == node)
             parent = successor;
         else
         {
             if (child)
                 RBTreeSetParent(child, parent);
-            // 鏇夸唬缁撶偣鐨勫彸瀛╁瓙缁撶偣濉ˉ鏇夸唬缁撶偣鐨勪綅缃�?1�?7(鏇夸唬缁撶偣涓嶅彲鑳芥湁宸﹀瀛愮粨鐐�?1�?7, 鍚﹀垯鍏舵墠鏄悗缁х粨鐐�?1�?7)
+            // ��������Һ��ӽ����������λ��(�����㲻���������ӽ��, ��������Ǻ�̽��)
             parent->left = child;
             successor->right = node->right;
             RBTreeSetParent(node->right, successor);
         }
 
-        // 鏇夸唬缁撶偣鎿嶄�?
+        // ���������
         successor->parent = node->parent;
         successor->color = node->color;
         successor->left = node->left;
         node->left->parent = successor;
 
-        // 鏇夸唬缁撶偣涓洪粦鑹�?1�?7, 闇€瑕佽嚜骞宠　 
+        // ������Ϊ��ɫ, ��Ҫ��ƽ�� 
         if (color == BLACK) RBTreeDeleteSelfBalancing(root, child, parent);
         free(node);
 
         return SUCCESS;
     }
 
-    // 鍒犻櫎缁撶偣鍙瓨鍦ㄤ竴涓瀛愮粨鐐规垨鑰呮病鏈夊瀛愮粨鐐�?1�?7
+    // ɾ�����ֻ����һ�����ӽ�����û�к��ӽ��
     if (node->left)
         child = node->left;
     else
@@ -350,7 +350,7 @@ Status deleteRBTreeNode(RBRoot *root, Node *node)
     if (child)
         child->parent = parent;
 
-    /* node缁撶偣涓嶆槸鏍圭粨鐐�?1�?7 */
+    /* node��㲻�Ǹ���� */
     if (parent)
     {
         if (node == parent->left)
@@ -368,14 +368,14 @@ Status deleteRBTreeNode(RBRoot *root, Node *node)
 }
 
 /**
- * 绾㈤粦鏍戜俊鎭殑鎵撳嵃
+ *  �������Ϣ�Ĵ�ӡ
  *
- * @param[in]  tree    : 绾㈤粦鏍戠殑缁撶偣闆嗗悎
- * @param[in]  data    : 缁撶偣鏁板€�?1�?7
- * @param[in]  position: 0 - 褰撳墠缁撶偣鏄牴鑺傜偣
- *                      -1 - 褰撳墠鑺傜偣鏄乏瀛╁�?
- *                       1 - 褰撳墠缁撶偣鏄彸瀛╁�?
- * @return  杩斿洖鎿嶄綔鐘舵€�1�?7, SUCCESS : 0, FALSE : -1
+ * @param[in]  tree    : ������Ľ�㼯��
+ * @param[in]  data    : �����ֵ
+ * @param[in]  position: 0 - ��ǰ����Ǹ��ڵ�
+ *                      -1 - ��ǰ�ڵ�������
+ *                       1 - ��ǰ������Һ���
+ * @return   ���ز���״̬,SUCCESS : 0, FALSE : -1
  */
 Status PrintRBTreeInfo(RBTree tree, RBTreeElemType data, int position)
 {
@@ -386,9 +386,9 @@ Status PrintRBTreeInfo(RBTree tree, RBTreeElemType data, int position)
         else
             printf("[%lld] (%s) is [%lld] 's {%s} child node\n", tree->data->elem, RBTreeIsRed(tree) ? "RED" : "BLACK",
                     data->elem, position == -1 ? "LEFT" : "RIGHT");
-        // 宸﹀瀛愰€掑綊閬嶅巻
+        // ���ӵݹ����
         PrintRBTreeInfo(tree->left, tree->data, -1);
-        // 鍙冲瀛愰€掑綊閬嶅巻
+        // �Һ��ӵݹ����
         PrintRBTreeInfo(tree->right, tree->data, 1);
         return SUCCESS;
     }
@@ -396,11 +396,11 @@ Status PrintRBTreeInfo(RBTree tree, RBTreeElemType data, int position)
 }
 
 /**
- * 鎵撳嵃绾㈤粦鏍�1�?7
+ *  ��ӡ�����
  *
- * @param[in]  tree : 绾㈤粦鏍戠殑缁撶偣闆嗗悎
- * @param[in]  depth: 绾㈤粦鏍戠殑娣卞�?
- * @return  鎿嶄綔鐘舵€�?1�?7 SUCCESS : 0, FALSE : -1
+ * @param[in]  tree : ������Ľ�㼯��
+ * @param[in]  depth: ����������
+ * @return  ����״̬ SUCCESS : 0, FALSE : -1
  */
 Status recessedPrintRBTree(RBTree tree, int depth)
 {

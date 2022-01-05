@@ -12,7 +12,7 @@
 char Data_Book[] = "book_data.txt";
 
 /**
- * 创建红黑???
+ * 创建红黑树
  *
  * @param[in]  none
  * @return  the root of the red-black tree
@@ -41,7 +41,7 @@ Status destroyRBTree(RBRoot *root)
 }
 
 /**
- * 前序遍历红黑???
+ * 前序遍历红黑树
  *
  * @param[in]  root: the root of the red-black tree
  * @return  the operation status, SUCCESS is 0, FALSE is -1
@@ -55,7 +55,7 @@ Status preorderRBTree(RBRoot *root)
 }
 
 /**
- * ??序遍历红黑??
+ * 中序遍历红黑树
  *
  * @param[in]  root: the root of the red-black tree
  * @return  the operation status, SUCCESS is 0, FALSE is -1
@@ -70,7 +70,7 @@ Status inorderRBTree(RBRoot *root)
 }
 
 /**
- * 后序遍历红黑???
+ * 后序遍历红黑树
  *
  * @param[in]  root: the root of the red-black tree
  * @return  the operation status, SUCCESS is 0, FALSE is -1
@@ -84,7 +84,7 @@ Status postorderRBTree(RBRoot *root)
 }
 
 /**
- * 递归查找红黑树tree??数据域为x的结???
+ * 递归查找红黑树tree中数据域为x的结点
  *
  * @param[in]  root: the root of the red-black tree
  * @param[in]  x   : the data of the node
@@ -98,7 +98,7 @@ Status recursiveSearchRBTree(RBRoot *root, RBTreeElemType x)
 }
 
 /**
- * 红黑树插入数??域为x的结???
+ * 红黑树插入数据域为x的结点
  *
  * @param[in]  root: the root of the red-black tree
  * @param[in]  x   : the data of the node
@@ -106,7 +106,7 @@ Status recursiveSearchRBTree(RBRoot *root, RBTreeElemType x)
  */
 Status insertRBTree(RBRoot *root, RBTreeElemType x)
 {
-    // 已存???
+    // 已存在
     if (recursiveSearchNode(root->node, x)) 
         return FALSE;
 
@@ -121,7 +121,7 @@ Status insertRBTree(RBRoot *root, RBTreeElemType x)
 }
 
 /**
- * 红黑树删除数??域为x的结???
+ * 红黑树删除数据域为x的结点
  *
  * @param[in]  root: the root of the red-black tree
  * @param[in]  key : the data of the node to be deleted
@@ -141,7 +141,7 @@ Status deleteRBTree(RBRoot *root, RBTreeElemType x)
 }
 
 /**
- * 打印红黑树信???
+ * 打印红黑树信息
  *
  * @param[in]  root: the root of the red-black tree
  * @return  the operation status, SUCCESS is 0, FALSE is -1
@@ -158,7 +158,7 @@ Status printRBTree(RBRoot *root)
 }
 
 /**
- * @brief ????elem????
+ * @brief 输入elem数据
  */
 Status inputRBTElem(RBTreeElemType &e){
 

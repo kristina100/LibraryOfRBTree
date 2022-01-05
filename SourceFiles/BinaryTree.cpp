@@ -1,14 +1,6 @@
-/*
- * @Descripttion: 
- * @Author: Hx
- * @Date: 2021-12-24 17:05:47
- * @LastEditors: Hx
- * @LastEditTime: 2022-01-02 00:09:54
- */
 //
 // Created by HUAWEI on 2021-12-06.
 //
-
 
 #include "../HeaderFiles/BinaryTree.h"
 
