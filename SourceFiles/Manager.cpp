@@ -143,6 +143,11 @@ Status Man_Fuction(Manager &M){
 		}
 		case 0://退出 返回上一级
 		{
+			//返回上一级后保存图书信息--把树存到文件里面
+	        FILE_WriteRBT(*root);
+            printf("\n");
+	        //保存后删除树
+	        destroyRBTree(root);
             return SUCCESS;
 			break;
 		}
@@ -167,28 +172,27 @@ Status Man_Fuction(Manager &M){
  */
 Status Man_ManageAccount(Manager M,RBRoot *root){
     //读取学生文件
-	FILE *fp = NULL;
 	int flag=0;
     char stu_ID[11];
-    Stu stu = NULL;
+    Stu stu = NULL,allstu=NULL;
     Stu_Init(stu);
 
     //输入学生账号
 	printf("Please enter the ID of the student you want to manage:\n");
     scanf("%s",&stu_ID);
-
-    //打开文件
-    fp = fopen("Students.dat", "rb");
     
+	allstu = Stu_ReadData();
+
+	stu=allstu;
     //在数据文件中查找学号
-    while(fread(stu, sizeof(student), 1, fp)){
-        if(strcmp(stu_ID, stu->ID) == 0){
+    while(stu){
+        if(strcmp(stu_ID,stu->ID) == 0){
 			//账号相同找到对应学生
-			fclose(fp);
 			flag =1;
-		} 
+			break;
+		}else stu=stu->next; 
     }
-    fclose(fp);
+
 	if(!flag){//判断是否找到
 		stu =NULL;
 		return ERROR;

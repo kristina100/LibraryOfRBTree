@@ -21,6 +21,7 @@ char Data_Man[] = "Managers.dat";
 void Print_Login_Options(){
 
     Clean();
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);//°×É«
     printf("\n\n\n\n");
     printf("*-------------------------------------------------------------------------*\n");
     printf("|                           <Login Interface>                             |\n");

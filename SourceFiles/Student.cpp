@@ -268,7 +268,7 @@ void Print_Book(MyBook b){
     int num = 1;
     while(p != NULL && p->book != NULL){
         //打印编号
-        printf(" %-3d",num);
+        printf("  %-3d",num);
         //打印ISBN
         printf("%15lld\t", p->book->elem);
         //打印书名
