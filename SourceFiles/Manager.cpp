@@ -97,6 +97,7 @@ void Man_AccountMenu(){
  * 
  */
 Status Man_Fuction(Manager &M){
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);//黄色
 	//创建空树
 	RBRoot *root = NULL;
 	root = createRBTree();
@@ -276,7 +277,10 @@ Status Man_ManageAccount(Manager M,RBRoot *root){
 		}
 		default:printf("输入有误，请重新输入!（0-5）");
 		}
+		Pause();
+		Clean();
 	} while (choice!=0);
+	
 	return SUCCESS;
 }
 
@@ -388,6 +392,8 @@ Status Man_SearchBook(Manager M,RBRoot *root){
 		}
 		default:printf("输入有误，请重新输入!（1-4）");
 		}
+		Pause();
+		Clean();
 	} while (choice!=0);
 	free(e1);
 	free(e2);

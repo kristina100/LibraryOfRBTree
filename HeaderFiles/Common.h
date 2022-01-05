@@ -15,6 +15,7 @@
 #include<windows.h>
 #include<time.h>
 #include<iostream>
+#include <stdarg.h>
 
 //³£ÓÃ×´Ì¬
 #define ERROR 0

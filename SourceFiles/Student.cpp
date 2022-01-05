@@ -114,7 +114,7 @@ void Stu_Print_MyInfo(Stu stu){
  * @brief 学生操作
  */
 void Stu_Operation(Stu &stu){
-
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 3);//天蓝色
     //初始化红黑树
     RBRoot *root = NULL;
     root = createRBTree();

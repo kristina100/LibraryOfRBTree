@@ -41,7 +41,7 @@ void Print_Login_Options(){
  * @brief 登录选项
  */
 void Login_Operation(){
-    
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);//白色
     //选择
     int choose;
     
